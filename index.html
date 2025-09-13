@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberGuard - Cybersecurity Awareness</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">CyberGuard</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#threats" class="nav-link">Threat Types</a></li>
+                <li class="nav-item"><a href="#tools" class="nav-link">Security Tools</a></li>
+                <li class="nav-item"><a href="#prevention" class="nav-link">Prevention</a></li>
+                <li class="nav-item"><a href="#resources" class="nav-link">Resources</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Protect Yourself in the Digital World</h1>
+            <p>Learn how to recognize and prevent cyber threats with our comprehensive security awareness resources</p>
+            <button class="cta-button" onclick="scrollToSection('threats')">Explore Threats</button>
+        </div>
+        <div class="hero-visual">
+            <div class="shield-animation">
+                <div class="shield"></div>
+                <div class="circle"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Threat Types Section -->
+    <section id="threats" class="threats">
+        <h2>Common Cyber Threats</h2>
+        <div class="threats-container">
+            <div class="threat-card">
+                <div class="threat-icon">📧</div>
+                <h3>Phishing</h3>
+                <p>Fraudulent attempts to obtain sensitive information by disguising as a trustworthy entity.</p>
+                <button class="info-btn" onclick="showThreatDetail('phishing')">Learn More</button>
+            </div>
+            <div class="threat-card">
+                <div class="threat-icon">🔒</div>
+                <h3>Ransomware</h3>
+                <p>Malicious software that blocks access to systems until a ransom is paid.</p>
+                <button class="info-btn" onclick="showThreatDetail('ransomware')">Learn More</button>
+            </div>
+            <div class="threat-card">
+                <div class="threat-icon">👤</div>
+                <h3>Identity Theft</h3>
+                <p>Fraudulent acquisition and use of someone's personal information.</p>
+                <button class="info-btn" onclick="showThreatDetail('identity-theft')">Learn More</button>
+            </div>
+            <div class="threat-card">
+                <div class="threat-icon">💳</div>
+                <h3>Credit Card Fraud</h3>
+                <p>Unauthorized use of credit card information to make purchases or withdraw funds.</p>
+                <button class="info-btn" onclick="showThreatDetail('credit-fraud')">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="tools">
+        <h2>Security Awareness Tools</h2>
+        <div class="tools-container">
+            <div class="tool-card">
+                <h3>Password Strength Checker</h3>
+                <p>Test how secure your passwords are</p>
+                <div class="password-checker">
+                    <input type="password" id="password-input" placeholder="Enter a password">
+                    <div class="strength-meter">
+                        <div class="strength-bar"></div>
+                    </div>
+                    <div class="strength-text">Password strength: <span id="strength-value">None</span></div>
+                </div>
+            </div>
+            <div class="tool-card">
+                <h3>Phishing Quiz</h3>
+                <p>Test your ability to spot phishing attempts</p>
+                <button class="quiz-btn" onclick="startQuiz()">Start Quiz</button>
+            </div>
+            <div class="tool-card">
+                <h3>Security Checklist</h3>
+                <p>Essential steps to protect your digital life</p>
+                <div class="checklist">
+                    <label class="check-item">
+                        <input type="checkbox">
+                        <span>Use strong, unique passwords</span>
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox">
+                        <span>Enable two-factor authentication</span>
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox">
+                        <span>Keep software updated</span>
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox">
+                        <span>Back up important data regularly</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prevention Section -->
+    <section id="prevention" class="prevention">
+        <h2>Fraud Prevention Tips</h2>
+        <div class="prevention-content">
+            <div class="tip">
+                <h3>Verify Requests</h3>
+                <p>Always verify unusual requests for sensitive information, even if they appear to come from trusted sources.</p>
+            </div>
+            <div class="tip">
+                <h3>Use Multi-Factor Authentication</h3>
+                <p>Add an extra layer of security to your accounts with MFA wherever possible.</p>
+            </div>
+            <div class="tip">
+                <h3>Monitor Accounts Regularly</h3>
+                <p>Regularly check your financial statements and credit reports for suspicious activity.</p>
+            </div>
+            <div class="tip">
+                <h3>Educate Yourself</h3>
+                <p>Stay informed about the latest scams and security best practices.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="resources">
+        <h2>Additional Resources</h2>
+        <div class="resources-container">
+            <div class="resource-card">
+                <h3>Educational Materials</h3>
+                <ul>
+                    <li><a href="#">Cybersecurity Basics PDF</a></li>
+                    <li><a href="#">How to Spot Phishing Emails</a></li>
+                    <li><a href="#">Creating Strong Passwords</a></li>
+                </ul>
+            </div>
+            <div class="resource-card">
+                <h3>Reporting Fraud</h3>
+                <ul>
+                    <li><a href="#">Report Phishing Attempts</a></li>
+                    <li><a href="#">Identity Theft Reporting</a></li>
+                    <li><a href="#">Credit Card Fraud Reporting</a></li>
+                </ul>
+            </div>
+            <div class="resource-card">
+                <h3>Security Tools</h3>
+                <ul>
+                    <li><a href="#">Password Managers</a></li>
+                    <li><a href="#">Antivirus Software</a></li>
+                    <li><a href="#">VPN Services</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Disclaimer: This website is for educational purposes only. We do not provide any actual hacking tools.</p>
+        <p>© 2023 CyberGuard - Cybersecurity Awareness</p>
+    </footer>
+
+    <!-- Threat Detail Modal -->
+    <div id="threat-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
