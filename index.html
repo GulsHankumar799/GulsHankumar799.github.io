@@ -6,7 +6,7 @@
     <title>CyberGuard - Cybersecurity Awareness</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* CSS will be placed here */
+        /* CSS Variables */
         :root {
             --primary: #2c3e50;
             --secondary: #3498db;
@@ -14,8 +14,11 @@
             --light: #ecf0f1;
             --dark: #2c3e50;
             --success: #2ecc71;
+            --gradient-start: #2c3e50;
+            --gradient-end: #1a2530;
         }
         
+        /* Global Styles */
         * {
             margin: 0;
             padding: 0;
@@ -27,6 +30,79 @@
             background-color: #f5f7fa;
             color: #333;
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .btn-accent {
+            background: var(--accent);
+            box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+        }
+        
+        .btn-accent:hover {
+            background: #c0392b;
+            box-shadow: 0 6px 15px rgba(231, 76, 60, 0.4);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            color: #7f8c8d;
+            max-width: 700px;
+            margin: 0 auto;
         }
         
         /* Header & Navigation */
@@ -39,12 +115,6 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
         }
         
         .nav-container {
@@ -68,6 +138,7 @@
         .nav-menu {
             display: flex;
             list-style: none;
+            align-items: center;
         }
         
         .nav-item {
@@ -101,6 +172,40 @@
             width: 100%;
         }
         
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .auth-btn {
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .login-btn {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: white;
+        }
+        
+        .login-btn:hover {
+            background: var(--secondary);
+        }
+        
+        .signup-btn {
+            background: var(--secondary);
+            border: 2px solid var(--secondary);
+            color: white;
+        }
+        
+        .signup-btn:hover {
+            background: #2980b9;
+            border-color: #2980b9;
+        }
+        
         .hamburger {
             display: none;
             cursor: pointer;
@@ -118,14 +223,29 @@
         /* Hero Section */
         .hero {
             padding: 8rem 0 5rem;
-            background: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
             color: white;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: 100% 100%;
         }
         
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
         
         .hero h1 {
@@ -140,63 +260,7 @@
             opacity: 0.9;
         }
         
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.8rem;
-            background: var(--secondary);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
-        }
-        
-        .btn:hover {
-            background: #2980b9;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
-        }
-        
-        /* Sections */
-        section {
-            padding: 5rem 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--secondary);
-        }
-        
-        .section-title p {
-            color: #7f8c8d;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        /* Threat Types */
+        /* Threat Types Section */
         .threats-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -209,6 +273,8 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            top: 0;
         }
         
         .threat-card:hover {
@@ -233,6 +299,224 @@
             color: var(--dark);
         }
         
+        .threat-content p {
+            color: #7f8c8d;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Auth Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            overflow: auto;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 0;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideDown 0.4s ease;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.8rem;
+            color: #7f8c8d;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: var(--accent);
+        }
+        
+        .auth-container {
+            padding: 2rem;
+        }
+        
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .auth-tab {
+            padding: 1rem 2rem;
+            cursor: pointer;
+            text-align: center;
+            flex: 1;
+            font-weight: 600;
+            color: #7f8c8d;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .auth-tab.active {
+            color: var(--secondary);
+            border-bottom: 3px solid var(--secondary);
+        }
+        
+        .auth-form {
+            display: none;
+        }
+        
+        .auth-form.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+        
+        .remember-me input {
+            margin-right: 0.5rem;
+        }
+        
+        .forgot-password {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: #2980b9;
+        }
+        
+        .auth-divider {
+            text-align: center;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        
+        .auth-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #eee;
+        }
+        
+        .auth-divider span {
+            background: white;
+            padding: 0 1rem;
+            position: relative;
+            color: #7f8c8d;
+        }
+        
+        .social-auth {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .social-btn i {
+            margin-right: 0.5rem;
+        }
+        
+        .google-btn:hover {
+            background: #f5f5f5;
+        }
+        
+        .github-btn:hover {
+            background: #f5f5f5;
+        }
+        
+        .auth-switch {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #7f8c8d;
+        }
+        
+        .auth-switch a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .auth-switch a:hover {
+            text-decoration: underline;
+        }
+        
         /* Tools Section */
         .tools-section {
             background: var(--light);
@@ -250,6 +534,11 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
         }
         
         .tool-card i {
@@ -261,6 +550,49 @@
         .tool-card h3 {
             margin-bottom: 1rem;
             color: var(--dark);
+        }
+        
+        .password-checker {
+            margin-top: 1.5rem;
+        }
+        
+        #password-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+        
+        .strength-meter {
+            width: 100%;
+            height: 10px;
+            background-color: #eee;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+        }
+        
+        .strength-bar {
+            height: 100%;
+            width: 0%;
+            border-radius: 5px;
+            transition: width 0.3s, background-color 0.3s;
+        }
+        
+        .checklist {
+            text-align: left;
+            margin-top: 1.5rem;
+        }
+        
+        .check-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .check-item input {
+            margin-right: 10px;
         }
         
         /* Prevention Section */
@@ -277,6 +609,11 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             display: flex;
             align-items: flex-start;
+            transition: transform 0.3s;
+        }
+        
+        .prevention-tip:hover {
+            transform: translateY(-5px);
         }
         
         .tip-icon {
@@ -305,6 +642,11 @@
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
         }
         
         .resource-card h3 {
@@ -405,6 +747,38 @@
             font-size: 0.9rem;
         }
         
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .hamburger {
@@ -441,6 +815,18 @@
                 margin: 1.5rem 0;
             }
             
+            .auth-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
+                padding: 0 2rem;
+            }
+            
+            .auth-btn {
+                width: 100%;
+                text-align: center;
+            }
+            
             .nav-menu.active {
                 left: 0;
             }
@@ -448,29 +834,15 @@
             .hero h1 {
                 font-size: 2.5rem;
             }
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+            
+            .section-title h2 {
+                font-size: 2rem;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            
+            .modal-content {
+                margin: 10% auto;
+                width: 95%;
             }
-        }
-        
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s, transform 0.5s;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
 </head>
@@ -489,6 +861,12 @@
                     <li class="nav-item"><a href="#tools" class="nav-link">Security Tools</a></li>
                     <li class="nav-item"><a href="#prevention" class="nav-link">Prevention</a></li>
                     <li class="nav-item"><a href="#resources" class="nav-link">Resources</a></li>
+                    <li class="nav-item">
+                        <div class="auth-buttons">
+                            <button class="auth-btn login-btn" id="open-login">Login</button>
+                            <button class="auth-btn signup-btn" id="open-signup">Sign Up</button>
+                        </div>
+                    </li>
                 </ul>
                 <div class="hamburger">
                     <span class="bar"></span>
@@ -498,6 +876,92 @@
             </nav>
         </div>
     </header>
+
+    <!-- Auth Modals -->
+    <div class="modal" id="auth-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <div class="auth-container">
+                <div class="auth-tabs">
+                    <div class="auth-tab active" data-tab="login">Login</div>
+                    <div class="auth-tab" data-tab="signup">Sign Up</div>
+                </div>
+                
+                <form class="auth-form active" id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember-me">
+                            <label for="remember-me">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="submit-btn">Login</button>
+                    
+                    <div class="auth-divider">
+                        <span>Or continue with</span>
+                    </div>
+                    
+                    <div class="social-auth">
+                        <button type="button" class="social-btn google-btn">
+                            <i class="fab fa-google"></i> Google
+                        </button>
+                        <button type="button" class="social-btn github-btn">
+                            <i class="fab fa-github"></i> GitHub
+                        </button>
+                    </div>
+                    
+                    <div class="auth-switch">
+                        Don't have an account? <a href="#" id="switch-to-signup">Sign Up</a>
+                    </div>
+                </form>
+                
+                <form class="auth-form" id="signup-form">
+                    <div class="form-group">
+                        <label for="signup-name">Full Name</label>
+                        <input type="text" id="signup-name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" placeholder="Create a password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-confirm">Confirm Password</label>
+                        <input type="password" id="signup-confirm" placeholder="Confirm your password" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Create Account</button>
+                    
+                    <div class="auth-divider">
+                        <span>Or sign up with</span>
+                    </div>
+                    
+                    <div class="social-auth">
+                        <button type="button" class="social-btn google-btn">
+                            <i class="fab fa-google"></i> Google
+                        </button>
+                        <button type="button" class="social-btn github-btn">
+                            <i class="fab fa-github"></i> GitHub
+                        </button>
+                    </div>
+                    
+                    <div class="auth-switch">
+                        Already have an account? <a href="#" id="switch-to-login">Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -523,7 +987,7 @@
                     <div class="threat-content">
                         <h3>Phishing</h3>
                         <p>Fraudulent attempts to obtain sensitive information by disguising as a trustworthy entity.</p>
-                        <button class="btn" style="margin-top: 15px;">Learn More</button>
+                        <button class="btn btn-accent">Learn More</button>
                     </div>
                 </div>
                 <div class="threat-card fade-in">
@@ -533,7 +997,7 @@
                     <div class="threat-content">
                         <h3>Ransomware</h3>
                         <p>Malicious software that blocks access to systems until a ransom is paid.</p>
-                        <button class="btn" style="margin-top: 15px;">Learn More</button>
+                        <button class="btn btn-accent">Learn More</button>
                     </div>
                 </div>
                 <div class="threat-card fade-in">
@@ -542,8 +1006,8 @@
                     </div>
                     <div class="threat-content">
                         <h3>Identity Theft</h3>
-                        <p>Fraudulent acquisition and use of someone's personal information.</p>
-                        <button class="btn" style="margin-top: 15px;">Learn More</button>
+                        <p>Fraudulent acquisition and use of a person's private identifying information.</p>
+                        <button class="btn btn-accent">Learn More</button>
                     </div>
                 </div>
             </div>
@@ -609,14 +1073,14 @@
         <div class="container">
             <div class="section-title">
                 <h2>Fraud Prevention Tips</h2>
-                <p>Proactive measures to protect yourself from cyber threats</p>
+                <p>Practical advice to protect yourself from cyber threats</p>
             </div>
             <div class="prevention-content">
                 <div class="prevention-tip fade-in">
                     <div class="tip-icon">
-                        <i class="fas fa-shield-alt"></i>
+                        <i class="fas fa-check"></i>
                     </div>
-                    <div>
+                    <div class="tip-content">
                         <h3>Verify Requests</h3>
                         <p>Always verify unusual requests for sensitive information, even if they appear to come from trusted sources.</p>
                     </div>
@@ -625,16 +1089,16 @@
                     <div class="tip-icon">
                         <i class="fas fa-lock"></i>
                     </div>
-                    <div>
+                    <div class="tip-content">
                         <h3>Use Multi-Factor Authentication</h3>
                         <p>Add an extra layer of security to your accounts with MFA wherever possible.</p>
                     </div>
                 </div>
                 <div class="prevention-tip fade-in">
                     <div class="tip-icon">
-                        <i class="fas fa-eye"></i>
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    <div>
+                    <div class="tip-content">
                         <h3>Monitor Accounts Regularly</h3>
                         <p>Regularly check your financial statements and credit reports for suspicious activity.</p>
                     </div>
@@ -643,7 +1107,7 @@
                     <div class="tip-icon">
                         <i class="fas fa-book"></i>
                     </div>
-                    <div>
+                    <div class="tip-content">
                         <h3>Educate Yourself</h3>
                         <p>Stay informed about the latest scams and security best practices.</p>
                     </div>
@@ -694,7 +1158,9 @@
     <!-- Footer -->
     <footer>
         <div class="container footer-content">
-            <div class="footer-logo">CyberGuard</div>
+            <div class="footer-logo">
+                <i class="fas fa-shield-alt"></i> CyberGuard
+            </div>
             <ul class="footer-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#threats">Threats</a></li>
@@ -703,18 +1169,18 @@
                 <li><a href="#resources">Resources</a></li>
             </ul>
             <div class="social-icons">
-                <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
                 <a href="#"><i class="fab fa-github"></i></a>
             </div>
-            <p class="copyright">© 2023 CyberGuard. All rights reserved.</p>
-            <p class="copyright">Disclaimer: This website is for educational purposes only.</p>
+            <p class="copyright">© 2023 CyberGuard. All rights reserved. | For educational purposes only.</p>
         </div>
     </footer>
 
     <script>
-        // JavaScript will be placed here
+        // JavaScript for interactive elements
         document.addEventListener('DOMContentLoaded', function() {
             // Mobile menu toggle
             const hamburger = document.querySelector('.hamburger');
@@ -733,73 +1199,83 @@
                 });
             });
             
+            // Auth modal functionality
+            const authModal = document.getElementById('auth-modal');
+            const openLoginBtn = document.getElementById('open-login');
+            const openSignupBtn = document.getElementById('open-signup');
+            const closeModalBtn = document.getElementById('close-modal');
+            const authTabs = document.querySelectorAll('.auth-tab');
+            const authForms = document.querySelectorAll('.auth-form');
+            const switchToSignup = document.getElementById('switch-to-signup');
+            const switchToLogin = document.getElementById('switch-to-login');
+            
+            // Open login modal
+            openLoginBtn.addEventListener('click', () => {
+                authModal.style.display = 'block';
+                switchTab('login');
+            });
+            
+            // Open signup modal
+            openSignupBtn.addEventListener('click', () => {
+                authModal.style.display = 'block';
+                switchTab('signup');
+            });
+            
+            // Close modal
+            closeModalBtn.addEventListener('click', () => {
+                authModal.style.display = 'none';
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === authModal) {
+                    authModal.style.display = 'none';
+                }
+            });
+            
+            // Switch between tabs
+            authTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabName = tab.getAttribute('data-tab');
+                    switchTab(tabName);
+                });
+            });
+            
+            // Switch to signup from login
+            switchToSignup.addEventListener('click', (e) => {
+                e.preventDefault();
+                switchTab('signup');
+            });
+            
+            // Switch to login from signup
+            switchToLogin.addEventListener('click', (e) => {
+                e.preventDefault();
+                switchTab('login');
+            });
+            
+            // Form submissions
+            document.getElementById('login-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Here you would normally handle login logic
+                alert('Login functionality would be implemented here!');
+                authModal.style.display = 'none';
+            });
+            
+            document.getElementById('signup-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Here you would normally handle signup logic
+                alert('Signup functionality would be implemented here!');
+                authModal.style.display = 'none';
+            });
+            
             // Password strength checker
             const passwordInput = document.getElementById('password-input');
             const strengthBar = document.querySelector('.strength-bar');
             const strengthValue = document.getElementById('strength-value');
             
-            if (passwordInput) {
-                passwordInput.addEventListener('input', checkPasswordStrength);
-                
-                function checkPasswordStrength() {
-                    const password = passwordInput.value;
-                    let strength = 0;
-                    
-                    // Check password length
-                    if (password.length > 7) strength += 20;
-                    
-                    // Check for mixed case
-                    if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) strength += 20;
-                    
-                    // Check for numbers
-                    if (password.match(/([0-9])/)) strength += 20;
-                    
-                    // Check for special characters
-                    if (password.match(/([!,@,#,$,%,^,&,*,?,_,~])/)) strength += 20;
-                    
-                    // Check for consecutive characters
-                    if (!password.match(/(.)\1\1/)) strength += 20;
-                    
-                    // Update strength bar and text
-                    strengthBar.style.width = strength + '%';
-                    
-                    if (strength < 40) {
-                        strengthBar.style.backgroundColor = '#e74c3c';
-                        strengthValue.textContent = 'Weak';
-                    } else if (strength < 80) {
-                        strengthBar.style.backgroundColor = '#f39c12';
-                        strengthValue.textContent = 'Medium';
-                    } else {
-                        strengthBar.style.backgroundColor = '#2ecc71';
-                        strengthValue.textContent = 'Strong';
-                    }
-                }
-            }
+            passwordInput.addEventListener('input', checkPasswordStrength);
             
-            // Quiz functionality
-            const startQuizBtn = document.getElementById('start-quiz');
-            const quizResults = document.getElementById('quiz-results');
-            
-            if (startQuizBtn) {
-                startQuizBtn.addEventListener('click', function() {
-                    quizResults.innerHTML = `
-                        <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
-                            <h4>Phishing Quiz</h4>
-                            <p>This feature would include interactive questions to test your ability to identify phishing attempts.</p>
-                            <p>For now, remember these signs of phishing:</p>
-                            <ul>
-                                <li>Urgent or threatening language</li>
-                                <li>Requests for sensitive information</li>
-                                <li>Suspicious sender addresses</li>
-                                <li>Spelling and grammar mistakes</li>
-                                <li>Mismatched URLs</li>
-                            </ul>
-                        </div>
-                    `;
-                });
-            }
-            
-            // Scroll animations
+            // Fade in elements on scroll
             const fadeElements = document.querySelectorAll('.fade-in');
             
             function checkFade() {
@@ -813,27 +1289,72 @@
                 });
             }
             
-            window.addEventListener('scroll', checkFade);
+            // Check on load and scroll
             window.addEventListener('load', checkFade);
+            window.addEventListener('scroll', checkFade);
             
-            // Smooth scrolling for navigation links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
+            // Quiz button
+            document.getElementById('start-quiz').addEventListener('click', () => {
+                alert('Quiz functionality would be implemented here!');
             });
         });
+        
+        function switchTab(tabName) {
+            // Update tabs
+            document.querySelectorAll('.auth-tab').forEach(tab => {
+                if (tab.getAttribute('data-tab') === tabName) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+            
+            // Update forms
+            document.querySelectorAll('.auth-form').forEach(form => {
+                if (form.id === `${tabName}-form`) {
+                    form.classList.add('active');
+                } else {
+                    form.classList.remove('active');
+                }
+            });
+        }
+        
+        function checkPasswordStrength() {
+            const password = document.getElementById('password-input').value;
+            let strength = 0;
+            
+            // Check password length
+            if (password.length > 7) strength += 20;
+            
+            // Check for mixed case
+            if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) strength += 20;
+            
+            // Check for numbers
+            if (password.match(/([0-9])/)) strength += 20;
+            
+            // Check for special characters
+            if (password.match(/([!,@,#,$,%,^,&,*,?,_,~])/)) strength += 20;
+            
+            // Check for consecutive characters
+            if (!password.match(/(.)\1\1/)) strength += 20;
+            
+            // Update strength bar and text
+            const strengthBar = document.querySelector('.strength-bar');
+            const strengthValue = document.getElementById('strength-value');
+            
+            strengthBar.style.width = strength + '%';
+            
+            if (strength < 40) {
+                strengthBar.style.backgroundColor = '#e74c3c';
+                strengthValue.textContent = 'Weak';
+            } else if (strength < 80) {
+                strengthBar.style.backgroundColor = '#f39c12';
+                strengthValue.textContent = 'Medium';
+            } else {
+                strengthBar.style.backgroundColor = '#2ecc71';
+                strengthValue.textContent = 'Strong';
+            }
+        }
     </script>
 </body>
 </html>
