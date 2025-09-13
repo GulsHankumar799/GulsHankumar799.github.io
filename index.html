@@ -4,189 +4,836 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CyberGuard - Cybersecurity Awareness</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS will be placed here */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            color: var(--secondary);
+            margin-right: 10px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin-left: 2rem;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--secondary);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: white;
+            transition: all 0.3s;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 5rem;
+            background: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeIn 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+        }
+        
+        .section-title p {
+            color: #7f8c8d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Threat Types */
+        .threats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .threat-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .threat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .threat-icon {
+            background: var(--secondary);
+            color: white;
+            font-size: 2rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .threat-content {
+            padding: 1.5rem;
+        }
+        
+        .threat-content h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        /* Tools Section */
+        .tools-section {
+            background: var(--light);
+        }
+        
+        .tools-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .tool-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .tool-card i {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .tool-card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        /* Prevention Section */
+        .prevention-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .prevention-tip {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .tip-icon {
+            background: var(--success);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        /* Resources Section */
+        .resources-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .resource-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .resource-card h3 {
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+        }
+        
+        .resource-card h3 i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .resource-card ul {
+            list-style: none;
+        }
+        
+        .resource-card li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .resource-card li i {
+            color: var(--success);
+            margin-right: 10px;
+        }
+        
+        .resource-card a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .resource-card a:hover {
+            color: var(--dark);
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links li {
+            margin: 0 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-icons {
+            margin-bottom: 2rem;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                gap: 0;
+                flex-direction: column;
+                background: var(--primary);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            }
+            
+            .nav-item {
+                margin: 1.5rem 0;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <span class="logo-text">CyberGuard</span>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                CyberGuard
             </div>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="#threats" class="nav-link">Threat Types</a></li>
-                <li class="nav-item"><a href="#tools" class="nav-link">Security Tools</a></li>
-                <li class="nav-item"><a href="#prevention" class="nav-link">Prevention</a></li>
-                <li class="nav-item"><a href="#resources" class="nav-link">Resources</a></li>
-            </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#threats" class="nav-link">Threat Types</a></li>
+                    <li class="nav-item"><a href="#tools" class="nav-link">Security Tools</a></li>
+                    <li class="nav-item"><a href="#prevention" class="nav-link">Prevention</a></li>
+                    <li class="nav-item"><a href="#resources" class="nav-link">Resources</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
         </div>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-content">
+        <div class="container hero-content">
             <h1>Protect Yourself in the Digital World</h1>
             <p>Learn how to recognize and prevent cyber threats with our comprehensive security awareness resources</p>
-            <button class="cta-button" onclick="scrollToSection('threats')">Explore Threats</button>
-        </div>
-        <div class="hero-visual">
-            <div class="shield-animation">
-                <div class="shield"></div>
-                <div class="circle"></div>
-            </div>
+            <a href="#threats" class="btn">Explore Threats</a>
         </div>
     </section>
 
     <!-- Threat Types Section -->
-    <section id="threats" class="threats">
-        <h2>Common Cyber Threats</h2>
-        <div class="threats-container">
-            <div class="threat-card">
-                <div class="threat-icon">📧</div>
-                <h3>Phishing</h3>
-                <p>Fraudulent attempts to obtain sensitive information by disguising as a trustworthy entity.</p>
-                <button class="info-btn" onclick="showThreatDetail('phishing')">Learn More</button>
+    <section id="threats" class="threats-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Common Cyber Threats</h2>
+                <p>Understanding these threats is the first step toward protecting yourself online</p>
             </div>
-            <div class="threat-card">
-                <div class="threat-icon">🔒</div>
-                <h3>Ransomware</h3>
-                <p>Malicious software that blocks access to systems until a ransom is paid.</p>
-                <button class="info-btn" onclick="showThreatDetail('ransomware')">Learn More</button>
-            </div>
-            <div class="threat-card">
-                <div class="threat-icon">👤</div>
-                <h3>Identity Theft</h3>
-                <p>Fraudulent acquisition and use of someone's personal information.</p>
-                <button class="info-btn" onclick="showThreatDetail('identity-theft')">Learn More</button>
-            </div>
-            <div class="threat-card">
-                <div class="threat-icon">💳</div>
-                <h3>Credit Card Fraud</h3>
-                <p>Unauthorized use of credit card information to make purchases or withdraw funds.</p>
-                <button class="info-btn" onclick="showThreatDetail('credit-fraud')">Learn More</button>
+            <div class="threats-container">
+                <div class="threat-card fade-in">
+                    <div class="threat-icon">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <div class="threat-content">
+                        <h3>Phishing</h3>
+                        <p>Fraudulent attempts to obtain sensitive information by disguising as a trustworthy entity.</p>
+                        <button class="btn" style="margin-top: 15px;">Learn More</button>
+                    </div>
+                </div>
+                <div class="threat-card fade-in">
+                    <div class="threat-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="threat-content">
+                        <h3>Ransomware</h3>
+                        <p>Malicious software that blocks access to systems until a ransom is paid.</p>
+                        <button class="btn" style="margin-top: 15px;">Learn More</button>
+                    </div>
+                </div>
+                <div class="threat-card fade-in">
+                    <div class="threat-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <div class="threat-content">
+                        <h3>Identity Theft</h3>
+                        <p>Fraudulent acquisition and use of someone's personal information.</p>
+                        <button class="btn" style="margin-top: 15px;">Learn More</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Tools Section -->
-    <section id="tools" class="tools">
-        <h2>Security Awareness Tools</h2>
-        <div class="tools-container">
-            <div class="tool-card">
-                <h3>Password Strength Checker</h3>
-                <p>Test how secure your passwords are</p>
-                <div class="password-checker">
-                    <input type="password" id="password-input" placeholder="Enter a password">
-                    <div class="strength-meter">
-                        <div class="strength-bar"></div>
+    <section id="tools" class="tools-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Security Awareness Tools</h2>
+                <p>Practical tools to help you stay safe in the digital world</p>
+            </div>
+            <div class="tools-container">
+                <div class="tool-card fade-in">
+                    <i class="fas fa-key"></i>
+                    <h3>Password Strength Checker</h3>
+                    <p>Test how secure your passwords are against common attacks</p>
+                    <div class="password-checker">
+                        <input type="password" id="password-input" placeholder="Enter a password">
+                        <div class="strength-meter">
+                            <div class="strength-bar"></div>
+                        </div>
+                        <div class="strength-text">Password strength: <span id="strength-value">None</span></div>
                     </div>
-                    <div class="strength-text">Password strength: <span id="strength-value">None</span></div>
                 </div>
-            </div>
-            <div class="tool-card">
-                <h3>Phishing Quiz</h3>
-                <p>Test your ability to spot phishing attempts</p>
-                <button class="quiz-btn" onclick="startQuiz()">Start Quiz</button>
-            </div>
-            <div class="tool-card">
-                <h3>Security Checklist</h3>
-                <p>Essential steps to protect your digital life</p>
-                <div class="checklist">
-                    <label class="check-item">
-                        <input type="checkbox">
-                        <span>Use strong, unique passwords</span>
-                    </label>
-                    <label class="check-item">
-                        <input type="checkbox">
-                        <span>Enable two-factor authentication</span>
-                    </label>
-                    <label class="check-item">
-                        <input type="checkbox">
-                        <span>Keep software updated</span>
-                    </label>
-                    <label class="check-item">
-                        <input type="checkbox">
-                        <span>Back up important data regularly</span>
-                    </label>
+                <div class="tool-card fade-in">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Security Checklist</h3>
+                    <p>Essential steps to protect your digital life</p>
+                    <div class="checklist">
+                        <label class="check-item">
+                            <input type="checkbox">
+                            <span>Use strong, unique passwords</span>
+                        </label>
+                        <label class="check-item">
+                            <input type="checkbox">
+                            <span>Enable two-factor authentication</span>
+                        </label>
+                        <label class="check-item">
+                            <input type="checkbox">
+                            <span>Keep software updated</span>
+                        </label>
+                        <label class="check-item">
+                            <input type="checkbox">
+                            <span>Back up important data regularly</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="tool-card fade-in">
+                    <i class="fas fa-scroll"></i>
+                    <h3>Phishing Quiz</h3>
+                    <p>Test your ability to spot phishing attempts</p>
+                    <button class="btn" id="start-quiz">Start Quiz</button>
+                    <div id="quiz-results"></div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Prevention Section -->
-    <section id="prevention" class="prevention">
-        <h2>Fraud Prevention Tips</h2>
-        <div class="prevention-content">
-            <div class="tip">
-                <h3>Verify Requests</h3>
-                <p>Always verify unusual requests for sensitive information, even if they appear to come from trusted sources.</p>
+    <section id="prevention" class="prevention-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Fraud Prevention Tips</h2>
+                <p>Proactive measures to protect yourself from cyber threats</p>
             </div>
-            <div class="tip">
-                <h3>Use Multi-Factor Authentication</h3>
-                <p>Add an extra layer of security to your accounts with MFA wherever possible.</p>
-            </div>
-            <div class="tip">
-                <h3>Monitor Accounts Regularly</h3>
-                <p>Regularly check your financial statements and credit reports for suspicious activity.</p>
-            </div>
-            <div class="tip">
-                <h3>Educate Yourself</h3>
-                <p>Stay informed about the latest scams and security best practices.</p>
+            <div class="prevention-content">
+                <div class="prevention-tip fade-in">
+                    <div class="tip-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div>
+                        <h3>Verify Requests</h3>
+                        <p>Always verify unusual requests for sensitive information, even if they appear to come from trusted sources.</p>
+                    </div>
+                </div>
+                <div class="prevention-tip fade-in">
+                    <div class="tip-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div>
+                        <h3>Use Multi-Factor Authentication</h3>
+                        <p>Add an extra layer of security to your accounts with MFA wherever possible.</p>
+                    </div>
+                </div>
+                <div class="prevention-tip fade-in">
+                    <div class="tip-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div>
+                        <h3>Monitor Accounts Regularly</h3>
+                        <p>Regularly check your financial statements and credit reports for suspicious activity.</p>
+                    </div>
+                </div>
+                <div class="prevention-tip fade-in">
+                    <div class="tip-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div>
+                        <h3>Educate Yourself</h3>
+                        <p>Stay informed about the latest scams and security best practices.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Resources Section -->
-    <section id="resources" class="resources">
-        <h2>Additional Resources</h2>
-        <div class="resources-container">
-            <div class="resource-card">
-                <h3>Educational Materials</h3>
-                <ul>
-                    <li><a href="#">Cybersecurity Basics PDF</a></li>
-                    <li><a href="#">How to Spot Phishing Emails</a></li>
-                    <li><a href="#">Creating Strong Passwords</a></li>
-                </ul>
+    <section id="resources" class="resources-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Additional Resources</h2>
+                <p>Expand your knowledge with these cybersecurity resources</p>
             </div>
-            <div class="resource-card">
-                <h3>Reporting Fraud</h3>
-                <ul>
-                    <li><a href="#">Report Phishing Attempts</a></li>
-                    <li><a href="#">Identity Theft Reporting</a></li>
-                    <li><a href="#">Credit Card Fraud Reporting</a></li>
-                </ul>
-            </div>
-            <div class="resource-card">
-                <h3>Security Tools</h3>
-                <ul>
-                    <li><a href="#">Password Managers</a></li>
-                    <li><a href="#">Antivirus Software</a></li>
-                    <li><a href="#">VPN Services</a></li>
-                </ul>
+            <div class="resources-container">
+                <div class="resource-card fade-in">
+                    <h3><i class="fas fa-book"></i> Educational Materials</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> <a href="#">Cybersecurity Basics PDF</a></li>
+                        <li><i class="fas fa-check"></i> <a href="#">How to Spot Phishing Emails</a></li>
+                        <li><i class="fas fa-check"></i> <a href="#">Creating Strong Passwords</a></li>
+                        <li><i class="fas fa-check"></i> <a href="#">Social Engineering Awareness</a></li>
+                    </ul>
+                </div>
+                <div class="resource-card fade-in">
+                    <h3><i class="fas fa-exclamation-circle"></i> Reporting Fraud</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> <a href="#">Report Phishing Attempts</a></li>
+                        <li><i class="fas fa-check"></i> <a href="#">Identity Theft Reporting</a></li>
+                        <li><i class="fas fa-check"></i> <a href="#">Credit Card Fraud Reporting</a></li>
+                        <li><i class="fas fa-check"></i> <a href="#">Cybercrime Reporting Portal</a></li>
+                    </ul>
+                </div>
+                <div class="resource-card fade-in">
+                    <h3><i class="fas fa-tools"></i> Security Tools</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> <a href="#">Password Managers</a></li>
+                        <li><i class="fas fa-check"></i> <a href="#">Antivirus Software</a></li>
+                        <li><i class="fas fa-check"></i> <a href="#">VPN Services</a></li>
+                        <li><i class="fas fa-check"></i> <a href="#">Two-Factor Authentication Apps</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <p>Disclaimer: This website is for educational purposes only. We do not provide any actual hacking tools.</p>
-        <p>© 2023 CyberGuard - Cybersecurity Awareness</p>
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">CyberGuard</div>
+            <ul class="footer-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#threats">Threats</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#prevention">Prevention</a></li>
+                <li><a href="#resources">Resources</a></li>
+            </ul>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+            <p class="copyright">© 2023 CyberGuard. All rights reserved.</p>
+            <p class="copyright">Disclaimer: This website is for educational purposes only.</p>
+        </div>
     </footer>
 
-    <!-- Threat Detail Modal -->
-    <div id="threat-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <div id="modal-body"></div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+    <script>
+        // JavaScript will be placed here
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+            
+            // Password strength checker
+            const passwordInput = document.getElementById('password-input');
+            const strengthBar = document.querySelector('.strength-bar');
+            const strengthValue = document.getElementById('strength-value');
+            
+            if (passwordInput) {
+                passwordInput.addEventListener('input', checkPasswordStrength);
+                
+                function checkPasswordStrength() {
+                    const password = passwordInput.value;
+                    let strength = 0;
+                    
+                    // Check password length
+                    if (password.length > 7) strength += 20;
+                    
+                    // Check for mixed case
+                    if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) strength += 20;
+                    
+                    // Check for numbers
+                    if (password.match(/([0-9])/)) strength += 20;
+                    
+                    // Check for special characters
+                    if (password.match(/([!,@,#,$,%,^,&,*,?,_,~])/)) strength += 20;
+                    
+                    // Check for consecutive characters
+                    if (!password.match(/(.)\1\1/)) strength += 20;
+                    
+                    // Update strength bar and text
+                    strengthBar.style.width = strength + '%';
+                    
+                    if (strength < 40) {
+                        strengthBar.style.backgroundColor = '#e74c3c';
+                        strengthValue.textContent = 'Weak';
+                    } else if (strength < 80) {
+                        strengthBar.style.backgroundColor = '#f39c12';
+                        strengthValue.textContent = 'Medium';
+                    } else {
+                        strengthBar.style.backgroundColor = '#2ecc71';
+                        strengthValue.textContent = 'Strong';
+                    }
+                }
+            }
+            
+            // Quiz functionality
+            const startQuizBtn = document.getElementById('start-quiz');
+            const quizResults = document.getElementById('quiz-results');
+            
+            if (startQuizBtn) {
+                startQuizBtn.addEventListener('click', function() {
+                    quizResults.innerHTML = `
+                        <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                            <h4>Phishing Quiz</h4>
+                            <p>This feature would include interactive questions to test your ability to identify phishing attempts.</p>
+                            <p>For now, remember these signs of phishing:</p>
+                            <ul>
+                                <li>Urgent or threatening language</li>
+                                <li>Requests for sensitive information</li>
+                                <li>Suspicious sender addresses</li>
+                                <li>Spelling and grammar mistakes</li>
+                                <li>Mismatched URLs</li>
+                            </ul>
+                        </div>
+                    `;
+                });
+            }
+            
+            // Scroll animations
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            function checkFade() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', checkFade);
+            window.addEventListener('load', checkFade);
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
