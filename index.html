@@ -535,6 +535,7 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s;
+            cursor: pointer;
         }
         
         .tool-card:hover {
@@ -680,11 +681,47 @@
             color: var(--secondary);
             text-decoration: none;
             transition: color 0.3s;
+            cursor: pointer;
         }
         
         .resource-card a:hover {
             color: var(--dark);
             text-decoration: underline;
+        }
+        
+        /* Detail Page Styles */
+        .detail-page {
+            display: none;
+            padding: 8rem 0 3rem;
+            min-height: 100vh;
+        }
+        
+        .detail-header {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .detail-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-btn i {
+            margin-right: 0.5rem;
         }
         
         /* Footer */
@@ -843,6 +880,14 @@
                 margin: 10% auto;
                 width: 95%;
             }
+            
+            .footer-links {
+                flex-direction: column;
+            }
+            
+            .footer-links li {
+                margin: 0.5rem 0;
+            }
         }
     </style>
 </head>
@@ -963,197 +1008,373 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container hero-content">
-            <h1>Protect Yourself in the Digital World</h1>
-            <p>Learn how to recognize and prevent cyber threats with our comprehensive security awareness resources</p>
-            <a href="#threats" class="btn">Explore Threats</a>
-        </div>
-    </section>
+    <!-- Main Content -->
+    <div id="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container hero-content">
+                <h1>Protect Yourself in the Digital World</h1>
+                <p>Learn how to recognize and prevent cyber threats with our comprehensive security awareness resources</p>
+                <a href="#threats" class="btn">Explore Threats</a>
+            </div>
+        </section>
 
-    <!-- Threat Types Section -->
-    <section id="threats" class="threats-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Common Cyber Threats</h2>
-                <p>Understanding these threats is the first step toward protecting yourself online</p>
-            </div>
-            <div class="threats-container">
-                <div class="threat-card fade-in">
-                    <div class="threat-icon">
-                        <i class="fas fa-fish"></i>
-                    </div>
-                    <div class="threat-content">
-                        <h3>Phishing</h3>
-                        <p>Fraudulent attempts to obtain sensitive information by disguising as a trustworthy entity.</p>
-                        <button class="btn btn-accent">Learn More</button>
-                    </div>
+        <!-- Threat Types Section -->
+        <section id="threats" class="threats-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Common Cyber Threats</h2>
+                    <p>Understanding these threats is the first step toward protecting yourself online</p>
                 </div>
-                <div class="threat-card fade-in">
-                    <div class="threat-icon">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="threat-content">
-                        <h3>Ransomware</h3>
-                        <p>Malicious software that blocks access to systems until a ransom is paid.</p>
-                        <button class="btn btn-accent">Learn More</button>
-                    </div>
-                </div>
-                <div class="threat-card fade-in">
-                    <div class="threat-icon">
-                        <i class="fas fa-user-secret"></i>
-                    </div>
-                    <div class="threat-content">
-                        <h3>Identity Theft</h3>
-                        <p>Fraudulent acquisition and use of a person's private identifying information.</p>
-                        <button class="btn btn-accent">Learn More</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tools Section -->
-    <section id="tools" class="tools-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Security Awareness Tools</h2>
-                <p>Practical tools to help you stay safe in the digital world</p>
-            </div>
-            <div class="tools-container">
-                <div class="tool-card fade-in">
-                    <i class="fas fa-key"></i>
-                    <h3>Password Strength Checker</h3>
-                    <p>Test how secure your passwords are against common attacks</p>
-                    <div class="password-checker">
-                        <input type="password" id="password-input" placeholder="Enter a password">
-                        <div class="strength-meter">
-                            <div class="strength-bar"></div>
+                <div class="threats-container">
+                    <div class="threat-card fade-in">
+                        <div class="threat-icon">
+                            <i class="fas fa-fish"></i>
                         </div>
-                        <div class="strength-text">Password strength: <span id="strength-value">None</span></div>
+                        <div class="threat-content">
+                            <h3>Phishing</h3>
+                            <p>Fraudulent attempts to obtain sensitive information by disguising as a trustworthy entity.</p>
+                            <button class="btn btn-accent">Learn More</button>
+                        </div>
+                    </div>
+                    <div class="threat-card fade-in">
+                        <div class="threat-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="threat-content">
+                            <h3>Ransomware</h3>
+                            <p>Malicious software that blocks access to systems until a ransom is paid.</p>
+                            <button class="btn btn-accent">Learn More</button>
+                        </div>
+                    </div>
+                    <div class="threat-card fade-in">
+                        <div class="threat-icon">
+                            <i class="fas fa-user-secret"></i>
+                        </div>
+                        <div class="threat-content">
+                            <h3>Identity Theft</h3>
+                            <p>Fraudulent acquisition and use of a person's private identifying information.</p>
+                            <button class="btn btn-accent">Learn More</button>
+                        </div>
                     </div>
                 </div>
-                <div class="tool-card fade-in">
-                    <i class="fas fa-check-circle"></i>
-                    <h3>Security Checklist</h3>
+            </div>
+        </section>
+
+        <!-- Tools Section -->
+        <section id="tools" class="tools-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Security Awareness Tools</h2>
+                    <p>Practical tools to help you stay safe in the digital world</p>
+                </div>
+                <div class="tools-container">
+                    <div class="tool-card fade-in" data-tool="password-checker">
+                        <i class="fas fa-key"></i>
+                        <h3>Password Strength Checker</h3>
+                        <p>Test how secure your passwords are against common attacks</p>
+                        <div class="password-checker">
+                            <input type="password" id="password-input" placeholder="Enter a password">
+                            <div class="strength-meter">
+                                <div class="strength-bar"></div>
+                            </div>
+                            <div class="strength-text">Password strength: <span id="strength-value">None</span></div>
+                        </div>
+                    </div>
+                    <div class="tool-card fade-in" data-tool="security-checklist">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Security Checklist</h3>
+                        <p>Essential steps to protect your digital life</p>
+                        <div class="checklist">
+                            <label class="check-item">
+                                <input type="checkbox">
+                                <span>Use strong, unique passwords</span>
+                            </label>
+                            <label class="check-item">
+                                <input type="checkbox">
+                                <span>Enable two-factor authentication</span>
+                            </label>
+                            <label class="check-item">
+                                <input type="checkbox">
+                                <span>Keep software updated</span>
+                            </label>
+                            <label class="check-item">
+                                <input type="checkbox">
+                                <span>Back up important data regularly</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="tool-card fade-in" data-tool="phishing-quiz">
+                        <i class="fas fa-scroll"></i>
+                        <h3>Phishing Quiz</h3>
+                        <p>Test your ability to spot phishing attempts</p>
+                        <button class="btn" id="start-quiz">Start Quiz</button>
+                        <div id="quiz-results"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prevention Section -->
+        <section id="prevention" class="prevention-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Fraud Prevention Tips</h2>
+                    <p>Practical advice to protect yourself from cyber threats</p>
+                </div>
+                <div class="prevention-content">
+                    <div class="prevention-tip fade-in">
+                        <div class="tip-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Verify Requests</h3>
+                            <p>Always verify unusual requests for sensitive information, even if they appear to come from trusted sources.</p>
+                        </div>
+                    </div>
+                    <div class="prevention-tip fade-in">
+                        <div class="tip-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Use Multi-Factor Authentication</h3>
+                            <p>Add an extra layer of security to your accounts with MFA wherever possible.</p>
+                        </div>
+                    </div>
+                    <div class="prevention-tip fade-in">
+                        <div class="tip-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Monitor Accounts Regularly</h3>
+                            <p>Regularly check your financial statements and credit reports for suspicious activity.</p>
+                        </div>
+                    </div>
+                    <div class="prevention-tip fade-in">
+                        <div class="tip-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Educate Yourself</h3>
+                            <p>Stay informed about the latest scams and security best practices.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="resources-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Additional Resources</h2>
+                    <p>Expand your knowledge with these cybersecurity resources</p>
+                </div>
+                <div class="resources-container">
+                    <div class="resource-card fade-in">
+                        <h3><i class="fas fa-book"></i> Educational Materials</h3>
+                        <ul>
+                            <li><i class="fas fa-check"></i> <a href="#" data-resource="cybersecurity-basics">Cybersecurity Basics PDF</a></li>
+                            <li><i class="fas fa-check"></i> <a href="#" data-resource="phishing-emails">How to Spot Phishing Emails</a></li>
+                            <li><i class="fas fa-check"></i> <a href="#" data-resource="strong-passwords">Creating Strong Passwords</a></li>
+                            <li><i class="fas fa-check"></i> <a href="#" data-resource="social-engineering">Social Engineering Awareness</a></li>
+                        </ul>
+                    </div>
+                    <div class="resource-card fade-in">
+                        <h3><i class="fas fa-exclamation-circle"></i> Reporting Fraud</h3>
+                        <ul>
+                            <li><i class="fas fa-check"></i> <a href="#" data-resource="report-phishing">Report Phishing Attempts</a></li>
+                            <li><i class="fas fa-check"></i> <a href="#" data-resource="identity-theft">Identity Theft Reporting</a></li>
+                            <li><i class="fas fa-check"></i> <a href="#" data-resource="credit-card-fraud">Credit Card Fraud Reporting</a></li>
+                            <li><i class="fas fa-check"></i> <a href="#" data-resource="cybercrime-portal">Cybercrime Reporting Portal</a></li>
+                        </ul>
+                    </div>
+                    <div class="resource-card fade-in">
+                        <h3><i class="fas fa-tools"></i> Security Tools</h3>
+                        <ul>
+                            <li><i class="fas fa-check"></i> <a href="#" data-resource="password-managers">Password Managers</a></li>
+                            <li><i class="fas fa-check"></i> <a href="#" data-resource="antivirus">Antivirus Software</a></li>
+                            <li><i class="fas fa-check"></i> <a href="#" data-resource="vpn">VPN Services</a></li>
+                            <li><i class="fas fa-check"></i> <a href="#" data-resource="2fa-apps">Two-Factor Authentication Apps</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Detail Pages -->
+    <div id="detail-pages">
+        <!-- Tool Detail Pages -->
+        <div id="password-checker-detail" class="detail-page">
+            <div class="detail-header">
+                <div class="container">
+                    <a href="#" class="back-btn" data-back="main"><i class="fas fa-arrow-left"></i> Back to Main</a>
+                    <h2>Password Strength Checker</h2>
+                    <p>Learn how to create and maintain strong passwords</p>
+                </div>
+            </div>
+            <div class="container">
+                <div class="detail-content">
+                    <h3>Why Password Strength Matters</h3>
+                    <p>Weak passwords are one of the most common security vulnerabilities. Cybercriminals use sophisticated tools to crack passwords through brute force attacks, dictionary attacks, and social engineering.</p>
+                    
+                    <h3>What Makes a Password Strong</h3>
+                    <ul>
+                        <li>At least 12 characters long</li>
+                        <li>Combination of uppercase and lowercase letters</li>
+                        <li>Includes numbers and special characters</li>
+                        <li>Not based on personal information</li>
+                        <li>Not a common word or phrase</li>
+                    </ul>
+                    
+                    <h3>Password Best Practices</h3>
+                    <p>Use a unique password for each account to prevent a breach on one service from compromising others. Consider using a passphrase—a sequence of random words that's easy to remember but hard to crack.</p>
+                    
+                    <h3>Try Our Password Checker</h3>
+                    <div class="password-checker">
+                        <input type="password" id="detail-password-input" placeholder="Enter a password to check its strength">
+                        <div class="strength-meter">
+                            <div class="strength-bar" id="detail-strength-bar"></div>
+                        </div>
+                        <div class="strength-text">Password strength: <span id="detail-strength-value">None</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="security-checklist-detail" class="detail-page">
+            <div class="detail-header">
+                <div class="container">
+                    <a href="#" class="back-btn" data-back="main"><i class="fas fa-arrow-left"></i> Back to Main</a>
+                    <h2>Security Checklist</h2>
                     <p>Essential steps to protect your digital life</p>
+                </div>
+            </div>
+            <div class="container">
+                <div class="detail-content">
+                    <h3>Complete Security Checklist</h3>
+                    <p>Follow this comprehensive checklist to enhance your digital security:</p>
+                    
                     <div class="checklist">
+                        <h4>Account Security</h4>
                         <label class="check-item">
                             <input type="checkbox">
-                            <span>Use strong, unique passwords</span>
+                            <span>Use strong, unique passwords for all accounts</span>
                         </label>
                         <label class="check-item">
                             <input type="checkbox">
-                            <span>Enable two-factor authentication</span>
+                            <span>Enable two-factor authentication wherever available</span>
                         </label>
                         <label class="check-item">
                             <input type="checkbox">
-                            <span>Keep software updated</span>
+                            <span>Use a password manager to store credentials securely</span>
                         </label>
                         <label class="check-item">
                             <input type="checkbox">
-                            <span>Back up important data regularly</span>
+                            <span>Review account permissions for third-party apps regularly</span>
+                        </label>
+                        
+                        <h4>Device Security</h4>
+                        <label class="check-item">
+                            <input type="checkbox">
+                            <span>Install and update antivirus/anti-malware software</span>
+                        </label>
+                        <label class="check-item">
+                            <input type="checkbox">
+                            <span>Keep operating systems and applications updated</span>
+                        </label>
+                        <label class="check-item">
+                            <input type="checkbox">
+                            <span>Enable firewalls on all devices</span>
+                        </label>
+                        <label class="check-item">
+                            <input type="checkbox">
+                            <span>Encrypt sensitive data on devices</span>
+                        </label>
+                        
+                        <h4>Online Safety</h4>
+                        <label class="check-item">
+                            <input type="checkbox">
+                            <span>Be cautious when clicking links in emails or messages</span>
+                        </label>
+                        <label class="check-item">
+                            <input type="checkbox">
+                            <span>Verify website security (HTTPS) before entering information</span>
+                        </label>
+                        <label class="check-item">
+                            <input type="checkbox">
+                            <span>Use a VPN on public Wi-Fi networks</span>
+                        </label>
+                        <label class="check-item">
+                            <input type="checkbox">
+                            <span>Regularly review privacy settings on social media</span>
+                        </label>
+                        
+                        <h4>Data Protection</h4>
+                        <label class="check-item">
+                            <input type="checkbox">
+                            <span>Back up important data regularly (3-2-1 rule)</span>
+                        </label>
+                        <label class="check-item">
+                            <input type="checkbox">
+                            <span>Use encryption for sensitive communications</span>
+                        </label>
+                        <label class="check-item">
+                            <input type="checkbox">
+                            <span>Shred physical documents containing sensitive information</span>
+                        </label>
+                        <label class="check-item">
+                            <input type="checkbox">
+                            <span>Monitor financial accounts and credit reports regularly</span>
                         </label>
                     </div>
                 </div>
-                <div class="tool-card fade-in">
-                    <i class="fas fa-scroll"></i>
-                    <h3>Phishing Quiz</h3>
-                    <p>Test your ability to spot phishing attempts</p>
-                    <button class="btn" id="start-quiz">Start Quiz</button>
-                    <div id="quiz-results"></div>
-                </div>
             </div>
         </div>
-    </section>
 
-    <!-- Prevention Section -->
-    <section id="prevention" class="prevention-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Fraud Prevention Tips</h2>
-                <p>Practical advice to protect yourself from cyber threats</p>
+        <!-- Resource Detail Pages -->
+        <div id="cybersecurity-basics-detail" class="detail-page">
+            <div class="detail-header">
+                <div class="container">
+                    <a href="#" class="back-btn" data-back="main"><i class="fas fa-arrow-left"></i> Back to Main</a>
+                    <h2>Cybersecurity Basics</h2>
+                    <p>Fundamental concepts for staying safe online</p>
+                </div>
             </div>
-            <div class="prevention-content">
-                <div class="prevention-tip fade-in">
-                    <div class="tip-icon">
-                        <i class="fas fa-check"></i>
-                    </div>
-                    <div class="tip-content">
-                        <h3>Verify Requests</h3>
-                        <p>Always verify unusual requests for sensitive information, even if they appear to come from trusted sources.</p>
-                    </div>
-                </div>
-                <div class="prevention-tip fade-in">
-                    <div class="tip-icon">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="tip-content">
-                        <h3>Use Multi-Factor Authentication</h3>
-                        <p>Add an extra layer of security to your accounts with MFA wherever possible.</p>
-                    </div>
-                </div>
-                <div class="prevention-tip fade-in">
-                    <div class="tip-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <div class="tip-content">
-                        <h3>Monitor Accounts Regularly</h3>
-                        <p>Regularly check your financial statements and credit reports for suspicious activity.</p>
-                    </div>
-                </div>
-                <div class="prevention-tip fade-in">
-                    <div class="tip-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <div class="tip-content">
-                        <h3>Educate Yourself</h3>
-                        <p>Stay informed about the latest scams and security best practices.</p>
-                    </div>
+            <div class="container">
+                <div class="detail-content">
+                    <h3>Understanding Cybersecurity Fundamentals</h3>
+                    <p>Cybersecurity refers to the practice of protecting systems, networks, and programs from digital attacks. These cyberattacks are usually aimed at accessing, changing, or destroying sensitive information; extorting money from users; or interrupting normal business processes.</p>
+                    
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li><strong>Confidentiality:</strong> Protecting information from unauthorized access</li>
+                        <li><strong>Integrity:</strong> Ensuring information accuracy and preventing unauthorized modification</li>
+                        <li><strong>Availability:</strong> Ensuring authorized users can access information when needed</li>
+                        <li><strong>Authentication:</strong> Verifying the identity of users and systems</li>
+                        <li><strong>Authorization:</strong> Determining what resources users can access</li>
+                    </ul>
+                    
+                    <h3>Common Threats</h3>
+                    <p>Understanding common threats is the first step toward protection:</p>
+                    <ul>
+                        <li>Malware (viruses, worms, Trojan horses, ransomware)</li>
+                        <li>Phishing and social engineering attacks</li>
+                        <li>Denial-of-service (DoS) and distributed denial-of-service (DDoS) attacks</li>
+                        <li>Man-in-the-middle (MitM) attacks</li>
+                        <li>SQL injection and other code injection attacks</li>
+                    </ul>
+                    
+                    <h3>Download Resources</h3>
+                    <p>Access our comprehensive cybersecurity basics guide:</p>
+                    <a href="#" class="btn"><i class="fas fa-download"></i> Download PDF Guide</a>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Resources Section -->
-    <section id="resources" class="resources-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Additional Resources</h2>
-                <p>Expand your knowledge with these cybersecurity resources</p>
-            </div>
-            <div class="resources-container">
-                <div class="resource-card fade-in">
-                    <h3><i class="fas fa-book"></i> Educational Materials</h3>
-                    <ul>
-                        <li><i class="fas fa-check"></i> <a href="#">Cybersecurity Basics PDF</a></li>
-                        <li><i class="fas fa-check"></i> <a href="#">How to Spot Phishing Emails</a></li>
-                        <li><i class="fas fa-check"></i> <a href="#">Creating Strong Passwords</a></li>
-                        <li><i class="fas fa-check"></i> <a href="#">Social Engineering Awareness</a></li>
-                    </ul>
-                </div>
-                <div class="resource-card fade-in">
-                    <h3><i class="fas fa-exclamation-circle"></i> Reporting Fraud</h3>
-                    <ul>
-                        <li><i class="fas fa-check"></i> <a href="#">Report Phishing Attempts</a></li>
-                        <li><i class="fas fa-check"></i> <a href="#">Identity Theft Reporting</a></li>
-                        <li><i class="fas fa-check"></i> <a href="#">Credit Card Fraud Reporting</a></li>
-                        <li><i class="fas fa-check"></i> <a href="#">Cybercrime Reporting Portal</a></li>
-                    </ul>
-                </div>
-                <div class="resource-card fade-in">
-                    <h3><i class="fas fa-tools"></i> Security Tools</h3>
-                    <ul>
-                        <li><i class="fas fa-check"></i> <a href="#">Password Managers</a></li>
-                        <li><i class="fas fa-check"></i> <a href="#">Antivirus Software</a></li>
-                        <li><i class="fas fa-check"></i> <a href="#">VPN Services</a></li>
-                        <li><i class="fas fa-check"></i> <a href="#">Two-Factor Authentication Apps</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- Add more detail pages as needed -->
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -1275,6 +1496,17 @@
             
             passwordInput.addEventListener('input', checkPasswordStrength);
             
+            // Detail page password checker
+            const detailPasswordInput = document.getElementById('detail-password-input');
+            const detailStrengthBar = document.getElementById('detail-strength-bar');
+            const detailStrengthValue = document.getElementById('detail-strength-value');
+            
+            if (detailPasswordInput) {
+                detailPasswordInput.addEventListener('input', function() {
+                    checkPasswordStrength.call(this, detailStrengthBar, detailStrengthValue);
+                });
+            }
+            
             // Fade in elements on scroll
             const fadeElements = document.querySelectorAll('.fade-in');
             
@@ -1296,6 +1528,40 @@
             // Quiz button
             document.getElementById('start-quiz').addEventListener('click', () => {
                 alert('Quiz functionality would be implemented here!');
+            });
+            
+            // Tool card click handlers
+            document.querySelectorAll('.tool-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    // Don't trigger if clicking on interactive elements inside the card
+                    if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON' || e.target.tagName === 'A') {
+                        return;
+                    }
+                    
+                    const toolId = card.getAttribute('data-tool');
+                    if (toolId) {
+                        showDetailPage(`${toolId}-detail`);
+                    }
+                });
+            });
+            
+            // Resource link click handlers
+            document.querySelectorAll('.resource-card a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const resourceId = link.getAttribute('data-resource');
+                    if (resourceId) {
+                        showDetailPage(`${resourceId}-detail`);
+                    }
+                });
+            });
+            
+            // Back button handlers
+            document.querySelectorAll('.back-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showMainContent();
+                });
             });
         });
         
@@ -1319,8 +1585,12 @@
             });
         }
         
-        function checkPasswordStrength() {
-            const password = document.getElementById('password-input').value;
+        function checkPasswordStrength(strengthBarElement, strengthValueElement) {
+            // Use provided elements or default to the main ones
+            const strengthBar = strengthBarElement || document.querySelector('.strength-bar');
+            const strengthValue = strengthValueElement || document.getElementById('strength-value');
+            
+            const password = this.value || document.getElementById('password-input').value;
             let strength = 0;
             
             // Check password length
@@ -1339,9 +1609,6 @@
             if (!password.match(/(.)\1\1/)) strength += 20;
             
             // Update strength bar and text
-            const strengthBar = document.querySelector('.strength-bar');
-            const strengthValue = document.getElementById('strength-value');
-            
             strengthBar.style.width = strength + '%';
             
             if (strength < 40) {
@@ -1354,6 +1621,34 @@
                 strengthBar.style.backgroundColor = '#2ecc71';
                 strengthValue.textContent = 'Strong';
             }
+        }
+        
+        function showDetailPage(pageId) {
+            // Hide main content
+            document.getElementById('main-content').style.display = 'none';
+            
+            // Hide all detail pages
+            document.querySelectorAll('.detail-page').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Show the requested detail page
+            const detailPage = document.getElementById(pageId);
+            if (detailPage) {
+                detailPage.style.display = 'block';
+                window.scrollTo(0, 0);
+            }
+        }
+        
+        function showMainContent() {
+            // Hide all detail pages
+            document.querySelectorAll('.detail-page').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Show main content
+            document.getElementById('main-content').style.display = 'block';
+            window.scrollTo(0, 0);
         }
     </script>
 </body>
