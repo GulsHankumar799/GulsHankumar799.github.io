@@ -535,7 +535,6 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s;
-            cursor: pointer;
         }
         
         .tool-card:hover {
@@ -681,7 +680,6 @@
             color: var(--secondary);
             text-decoration: none;
             transition: color 0.3s;
-            cursor: pointer;
         }
         
         .resource-card a:hover {
@@ -689,39 +687,130 @@
             text-decoration: underline;
         }
         
-        /* Detail Page Styles */
-        .detail-page {
+        /* Threat Detail Modal */
+        .threat-modal {
             display: none;
-            padding: 8rem 0 3rem;
-            min-height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            overflow: auto;
+            animation: fadeIn 0.3s ease;
         }
         
-        .detail-header {
-            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
-            color: white;
-            padding: 3rem 0;
-            margin-bottom: 2rem;
-        }
-        
-        .detail-content {
+        .threat-modal-content {
             background: white;
+            margin: 2% auto;
             padding: 2rem;
+            width: 90%;
+            max-width: 900px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideDown 0.4s ease;
         }
         
-        .back-btn {
-            display: inline-flex;
+        .threat-modal-header {
+            display: flex;
             align-items: center;
-            margin-bottom: 1.5rem;
-            color: var(--secondary);
-            text-decoration: none;
-            font-weight: 500;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
         }
         
-        .back-btn i {
-            margin-right: 0.5rem;
+        .threat-modal-icon {
+            background: var(--secondary);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .threat-modal-title {
+            flex: 1;
+        }
+        
+        .threat-modal-title h2 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .threat-modal-title p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+        
+        .threat-modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .threat-info, .threat-prevention {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .threat-info h3, .threat-prevention h3 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .threat-info ul, .threat-prevention ul {
+            list-style-type: none;
+        }
+        
+        .threat-info li, .threat-prevention li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .threat-info li:before, .threat-prevention li:before {
+            content: "•";
+            color: var(--secondary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .threat-examples {
+            grid-column: 1 / -1;
+            background: white;
+            border: 1px solid #eee;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .threat-examples h3 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        
+        .example-card {
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .example-card h4 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
         }
         
         /* Footer */
@@ -881,12 +970,18 @@
                 width: 95%;
             }
             
-            .footer-links {
-                flex-direction: column;
+            .threat-modal-body {
+                grid-template-columns: 1fr;
             }
             
-            .footer-links li {
-                margin: 0.5rem 0;
+            .threat-modal-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .threat-modal-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
             }
         }
     </style>
@@ -1008,373 +1103,277 @@
         </div>
     </div>
 
-    <!-- Main Content -->
-    <div id="main-content">
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="container hero-content">
-                <h1>Protect Yourself in the Digital World</h1>
-                <p>Learn how to recognize and prevent cyber threats with our comprehensive security awareness resources</p>
-                <a href="#threats" class="btn">Explore Threats</a>
-            </div>
-        </section>
-
-        <!-- Threat Types Section -->
-        <section id="threats" class="threats-section">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Common Cyber Threats</h2>
-                    <p>Understanding these threats is the first step toward protecting yourself online</p>
+    <!-- Threat Detail Modal -->
+    <div class="threat-modal" id="threat-modal">
+        <div class="threat-modal-content">
+            <span class="close-modal" id="close-threat-modal">&times;</span>
+            <div class="threat-modal-header">
+                <div class="threat-modal-icon" id="threat-icon">
+                    <i class="fas fa-fish"></i>
                 </div>
-                <div class="threats-container">
-                    <div class="threat-card fade-in">
-                        <div class="threat-icon">
-                            <i class="fas fa-fish"></i>
-                        </div>
-                        <div class="threat-content">
-                            <h3>Phishing</h3>
-                            <p>Fraudulent attempts to obtain sensitive information by disguising as a trustworthy entity.</p>
-                            <button class="btn btn-accent">Learn More</button>
-                        </div>
+                <div class="threat-modal-title">
+                    <h2 id="threat-title">Phishing Attacks</h2>
+                    <p id="threat-subtitle">Fraudulent attempts to obtain sensitive information</p>
+                </div>
+            </div>
+            
+            <div class="threat-modal-body">
+                <div class="threat-info">
+                    <h3>About This Threat</h3>
+                    <div id="threat-description">
+                        <p>Phishing is a cybercrime in which targets are contacted by email, telephone, or text message by someone posing as a legitimate institution to lure individuals into providing sensitive data such as personally identifiable information, banking and credit card details, and passwords.</p>
                     </div>
-                    <div class="threat-card fade-in">
-                        <div class="threat-icon">
-                            <i class="fas fa-lock"></i>
+                </div>
+                
+                <div class="threat-prevention">
+                    <h3>How to Protect Yourself</h3>
+                    <ul id="threat-prevention-list">
+                        <li>Be cautious of unsolicited emails asking for personal information</li>
+                        <li>Verify the sender's email address before clicking links</li>
+                        <li>Look for spelling and grammar mistakes in messages</li>
+                        <li>Hover over links to see the actual URL before clicking</li>
+                        <li>Use multi-factor authentication whenever possible</li>
+                    </ul>
+                </div>
+                
+                <div class="threat-examples">
+                    <h3>Real-World Examples</h3>
+                    <div id="threat-examples-content">
+                        <div class="example-card">
+                            <h4>Email Phishing</h4>
+                            <p>A fake email from a "bank" asking you to verify your account details by clicking a link that leads to a malicious website designed to steal your credentials.</p>
                         </div>
-                        <div class="threat-content">
-                            <h3>Ransomware</h3>
-                            <p>Malicious software that blocks access to systems until a ransom is paid.</p>
-                            <button class="btn btn-accent">Learn More</button>
-                        </div>
-                    </div>
-                    <div class="threat-card fade-in">
-                        <div class="threat-icon">
-                            <i class="fas fa-user-secret"></i>
-                        </div>
-                        <div class="threat-content">
-                            <h3>Identity Theft</h3>
-                            <p>Fraudulent acquisition and use of a person's private identifying information.</p>
-                            <button class="btn btn-accent">Learn More</button>
+                        <div class="example-card">
+                            <h4>Spear Phishing</h4>
+                            <p>A targeted attack where cybercriminals research their victims and create personalized messages that appear to come from colleagues or trusted sources.</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Tools Section -->
-        <section id="tools" class="tools-section">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Security Awareness Tools</h2>
-                    <p>Practical tools to help you stay safe in the digital world</p>
-                </div>
-                <div class="tools-container">
-                    <div class="tool-card fade-in" data-tool="password-checker">
-                        <i class="fas fa-key"></i>
-                        <h3>Password Strength Checker</h3>
-                        <p>Test how secure your passwords are against common attacks</p>
-                        <div class="password-checker">
-                            <input type="password" id="password-input" placeholder="Enter a password">
-                            <div class="strength-meter">
-                                <div class="strength-bar"></div>
-                            </div>
-                            <div class="strength-text">Password strength: <span id="strength-value">None</span></div>
-                        </div>
-                    </div>
-                    <div class="tool-card fade-in" data-tool="security-checklist">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>Security Checklist</h3>
-                        <p>Essential steps to protect your digital life</p>
-                        <div class="checklist">
-                            <label class="check-item">
-                                <input type="checkbox">
-                                <span>Use strong, unique passwords</span>
-                            </label>
-                            <label class="check-item">
-                                <input type="checkbox">
-                                <span>Enable two-factor authentication</span>
-                            </label>
-                            <label class="check-item">
-                                <input type="checkbox">
-                                <span>Keep software updated</span>
-                            </label>
-                            <label class="check-item">
-                                <input type="checkbox">
-                                <span>Back up important data regularly</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="tool-card fade-in" data-tool="phishing-quiz">
-                        <i class="fas fa-scroll"></i>
-                        <h3>Phishing Quiz</h3>
-                        <p>Test your ability to spot phishing attempts</p>
-                        <button class="btn" id="start-quiz">Start Quiz</button>
-                        <div id="quiz-results"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Prevention Section -->
-        <section id="prevention" class="prevention-section">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Fraud Prevention Tips</h2>
-                    <p>Practical advice to protect yourself from cyber threats</p>
-                </div>
-                <div class="prevention-content">
-                    <div class="prevention-tip fade-in">
-                        <div class="tip-icon">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <div class="tip-content">
-                            <h3>Verify Requests</h3>
-                            <p>Always verify unusual requests for sensitive information, even if they appear to come from trusted sources.</p>
-                        </div>
-                    </div>
-                    <div class="prevention-tip fade-in">
-                        <div class="tip-icon">
-                            <i class="fas fa-lock"></i>
-                        </div>
-                        <div class="tip-content">
-                            <h3>Use Multi-Factor Authentication</h3>
-                            <p>Add an extra layer of security to your accounts with MFA wherever possible.</p>
-                        </div>
-                    </div>
-                    <div class="prevention-tip fade-in">
-                        <div class="tip-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <div class="tip-content">
-                            <h3>Monitor Accounts Regularly</h3>
-                            <p>Regularly check your financial statements and credit reports for suspicious activity.</p>
-                        </div>
-                    </div>
-                    <div class="prevention-tip fade-in">
-                        <div class="tip-icon">
-                            <i class="fas fa-book"></i>
-                        </div>
-                        <div class="tip-content">
-                            <h3>Educate Yourself</h3>
-                            <p>Stay informed about the latest scams and security best practices.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Resources Section -->
-        <section id="resources" class="resources-section">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Additional Resources</h2>
-                    <p>Expand your knowledge with these cybersecurity resources</p>
-                </div>
-                <div class="resources-container">
-                    <div class="resource-card fade-in">
-                        <h3><i class="fas fa-book"></i> Educational Materials</h3>
-                        <ul>
-                            <li><i class="fas fa-check"></i> <a href="#" data-resource="cybersecurity-basics">Cybersecurity Basics PDF</a></li>
-                            <li><i class="fas fa-check"></i> <a href="#" data-resource="phishing-emails">How to Spot Phishing Emails</a></li>
-                            <li><i class="fas fa-check"></i> <a href="#" data-resource="strong-passwords">Creating Strong Passwords</a></li>
-                            <li><i class="fas fa-check"></i> <a href="#" data-resource="social-engineering">Social Engineering Awareness</a></li>
-                        </ul>
-                    </div>
-                    <div class="resource-card fade-in">
-                        <h3><i class="fas fa-exclamation-circle"></i> Reporting Fraud</h3>
-                        <ul>
-                            <li><i class="fas fa-check"></i> <a href="#" data-resource="report-phishing">Report Phishing Attempts</a></li>
-                            <li><i class="fas fa-check"></i> <a href="#" data-resource="identity-theft">Identity Theft Reporting</a></li>
-                            <li><i class="fas fa-check"></i> <a href="#" data-resource="credit-card-fraud">Credit Card Fraud Reporting</a></li>
-                            <li><i class="fas fa-check"></i> <a href="#" data-resource="cybercrime-portal">Cybercrime Reporting Portal</a></li>
-                        </ul>
-                    </div>
-                    <div class="resource-card fade-in">
-                        <h3><i class="fas fa-tools"></i> Security Tools</h3>
-                        <ul>
-                            <li><i class="fas fa-check"></i> <a href="#" data-resource="password-managers">Password Managers</a></li>
-                            <li><i class="fas fa-check"></i> <a href="#" data-resource="antivirus">Antivirus Software</a></li>
-                            <li><i class="fas fa-check"></i> <a href="#" data-resource="vpn">VPN Services</a></li>
-                            <li><i class="fas fa-check"></i> <a href="#" data-resource="2fa-apps">Two-Factor Authentication Apps</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
     </div>
 
-    <!-- Detail Pages -->
-    <div id="detail-pages">
-        <!-- Tool Detail Pages -->
-        <div id="password-checker-detail" class="detail-page">
-            <div class="detail-header">
-                <div class="container">
-                    <a href="#" class="back-btn" data-back="main"><i class="fas fa-arrow-left"></i> Back to Main</a>
-                    <h2>Password Strength Checker</h2>
-                    <p>Learn how to create and maintain strong passwords</p>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>Protect Yourself in the Digital World</h1>
+            <p>Learn how to recognize and prevent cyber threats with our comprehensive security awareness resources</p>
+            <a href="#threats" class="btn">Explore Threats</a>
+        </div>
+    </section>
+
+    <!-- Threat Types Section -->
+    <section id="threats" class="threats-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Common Cyber Threats</h2>
+                <p>Understanding these threats is the first step toward protecting yourself online</p>
+            </div>
+            <div class="threats-container">
+                <div class="threat-card fade-in">
+                    <div class="threat-icon">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <div class="threat-content">
+                        <h3>Phishing</h3>
+                        <p>Fraudulent attempts to obtain sensitive information by disguising as a trustworthy entity.</p>
+                        <button class="btn btn-accent learn-more-btn" data-threat="phishing">Learn More</button>
+                    </div>
+                </div>
+                <div class="threat-card fade-in">
+                    <div class="threat-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="threat-content">
+                        <h3>Ransomware</h3>
+                        <p>Malicious software that blocks access to systems until a ransom is paid.</p>
+                        <button class="btn btn-accent learn-more-btn" data-threat="ransomware">Learn More</button>
+                    </div>
+                </div>
+                <div class="threat-card fade-in">
+                    <div class="threat-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <div class="threat-content">
+                        <h3>Identity Theft</h3>
+                        <p>Fraudulent acquisition and use of a person's private identifying information.</p>
+                        <button class="btn btn-accent learn-more-btn" data-threat="identity-theft">Learn More</button>
+                    </div>
+                </div>
+                <div class="threat-card fade-in">
+                    <div class="threat-icon">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <div class="threat-content">
+                        <h3>Malware</h3>
+                        <p>Software specifically designed to disrupt, damage, or gain unauthorized access to computer systems.</p>
+                        <button class="btn btn-accent learn-more-btn" data-threat="malware">Learn More</button>
+                    </div>
+                </div>
+                <div class="threat-card fade-in">
+                    <div class="threat-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <div class="threat-content">
+                        <h3>Man-in-the-Middle</h3>
+                        <p>Attackers intercept and potentially alter communications between two parties without their knowledge.</p>
+                        <button class="btn btn-accent learn-more-btn" data-threat="mitm">Learn More</button>
+                    </div>
+                </div>
+                <div class="threat-card fade-in">
+                    <div class="threat-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <div class="threat-content">
+                        <h3>Social Engineering</h3>
+                        <p>Psychological manipulation of people into performing actions or divulging confidential information.</p>
+                        <button class="btn btn-accent learn-more-btn" data-threat="social-engineering">Learn More</button>
+                    </div>
                 </div>
             </div>
-            <div class="container">
-                <div class="detail-content">
-                    <h3>Why Password Strength Matters</h3>
-                    <p>Weak passwords are one of the most common security vulnerabilities. Cybercriminals use sophisticated tools to crack passwords through brute force attacks, dictionary attacks, and social engineering.</p>
-                    
-                    <h3>What Makes a Password Strong</h3>
-                    <ul>
-                        <li>At least 12 characters long</li>
-                        <li>Combination of uppercase and lowercase letters</li>
-                        <li>Includes numbers and special characters</li>
-                        <li>Not based on personal information</li>
-                        <li>Not a common word or phrase</li>
-                    </ul>
-                    
-                    <h3>Password Best Practices</h3>
-                    <p>Use a unique password for each account to prevent a breach on one service from compromising others. Consider using a passphrase—a sequence of random words that's easy to remember but hard to crack.</p>
-                    
-                    <h3>Try Our Password Checker</h3>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="tools-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Security Awareness Tools</h2>
+                <p>Practical tools to help you stay safe in the digital world</p>
+            </div>
+            <div class="tools-container">
+                <div class="tool-card fade-in">
+                    <i class="fas fa-key"></i>
+                    <h3>Password Strength Checker</h3>
+                    <p>Test how secure your passwords are against common attacks</p>
                     <div class="password-checker">
-                        <input type="password" id="detail-password-input" placeholder="Enter a password to check its strength">
+                        <input type="password" id="password-input" placeholder="Enter a password">
                         <div class="strength-meter">
-                            <div class="strength-bar" id="detail-strength-bar"></div>
+                            <div class="strength-bar"></div>
                         </div>
-                        <div class="strength-text">Password strength: <span id="detail-strength-value">None</span></div>
+                        <div class="strength-text">Password strength: <span id="strength-value">None</span></div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div id="security-checklist-detail" class="detail-page">
-            <div class="detail-header">
-                <div class="container">
-                    <a href="#" class="back-btn" data-back="main"><i class="fas fa-arrow-left"></i> Back to Main</a>
-                    <h2>Security Checklist</h2>
+                <div class="tool-card fade-in">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Security Checklist</h3>
                     <p>Essential steps to protect your digital life</p>
+                    <div class="checklist">
+                        <label class="check-item">
+                            <input type="checkbox">
+                            <span>Use strong, unique passwords</span>
+                        </label>
+                        <label class="check-item">
+                            <input type="checkbox">
+                            <span>Enable two-factor authentication</span>
+                        </label>
+                        <label class="check-item">
+                            <input type="checkbox">
+                            <span>Keep software updated</span>
+                        </label>
+                        <label class="check-item">
+                            <input type="checkbox">
+                            <span>Back up important data regularly</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="tool-card fade-in">
+                    <i class="fas fa-scroll"></i>
+                    <h3>Phishing Quiz</h3>
+                    <p>Test your ability to spot phishing attempts</p>
+                    <button class="btn" id="start-quiz">Start Quiz</button>
+                    <div id="quiz-results"></div>
                 </div>
             </div>
-            <div class="container">
-                <div class="detail-content">
-                    <h3>Complete Security Checklist</h3>
-                    <p>Follow this comprehensive checklist to enhance your digital security:</p>
-                    
-                    <div class="checklist">
-                        <h4>Account Security</h4>
-                        <label class="check-item">
-                            <input type="checkbox">
-                            <span>Use strong, unique passwords for all accounts</span>
-                        </label>
-                        <label class="check-item">
-                            <input type="checkbox">
-                            <span>Enable two-factor authentication wherever available</span>
-                        </label>
-                        <label class="check-item">
-                            <input type="checkbox">
-                            <span>Use a password manager to store credentials securely</span>
-                        </label>
-                        <label class="check-item">
-                            <input type="checkbox">
-                            <span>Review account permissions for third-party apps regularly</span>
-                        </label>
-                        
-                        <h4>Device Security</h4>
-                        <label class="check-item">
-                            <input type="checkbox">
-                            <span>Install and update antivirus/anti-malware software</span>
-                        </label>
-                        <label class="check-item">
-                            <input type="checkbox">
-                            <span>Keep operating systems and applications updated</span>
-                        </label>
-                        <label class="check-item">
-                            <input type="checkbox">
-                            <span>Enable firewalls on all devices</span>
-                        </label>
-                        <label class="check-item">
-                            <input type="checkbox">
-                            <span>Encrypt sensitive data on devices</span>
-                        </label>
-                        
-                        <h4>Online Safety</h4>
-                        <label class="check-item">
-                            <input type="checkbox">
-                            <span>Be cautious when clicking links in emails or messages</span>
-                        </label>
-                        <label class="check-item">
-                            <input type="checkbox">
-                            <span>Verify website security (HTTPS) before entering information</span>
-                        </label>
-                        <label class="check-item">
-                            <input type="checkbox">
-                            <span>Use a VPN on public Wi-Fi networks</span>
-                        </label>
-                        <label class="check-item">
-                            <input type="checkbox">
-                            <span>Regularly review privacy settings on social media</span>
-                        </label>
-                        
-                        <h4>Data Protection</h4>
-                        <label class="check-item">
-                            <input type="checkbox">
-                            <span>Back up important data regularly (3-2-1 rule)</span>
-                        </label>
-                        <label class="check-item">
-                            <input type="checkbox">
-                            <span>Use encryption for sensitive communications</span>
-                        </label>
-                        <label class="check-item">
-                            <input type="checkbox">
-                            <span>Shred physical documents containing sensitive information</span>
-                        </label>
-                        <label class="check-item">
-                            <input type="checkbox">
-                            <span>Monitor financial accounts and credit reports regularly</span>
-                        </label>
+        </div>
+    </section>
+
+    <!-- Prevention Section -->
+    <section id="prevention" class="prevention-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Fraud Prevention Tips</h2>
+                <p>Practical advice to protect yourself from cyber threats</p>
+            </div>
+            <div class="prevention-content">
+                <div class="prevention-tip fade-in">
+                    <div class="tip-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="tip-content">
+                        <h3>Verify Requests</h3>
+                        <p>Always verify unusual requests for sensitive information, even if they appear to come from trusted sources.</p>
+                    </div>
+                </div>
+                <div class="prevention-tip fade-in">
+                    <div class="tip-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="tip-content">
+                        <h3>Use Multi-Factor Authentication</h3>
+                        <p>Add an extra layer of security to your accounts with MFA wherever possible.</p>
+                    </div>
+                </div>
+                <div class="prevention-tip fade-in">
+                    <div class="tip-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="tip-content">
+                        <h3>Monitor Accounts Regularly</h3>
+                        <p>Regularly check your financial statements and credit reports for suspicious activity.</p>
+                    </div>
+                </div>
+                <div class="prevention-tip fade-in">
+                    <div class="tip-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="tip-content">
+                        <h3>Educate Yourself</h3>
+                        <p>Stay informed about the latest scams and security best practices.</p>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Resource Detail Pages -->
-        <div id="cybersecurity-basics-detail" class="detail-page">
-            <div class="detail-header">
-                <div class="container">
-                    <a href="#" class="back-btn" data-back="main"><i class="fas fa-arrow-left"></i> Back to Main</a>
-                    <h2>Cybersecurity Basics</h2>
-                    <p>Fundamental concepts for staying safe online</p>
-                </div>
+    <!-- Resources Section -->
+    <section id="resources" class="resources-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Additional Resources</h2>
+                <p>Expand your knowledge with these cybersecurity resources</p>
             </div>
-            <div class="container">
-                <div class="detail-content">
-                    <h3>Understanding Cybersecurity Fundamentals</h3>
-                    <p>Cybersecurity refers to the practice of protecting systems, networks, and programs from digital attacks. These cyberattacks are usually aimed at accessing, changing, or destroying sensitive information; extorting money from users; or interrupting normal business processes.</p>
-                    
-                    <h3>Key Concepts</h3>
+            <div class="resources-container">
+                <div class="resource-card fade-in">
+                    <h3><i class="fas fa-book"></i> Educational Materials</h3>
                     <ul>
-                        <li><strong>Confidentiality:</strong> Protecting information from unauthorized access</li>
-                        <li><strong>Integrity:</strong> Ensuring information accuracy and preventing unauthorized modification</li>
-                        <li><strong>Availability:</strong> Ensuring authorized users can access information when needed</li>
-                        <li><strong>Authentication:</strong> Verifying the identity of users and systems</li>
-                        <li><strong>Authorization:</strong> Determining what resources users can access</li>
+                        <li><i class="fas fa-check"></i> <a href="#">Cybersecurity Basics PDF</a></li>
+                        <li><i class="fas fa-check"></i> <a href="#">How to Spot Phishing Emails</a></li>
+                        <li><i class="fas fa-check"></i> <a href="#">Creating Strong Passwords</a></li>
+                        <li><i class="fas fa-check"></i> <a href="#">Social Engineering Awareness</a></li>
                     </ul>
-                    
-                    <h3>Common Threats</h3>
-                    <p>Understanding common threats is the first step toward protection:</p>
+                </div>
+                <div class="resource-card fade-in">
+                    <h3><i class="fas fa-exclamation-circle"></i> Reporting Fraud</h3>
                     <ul>
-                        <li>Malware (viruses, worms, Trojan horses, ransomware)</li>
-                        <li>Phishing and social engineering attacks</li>
-                        <li>Denial-of-service (DoS) and distributed denial-of-service (DDoS) attacks</li>
-                        <li>Man-in-the-middle (MitM) attacks</li>
-                        <li>SQL injection and other code injection attacks</li>
+                        <li><i class="fas fa-check"></i> <a href="#">Report Phishing Attempts</a></li>
+                        <li><i class="fas fa-check"></i> <a href="#">Identity Theft Reporting</a></li>
+                        <li><i class="fas fa-check"></i> <a href="#">Credit Card Fraud Reporting</a></li>
+                        <li><i class="fas fa-check"></i> <a href="#">Cybercrime Reporting Portal</a></li>
                     </ul>
-                    
-                    <h3>Download Resources</h3>
-                    <p>Access our comprehensive cybersecurity basics guide:</p>
-                    <a href="#" class="btn"><i class="fas fa-download"></i> Download PDF Guide</a>
+                </div>
+                <div class="resource-card fade-in">
+                    <h3><i class="fas fa-tools"></i> Security Tools</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> <a href="#">Password Managers</a></li>
+                        <li><i class="fas fa-check"></i> <a href="#">Antivirus Software</a></li>
+                        <li><i class="fas fa-check"></i> <a href="#">VPN Services</a></li>
+                        <li><i class="fas fa-check"></i> <a href="#">Two-Factor Authentication Apps</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
-
-        <!-- Add more detail pages as needed -->
-    </div>
+    </section>
 
     <!-- Footer -->
     <footer>
@@ -1401,6 +1400,190 @@
     </footer>
 
     <script>
+        // Threat data - Detailed information for each threat type
+        const threatData = {
+            phishing: {
+                title: "Phishing Attacks",
+                subtitle: "Fraudulent attempts to obtain sensitive information",
+                icon: "fas fa-fish",
+                description: `<p>Phishing is a cybercrime in which targets are contacted by email, telephone, or text message by someone posing as a legitimate institution to lure individuals into providing sensitive data such as personally identifiable information, banking and credit card details, and passwords.</p>
+                <p>The information is then used to access important accounts and can result in identity theft and financial loss. The first recorded use of the term "phishing" was in 1995, and attacks have become increasingly sophisticated since then.</p>`,
+                prevention: [
+                    "Be cautious of unsolicited emails asking for personal information",
+                    "Verify the sender's email address before clicking links",
+                    "Look for spelling and grammar mistakes in messages",
+                    "Hover over links to see the actual URL before clicking",
+                    "Use multi-factor authentication whenever possible",
+                    "Keep your browser and security software updated",
+                    "Never provide personal information via email or unknown websites"
+                ],
+                examples: [
+                    {
+                        title: "Email Phishing",
+                        description: "A fake email from a 'bank' asking you to verify your account details by clicking a link that leads to a malicious website designed to steal your credentials."
+                    },
+                    {
+                        title: "Spear Phishing",
+                        description: "A targeted attack where cybercriminals research their victims and create personalized messages that appear to come from colleagues or trusted sources."
+                    },
+                    {
+                        title: "Whaling",
+                        description: "A type of spear phishing that specifically targets high-level executives or important individuals within an organization."
+                    }
+                ]
+            },
+            ransomware: {
+                title: "Ransomware",
+                subtitle: "Malicious software that encrypts files and demands payment",
+                icon: "fas fa-lock",
+                description: `<p>Ransomware is a type of malicious software designed to block access to a computer system or data until a sum of money is paid. It typically spreads through phishing emails or by unknowingly visiting an infected website.</p>
+                <p>Modern ransomware attacks often encrypt the victim's files, making them inaccessible, and demand a ransom payment to restore access. Some ransomware also steals data before encrypting it, adding the threat of data exposure to the extortion.</p>`,
+                prevention: [
+                    "Regularly back up important data to an external drive or cloud service",
+                    "Keep all software and operating systems updated with security patches",
+                    "Be cautious when opening email attachments or clicking links",
+                    "Use reputable antivirus and anti-malware software",
+                    "Enable pop-up blockers in your web browser",
+                    "Disable macros in Microsoft Office files from unknown sources",
+                    "Implement the principle of least privilege for user accounts"
+                ],
+                examples: [
+                    {
+                        title: "WannaCry (2017)",
+                        description: "This ransomware attack affected over 200,000 computers across 150 countries, exploiting a Windows vulnerability and causing billions in damages."
+                    },
+                    {
+                        title: "CryptoLocker",
+                        description: "One of the first modern ransomware attacks that encrypted victims' files and demanded Bitcoin payments for decryption keys."
+                    },
+                    {
+                        title: "Ryuk",
+                        description: "A targeted ransomware that focuses on large organizations and demands exceptionally high ransoms, often in the millions of dollars."
+                    }
+                ]
+            },
+            "identity-theft": {
+                title: "Identity Theft",
+                subtitle: "Fraudulent use of someone's personal information",
+                icon: "fas fa-user-secret",
+                description: `<p>Identity theft occurs when someone uses another person's personal identifying information, such as their name, Social Security number, or credit card number, without permission, to commit fraud or other crimes.</p>
+                <p>Identity thieves may use your information to open new credit accounts, make purchases, apply for loans, or even obtain medical services. The consequences can include damaged credit, financial loss, and a lengthy recovery process to restore your identity.</p>`,
+                prevention: [
+                    "Shred documents containing personal information before discarding",
+                    "Use strong, unique passwords for all online accounts",
+                    "Monitor financial accounts and credit reports regularly",
+                    "Be cautious about sharing personal information online",
+                    "Freeze your credit with the major credit bureaus",
+                    "Use two-factor authentication whenever possible",
+                    "Be wary of phishing attempts asking for personal data"
+                ],
+                examples: [
+                    {
+                        title: "Financial Identity Theft",
+                        description: "The most common form where thieves use personal information to open credit accounts, take out loans, or make purchases in the victim's name."
+                    },
+                    {
+                        title: "Medical Identity Theft",
+                        description: "When someone uses another person's identity to obtain medical services, prescriptions, or file false insurance claims."
+                    },
+                    {
+                        title: "Synthetic Identity Theft",
+                        description: "A sophisticated form where criminals combine real and fake information to create new identities, making detection more difficult."
+                    }
+                ]
+            },
+            malware: {
+                title: "Malware",
+                subtitle: "Malicious software designed to harm or exploit devices",
+                icon: "fas fa-bug",
+                description: `<p>Malware (a portmanteau for malicious software) is any software intentionally designed to cause damage to a computer, server, client, or computer network. Malware can take many forms, including viruses, worms, Trojan horses, ransomware, spyware, adware, and scareware.</p>
+                <p>Malware is often used to steal sensitive information, disrupt operations, or gain unauthorized access to systems. It can be distributed through various means, including email attachments, malicious websites, or bundled with legitimate software.</p>`,
+                prevention: [
+                    "Install and regularly update antivirus and anti-malware software",
+                    "Keep your operating system and all applications updated",
+                    "Be cautious when downloading files or software from the internet",
+                    "Avoid clicking on pop-up ads or suspicious links",
+                    "Use a firewall to monitor incoming and outgoing network traffic",
+                    "Regularly back up your important data",
+                    "Educate yourself and others about common malware distribution methods"
+                ],
+                examples: [
+                    {
+                        title: "Viruses",
+                        description: "Malicious code that attaches itself to clean files and spreads throughout a computer system, infecting other files and programs."
+                    },
+                    {
+                        title: "Trojans",
+                        description: "Malware disguised as legitimate software that creates backdoors in your security to let other malware in."
+                    },
+                    {
+                        title: "Spyware",
+                        description: "Software that secretly monitors your activities, capturing keystrokes, passwords, and other sensitive information."
+                    }
+                ]
+            },
+            mitm: {
+                title: "Man-in-the-Middle Attacks",
+                subtitle: "Intercepting communications between two parties",
+                icon: "fas fa-wifi",
+                description: `<p>A man-in-the-middle (MITM) attack is a form of eavesdropping where communication between two users is monitored and modified by an unauthorized party. Typically, the attacker intercepts and relays messages between two victims who believe they are communicating directly with each other.</p>
+                <p>MITM attacks can be used to steal login credentials, personal information, or financial data. They often occur on unsecured public Wi-Fi networks but can also target home networks and even cellular connections.</p>`,
+                prevention: [
+                    "Avoid using public Wi-Fi for sensitive transactions",
+                    "Use a VPN to encrypt your internet connection",
+                    "Only visit websites with HTTPS encryption",
+                    "Check for security certificate warnings in your browser",
+                    "Log out of websites when you're done using them",
+                    "Be wary of fake Wi-Fi hotspots with legitimate-sounding names",
+                    "Keep your router's firmware updated with security patches"
+                ],
+                examples: [
+                    {
+                        title: "Wi-Fi Eavesdropping",
+                        description: "Attackers set up malicious Wi-Fi hotspots or intercept traffic on unsecured networks to capture sensitive information."
+                    },
+                    {
+                        title: "Session Hijacking",
+                        description: "When an attacker steals a user's session cookie to gain unauthorized access to web applications."
+                    },
+                    {
+                        title: "SSL Stripping",
+                        description: "A technique that downgrades HTTPS connections to HTTP, allowing attackers to intercept data that would otherwise be encrypted."
+                    }
+                ]
+            },
+            "social-engineering": {
+                title: "Social Engineering",
+                subtitle: "Manipulating people into revealing confidential information",
+                icon: "fas fa-user-friends",
+                description: `<p>Social engineering is the psychological manipulation of people into performing actions or divulging confidential information. Unlike traditional cyber attacks that target technical vulnerabilities, social engineering attacks target human psychology and trust.</p>
+                <p>These attacks often involve impersonating trusted individuals or creating scenarios that provoke fear, urgency, or curiosity to bypass security protocols. Successful social engineering attacks can provide attackers with access to physical locations, computer systems, or sensitive data.</p>`,
+                prevention: [
+                    "Be skeptical of unsolicited requests for information",
+                    "Verify the identity of anyone requesting sensitive data",
+                    "Don't let urgency or pressure override your security habits",
+                    "Be cautious about what you share on social media",
+                    "Implement multi-factor authentication for sensitive systems",
+                    "Provide regular security awareness training for employees",
+                    "Establish clear procedures for verifying sensitive requests"
+                ],
+                examples: [
+                    {
+                        title: "Pretexting",
+                        description: "An attacker creates a fabricated scenario (or pretext) to engage a target and extract information, often by impersonating authority figures."
+                    },
+                    {
+                        title: "Baiting",
+                        description: "Offering something enticing to a victim (like free software or media downloads) in exchange for private information or access."
+                    },
+                    {
+                        title: "Tailgating",
+                        description: "Gaining physical access to restricted areas by following authorized personnel through secured entrances."
+                    }
+                ]
+            }
+        };
+
         // JavaScript for interactive elements
         document.addEventListener('DOMContentLoaded', function() {
             // Mobile menu toggle
@@ -1496,17 +1679,6 @@
             
             passwordInput.addEventListener('input', checkPasswordStrength);
             
-            // Detail page password checker
-            const detailPasswordInput = document.getElementById('detail-password-input');
-            const detailStrengthBar = document.getElementById('detail-strength-bar');
-            const detailStrengthValue = document.getElementById('detail-strength-value');
-            
-            if (detailPasswordInput) {
-                detailPasswordInput.addEventListener('input', function() {
-                    checkPasswordStrength.call(this, detailStrengthBar, detailStrengthValue);
-                });
-            }
-            
             // Fade in elements on scroll
             const fadeElements = document.querySelectorAll('.fade-in');
             
@@ -1530,38 +1702,30 @@
                 alert('Quiz functionality would be implemented here!');
             });
             
-            // Tool card click handlers
-            document.querySelectorAll('.tool-card').forEach(card => {
-                card.addEventListener('click', (e) => {
-                    // Don't trigger if clicking on interactive elements inside the card
-                    if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON' || e.target.tagName === 'A') {
-                        return;
-                    }
-                    
-                    const toolId = card.getAttribute('data-tool');
-                    if (toolId) {
-                        showDetailPage(`${toolId}-detail`);
-                    }
+            // Threat detail modal functionality
+            const threatModal = document.getElementById('threat-modal');
+            const closeThreatModalBtn = document.getElementById('close-threat-modal');
+            const learnMoreButtons = document.querySelectorAll('.learn-more-btn');
+            
+            // Open threat detail modal
+            learnMoreButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const threatType = button.getAttribute('data-threat');
+                    showThreatDetails(threatType);
+                    threatModal.style.display = 'block';
                 });
             });
             
-            // Resource link click handlers
-            document.querySelectorAll('.resource-card a').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const resourceId = link.getAttribute('data-resource');
-                    if (resourceId) {
-                        showDetailPage(`${resourceId}-detail`);
-                    }
-                });
+            // Close threat modal
+            closeThreatModalBtn.addEventListener('click', () => {
+                threatModal.style.display = 'none';
             });
             
-            // Back button handlers
-            document.querySelectorAll('.back-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    showMainContent();
-                });
+            // Close threat modal when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === threatModal) {
+                    threatModal.style.display = 'none';
+                }
             });
         });
         
@@ -1585,12 +1749,8 @@
             });
         }
         
-        function checkPasswordStrength(strengthBarElement, strengthValueElement) {
-            // Use provided elements or default to the main ones
-            const strengthBar = strengthBarElement || document.querySelector('.strength-bar');
-            const strengthValue = strengthValueElement || document.getElementById('strength-value');
-            
-            const password = this.value || document.getElementById('password-input').value;
+        function checkPasswordStrength() {
+            const password = document.getElementById('password-input').value;
             let strength = 0;
             
             // Check password length
@@ -1609,6 +1769,9 @@
             if (!password.match(/(.)\1\1/)) strength += 20;
             
             // Update strength bar and text
+            const strengthBar = document.querySelector('.strength-bar');
+            const strengthValue = document.getElementById('strength-value');
+            
             strengthBar.style.width = strength + '%';
             
             if (strength < 40) {
@@ -1623,32 +1786,37 @@
             }
         }
         
-        function showDetailPage(pageId) {
-            // Hide main content
-            document.getElementById('main-content').style.display = 'none';
+        function showThreatDetails(threatType) {
+            const threat = threatData[threatType];
+            if (!threat) return;
             
-            // Hide all detail pages
-            document.querySelectorAll('.detail-page').forEach(page => {
-                page.style.display = 'none';
+            // Update modal content
+            document.getElementById('threat-title').textContent = threat.title;
+            document.getElementById('threat-subtitle').textContent = threat.subtitle;
+            document.getElementById('threat-icon').innerHTML = `<i class="${threat.icon}"></i>`;
+            document.getElementById('threat-description').innerHTML = threat.description;
+            
+            // Update prevention list
+            const preventionList = document.getElementById('threat-prevention-list');
+            preventionList.innerHTML = '';
+            threat.prevention.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                preventionList.appendChild(li);
             });
             
-            // Show the requested detail page
-            const detailPage = document.getElementById(pageId);
-            if (detailPage) {
-                detailPage.style.display = 'block';
-                window.scrollTo(0, 0);
-            }
-        }
-        
-        function showMainContent() {
-            // Hide all detail pages
-            document.querySelectorAll('.detail-page').forEach(page => {
-                page.style.display = 'none';
+            // Update examples
+            const examplesContent = document.getElementById('threat-examples-content');
+            examplesContent.innerHTML = '';
+            threat.examples.forEach(example => {
+                const exampleDiv = document.createElement('div');
+                exampleDiv.className = 'example-card';
+                exampleDiv.innerHTML = `
+                    <h4>${example.title}</h4>
+                    <p>${example.description}</p>
+                `;
+                examplesContent.appendChild(exampleDiv);
             });
-            
-            // Show main content
-            document.getElementById('main-content').style.display = 'block';
-            window.scrollTo(0, 0);
         }
     </script>
 </body>
