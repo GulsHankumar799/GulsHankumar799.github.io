@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberGuard - Cybersecurity Awareness</title>
+    <title>CyberGuard - Cybersecurity Awareness Platform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* CSS Variables */
@@ -874,6 +874,8 @@
             display: flex;
             list-style: none;
             margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         
         .footer-links li {
@@ -959,6 +961,42 @@
         
         .toast i {
             margin-right: 10px;
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1001;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: var(--secondary);
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
         
         /* Animations */
@@ -1094,9 +1132,72 @@
                 flex-direction: column;
             }
         }
+        
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #1a2530;
+            color: #ecf0f1;
+        }
+        
+        body.dark-mode .threat-card,
+        body.dark-mode .tool-card,
+        body.dark-mode .prevention-tip,
+        body.dark-mode .resource-card,
+        body.dark-mode .detail-content,
+        body.dark-mode .download-card {
+            background: #2c3e50;
+            color: #ecf0f1;
+        }
+        
+        body.dark-mode .threat-content h3,
+        body.dark-mode .tool-card h3,
+        body.dark-mode .resource-card h3,
+        body.dark-mode .resource-detail h3 {
+            color: #ecf0f1;
+        }
+        
+        body.dark-mode .threat-content p,
+        body.dark-mode .tool-card p,
+        body.dark-mode .resource-card li {
+            color: #bdc3c7;
+        }
+        
+        body.dark-mode .section-title p {
+            color: #bdc3c7;
+        }
+        
+        body.dark-mode .form-group input {
+            background: #2c3e50;
+            border-color: #34495e;
+            color: #ecf0f1;
+        }
+        
+        body.dark-mode .quiz-question,
+        body.dark-mode .quiz-results {
+            background: #2c3e50;
+            color: #ecf0f1;
+        }
+        
+        body.dark-mode .checklist {
+            background: transparent;
+        }
+        
+        body.dark-mode .download-section {
+            background: #2c3e50;
+        }
     </style>
 </head>
 <body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle" id="dark-mode-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
     <!-- Header & Navigation -->
     <header>
         <div class="container nav-container">
@@ -1567,70 +1668,6 @@
             </div>
         </div>
 
-        <div id="malware-detail" class="detail-page">
-            <div class="detail-header">
-                <div class="container">
-                    <a href="#" class="back-btn" data-back="main"><i class="fas fa-arrow-left"></i> Back to Main</a>
-                    <h2>Malware Threats</h2>
-                    <p>Understanding and protecting against malicious software</p>
-                </div>
-            </div>
-            <div class="container">
-                <div class="detail-content">
-                    <div class="resource-detail">
-                        <h3>What is Malware?</h3>
-                        <p>Malware, short for malicious software, is any software intentionally designed to cause damage to a computer, server, client, or computer network. Malware can take many forms, including viruses, worms, Trojan horses, ransomware, spyware, adware, and scareware.</p>
-                        <p>The damage caused by malware can range from mildly annoying to catastrophic, depending on the type of malware and the extent of the infection.</p>
-                    </div>
-
-                    <div class="resource-detail">
-                        <h3>Common Types of Malware</h3>
-                        <p><strong>Viruses:</strong> Self-replicating programs that attach themselves to clean files and infect other clean files.</p>
-                        <p><strong>Worms:</strong> Similar to viruses but can spread without human action by exploiting vulnerabilities.</p>
-                        <p><strong>Trojans:</strong> Disguised as legitimate software, they create backdoors for other malware.</p>
-                        <p><strong>Ransomware:</strong> Locks or encrypts files and demands payment for their release.</p>
-                        <p><strong>Spyware:</strong> Secretly monitors user activity and collects sensitive information.</p>
-                    </div>
-
-                    <div class="resource-detail">
-                        <h3>Protection Strategies</h3>
-                        <ul>
-                            <li>Install reputable antivirus and anti-malware software</li>
-                            <li>Keep all software updated with the latest security patches</li>
-                            <li>Be cautious when downloading files or clicking links</li>
-                            <li>Use a firewall to monitor incoming and outgoing traffic</li>
-                            <li>Regularly back up important data</li>
-                        </ul>
-                    </div>
-
-                    <div class="download-section">
-                        <h3>Download Resources</h3>
-                        <p>Access our comprehensive malware protection materials:</p>
-                        <div class="download-links">
-                            <div class="download-card">
-                                <i class="fas fa-file-pdf"></i>
-                                <h4>Malware Protection Guide</h4>
-                                <p>Complete guide to preventing malware infections</p>
-                                <button class="btn">Download PDF</button>
-                            </div>
-                            <div class="download-card">
-                                <i class="fas fa-shield-alt"></i>
-                                <h4>Security Software Comparison</h4>
-                                <p>Comparison of top antivirus and anti-malware tools</p>
-                                <button class="btn">View Comparison</button>
-                            </div>
-                            <div class="download-card">
-                                <i class="fas fa-broom"></i>
-                                <h4>Malware Removal Guide</h4>
-                                <p>Step-by-step instructions for removing malware</p>
-                                <button class="btn">Download Guide</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Add more threat detail pages as needed -->
         
         <!-- Educational Materials Detail Pages -->
@@ -2091,6 +2128,39 @@
                 sendEmailNotification('Contact Request', 'User clicked on Contact Us link');
                 showToast('Contact form would open here');
             });
+            
+            // Dark mode toggle
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            const darkModeIcon = darkModeToggle.querySelector('i');
+            
+            // Check for saved dark mode preference
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+                darkModeIcon.classList.remove('fa-moon');
+                darkModeIcon.classList.add('fa-sun');
+            }
+            
+            darkModeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                if (document.body.classList.contains('dark-mode')) {
+                    localStorage.setItem('darkMode', 'enabled');
+                    darkModeIcon.classList.remove('fa-moon');
+                    darkModeIcon.classList.add('fa-sun');
+                } else {
+                    localStorage.setItem('darkMode', 'disabled');
+                    darkModeIcon.classList.remove('fa-sun');
+                    darkModeIcon.classList.add('fa-moon');
+                }
+            });
+            
+            // Progress bar on scroll
+            window.addEventListener('scroll', () => {
+                const winHeight = window.innerHeight;
+                const docHeight = document.documentElement.scrollHeight;
+                const scrolled = window.scrollY;
+                const progress = (scrolled / (docHeight - winHeight)) * 100;
+                document.getElementById('progress-bar').style.width = `${progress}%`;
+            });
         });
         
         function switchTab(tabName) {
@@ -2214,6 +2284,23 @@
             
             // Simulate email sending
             showToast('Notification sent to CyberGuard team');
+            
+            // In a real implementation, you would use an email service like EmailJS or a backend API
+            // Example with EmailJS (you would need to set up an account and replace with your details):
+            /*
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+                to_email: 'cyberguardshield@gmail.com',
+                subject: subject,
+                message: body
+            })
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+                showToast('Notification sent to CyberGuard team');
+            }, function(error) {
+                console.log('FAILED...', error);
+                showToast('Failed to send notification', 'error');
+            });
+            */
         }
     </script>
 </body>
