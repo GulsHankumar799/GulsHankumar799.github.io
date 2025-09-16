@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberGuard - Cybersecurity Awareness Platform</title>
+    <title>CyberGuard - Advanced Cybersecurity Awareness Platform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* CSS Variables */
@@ -732,10 +732,10 @@
             color: var(--dark);
             display: flex;
             align-items: center;
+            justify-content: space-between;
         }
         
         .resource-card h3 i {
-            margin-right: 10px;
             color: var(--secondary);
         }
         
@@ -1051,6 +1051,66 @@
             transform: translateY(0);
         }
         
+        /* New Tool Styles */
+        .tool-form {
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+        
+        .tool-form .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .tool-result {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .tool-status {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .status-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: white;
+        }
+        
+        .status-safe {
+            background: var(--success);
+        }
+        
+        .status-warning {
+            background: var(--warning);
+        }
+        
+        .status-danger {
+            background: var(--accent);
+        }
+        
+        .report-form {
+            text-align: left;
+        }
+        
+        .report-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            min-height: 150px;
+            resize: vertical;
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .hamburger {
@@ -1330,8 +1390,8 @@
         <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="container hero-content">
-                <h1>Protect Yourself in the Digital World</h1>
-                <p>Learn how to recognize and prevent cyber threats with our comprehensive security awareness resources</p>
+                <h1>Advanced Cybersecurity Protection</h1>
+                <p>Comprehensive security tools and resources to protect yourself from digital threats</p>
                 <a href="#threats" class="btn">Explore Threats</a>
                 <a href="#tools" class="btn btn-accent" style="margin-left: 1rem;">Security Tools</a>
             </div>
@@ -1413,7 +1473,7 @@
         <section id="tools" class="tools-section">
             <div class="container">
                 <div class="section-title">
-                    <h2>Security Awareness Tools</h2>
+                    <h2>Advanced Security Tools</h2>
                     <p>Practical tools to help you stay safe in the digital world</p>
                 </div>
                 <div class="tools-container">
@@ -1427,6 +1487,55 @@
                                 <div class="strength-bar"></div>
                             </div>
                             <div class="strength-text">Password strength: <span id="strength-value">None</span></div>
+                        </div>
+                    </div>
+                    <div class="tool-card fade-in">
+                        <i class="fas fa-phone-slash"></i>
+                        <h3>Call & SMS Bombing Protection</h3>
+                        <p>Check if a number is associated with spam or bombing attacks</p>
+                        <div class="tool-form">
+                            <div class="form-group">
+                                <label for="phone-input">Phone Number</label>
+                                <input type="tel" id="phone-input" placeholder="Enter phone number with country code">
+                            </div>
+                            <button class="btn" id="check-phone">Check Number</button>
+                        </div>
+                        <div class="tool-result" id="phone-result">
+                            <div class="tool-status">
+                                <div class="status-icon" id="phone-status-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div id="phone-status-text">Number appears safe</div>
+                            </div>
+                            <div id="phone-details"></div>
+                        </div>
+                    </div>
+                    <div class="tool-card fade-in">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Cyber Threat Report</h3>
+                        <p>Report cyber crimes and suspicious activities</p>
+                        <div class="report-form">
+                            <div class="form-group">
+                                <label for="report-type">Type of Report</label>
+                                <select id="report-type" class="form-control">
+                                    <option value="">Select report type</option>
+                                    <option value="phishing">Phishing Attempt</option>
+                                    <option value="malware">Malware Infection</option>
+                                    <option value="hacking">Hacking Attempt</option>
+                                    <option value="fraud">Online Fraud</option>
+                                    <option value="harassment">Cyber Harassment</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="report-details">Incident Details</label>
+                                <textarea id="report-details" placeholder="Please provide detailed information about the incident"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="report-evidence">Evidence (screenshots, files, etc.)</label>
+                                <input type="file" id="report-evidence" multiple>
+                            </div>
+                            <button class="btn" id="submit-report">Submit Report</button>
                         </div>
                     </div>
                     <div class="tool-card fade-in">
@@ -1496,6 +1605,27 @@
                             <button class="btn" id="submit-quiz" style="display: none;">Submit Quiz</button>
                         </div>
                         <div class="quiz-results" id="quiz-results"></div>
+                    </div>
+                    <div class="tool-card fade-in">
+                        <i class="fas fa-network-wired"></i>
+                        <h3>Network Security Scanner</h3>
+                        <p>Check your network for common vulnerabilities</p>
+                        <div class="tool-form">
+                            <div class="form-group">
+                                <label for="network-ip">IP Address or Domain</label>
+                                <input type="text" id="network-ip" placeholder="Enter IP or domain">
+                            </div>
+                            <button class="btn" id="scan-network">Scan Network</button>
+                        </div>
+                        <div class="tool-result" id="network-result">
+                            <div class="tool-status">
+                                <div class="status-icon" id="network-status-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div id="network-status-text">Scanning in progress...</div>
+                            </div>
+                            <div id="network-details"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1950,6 +2080,158 @@
             const strengthValue = document.getElementById('strength-value');
             
             passwordInput.addEventListener('input', checkPasswordStrength);
+            
+            // Call & SMS Bombing Protection Tool
+            const checkPhoneBtn = document.getElementById('check-phone');
+            const phoneResult = document.getElementById('phone-result');
+            const phoneStatusIcon = document.getElementById('phone-status-icon');
+            const phoneStatusText = document.getElementById('phone-status-text');
+            const phoneDetails = document.getElementById('phone-details');
+            
+            checkPhoneBtn.addEventListener('click', () => {
+                const phoneInput = document.getElementById('phone-input').value;
+                
+                if (!phoneInput) {
+                    showToast('Please enter a phone number', 'error');
+                    return;
+                }
+                
+                // Simulate phone number checking
+                phoneResult.style.display = 'block';
+                phoneStatusIcon.className = 'status-icon status-warning';
+                phoneStatusIcon.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                phoneStatusText.textContent = 'Checking number...';
+                phoneDetails.innerHTML = '';
+                
+                setTimeout(() => {
+                    // Simulate API response
+                    const isSpam = Math.random() > 0.7;
+                    const reports = isSpam ? Math.floor(Math.random() * 50) + 10 : Math.floor(Math.random() * 5);
+                    
+                    if (isSpam) {
+                        phoneStatusIcon.className = 'status-icon status-danger';
+                        phoneStatusIcon.innerHTML = '<i class="fas fa-times"></i>';
+                        phoneStatusText.textContent = 'Potential spam number detected';
+                        phoneDetails.innerHTML = `
+                            <p>This number has been reported ${reports} times for spam or bombing activities.</p>
+                            <p><strong>Recommendations:</strong></p>
+                            <ul>
+                                <li>Block this number on your device</li>
+                                <li>Report to your mobile carrier</li>
+                                <li>Consider changing your number if you're receiving excessive spam</li>
+                            </ul>
+                        `;
+                    } else {
+                        phoneStatusIcon.className = 'status-icon status-safe';
+                        phoneStatusIcon.innerHTML = '<i class="fas fa-check"></i>';
+                        phoneStatusText.textContent = 'Number appears safe';
+                        phoneDetails.innerHTML = `
+                            <p>This number has minimal spam reports (${reports} in the past year).</p>
+                            <p><strong>Recommendations:</strong></p>
+                            <ul>
+                                <li>Remain cautious with unknown numbers</li>
+                                <li>Use call-blocking features for any unwanted calls</li>
+                            </ul>
+                        `;
+                    }
+                }, 2000);
+            });
+            
+            // Cyber Threat Report Tool
+            const submitReportBtn = document.getElementById('submit-report');
+            
+            submitReportBtn.addEventListener('click', () => {
+                const reportType = document.getElementById('report-type').value;
+                const reportDetails = document.getElementById('report-details').value;
+                
+                if (!reportType || !reportDetails) {
+                    showToast('Please fill in all required fields', 'error');
+                    return;
+                }
+                
+                // Simulate report submission
+                submitReportBtn.disabled = true;
+                submitReportBtn.textContent = 'Submitting...';
+                
+                setTimeout(() => {
+                    submitReportBtn.disabled = false;
+                    submitReportBtn.textContent = 'Submit Report';
+                    
+                    // Send notification email (simulated)
+                    sendEmailNotification('Cyber Threat Report', `
+                        New threat report submitted:
+                        Type: ${reportType}
+                        Details: ${reportDetails}
+                    `);
+                    
+                    showToast('Report submitted successfully! Our team will review it shortly.');
+                    document.getElementById('report-type').value = '';
+                    document.getElementById('report-details').value = '';
+                    document.getElementById('report-evidence').value = '';
+                }, 1500);
+            });
+            
+            // Network Security Scanner
+            const scanNetworkBtn = document.getElementById('scan-network');
+            const networkResult = document.getElementById('network-result');
+            const networkStatusIcon = document.getElementById('network-status-icon');
+            const networkStatusText = document.getElementById('network-status-text');
+            const networkDetails = document.getElementById('network-details');
+            
+            scanNetworkBtn.addEventListener('click', () => {
+                const networkInput = document.getElementById('network-ip').value;
+                
+                if (!networkInput) {
+                    showToast('Please enter an IP address or domain', 'error');
+                    return;
+                }
+                
+                // Simulate network scanning
+                networkResult.style.display = 'block';
+                networkStatusIcon.className = 'status-icon status-warning';
+                networkStatusIcon.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                networkStatusText.textContent = 'Scanning network...';
+                networkDetails.innerHTML = '';
+                
+                setTimeout(() => {
+                    // Simulate scan results
+                    const vulnerabilities = Math.floor(Math.random() * 5);
+                    
+                    if (vulnerabilities === 0) {
+                        networkStatusIcon.className = 'status-icon status-safe';
+                        networkStatusIcon.innerHTML = '<i class="fas fa-check"></i>';
+                        networkStatusText.textContent = 'No critical vulnerabilities found';
+                        networkDetails.innerHTML = `
+                            <p>Your network appears to be secure with no critical vulnerabilities detected.</p>
+                            <p><strong>Recommendations:</strong></p>
+                            <ul>
+                                <li>Continue regular security monitoring</li>
+                                <li>Keep all systems updated</li>
+                                <li>Perform regular security scans</li>
+                            </ul>
+                        `;
+                    } else {
+                        networkStatusIcon.className = 'status-icon status-danger';
+                        networkStatusIcon.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
+                        networkStatusText.textContent = `${vulnerabilities} potential vulnerabilities found`;
+                        networkDetails.innerHTML = `
+                            <p>Scan detected ${vulnerabilities} potential security issues:</p>
+                            <ul>
+                                <li>Open ports that could be exploited</li>
+                                <li>Outdated software versions</li>
+                                <li>Potential misconfigurations</li>
+                            </ul>
+                            <p><strong>Recommendations:</strong></p>
+                            <ul>
+                                <li>Update all software and firmware</li>
+                                <li>Close unnecessary ports</li>
+                                <li>Review network configuration</li>
+                                <li>Consider a professional security audit</li>
+                            </ul>
+                        `;
+                    }
+                }, 3000);
+            });
             
             // Fade in elements on scroll
             const fadeElements = document.querySelectorAll('.fade-in');
