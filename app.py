@@ -1,8 +1,8 @@
-# app.py
 from flask import Flask, request, jsonify
 from flask_mail import Mail, Message
 import os
 import logging
+import ssl
 from datetime import datetime
 from typing import Dict, Optional, Tuple
 
@@ -17,11 +17,15 @@ app.config['MAIL_SERVER'] = os.environ.get('MAIL_SERVER', 'smtp.gmail.com')
 app.config['MAIL_PORT'] = int(os.environ.get('MAIL_PORT', 587))
 app.config['MAIL_USE_TLS'] = os.environ.get('MAIL_USE_TLS', 'True').lower() == 'true'
 app.config['MAIL_USE_SSL'] = os.environ.get('MAIL_USE_SSL', 'False').lower() == 'true'
-app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME', 'cyberguardshield@gmail.com')
-app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
-app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_DEFAULT_SENDER', 'cyberguardshield@gmail.com')
+app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME', '')
+app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD', '')
+app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_DEFAULT_SENDER', '')
 app.config['MAIL_MAX_EMAILS'] = int(os.environ.get('MAIL_MAX_EMAILS', 10))
 app.config['MAIL_ASCII_ATTACHMENTS'] = os.environ.get('MAIL_ASCII_ATTACHMENTS', 'False').lower() == 'true'
+
+# Additional configuration for better compatibility
+app.config['MAIL_SUPPRESS_SEND'] = os.environ.get('MAIL_SUPPRESS_SEND', 'False').lower() == 'true'
+app.config['MAIL_DEBUG'] = os.environ.get('FLASK_DEBUG', 'False').lower() == 'true'
 
 mail = Mail(app)
 
@@ -95,7 +99,7 @@ def format_email_body(template_type: str, name: str, **kwargs) -> Tuple[str, str
 @app.route('/api/send-notification', methods=['POST'])
 def send_notification():
     """Send email notification with improved error handling and logging"""
-    data = request.json
+    data = request.get_json(silent=True) or {}
     
     # Validate required fields
     if not data or 'email' not in data:
@@ -111,8 +115,8 @@ def send_notification():
         subject, body = format_email_body(
             template_type, 
             name, 
-            subject=data.get('subject'),
-            body=data.get('body'),
+            subject=data.get('subject', 'Notification from CyberGuard Shield'),
+            body=data.get('body', 'You have a new notification from CyberGuard Shield.'),
             time=data.get('time')
         )
         
@@ -143,20 +147,21 @@ def send_notification():
         return jsonify({'success': False, 'message': f'Invalid template type: {template_type}'}), 400
     except Exception as e:
         logger.error(f"Failed to send notification to {recipient}: {str(e)}")
-        return jsonify({'success': False, 'message': 'Failed to send notification'}), 500
+        return jsonify({'success': False, 'message': f'Failed to send notification: {str(e)}'}), 500
 
 @app.route('/api/health', methods=['GET'])
 def health_check():
     """Endpoint to check if the email service is working"""
     try:
         # Try to connect to the mail server
-        with mail.connect() as conn:
-            if conn:
-                return jsonify({
-                    'success': True, 
-                    'message': 'Email service is operational',
-                    'timestamp': datetime.now().isoformat()
-                })
+        with app.app_context():
+            with mail.connect() as conn:
+                if conn:
+                    return jsonify({
+                        'success': True, 
+                        'message': 'Email service is operational',
+                        'timestamp': datetime.now().isoformat()
+                    })
     except Exception as e:
         logger.error(f"Health check failed: {str(e)}")
         return jsonify({
@@ -164,11 +169,22 @@ def health_check():
             'message': f'Email service connection failed: {str(e)}'
         }), 500
 
+@app.route('/')
+def index():
+    return jsonify({
+        'message': 'CyberGuard Shield Notification Service',
+        'status': 'operational',
+        'endpoints': {
+            'send_notification': '/api/send-notification (POST)',
+            'health_check': '/api/health (GET)'
+        }
+    })
+
 if __name__ == '__main__':
     # Validate required environment variables
     if not app.config['MAIL_PASSWORD']:
         logger.error("MAIL_PASSWORD environment variable is not set")
-        exit(1)
+        logger.info("Please set MAIL_PASSWORD environment variable with your email app password")
     
     # Run the application
     port = int(os.environ.get('PORT', 5000))
