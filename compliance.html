@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Compliance & Certifications | CyberShield Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap');
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-purple: #b967ff;
+            --neon-pink: #ff2a6d;
+            --cyber-green: #00ff95;
+            --deep-space: #0a0e17;
+            --cyber-gray: #1a1d29;
+            --alert-red: #ff2a6d;
+            --warning-yellow: #ffcc00;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--deep-space);
+            color: #fff;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+        }
+        .cyber-gradient {
+            background: linear-gradient(135deg, var(--deep-space), var(--cyber-gray), #1a1a2e);
+        }
+        .security-gradient {
+            background: linear-gradient(135deg, #0a0e17, #0d1f3a, #1a1a2e);
+        }
+        .nav-blur {
+            background: rgba(10, 14, 23, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        .cyber-card {
+            background: rgba(26, 29, 41, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        .cyber-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+        }
+        .security-card {
+            background: rgba(13, 31, 58, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        .security-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyber-green), #00ff95, #00cc76);
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 3rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+        }
+        .security-title::after {
+            background: linear-gradient(90deg, var(--cyber-green), #00cc76);
+        }
+        .text-cyber {
+            color: var(--neon-blue);
+        }
+        .text-security {
+            color: var(--cyber-green);
+        }
+        .cyber-button {
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .cyber-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 243, 255, 0.4);
+        }
+        .security-button {
+            background: linear-gradient(135deg, var(--cyber-green), #00cc76);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .security-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 149, 0.4);
+        }
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .compliance-item {
+            transition: transform 0.3s ease;
+        }
+        .compliance-item:hover {
+            transform: translateY(-5px);
+        }
+        .mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(10, 14, 23, 0.95);
+            padding: 1rem;
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+            border-top: 1px solid rgba(0, 243, 255, 0.3);
+        }
+        .mobile-menu.active {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="cyber-gradient">
+    <!-- Navigation -->
+    <nav class="nav-blur fixed top-0 w-full z-50 py-4 px-6 flex justify-between items-center">
+        <div class="flex items-center">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 mr-3"></div>
+            <h1 class="text-2xl font-bold" style="color: var(--neon-blue);">CyberShield Pro</h1>
+        </div>
+        <div class="hidden md:flex space-x-8">
+            <a href="index.html" class="hover:text-cyan-400 transition-colors font-semibold">Home</a>
+            <a href="index.html#threat-dashboard" class="hover:text-cyan-400 transition-colors font-semibold">Threat Dashboard</a>
+            <a href="index.html#ai-security" class="hover:text-cyan-400 transition-colors font-semibold">AI Security</a>
+            <a href="index.html#portfolio" class="hover:text-cyan-400 transition-colors font-semibold">Portfolio</a>
+            <a href="index.html#incident-simulator" class="hover:text-cyan-400 transition-colors font-semibold">Incident Simulator</a>
+            <a href="compliance.html" class="text-cyan-400 font-semibold">Compliance</a>
+            <a href="index.html#blog" class="hover:text-cyan-400 transition-colors font-semibold">Blog</a>
+            <a href="index.html#contact" class="hover:text-cyan-400 transition-colors font-semibold">Contact</a>
+        </div>
+        <div class="flex items-center space-x-4">
+            <button class="cyber-button">Login</button>
+            <button class="security-button">Free Security Audit</button>
+            <button id="mobile-menu-toggle" class="md:hidden text-white">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu">
+            <a href="index.html" class="hover:text-cyan-400 transition-colors font-semibold">Home</a>
+            <a href="index.html#threat-dashboard" class="hover:text-cyan-400 transition-colors font-semibold">Threat Dashboard</a>
+            <a href="index.html#ai-security" class="hover:text-cyan-400 transition-colors font-semibold">AI Security</a>
+            <a href="index.html#portfolio" class="hover:text-cyan-400 transition-colors font-semibold">Portfolio</a>
+            <a href="index.html#incident-simulator" class="hover:text-cyan-400 transition-colors font-semibold">Incident Simulator</a>
+            <a href="compliance.html" class="text-cyan-400 font-semibold">Compliance</a>
+            <a href="index.html#blog" class="hover:text-cyan-400 transition-colors font-semibold">Blog</a>
+            <a href="index.html#contact" class="hover:text-cyan-400 transition-colors font-semibold">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 security-gradient relative overflow-hidden">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6" style="color: var(--cyber-green);">Compliance & Certifications</h1>
+            <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-gray-300">Our commitment to security excellence through rigorous compliance standards and third-party validation</p>
+        </div>
+    </section>
+
+    <!-- Compliance Overview -->
+    <section class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="cyber-card p-8 mb-12" data-aos="fade-up">
+                <h2 class="text-3xl font-bold mb-6 text-cyber">Our Compliance Framework</h2>
+                <p class="text-gray-300 mb-6">
+                    At CyberShield Pro, we understand that trust is earned through transparency and adherence to the highest security standards. 
+                    Our comprehensive compliance framework ensures that our security practices meet and exceed industry requirements, 
+                    providing our clients with confidence in our ability to protect their most sensitive data and systems.
+                </p>
+                <p class="text-gray-300">
+                    All our certifications are maintained through regular independent audits and continuous improvement processes, 
+                    ensuring that our security posture evolves to address emerging threats and regulatory changes.
+                </p>
+            </div>
+
+            <h2 class="section-title security-title text-4xl font-bold text-center mb-16 text-security" data-aos="fade-up">Our Certifications</h2>
+            
+            <div class="compliance-grid">
+                <!-- ISO 27001 -->
+                <div class="compliance-item security-card p-6" data-aos="fade-up">
+                    <div class="w-16 h-16 rounded-full bg-green-900 bg-opacity-30 flex items-center justify-center mb-4">
+                        <i data-feather="award" class="text-security w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-security">ISO/IEC 27001:2022</h3>
+                    <p class="text-gray-300 mb-4">Information Security Management System</p>
+                    <div class="mb-4">
+                        <h4 class="font-bold text-security mb-2">What It Means:</h4>
+                        <p class="text-gray-300 text-sm mb-4">
+                            ISO 27001 is the international standard for information security management systems (ISMS). 
+                            It provides a systematic approach to managing sensitive company information, ensuring it remains secure.
+                        </p>
+                    </div>
+                    <div class="mb-4">
+                        <h4 class="font-bold text-security mb-2">Our Implementation:</h4>
+                        <ul class="text-gray-300 text-sm space-y-2">
+                            <li class="flex items-start">
+                                <i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
+                                <span>Our ISMS has been independently audited and certified by an accredited third-party auditor</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
+                                <span>Regular risk assessments and treatment plans</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
+                                <span>Continual improvement of security controls and processes</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-700">
+                        <p class="text-xs text-gray-400">Certification ID: CSP-ISO27001-2023-0452<br>Valid until: October 2025</p>
+                    </div>
+                </div>
+                
+                <!-- GDPR -->
+                <div class="compliance-item security-card p-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 rounded-full bg-green-900 bg-opacity-30 flex items-center justify-center mb-4">
+                        <i data-feather="shield" class="text-security w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-security">GDPR Compliance</h3>
+                    <p class="text-gray-300 mb-4">General Data Protection Regulation</p>
+                    <div class="mb-4">
+                        <h4 class="font-bold text-security mb-2">What It Means:</h4>
+                        <p class="text-gray-300 text-sm mb-4">
+                            GDPR is the EU's data protection and privacy law that governs how organizations process personal data of EU citizens, 
+                            regardless of where the organization is located.
+                        </p>
+                    </div>
+                    <div class="mb-4">
+                        <h4 class="font-bold text-security mb-2">Our Implementation:</h4>
+                        <ul class="text-gray-300 text-sm space-y-2">
+                            <li class="flex items-start">
+                                <i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
+                                <span>Data Protection by Design and by Default in all systems</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
+                                <span>Process for handling Data Subject Access Requests (DSARs)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
+                                <span>72-hour breach notification process</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
+                                <span>Data Processing Agreements with all partners</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- HIPAA -->
+                <div class="compliance-item security-card p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 rounded-full bg-green-900 bg-opacity-30 flex items-center justify-center mb-4">
+                        <i data-feather="heart" class="text-security w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-security">HIPAA Compliance</h3>
+                    <p class="text-gray-300 mb-4">Health Insurance Portability and Accountability Act</p>
+                    <div class="mb-4">
+                        <h4 class="font-bold text-security mb-2">What It Means:</h4>
+                        <p class="text-gray-300 text-sm mb-4">
+                            HIPAA sets the standard for protecting sensitive patient data in the healthcare industry, 
+                            ensuring the confidentiality, integrity, and availability of electronic protected health information (ePHI).
+                        </p>
+                    </div>
+                    <div class="mb-4">
+                        <h4 class="font-bold text-security mb-2">Our Implementation:</h4>
+                        <ul class="text-gray-300 text-sm space-y-2">
+                            <li class="flex items-start">
+                                <i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
+                                <span>Business Associate Agreements (BAAs) with healthcare clients</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
+                                <span>Access controls and audit trails for ePHI</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
+                                <span>Encryption of ePHI at rest and in transit</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- SOC 2 -->
+                <div class="compliance-item security-card p-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 rounded-full bg-green-900 bg-opacity-30 flex items-center justify-center mb-4">
+                        <i data-feather="check-circle" class="text-security w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-security">SOC 2 Type II</h3>
+                    <p class="text-gray-300 mb-4">Service Organization Controls</p>
+                    <div class="mb-4">
+                        <h4 class="font-bold text-security mb-2">What It Means:</h4>
+                        <p class="text-gray-300 text-sm mb-4">
+                            SOC 2 is an auditing procedure that ensures service providers securely manage data to protect 
+                            the interests of their clients and the privacy of their customers.
+                        </p>
+                    </div>
+                    <div class="mb-4">
+                        <h4 class="font-bold text-security mb-2">Our Implementation:</h4>
+                        <ul class="text-gray-300 text-sm space-y-2">
+                            <li class="flex items-start">
+                                <i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
+                                <span>Regular independent audits of our security controls</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
+                                <span>Comprehensive security policies and procedures</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
+                                <span>Transparent reporting on control effectiveness</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-700">
+                        <p class="text-xs text-gray-400">Audit Period: January 2023 - December 2023<br>Auditor: Deloitte & Touche LLP</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compliance Benefits -->
+    <section class="py-16 security-gradient">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title security-title text-4xl font-bold text-center mb-16 text-security" data-aos="fade-up">Benefits of Our Compliance Framework</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="cyber-card p-6" data-aos="fade-up">
+                    <div class="w-12 h-12 rounded-full bg-cyan-900 bg-opacity-30 flex items-center justify-center mb-4">
+                        <i data-feather="lock" class="text-cyber w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-cyber">Enhanced Security Posture</h3>
+                    <p class="text-gray-300">Our compliance framework ensures systematic implementation of security controls, reducing vulnerabilities and improving overall protection.</p>
+                </div>
+                
+                <div class="cyber-card p-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 rounded-full bg-purple-900 bg-opacity-30 flex items-center justify-center mb-4">
+                        <i data-feather="trending-up" class="text-cyber w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-cyber">Regulatory Confidence</h3>
+                    <p class="text-gray-300">Clients can trust that our services meet stringent regulatory requirements, simplifying their own compliance efforts.</p>
+                </div>
+                
+                <div class="cyber-card p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 rounded-full bg-blue-900 bg-opacity-30 flex items-center justify-center mb-4">
+                        <i data-feather="refresh-cw" class="text-cyber w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-cyber">Continuous Improvement</h3>
+                    <p class="text-gray-300">Regular audits and reviews ensure our security practices evolve to address emerging threats and changing regulations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audit Schedule -->
+    <section class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="cyber-card p-8" data-aos="fade-up">
+                <h2 class="text-3xl font-bold mb-6 text-cyber">Audit Schedule & Compliance Calendar</h2>
+                <p class="text-gray-300 mb-8">
+                    We maintain transparency in our compliance activities through regular independent audits. 
+                    Below is our current audit schedule and compliance maintenance calendar.
+                </p>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-gray-700">
+                                <th class="py-3 px-4 text-cyber font-bold">Certification</th>
+                                <th class="py-3 px-4 text-cyber font-bold">Last Audit</th>
+                                <th class="py-3 px-4 text-cyber font-bold">Next Audit</th>
+                                <th class="py-3 px-4 text-cyber font-bold">Status</th>
+                                <th class="py-3 px-4 text-cyber font-bold">Auditor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-800">
+                                <td class="py-3 px-4">ISO 27001:2022</td>
+                                <td class="py-3 px-4">October 2023</td>
+                                <td class="py-3 px-4">October 2024</td>
+                                <td class="py-3 px-4"><span class="px-2 py-1 bg-green-900 bg-opacity-30 text-security rounded-full text-xs">Certified</span></td>
+                                <td class="py-3 px-4">BSI Group</td>
+                            </tr>
+                            <tr class="border-b border-gray-800">
+                                <td class="py-3 px-4">SOC 2 Type II</td>
+                                <td class="py-3 px-4">December 2023</td>
+                                <td class="py-3 px-4">December 2024</td>
+                                <td class="py-3 px-4"><span class="px-2 py-1 bg-green-900 bg-opacity-30 text-security rounded-full text-xs">Certified</span></td>
+                                <td class="py-3 px-4">Deloitte & Touche LLP</td>
+                            </tr>
+                            <tr class="border-b border-gray-800">
+                                <td class="py-3 px-4">GDPR Compliance</td>
+                                <td class="py-3 px-4">March 2024</td>
+                                <td class="py-3 px-4">Ongoing</td>
+                                <td class="py-3 px-4"><span class="px-2 py-1 bg-green-900 bg-opacity-30 text-security rounded-full text-xs">Compliant</span></td>
+                                <td class="py-3 px-4">Internal & External Reviews</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4">HIPAA Compliance</td>
+                                <td class="py-3 px-4">January 2024</td>
+                                <td class="py-3 px-4">January 2025</td>
+                                <td class="py-3 px-4"><span class="px-2 py-1 bg-green-900 bg-opacity-30 text-security rounded-full text-xs">Compliant</span></td>
+                                <td class="py-3 px-4">Third-Party Assessors</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 security-gradient">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-6 text-security" data-aos="fade-up">Ready to Enhance Your Security Compliance?</h2>
+            <p class="text-xl mb-10 max-w-2xl mx-auto text-gray-300" data-aos="fade-up" data-aos-delay="100">
+                Let our certified security experts help you navigate complex regulatory requirements and strengthen your security posture.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
+                <button class="security-button text-lg py-3 px-8" data-aos="fade-up" data-aos-delay="200">Download Compliance Report</button>
+                <button class="cyber-button text-lg py-3 px-8" data-aos="fade-up" data-aos-delay="300">Schedule Compliance Consultation</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 cyber-gradient border-t border-cyan-900">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 mr-2"></div>
+                        <h3 class="text-xl font-bold text-cyber">CyberShield Pro</h3>
+                    </div>
+                    <p class="text-gray-400">
+                        Advanced cybersecurity solutions for the modern enterprise.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-cyber">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">Threat Detection</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">Incident Response</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">Compliance</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">Security Training</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-cyber">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">Case Studies</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">Whitepapers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">Security Tools</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-cyber">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                            <i data-feather="twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                            <i data-feather="linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                            <i data-feather="github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-cyan-900 mt-8 pt-8 text-center text-gray-500">
+                <p>&copy; 2024 CyberShield Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize feather icons
+        feather.replace();
+
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-toggle').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
