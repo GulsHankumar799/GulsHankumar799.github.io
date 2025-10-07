@@ -14,6 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap');
         :root {
@@ -157,6 +158,8 @@
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
         .cyber-button:hover {
             transform: translateY(-2px);
@@ -171,6 +174,8 @@
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
         .security-button:hover {
             transform: translateY(-2px);
@@ -421,6 +426,21 @@
             background: rgba(255, 204, 0, 0.2);
             color: var(--warning-yellow);
         }
+
+        /* Tools Grid Styles */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Ripple Animation */
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body class="cyber-gradient">
@@ -441,7 +461,9 @@
         </div>
         <div class="hidden md:flex space-x-8">
             <a href="#home" class="hover:text-cyan-400 transition-colors font-semibold">Home</a>
+            <a href="#about" class="hover:text-cyan-400 transition-colors font-semibold">About Us</a>
             <a href="#threat-dashboard" class="hover:text-cyan-400 transition-colors font-semibold">Threat Dashboard</a>
+            <a href="#tools" class="hover:text-cyan-400 transition-colors font-semibold">Tools & Solutions</a>
             <a href="#ai-security" class="hover:text-cyan-400 transition-colors font-semibold">AI Security</a>
             <a href="#portfolio" class="hover:text-cyan-400 transition-colors font-semibold">Portfolio</a>
             <a href="#incident-simulator" class="hover:text-cyan-400 transition-colors font-semibold">Incident Simulator</a>
@@ -460,7 +482,9 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="mobile-menu">
             <a href="#home" class="hover:text-cyan-400 transition-colors font-semibold">Home</a>
+            <a href="#about" class="hover:text-cyan-400 transition-colors font-semibold">About Us</a>
             <a href="#threat-dashboard" class="hover:text-cyan-400 transition-colors font-semibold">Threat Dashboard</a>
+            <a href="#tools" class="hover:text-cyan-400 transition-colors font-semibold">Tools & Solutions</a>
             <a href="#ai-security" class="hover:text-cyan-400 transition-colors font-semibold">AI Security</a>
             <a href="#portfolio" class="hover:text-cyan-400 transition-colors font-semibold">Portfolio</a>
             <a href="#incident-simulator" class="hover:text-cyan-400 transition-colors font-semibold">Incident Simulator</a>
@@ -485,6 +509,88 @@
         <div class="floating absolute top-1/4 left-1/4 w-6 h-6 rounded-full bg-cyan-500 opacity-70"></div>
         <div class="floating absolute top-1/3 right-1/4 w-8 h-8 rounded-full bg-purple-500 opacity-70" style="animation-delay: 1s;"></div>
         <div class="floating absolute bottom-1/4 left-1/3 w-10 h-10 rounded-full bg-blue-500 opacity-70" style="animation-delay: 2s;"></div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 grid-pattern relative">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title text-4xl font-bold text-center mb-16 text-cyber" data-aos="fade-up">About CyberShield Pro</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h3 class="text-3xl font-bold mb-6 text-cyber">Leading the Future of Cybersecurity</h3>
+                    <p class="text-gray-300 mb-6">
+                        Founded by <strong class="text-security">Gulshan Kumar</strong>, CyberShield Pro has emerged as a pioneering force in the cybersecurity landscape. 
+                        With a vision to create impenetrable digital fortresses for businesses worldwide, we combine cutting-edge technology 
+                        with strategic security expertise.
+                    </p>
+                    <p class="text-gray-300 mb-6">
+                        Under Gulshan Kumar's leadership, our team of security experts, data scientists, and ethical hackers work tirelessly 
+                        to stay ahead of evolving cyber threats, ensuring our clients can operate in the digital world with confidence and security.
+                    </p>
+                    
+                    <div class="cyber-card p-6 mt-8">
+                        <h4 class="text-xl font-bold mb-4 text-security">Our Mission</h4>
+                        <p class="text-gray-300">
+                            To empower organizations with advanced, accessible cybersecurity solutions that proactively detect, prevent, 
+                            and respond to digital threats, enabling secure digital transformation and business growth.
+                        </p>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <div class="cyber-card p-8">
+                        <div class="text-center mb-8">
+                            <div class="w-32 h-32 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto mb-4 flex items-center justify-center">
+                                <span class="text-white text-2xl font-bold">GK</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-cyber">Gulshan Kumar</h3>
+                            <p class="text-gray-400">Founder & CEO</p>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-bold text-security mb-2">Experience</h4>
+                                <p class="text-gray-300 text-sm">
+                                    With over 12 years in cybersecurity, Gulshan has led transformation projects for Fortune 500 companies 
+                                    and government agencies, specializing in threat intelligence and security architecture.
+                                </p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold text-security mb-2">Expertise</h4>
+                                <ul class="text-gray-300 text-sm space-y-1">
+                                    <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Cloud Security Architecture</li>
+                                    <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Threat Intelligence & Analysis</li>
+                                    <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Zero-Trust Implementation</li>
+                                    <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Security Operations</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Company Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16">
+                <div class="text-center" data-aos="fade-up">
+                    <p class="text-4xl font-bold text-security mb-2">10,000+</p>
+                    <p class="text-gray-400">Websites Protected</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <p class="text-4xl font-bold text-security mb-2">50+</p>
+                    <p class="text-gray-400">Countries Served</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <p class="text-4xl font-bold text-security mb-2">99.9%</p>
+                    <p class="text-gray-400">Uptime Guarantee</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <p class="text-4xl font-bold text-security mb-2">24/7</p>
+                    <p class="text-gray-400">Monitoring & Support</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Threat Dashboard Section -->
@@ -591,6 +697,103 @@
             
             <div class="text-center">
                 <button class="cyber-button text-lg py-3 px-8">View Detailed Analytics</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools & Solutions Section -->
+    <section id="tools" class="py-20 security-gradient relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title security-title text-4xl font-bold text-center mb-16 text-security" data-aos="fade-up">Our Security Tools & Solutions</h2>
+            
+            <div class="tools-grid">
+                <!-- Tool 1 -->
+                <div class="cyber-card p-6 gsap-card" data-aos="fade-up">
+                    <div class="w-16 h-16 rounded-full bg-cyan-900 bg-opacity-30 flex items-center justify-center mb-4">
+                        <i data-feather="shield" class="text-cyber w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-cyber">Advanced Threat Intelligence</h3>
+                    <p class="text-gray-300 mb-4">Real-time threat detection and analysis with global threat intelligence feeds.</p>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Behavioral Analysis</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Malware Detection</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Zero-Day Protection</li>
+                    </ul>
+                </div>
+                
+                <!-- Tool 2 -->
+                <div class="cyber-card p-6 gsap-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 rounded-full bg-purple-900 bg-opacity-30 flex items-center justify-center mb-4">
+                        <i data-feather="cloud" class="text-cyber w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-cyber">Cloud Security Suite</h3>
+                    <p class="text-gray-300 mb-4">Comprehensive protection for multi-cloud environments including AWS, Azure, and GCP.</p>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> CSPM & CWPP</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Cloud DLP</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Container Security</li>
+                    </ul>
+                </div>
+                
+                <!-- Tool 3 -->
+                <div class="cyber-card p-6 gsap-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 rounded-full bg-blue-900 bg-opacity-30 flex items-center justify-center mb-4">
+                        <i data-feather="lock" class="text-cyber w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-cyber">Network Security Tools</h3>
+                    <p class="text-gray-300 mb-4">Advanced network monitoring, intrusion detection, and firewall management.</p>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Next-Gen Firewall</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> IDS/IPS Systems</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Network Segmentation</li>
+                    </ul>
+                </div>
+                
+                <!-- Tool 4 -->
+                <div class="cyber-card p-6 gsap-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 rounded-full bg-green-900 bg-opacity-30 flex items-center justify-center mb-4">
+                        <i data-feather="search" class="text-cyber w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-cyber">Vulnerability Management</h3>
+                    <p class="text-gray-300 mb-4">Comprehensive vulnerability scanning, assessment, and remediation platform.</p>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Automated Scanning</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Risk Prioritization</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Patch Management</li>
+                    </ul>
+                </div>
+                
+                <!-- Tool 5 -->
+                <div class="cyber-card p-6 gsap-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-16 h-16 rounded-full bg-yellow-900 bg-opacity-30 flex items-center justify-center mb-4">
+                        <i data-feather="users" class="text-cyber w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-cyber">Security Awareness Training</h3>
+                    <p class="text-gray-300 mb-4">Interactive training programs to educate employees about cybersecurity threats.</p>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Phishing Simulations</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Interactive Modules</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Progress Tracking</li>
+                    </ul>
+                </div>
+                
+                <!-- Tool 6 -->
+                <div class="cyber-card p-6 gsap-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-16 h-16 rounded-full bg-red-900 bg-opacity-30 flex items-center justify-center mb-4">
+                        <i data-feather="alert-triangle" class="text-cyber w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-cyber">Incident Response Platform</h3>
+                    <p class="text-gray-300 mb-4">Automated incident detection, response, and recovery with playbook execution.</p>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Automated Playbooks</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Forensic Analysis</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Recovery Automation</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="cyber-button text-lg py-3 px-8">View All Tools & Features</button>
             </div>
         </div>
     </section>
@@ -1262,6 +1465,95 @@
             document.getElementById('mobile-menu').classList.toggle('active');
         });
 
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    gsap.to(window, {
+                        duration: 1,
+                        scrollTo: { y: target, offsetY: 70 },
+                        ease: "power2.inOut"
+                    });
+                    
+                    // Add visual feedback
+                    gsap.fromTo(this, 
+                        { color: "#00f3ff" }, 
+                        { color: "#ffffff", duration: 0.5 }
+                    );
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.remove('active');
+                }
+            });
+        });
+
+        // Enhanced button interactions with ripple effect
+        document.querySelectorAll('.cyber-button, .security-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Ripple effect
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size/2;
+                const y = e.clientY - rect.top - size/2;
+                
+                ripple.style.cssText = `
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    position: absolute;
+                    background: rgba(255,255,255,0.5);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple-animation 0.6s linear;
+                `;
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+                
+                // Professional loading state
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i data-feather="loader" class="animate-spin w-4 h-4 mr-2"></i> Processing...';
+                feather.replace();
+                
+                // Reset after 2 seconds (simulate processing)
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    feather.replace();
+                }, 2000);
+            });
+        });
+
+        // Enhanced card hover animations
+        function enableExecutiveMode() {
+            // Enhanced animations
+            gsap.utils.toArray('.cyber-card, .security-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    gsap.to(card, {
+                        y: -5,
+                        boxShadow: "0 10px 30px rgba(0, 243, 255, 0.3)",
+                        duration: 0.3
+                    });
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    gsap.to(card, {
+                        y: 0,
+                        boxShadow: "0 0 15px rgba(0, 243, 255, 0.2)",
+                        duration: 0.3
+                    });
+                });
+            });
+        }
+
         // Initialize Chart.js for Security Events
         const ctx = document.getElementById('security-events-chart').getContext('2d');
         const securityEventsChart = new Chart(ctx, {
@@ -1563,6 +1855,9 @@
             
             // Add GSAP animations to hero section
             gsap.fromTo('.floating', { y: 0 }, { y: -20, duration: 3, yoyo: true, repeat: -1, ease: "power1.inOut" });
+            
+            // Initialize executive mode
+            enableExecutiveMode();
         });
     </script>
 </body>
