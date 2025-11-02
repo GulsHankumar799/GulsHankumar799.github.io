@@ -112,20 +112,47 @@
             backdrop-filter: blur(10px);
         }
         .mobile-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100vh;
             background: rgba(10, 14, 23, 0.98);
-            padding: 1rem;
-            display: none;
+            backdrop-filter: blur(15px);
+            padding: 2rem 1.5rem;
+            display: flex;
             flex-direction: column;
-            gap: 1rem;
-            border-top: 1px solid rgba(0, 243, 255, 0.3);
-            z-index: 100;
+            gap: 1.5rem;
+            transition: right 0.3s ease;
+            z-index: 1000;
+            box-shadow: -5px 0 25px rgba(0, 243, 255, 0.2);
         }
         .mobile-menu.active {
-            display: flex;
+            right: 0;
+        }
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            display: none;
+        }
+        .mobile-menu-overlay.active {
+            display: block;
+        }
+        .mobile-menu-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
         .scanline {
             position: relative;
@@ -377,58 +404,6 @@
             transform: translateY(50px);
         }
 
-        /* WebSocket Status */
-        .websocket-status {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 8px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .websocket-connected {
-            background: rgba(0, 255, 149, 0.2);
-            color: var(--cyber-green);
-            border: 1px solid var(--cyber-green);
-        }
-        .websocket-disconnected {
-            background: rgba(255, 42, 109, 0.2);
-            color: var(--alert-red);
-            border: 1px solid var(--alert-red);
-        }
-
-        /* Compliance Grid Styles */
-        .compliance-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        .compliance-item {
-            transition: transform 0.3s ease;
-        }
-        .compliance-item:hover {
-            transform: translateY(-5px);
-        }
-        .status-badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-        .status-active {
-            background: rgba(0, 255, 149, 0.2);
-            color: var(--cyber-green);
-        }
-        .status-pending {
-            background: rgba(255, 204, 0, 0.2);
-            color: var(--warning-yellow);
-        }
-
         /* Tools Grid Styles */
         .tools-grid {
             display: grid;
@@ -552,6 +527,505 @@
             display: none;
         }
 
+        /* Simplified Header Styles */
+        .simplified-header {
+            background: rgba(10, 14, 23, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .logo {
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: #00f3ff;
+        }
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+        .nav-link:hover {
+            color: #00f3ff;
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        /* Enhanced Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: rgba(26, 29, 41, 0.95);
+            border-radius: 15px;
+            padding: 2.5rem;
+            width: 90%;
+            max-width: 450px;
+            position: relative;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+        }
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .auth-tab {
+            padding: 0.75rem 1.5rem;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .auth-tab.active {
+            color: #00f3ff;
+            border-bottom: 2px solid #00f3ff;
+        }
+        .auth-form {
+            display: none;
+        }
+        .auth-form.active {
+            display: block;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #00f3ff;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+        }
+        .form-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 2.5rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .remember-me input {
+            margin: 0;
+        }
+        .forgot-password {
+            color: #00f3ff;
+            text-decoration: none;
+        }
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .auth-divider::before,
+        .auth-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .auth-divider span {
+            padding: 0 1rem;
+        }
+        .social-auth {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .social-button {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .social-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .auth-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        .auth-footer a {
+            color: #00f3ff;
+            text-decoration: none;
+        }
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Demo Accounts Section */
+        .demo-accounts {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(0, 243, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+        }
+        .demo-title {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: #00f3ff;
+        }
+        .demo-account {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .demo-account:hover {
+            background: rgba(0, 243, 255, 0.1);
+        }
+        .demo-account:last-child {
+            margin-bottom: 0;
+        }
+        .demo-account-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .demo-account-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        .demo-account-details {
+            display: flex;
+            flex-direction: column;
+        }
+        .demo-account-name {
+            font-weight: 500;
+        }
+        .demo-account-role {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .demo-login-btn {
+            background: rgba(0, 243, 255, 0.2);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            color: #00f3ff;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .demo-login-btn:hover {
+            background: rgba(0, 243, 255, 0.3);
+        }
+        
+        /* User Account Dropdown */
+        .user-dropdown {
+            position: relative;
+            display: none;
+        }
+        .user-dropdown.active {
+            display: block;
+        }
+        .user-button {
+            background: transparent;
+            border: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+        .user-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .user-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(26, 29, 41, 0.95);
+            border-radius: 8px;
+            padding: 0.5rem;
+            min-width: 150px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: none;
+            z-index: 100;
+        }
+        .user-menu.active {
+            display: block;
+        }
+        .user-menu-item {
+            display: block;
+            width: 100%;
+            padding: 0.5rem 1rem;
+            background: none;
+            border: none;
+            color: white;
+            text-align: left;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+        .user-menu-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hero Section Background */
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 14, 23, 0.9), rgba(26, 29, 41, 0.8)), 
+                        url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        /* Cyber Threats Section */
+        .threats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .threat-card {
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .threat-card:hover {
+            transform: translateY(-5px);
+        }
+        .threat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        .phishing-icon {
+            background: rgba(255, 42, 109, 0.2);
+            color: var(--alert-red);
+        }
+        .malware-icon {
+            background: rgba(255, 204, 0, 0.2);
+            color: var(--warning-yellow);
+        }
+        .ransomware-icon {
+            background: rgba(185, 103, 255, 0.2);
+            color: var(--neon-purple);
+        }
+        .ddos-icon {
+            background: rgba(0, 243, 255, 0.2);
+            color: var(--neon-blue);
+        }
+
+        /* Real-time Threat Feed */
+        .threat-feed {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .threat-item {
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .threat-item:last-child {
+            border-bottom: none;
+        }
+        .threat-time {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .threat-details {
+            flex: 1;
+        }
+        .threat-severity {
+            font-size: 0.8rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+        .severity-high {
+            background: rgba(255, 42, 109, 0.2);
+            color: var(--alert-red);
+        }
+        .severity-medium {
+            background: rgba(255, 204, 0, 0.2);
+            color: var(--warning-yellow);
+        }
+        .severity-low {
+            background: rgba(0, 255, 149, 0.2);
+            color: var(--cyber-green);
+        }
+
+        /* Interactive Security Quiz */
+        .quiz-container {
+            background: rgba(26, 29, 41, 0.7);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        .quiz-question {
+            margin-bottom: 1.5rem;
+        }
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .quiz-option {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .quiz-option.selected {
+            background: rgba(0, 243, 255, 0.2);
+            border-color: var(--neon-blue);
+        }
+        .quiz-option.correct {
+            background: rgba(0, 255, 149, 0.2);
+            border-color: var(--cyber-green);
+        }
+        .quiz-option.incorrect {
+            background: rgba(255, 42, 109, 0.2);
+            border-color: var(--alert-red);
+        }
+        .quiz-result {
+            display: none;
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+        .quiz-result.correct {
+            background: rgba(0, 255, 149, 0.2);
+            border: 1px solid var(--cyber-green);
+        }
+        .quiz-result.incorrect {
+            background: rgba(255, 42, 109, 0.2);
+            border: 1px solid var(--alert-red);
+        }
+
+        /* Live Threat Map */
+        .threat-map {
+            height: 300px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .threat-dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        .threat-dot.high {
+            background: var(--alert-red);
+            box-shadow: 0 0 10px var(--alert-red);
+        }
+        .threat-dot.medium {
+            background: var(--warning-yellow);
+            box-shadow: 0 0 10px var(--warning-yellow);
+        }
+        .threat-dot.low {
+            background: var(--cyber-green);
+            box-shadow: 0 0 10px var(--cyber-green);
+        }
+
         /* Mobile Responsive Improvements */
         @media (max-width: 768px) {
             .section-title {
@@ -566,13 +1040,13 @@
             .portfolio-grid {
                 grid-template-columns: 1fr;
             }
-            .compliance-grid {
-                grid-template-columns: 1fr;
-            }
             .protection-apps-grid {
                 grid-template-columns: 1fr;
             }
             .security-tools-grid {
+                grid-template-columns: 1fr;
+            }
+            .threats-grid {
                 grid-template-columns: 1fr;
             }
             .simulation-controls {
@@ -584,6 +1058,28 @@
             }
             .floating {
                 display: none; /* Improve mobile performance */
+            }
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            .mobile-menu .nav-link {
+                font-size: 1.1rem;
+                padding: 0.75rem 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .social-auth {
+                flex-direction: column;
+            }
+            .demo-account {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .demo-login-btn {
+                align-self: flex-end;
             }
         }
 
@@ -597,6 +1093,12 @@
             .tool-card {
                 min-height: auto;
             }
+            .hero-title {
+                font-size: 2rem;
+            }
+            .modal-content {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -604,68 +1106,212 @@
     <!-- Vanta.js Background -->
     <div id="vanta-bg" class="fixed top-0 left-0 w-full h-full z-0"></div>
 
-    <!-- WebSocket Status Indicator -->
-    <div id="websocket-status" class="websocket-status websocket-connected">
-        <span id="websocket-dot" class="w-2 h-2 rounded-full bg-green-500"></span>
-        <span>LIVE DATA</span>
-    </div>
-
     <!-- Navigation -->
-    <nav class="nav-blur fixed top-0 w-full z-50 py-4 px-4 md:px-6 flex justify-between items-center">
+    <nav class="simplified-header fixed top-0 w-full z-50 py-4 px-4 md:px-6 flex justify-between items-center">
         <div class="flex items-center">
-            <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 mr-2 md:mr-3 pulse-glow"></div>
-            <h1 class="text-xl md:text-2xl font-bold neon-text" style="color: var(--neon-blue);">CyberShield Pro</h1>
+            <h1 class="logo">CyberShield Pro</h1>
         </div>
         <div class="hidden md:flex space-x-6 lg:space-x-8">
-            <a href="#home" class="hover:text-cyan-400 transition-colors font-semibold">Home</a>
-            <a href="#about" class="hover:text-cyan-400 transition-colors font-semibold">About</a>
-            <a href="#threat-dashboard" class="hover:text-cyan-400 transition-colors font-semibold">Dashboard</a>
-            <a href="#tools" class="hover:text-cyan-400 transition-colors font-semibold">Tools</a>
-            <a href="#new-tools" class="hover:text-cyan-400 transition-colors font-semibold">Security Tools</a>
-            <a href="#ai-security" class="hover:text-cyan-400 transition-colors font-semibold">AI Security</a>
-            <a href="#advanced-tools" class="hover:text-cyan-400 transition-colors font-semibold">Advanced Tools</a>
-            <a href="#compliance" class="hover:text-cyan-400 transition-colors font-semibold">Compliance</a>
-            <a href="#contact" class="hover:text-cyan-400 transition-colors font-semibold">Contact</a>
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#threats" class="nav-link">Threats</a>
+            <a href="#threat-dashboard" class="nav-link">Dashboard</a>
+            <a href="#tools" class="nav-link">Solutions</a>
+            <a href="#security-tools" class="nav-link">Tools</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </div>
         <div class="flex items-center space-x-2 md:space-x-4">
-            <button class="cyber-button text-sm md:text-base py-2 px-3 md:py-2 md:px-4">Login</button>
-            <button class="security-button text-sm md:text-base py-2 px-3 md:py-2 md:px-4">Free Audit</button>
+            <div id="user-dropdown" class="user-dropdown">
+                <button class="user-button">
+                    <i data-feather="user" class="w-5 h-5"></i>
+                    <span id="user-name">User</span>
+                    <i data-feather="chevron-down" class="w-4 h-4"></i>
+                </button>
+                <div class="user-menu">
+                    <button class="user-menu-item" id="profile-button">My Profile</button>
+                    <button class="user-menu-item" id="settings-button">Settings</button>
+                    <button class="user-menu-item" id="logout-button">Logout</button>
+                </div>
+            </div>
+            <button id="auth-button" class="cyber-button text-sm md:text-base py-2 px-3 md:py-2 md:px-4">Login</button>
             <button id="mobile-menu-toggle" class="md:hidden text-white p-2">
                 <i data-feather="menu"></i>
             </button>
         </div>
 
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
+
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="mobile-menu">
-            <a href="#home" class="hover:text-cyan-400 transition-colors font-semibold py-2">Home</a>
-            <a href="#about" class="hover:text-cyan-400 transition-colors font-semibold py-2">About Us</a>
-            <a href="#threat-dashboard" class="hover:text-cyan-400 transition-colors font-semibold py-2">Threat Dashboard</a>
-            <a href="#tools" class="hover:text-cyan-400 transition-colors font-semibold py-2">Tools & Solutions</a>
-            <a href="#new-tools" class="hover:text-cyan-400 transition-colors font-semibold py-2">Security Tools</a>
-            <a href="#ai-security" class="hover:text-cyan-400 transition-colors font-semibold py-2">AI Security</a>
-            <a href="#advanced-tools" class="hover:text-cyan-400 transition-colors font-semibold py-2">Advanced Tools</a>
-            <a href="#incident-simulator" class="hover:text-cyan-400 transition-colors font-semibold py-2">Incident Simulator</a>
-            <a href="#compliance" class="hover:text-cyan-400 transition-colors font-semibold py-2">Compliance</a>
-            <a href="#blog" class="hover:text-cyan-400 transition-colors font-semibold py-2">Blog</a>
-            <a href="#contact" class="hover:text-cyan-400 transition-colors font-semibold py-2">Contact</a>
+            <button class="mobile-menu-close" id="mobile-menu-close">
+                <i data-feather="x"></i>
+            </button>
+            <div class="flex flex-col gap-6 mt-8">
+                <a href="#home" class="nav-link text-lg">Home</a>
+                <a href="#about" class="nav-link text-lg">About Us</a>
+                <a href="#threats" class="nav-link text-lg">Cyber Threats</a>
+                <a href="#threat-dashboard" class="nav-link text-lg">Threat Dashboard</a>
+                <a href="#tools" class="nav-link text-lg">Solutions</a>
+                <a href="#security-tools" class="nav-link text-lg">Tools</a>
+                <a href="#contact" class="nav-link text-lg">Contact</a>
+            </div>
         </div>
     </nav>
 
+    <!-- Enhanced Auth Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Login</button>
+                <button class="auth-tab" data-tab="signup">Sign Up</button>
+            </div>
+            
+            <!-- Login Form -->
+            <form id="login-form" class="auth-form active">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <i data-feather="mail" class="form-icon"></i>
+                    <input type="email" id="login-email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <i data-feather="lock" class="form-icon"></i>
+                    <input type="password" id="login-password" placeholder="Enter your password" required>
+                </div>
+                
+                <div class="form-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember-me">
+                        <label for="remember-me">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                
+                <button type="submit" class="cyber-button w-full">Login</button>
+                
+                <!-- Demo Accounts Section -->
+                <div class="demo-accounts">
+                    <p class="demo-title">Demo Accounts</p>
+                    <div class="demo-account" data-email="admin@cybershield.com" data-password="admin123">
+                        <div class="demo-account-info">
+                            <div class="demo-account-avatar" style="background: rgba(0, 243, 255, 0.2); color: #00f3ff;">A</div>
+                            <div class="demo-account-details">
+                                <span class="demo-account-name">Admin User</span>
+                                <span class="demo-account-role">Full Access</span>
+                            </div>
+                        </div>
+                        <button type="button" class="demo-login-btn">Use This Account</button>
+                    </div>
+                    <div class="demo-account" data-email="analyst@cybershield.com" data-password="analyst123">
+                        <div class="demo-account-info">
+                            <div class="demo-account-avatar" style="background: rgba(0, 255, 149, 0.2); color: #00ff95;">SA</div>
+                            <div class="demo-account-details">
+                                <span class="demo-account-name">Security Analyst</span>
+                                <span class="demo-account-role">Threat Analysis</span>
+                            </div>
+                        </div>
+                        <button type="button" class="demo-login-btn">Use This Account</button>
+                    </div>
+                    <div class="demo-account" data-email="user@cybershield.com" data-password="user123">
+                        <div class="demo-account-info">
+                            <div class="demo-account-avatar" style="background: rgba(185, 103, 255, 0.2); color: #b967ff;">U</div>
+                            <div class="demo-account-details">
+                                <span class="demo-account-name">Standard User</span>
+                                <span class="demo-account-role">Basic Access</span>
+                            </div>
+                        </div>
+                        <button type="button" class="demo-login-btn">Use This Account</button>
+                    </div>
+                </div>
+                
+                <div class="auth-divider">
+                    <span>or continue with</span>
+                </div>
+                
+                <div class="social-auth">
+                    <button type="button" class="social-button">
+                        <i data-feather="github"></i>
+                        <span>GitHub</span>
+                    </button>
+                    <button type="button" class="social-button">
+                        <i data-feather="twitter"></i>
+                        <span>Twitter</span>
+                    </button>
+                    <button type="button" class="social-button">
+                        <i data-feather="linkedin"></i>
+                        <span>LinkedIn</span>
+                    </button>
+                </div>
+                
+                <div class="auth-footer">
+                    Don't have an account? <a href="#" class="switch-to-signup">Sign up</a>
+                </div>
+            </form>
+            
+            <!-- Signup Form -->
+            <form id="signup-form" class="auth-form">
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <i data-feather="user" class="form-icon"></i>
+                    <input type="text" id="signup-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <i data-feather="mail" class="form-icon"></i>
+                    <input type="email" id="signup-email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <i data-feather="lock" class="form-icon"></i>
+                    <input type="password" id="signup-password" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm">Confirm Password</label>
+                    <i data-feather="lock" class="form-icon"></i>
+                    <input type="password" id="signup-confirm" placeholder="Confirm your password" required>
+                </div>
+                
+                <button type="submit" class="cyber-button w-full">Create Account</button>
+                
+                <div class="auth-divider">
+                    <span>or continue with</span>
+                </div>
+                
+                <div class="social-auth">
+                    <button type="button" class="social-button">
+                        <i data-feather="github"></i>
+                        <span>GitHub</span>
+                    </button>
+                    <button type="button" class="social-button">
+                        <i data-feather="twitter"></i>
+                        <span>Twitter</span>
+                    </button>
+                    <button type="button" class="social-button">
+                        <i data-feather="linkedin"></i>
+                        <span>LinkedIn</span>
+                    </button>
+                </div>
+                
+                <div class="auth-footer">
+                    Already have an account? <a href="#" class="switch-to-login">Log in</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen relative flex items-center justify-center overflow-hidden scanline pt-16">
+    <section id="home" class="min-h-screen relative flex items-center justify-center overflow-hidden pt-16">
+        <div class="hero-background"></div>
         <div class="container mx-auto px-4 md:px-6 text-center relative z-10" data-aos="fade-up" data-aos-duration="1000">
-            <h2 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 glow-cyber">Advanced <span class="text-security glow-security">Cybersecurity</span> Platform</h2>
-            <p class="text-lg md:text-xl lg:text-2xl mb-8 md:mb-10 max-w-3xl mx-auto text-gray-300">Zero-Trust Architecture with <span class="text-cyber neon-text">AI-Driven Threat Detection</span> and <span class="text-security neon-text">Automated Response Systems</span></p>
+            <h2 class="hero-title">Advanced Cybersecurity <span class="text-security">Defense Platform</span></h2>
+            <p class="hero-subtitle">Comprehensive threat protection, security intelligence, and advanced tools for modern organizations. Protect against phishing, malware, ransomware, and other cyber threats.</p>
             <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
-                <button class="cyber-button text-base md:text-lg py-3 px-6 md:px-8">View Threat Dashboard</button>
-                <button class="security-button text-base md:text-lg py-3 px-6 md:px-8">Start Security Audit</button>
+                <a href="#threat-dashboard" class="cyber-button text-base md:text-lg py-3 px-6 md:px-8 inline-block">View Threat Dashboard</a>
+                <a href="#security-tools" class="security-button text-base md:text-lg py-3 px-6 md:px-8 inline-block">Use Our Tools</a>
             </div>
         </div>
-
-        <!-- Floating Elements -->
-        <div class="floating absolute top-1/4 left-1/4 w-4 h-4 md:w-6 md:h-6 rounded-full bg-cyan-500 opacity-70"></div>
-        <div class="floating absolute top-1/3 right-1/4 w-5 h-5 md:w-8 md:h-8 rounded-full bg-purple-500 opacity-70" style="animation-delay: 1s;"></div>
-        <div class="floating absolute bottom-1/4 left-1/3 w-6 h-6 md:w-10 md:h-10 rounded-full bg-blue-500 opacity-70" style="animation-delay: 2s;"></div>
     </section>
 
     <!-- About Us Section -->
@@ -675,22 +1321,21 @@
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
                 <div data-aos="fade-right">
-                    <h3 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-cyber">Leading the Future of Cybersecurity</h3>
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-cyber">Security Leadership</h3>
                     <p class="text-gray-300 mb-4 md:mb-6">
-                        Founded by <strong class="text-security">Gulshan Kumar</strong>, CyberShield Pro has emerged as a pioneering force in the cybersecurity landscape. 
-                        With a vision to create impenetrable digital fortresses for businesses worldwide, we combine cutting-edge technology 
-                        with strategic security expertise.
+                        Founded by <strong class="text-security">Gulshan Kumar</strong>, CyberShield Pro delivers comprehensive 
+                        cybersecurity solutions for organizations facing complex digital threats.
                     </p>
                     <p class="text-gray-300 mb-4 md:mb-6">
-                        Under Gulshan Kumar's leadership, our team of security experts, data scientists, and ethical hackers work tirelessly 
-                        to stay ahead of evolving cyber threats, ensuring our clients can operate in the digital world with confidence and security.
+                        Our expert team combines cutting-edge technology with strategic security expertise 
+                        to protect critical assets and ensure regulatory compliance.
                     </p>
                     
                     <div class="cyber-card p-4 md:p-6 mt-6 md:mt-8">
                         <h4 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-security">Our Mission</h4>
                         <p class="text-gray-300">
-                            To empower organizations with advanced, accessible cybersecurity solutions that proactively detect, prevent, 
-                            and respond to digital threats, enabling secure digital transformation and business growth.
+                            To provide enterprise-grade security solutions that enable organizations to operate securely 
+                            in an increasingly complex threat landscape.
                         </p>
                     </div>
                 </div>
@@ -709,8 +1354,8 @@
                             <div>
                                 <h4 class="font-bold text-security mb-1 md:mb-2">Experience</h4>
                                 <p class="text-gray-300 text-sm">
-                                    With over 12 years in cybersecurity, Gulshan has led transformation projects for Fortune 500 companies 
-                                    and government agencies, specializing in threat intelligence and security architecture.
+                                    12+ years in cybersecurity leadership, specializing in threat intelligence 
+                                    and security architecture for enterprise organizations.
                                 </p>
                             </div>
                             
@@ -732,7 +1377,7 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mt-12 md:mt-16">
                 <div class="text-center" data-aos="fade-up">
                     <p class="text-3xl md:text-4xl font-bold text-security mb-1 md:mb-2">10,000+</p>
-                    <p class="text-gray-400 text-sm md:text-base">Websites Protected</p>
+                    <p class="text-gray-400 text-sm md:text-base">Assets Protected</p>
                 </div>
                 <div class="text-center" data-aos="fade-up" data-aos-delay="100">
                     <p class="text-3xl md:text-4xl font-bold text-security mb-1 md:mb-2">50+</p>
@@ -744,7 +1389,121 @@
                 </div>
                 <div class="text-center" data-aos="fade-up" data-aos-delay="300">
                     <p class="text-3xl md:text-4xl font-bold text-security mb-1 md:mb-2">24/7</p>
-                    <p class="text-gray-400 text-sm md:text-base">Monitoring & Support</p>
+                    <p class="text-gray-400 text-sm md:text-base">Security Operations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cyber Threats Section -->
+    <section id="threats" class="py-16 md:py-20 security-gradient relative overflow-hidden">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="section-title security-title text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-security" data-aos="fade-up">Understanding Cyber Threats</h2>
+            
+            <div class="threats-grid mb-12 md:mb-16">
+                <!-- Phishing -->
+                <div class="threat-card cyber-card p-6 md:p-8" data-aos="fade-up">
+                    <div class="threat-icon phishing-icon">
+                        <i data-feather="mail" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-cyber">Phishing Attacks</h3>
+                    <p class="text-gray-300 mb-4">
+                        Deceptive attempts to obtain sensitive information by disguising as a trustworthy entity in electronic communication.
+                    </p>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> Spear phishing targets specific individuals</li>
+                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> Often uses urgent or threatening language</li>
+                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> May contain malicious links or attachments</li>
+                    </ul>
+                </div>
+                
+                <!-- Malware -->
+                <div class="threat-card cyber-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="threat-icon malware-icon">
+                        <i data-feather="alert-octagon" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-cyber">Malware</h3>
+                    <p class="text-gray-300 mb-4">
+                        Malicious software designed to disrupt, damage, or gain unauthorized access to computer systems.
+                    </p>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> Viruses, worms, and trojans</li>
+                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> Spyware and keyloggers</li>
+                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> Often spread through email attachments</li>
+                    </ul>
+                </div>
+                
+                <!-- Ransomware -->
+                <div class="threat-card cyber-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="threat-icon ransomware-icon">
+                        <i data-feather="lock" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-cyber">Ransomware</h3>
+                    <p class="text-gray-300 mb-4">
+                        Malicious software that blocks access to a computer system until a sum of money is paid.
+                    </p>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> Encrypts files and demands ransom</li>
+                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> Often targets businesses and organizations</li>
+                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> Can cause significant downtime and data loss</li>
+                    </ul>
+                </div>
+                
+                <!-- DDoS -->
+                <div class="threat-card cyber-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="300">
+                    <div class="threat-icon ddos-icon">
+                        <i data-feather="server" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-cyber">DDoS Attacks</h3>
+                    <p class="text-gray-300 mb-4">
+                        Distributed Denial of Service attacks overwhelm a system with traffic, making it unavailable to users.
+                    </p>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> Uses multiple compromised systems</li>
+                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> Targets websites, servers, and networks</li>
+                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> Can be mitigated with proper infrastructure</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Real-time Threat Feed -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+                <div data-aos="fade-right">
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-security">Live Threat Intelligence</h3>
+                    <p class="text-gray-300 mb-6">
+                        Our systems monitor global threat activity in real-time, providing up-to-date information on emerging cyber threats.
+                    </p>
+                    <div class="threat-feed" id="threat-feed">
+                        <!-- Threat items will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-security">Global Threat Map</h3>
+                    <p class="text-gray-300 mb-6">
+                        Visual representation of cyber attacks happening around the world in real-time.
+                    </p>
+                    <div class="threat-map" id="threat-map">
+                        <!-- Threat dots will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Interactive Security Quiz -->
+            <div class="quiz-container mt-12 md:mt-16" data-aos="fade-up">
+                <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-cyber">Test Your Security Knowledge</h3>
+                <div id="quiz-content">
+                    <div class="quiz-question">
+                        <p class="text-lg text-gray-300">What is the most common method used in phishing attacks?</p>
+                    </div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-correct="false">Phone calls</div>
+                        <div class="quiz-option" data-correct="true">Deceptive emails</div>
+                        <div class="quiz-option" data-correct="false">Social media posts</div>
+                        <div class="quiz-option" data-correct="false">Text messages</div>
+                    </div>
+                    <button id="quiz-submit" class="cyber-button">Submit Answer</button>
+                    <div id="quiz-result" class="quiz-result"></div>
                 </div>
             </div>
         </div>
@@ -753,7 +1512,7 @@
     <!-- Threat Dashboard Section -->
     <section id="threat-dashboard" class="py-16 md:py-20 security-gradient relative overflow-hidden">
         <div class="container mx-auto px-4 md:px-6">
-            <h2 class="section-title security-title text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-security" data-aos="fade-up">Real-Time Threat Dashboard</h2>
+            <h2 class="section-title security-title text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-security" data-aos="fade-up">Security Dashboard</h2>
             
             <div class="dashboard-grid mb-8 md:mb-12">
                 <div class="dashboard-item-1 security-card p-4 md:p-6 gsap-card" data-aos="fade-up">
@@ -843,13 +1602,6 @@
                         <p class="text-gray-400 text-xs md:text-sm">Avg. Response Time</p>
                     </div>
                 </div>
-                
-                <div class="dashboard-item-6 cyber-card p-4 md:p-6 gsap-card" data-aos="fade-up" data-aos-delay="500">
-                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-cyber">Security Events (Last 24h)</h3>
-                    <div class="chart-container">
-                        <canvas id="security-events-chart"></canvas>
-                    </div>
-                </div>
             </div>
             
             <div class="text-center">
@@ -861,7 +1613,7 @@
     <!-- Tools & Solutions Section -->
     <section id="tools" class="py-16 md:py-20 security-gradient relative overflow-hidden">
         <div class="container mx-auto px-4 md:px-6">
-            <h2 class="section-title security-title text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-security" data-aos="fade-up">Our Security Tools & Solutions</h2>
+            <h2 class="section-title security-title text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-security" data-aos="fade-up">Security Solutions</h2>
             
             <div class="tools-grid">
                 <!-- Tool 1 -->
@@ -869,7 +1621,7 @@
                     <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-cyan-900 bg-opacity-30 flex items-center justify-center mb-3 md:mb-4">
                         <i data-feather="shield" class="text-cyber w-6 h-6 md:w-8 md:h-8"></i>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-cyber">Advanced Threat Intelligence</h3>
+                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-cyber">Threat Intelligence</h3>
                     <p class="text-gray-300 mb-3 md:mb-4">Real-time threat detection and analysis with global threat intelligence feeds.</p>
                     <ul class="text-gray-400 text-xs md:text-sm space-y-1 md:space-y-2">
                         <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Behavioral Analysis</li>
@@ -883,7 +1635,7 @@
                     <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-purple-900 bg-opacity-30 flex items-center justify-center mb-3 md:mb-4">
                         <i data-feather="cloud" class="text-cyber w-6 h-6 md:w-8 md:h-8"></i>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-cyber">Cloud Security Suite</h3>
+                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-cyber">Cloud Security</h3>
                     <p class="text-gray-300 mb-3 md:mb-4">Comprehensive protection for multi-cloud environments including AWS, Azure, and GCP.</p>
                     <ul class="text-gray-400 text-xs md:text-sm space-y-1 md:space-y-2">
                         <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> CSPM & CWPP</li>
@@ -897,7 +1649,7 @@
                     <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-blue-900 bg-opacity-30 flex items-center justify-center mb-3 md:mb-4">
                         <i data-feather="lock" class="text-cyber w-6 h-6 md:w-8 md:h-8"></i>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-cyber">Network Security Tools</h3>
+                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-cyber">Network Security</h3>
                     <p class="text-gray-300 mb-3 md:mb-4">Advanced network monitoring, intrusion detection, and firewall management.</p>
                     <ul class="text-gray-400 text-xs md:text-sm space-y-1 md:space-y-2">
                         <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Next-Gen Firewall</li>
@@ -919,154 +1671,18 @@
                         <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Patch Management</li>
                     </ul>
                 </div>
-                
-                <!-- Tool 5 -->
-                <div class="cyber-card p-4 md:p-6 gsap-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-yellow-900 bg-opacity-30 flex items-center justify-center mb-3 md:mb-4">
-                        <i data-feather="users" class="text-cyber w-6 h-6 md:w-8 md:h-8"></i>
-                    </div>
-                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-cyber">Security Awareness Training</h3>
-                    <p class="text-gray-300 mb-3 md:mb-4">Interactive training programs to educate employees about cybersecurity threats.</p>
-                    <ul class="text-gray-400 text-xs md:text-sm space-y-1 md:space-y-2">
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Phishing Simulations</li>
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Interactive Modules</li>
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Progress Tracking</li>
-                    </ul>
-                </div>
-                
-                <!-- Tool 6 -->
-                <div class="cyber-card p-4 md:p-6 gsap-card" data-aos="fade-up" data-aos-delay="500">
-                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-red-900 bg-opacity-30 flex items-center justify-center mb-3 md:mb-4">
-                        <i data-feather="alert-triangle" class="text-cyber w-6 h-6 md:w-8 md:h-8"></i>
-                    </div>
-                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-cyber">Incident Response Platform</h3>
-                    <p class="text-gray-300 mb-3 md:mb-4">Automated incident detection, response, and recovery with playbook execution.</p>
-                    <ul class="text-gray-400 text-xs md:text-sm space-y-1 md:space-y-2">
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Automated Playbooks</li>
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Forensic Analysis</li>
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Recovery Automation</li>
-                    </ul>
-                </div>
             </div>
             
             <div class="text-center mt-8 md:mt-12">
-                <button class="cyber-button text-base md:text-lg py-3 px-6 md:px-8">View All Tools & Features</button>
+                <button class="cyber-button text-base md:text-lg py-3 px-6 md:px-8">View All Solutions</button>
             </div>
         </div>
     </section>
 
-    <!-- New Security Tools Section -->
-    <section id="new-tools" class="py-16 md:py-20 grid-pattern relative">
+    <!-- Security Tools Section -->
+    <section id="security-tools" class="py-16 md:py-20 grid-pattern relative">
         <div class="container mx-auto px-4 md:px-6">
-            <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-cyber" data-aos="fade-up">Security Protection Tools</h2>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
-                <!-- URL Checker Tool -->
-                <div class="cyber-card p-6 md:p-8 gsap-card" data-aos="fade-right">
-                    <div class="w-16 h-16 rounded-full bg-cyan-900 bg-opacity-30 flex items-center justify-center mb-4">
-                        <i data-feather="link" class="text-cyber w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-cyber">URL Safety Checker</h3>
-                    <p class="text-gray-300 mb-6">Check if a website URL is safe to visit or potentially malicious.</p>
-                    
-                    <form id="url-checker-form" class="space-y-4">
-                        <input type="url" id="url-input" placeholder="Enter URL to check (e.g., https://example.com)" class="tool-input" required>
-                        <button type="submit" class="cyber-button w-full">Check URL Safety</button>
-                    </form>
-                    
-                    <div id="url-checker-result" class="tool-result">
-                        <h4 class="text-lg font-bold text-cyber mb-2">Analysis Result</h4>
-                        <div id="url-result-content" class="text-gray-300"></div>
-                    </div>
-                </div>
-                
-                <!-- Mobile Number Detail Tool -->
-                <div class="cyber-card p-6 md:p-8 gsap-card" data-aos="fade-left">
-                    <div class="w-16 h-16 rounded-full bg-purple-900 bg-opacity-30 flex items-center justify-center mb-4">
-                        <i data-feather="smartphone" class="text-cyber w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-cyber">Mobile Number Analysis</h3>
-                    <p class="text-gray-300 mb-6">Get information about a mobile number including carrier and potential risk assessment.</p>
-                    
-                    <form id="mobile-number-form" class="space-y-4">
-                        <input type="tel" id="mobile-number-input" placeholder="Enter mobile number (e.g., +1234567890)" class="tool-input" required>
-                        <button type="submit" class="cyber-button w-full">Analyze Number</button>
-                    </form>
-                    
-                    <div id="mobile-number-result" class="tool-result">
-                        <h4 class="text-lg font-bold text-cyber mb-2">Analysis Result</h4>
-                        <div id="mobile-number-content" class="text-gray-300"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- SMS/Call Bombing Protection Section -->
-            <div class="mt-16 md:mt-20" data-aos="fade-up">
-                <div class="security-card p-6 md:p-8">
-                    <div class="w-16 h-16 rounded-full bg-red-900 bg-opacity-30 flex items-center justify-center mb-4 mx-auto">
-                        <i data-feather="phone-off" class="text-security w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-security text-center">SMS & Call Bombing Protection</h3>
-                    <p class="text-gray-300 mb-6 text-center">
-                        Protect yourself from harassment through SMS and call bombing attacks. Learn how to identify, prevent, and stop these attacks.
-                    </p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                        <div>
-                            <h4 class="text-lg font-bold text-cyber mb-3">What is SMS/Call Bombing?</h4>
-                            <p class="text-gray-300 mb-4">
-                                SMS/Call bombing is a form of harassment where an attacker sends a massive number of SMS messages or calls to a target's phone number, causing disruption and stress.
-                            </p>
-                            <h4 class="text-lg font-bold text-cyber mb-3">How to Protect Yourself</h4>
-                            <ul class="text-gray-300 space-y-2">
-                                <li class="flex items-start"><i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i> Use call and SMS blocking apps</li>
-                                <li class="flex items-start"><i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i> Enable Do Not Disturb (DND) mode during an attack</li>
-                                <li class="flex items-start"><i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i> Contact your telecom provider to block the numbers</li>
-                                <li class="flex items-start"><i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i> Avoid sharing your number publicly</li>
-                            </ul>
-                        </div>
-                        
-                        <div>
-                            <h4 class="text-lg font-bold text-cyber mb-3">Recommended Protection Apps</h4>
-                            <div class="protection-apps-grid">
-                                <div class="app-card cyber-card p-4 text-center">
-                                    <h5 class="font-bold text-cyber mb-2">Truecaller</h5>
-                                    <p class="text-gray-300 text-sm">Identifies spam calls and lets you block them instantly</p>
-                                </div>
-                                <div class="app-card cyber-card p-4 text-center">
-                                    <h5 class="font-bold text-cyber mb-2">Hiya</h5>
-                                    <p class="text-gray-300 text-sm">Real-time spam detection and call blocking</p>
-                                </div>
-                                <div class="app-card cyber-card p-4 text-center">
-                                    <h5 class="font-bold text-cyber mb-2">Call Control</h5>
-                                    <p class="text-gray-300 text-sm">Powerful features for detecting and blocking call bombers</p>
-                                </div>
-                                <div class="app-card cyber-card p-4 text-center">
-                                    <h5 class="font-bold text-cyber mb-2">Should I Answer?</h5>
-                                    <p class="text-gray-300 text-sm">Offers excellent protection with offline databases</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-6 md:mt-8 p-4 bg-yellow-900 bg-opacity-20 rounded-lg">
-                        <h4 class="text-lg font-bold text-warning mb-2">Immediate Actions During an Attack</h4>
-                        <ul class="text-gray-300 text-sm space-y-1">
-                            <li>Enable "Do Not Disturb" mode and allow only contacts</li>
-                            <li>Use a call blocking app to filter unknown numbers</li>
-                            <li>Contact your mobile carrier for assistance</li>
-                            <li>Report the incident to authorities if it involves threats</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Advanced Security Tools Section -->
-    <section id="advanced-tools" class="py-16 md:py-20 security-gradient relative">
-        <div class="container mx-auto px-4 md:px-6">
-            <h2 class="section-title security-title text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-security" data-aos="fade-up">Advanced Security Tools</h2>
+            <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-cyber" data-aos="fade-up">Security Tools</h2>
             
             <div class="security-tools-grid">
                 <!-- Password Strength Analyzer -->
@@ -1088,32 +1704,9 @@
                     </div>
                 </div>
                 
-                <!-- Encryption Tool -->
+                <!-- Hash Generator -->
                 <div class="tool-card cyber-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="100">
                     <div class="w-16 h-16 rounded-full bg-purple-900 bg-opacity-30 flex items-center justify-center mb-4">
-                        <i data-feather="key" class="text-cyber w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-cyber">Text Encryption Tool</h3>
-                    <p class="text-gray-300 mb-6">Encrypt and decrypt text using AES encryption algorithm.</p>
-                    
-                    <form id="encryption-tool-form" class="tool-form">
-                        <textarea id="encryption-text" placeholder="Enter text to encrypt or decrypt" class="tool-textarea" required></textarea>
-                        <input type="text" id="encryption-key" placeholder="Encryption key" class="tool-input" required>
-                        <div class="flex space-x-4">
-                            <button type="button" id="encrypt-btn" class="cyber-button flex-1">Encrypt</button>
-                            <button type="button" id="decrypt-btn" class="security-button flex-1">Decrypt</button>
-                        </div>
-                    </form>
-                    
-                    <div id="encryption-tool-result" class="tool-output">
-                        <h4 class="text-lg font-bold text-cyber mb-2">Result</h4>
-                        <div id="encryption-result-content" class="text-gray-300"></div>
-                    </div>
-                </div>
-                
-                <!-- Hash Generator -->
-                <div class="tool-card cyber-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-16 h-16 rounded-full bg-blue-900 bg-opacity-30 flex items-center justify-center mb-4">
                         <i data-feather="hash" class="text-cyber w-8 h-8"></i>
                     </div>
                     <h3 class="text-xl md:text-2xl font-bold mb-4 text-cyber">Hash Generator</h3>
@@ -1136,6 +1729,25 @@
                     </div>
                 </div>
                 
+                <!-- URL Checker Tool -->
+                <div class="tool-card cyber-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 rounded-full bg-blue-900 bg-opacity-30 flex items-center justify-center mb-4">
+                        <i data-feather="link" class="text-cyber w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-cyber">URL Safety Checker</h3>
+                    <p class="text-gray-300 mb-6">Check if a website URL is safe to visit or potentially malicious.</p>
+                    
+                    <form id="url-checker-form" class="tool-form">
+                        <input type="url" id="url-input" placeholder="Enter URL to check (e.g., https://example.com)" class="tool-input" required>
+                        <button type="submit" class="cyber-button">Check URL Safety</button>
+                    </form>
+                    
+                    <div id="url-checker-result" class="tool-output">
+                        <h4 class="text-lg font-bold text-cyber mb-2">Analysis Result</h4>
+                        <div id="url-result-content" class="text-gray-300"></div>
+                    </div>
+                </div>
+                
                 <!-- Network Scanner -->
                 <div class="tool-card cyber-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="300">
                     <div class="w-16 h-16 rounded-full bg-green-900 bg-opacity-30 flex items-center justify-center mb-4">
@@ -1154,186 +1766,6 @@
                         <div id="network-result-content" class="text-gray-300"></div>
                     </div>
                 </div>
-                
-                <!-- File Analyzer -->
-                <div class="tool-card cyber-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="400">
-                    <div class="w-16 h-16 rounded-full bg-yellow-900 bg-opacity-30 flex items-center justify-center mb-4">
-                        <i data-feather="file" class="text-cyber w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-cyber">File Security Analyzer</h3>
-                    <p class="text-gray-300 mb-6">Upload files to analyze their security properties and detect potential threats.</p>
-                    
-                    <form id="file-analyzer-form" class="tool-form">
-                        <div class="file-upload" id="file-upload-area">
-                            <i data-feather="upload" class="w-8 h-8 text-cyber mx-auto mb-2"></i>
-                            <p class="text-gray-300">Click to upload a file or drag and drop</p>
-                            <p class="text-gray-400 text-sm">Max file size: 10MB</p>
-                            <input type="file" id="file-input">
-                        </div>
-                        <div id="file-info" class="hidden">
-                            <p class="text-gray-300 text-sm mb-2">Selected file: <span id="file-name"></span></p>
-                        </div>
-                        <button type="submit" class="cyber-button">Analyze File</button>
-                    </form>
-                    
-                    <div id="file-analyzer-result" class="tool-output">
-                        <h4 class="text-lg font-bold text-cyber mb-2">Analysis Results</h4>
-                        <div id="file-result-content" class="text-gray-300"></div>
-                    </div>
-                </div>
-                
-                <!-- Security Headers Checker -->
-                <div class="tool-card cyber-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="500">
-                    <div class="w-16 h-16 rounded-full bg-red-900 bg-opacity-30 flex items-center justify-center mb-4">
-                        <i data-feather="shield" class="text-cyber w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-cyber">Security Headers Checker</h3>
-                    <p class="text-gray-300 mb-6">Check a website's security headers to identify potential vulnerabilities.</p>
-                    
-                    <form id="headers-checker-form" class="tool-form">
-                        <input type="url" id="headers-url" placeholder="Enter URL to check headers" class="tool-input" required>
-                        <button type="submit" class="cyber-button">Check Headers</button>
-                    </form>
-                    
-                    <div id="headers-checker-result" class="tool-output">
-                        <h4 class="text-lg font-bold text-cyber mb-2">Security Headers</h4>
-                        <div id="headers-result-content" class="text-gray-300"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- AI Security Section -->
-    <section id="ai-security" class="py-16 md:py-20 grid-pattern relative">
-        <div class="container mx-auto px-4 md:px-6">
-            <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-cyber" data-aos="fade-up">AI-Powered Security Systems</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                <div class="cyber-card p-4 md:p-6 gsap-card" data-aos="fade-up">
-                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-cyan-900 bg-opacity-30 flex items-center justify-center mb-3 md:mb-4">
-                        <i data-feather="activity" class="text-cyber w-6 h-6 md:w-8 md:h-8"></i>
-                    </div>
-                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-4 text-cyber">Behavior Analysis</h3>
-                    <p class="text-gray-300">AI monitors program execution to detect suspicious activities and anomalies in real-time.</p>
-                </div>
-                
-                <div class="cyber-card p-4 md:p-6 gsap-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-purple-900 bg-opacity-30 flex items-center justify-center mb-3 md:mb-4">
-                        <i data-feather="cloud" class="text-cyber w-6 h-6 md:w-8 md:h-8"></i>
-                    </div>
-                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-4 text-cyber">Threat Intelligence</h3>
-                    <p class="text-gray-300">Cloud-powered threat database with millions of global sensors and threat indicators.</p>
-                </div>
-                
-                <div class="cyber-card p-4 md:p-6 gsap-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-blue-900 bg-opacity-30 flex items-center justify-center mb-3 md:mb-4">
-                        <i data-feather="shield" class="text-cyber w-6 h-6 md:w-8 md:h-8"></i>
-                    </div>
-                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-4 text-cyber">Zero-Trust Architecture</h3>
-                    <p class="text-gray-300">Defense-in-depth approach with continuous verification and least privilege access.</p>
-                </div>
-            </div>
-            
-            <div class="mt-8 md:mt-16 text-center">
-                <button class="cyber-button text-base md:text-lg py-3 px-6 md:px-8">Request AI Security Demo</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Compliance Section -->
-    <section id="compliance" class="py-16 md:py-20 grid-pattern relative">
-        <div class="container mx-auto px-4 md:px-6">
-            <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-cyber" data-aos="fade-up">Compliance & Certifications</h2>
-            
-            <div class="cyber-card p-6 md:p-8 mb-8 md:mb-12" data-aos="fade-up">
-                <h2 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-cyber">Our Compliance Framework</h2>
-                <p class="text-gray-300 mb-4 md:mb-6">
-                    At CyberShield Pro, we understand that trust is earned through transparency and adherence to the highest security standards. 
-                    Our comprehensive compliance framework ensures that our security practices meet and exceed industry requirements, 
-                    providing our clients with confidence in our ability to protect their most sensitive data and systems.
-                </p>
-                <p class="text-gray-300">
-                    All our certifications are maintained through regular independent audits and continuous improvement processes, 
-                    ensuring that our security posture evolves to address emerging threats and regulatory changes.
-                </p>
-            </div>
-
-            <h2 class="section-title security-title text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-security" data-aos="fade-up">Our Certifications</h2>
-            
-            <div class="compliance-grid">
-                <!-- ISO 27001 -->
-                <div class="compliance-item security-card p-4 md:p-6" data-aos="fade-up">
-                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-green-900 bg-opacity-30 flex items-center justify-center mb-3 md:mb-4">
-                        <i data-feather="award" class="text-security w-6 h-6 md:w-8 md:h-8"></i>
-                    </div>
-                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-security">ISO/IEC 27001:2022</h3>
-                    <p class="text-gray-300 mb-3 md:mb-4">Information Security Management System</p>
-                    <div class="mb-3 md:mb-4">
-                        <h4 class="font-bold text-security mb-1 md:mb-2">What It Means:</h4>
-                        <p class="text-gray-300 text-xs md:text-sm mb-3 md:mb-4">
-                            ISO 27001 is the international standard for information security management systems (ISMS). 
-                            It provides a systematic approach to managing sensitive company information, ensuring it remains secure.
-                        </p>
-                    </div>
-                    <div class="mb-3 md:mb-4">
-                        <h4 class="font-bold text-security mb-1 md:mb-2">Our Implementation:</h4>
-                        <ul class="text-gray-300 text-xs md:text-sm space-y-1 md:space-y-2">
-                            <li class="flex items-start">
-                                <i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Our ISMS has been independently audited and certified by an accredited third-party auditor</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Regular risk assessments and treatment plans</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Continual improvement of security controls and processes</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-gray-700">
-                        <p class="text-xs text-gray-400">Certification ID: CSP-ISO27001-2023-0452<br>Valid until: October 2025</p>
-                    </div>
-                </div>
-                
-                <!-- GDPR -->
-                <div class="compliance-item security-card p-4 md:p-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-green-900 bg-opacity-30 flex items-center justify-center mb-3 md:mb-4">
-                        <i data-feather="shield" class="text-security w-6 h-6 md:w-8 md:h-8"></i>
-                    </div>
-                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-security">GDPR Compliance</h3>
-                    <p class="text-gray-300 mb-3 md:mb-4">General Data Protection Regulation</p>
-                    <div class="mb-3 md:mb-4">
-                        <h4 class="font-bold text-security mb-1 md:mb-2">What It Means:</h4>
-                        <p class="text-gray-300 text-xs md:text-sm mb-3 md:mb-4">
-                            GDPR is the EU's data protection and privacy law that governs how organizations process personal data of EU citizens, 
-                            regardless of where the organization is located.
-                        </p>
-                    </div>
-                    <div class="mb-3 md:mb-4">
-                        <h4 class="font-bold text-security mb-1 md:mb-2">Our Implementation:</h4>
-                        <ul class="text-gray-300 text-xs md:text-sm space-y-1 md:space-y-2">
-                            <li class="flex items-start">
-                                <i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Data Protection by Design and by Default in all systems</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Process for handling Data Subject Access Requests (DSARs)</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>72-hour breach notification process</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i data-feather="check" class="text-security w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
-                                <span>Data Processing Agreements with all partners</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -1347,7 +1779,7 @@
                 <div data-aos="fade-right">
                     <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-security">Get In Touch</h3>
                     <p class="text-gray-300 mb-6 md:mb-8">
-                        Ready to enhance your cybersecurity posture? Our experts are available to discuss your specific security challenges and provide tailored solutions.
+                        Ready to enhance your cybersecurity posture? Our experts are available to discuss your specific security challenges.
                     </p>
                     
                     <div class="space-y-4 md:space-y-6">
@@ -1395,7 +1827,6 @@
                             <option value="" disabled selected>Select Service</option>
                             <option value="consultation">Security Consultation</option>
                             <option value="audit">Security Audit</option>
-                            <option value="incident-response">Incident Response</option>
                             <option value="compliance">Compliance Assistance</option>
                             <option value="other">Other</option>
                         </select>
@@ -1413,11 +1844,10 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
                 <div>
                     <div class="flex items-center mb-3 md:mb-4">
-                        <div class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 mr-2"></div>
                         <h3 class="text-lg md:text-xl font-bold text-cyber">CyberShield Pro</h3>
                     </div>
                     <p class="text-gray-400 text-sm">
-                        Advanced cybersecurity solutions for the modern enterprise.
+                        Advanced cybersecurity solutions.
                     </p>
                 </div>
                 
@@ -1425,19 +1855,17 @@
                     <h4 class="text-base md:text-lg font-bold mb-2 md:mb-4 text-cyber">Services</h4>
                     <ul class="space-y-1 md:space-y-2">
                         <li><a href="#threat-dashboard" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Threat Detection</a></li>
-                        <li><a href="#tools" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Security Tools</a></li>
-                        <li><a href="#compliance" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Compliance</a></li>
-                        <li><a href="#new-tools" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Protection Tools</a></li>
+                        <li><a href="#tools" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Security Solutions</a></li>
+                        <li><a href="#security-tools" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Security Tools</a></li>
                     </ul>
                 </div>
                 
                 <div>
                     <h4 class="text-base md:text-lg font-bold mb-2 md:mb-4 text-cyber">Resources</h4>
                     <ul class="space-y-1 md:space-y-2">
-                        <li><a href="#blog" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Blog</a></li>
-                        <li><a href="#portfolio" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Case Studies</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Case Studies</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Whitepapers</a></li>
-                        <li><a href="#tools" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Security Tools</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Security Tools</a></li>
                     </ul>
                 </div>
                 
@@ -1488,15 +1916,36 @@
             });
         });
 
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-toggle').addEventListener('click', () => {
-            document.getElementById('mobile-menu').classList.toggle('active');
+        // Mobile menu functionality
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        mobileMenuOverlay.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
         });
 
         // Close mobile menu when clicking on a link
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
-                document.getElementById('mobile-menu').classList.remove('active');
+                mobileMenu.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
             });
         });
 
@@ -1511,190 +1960,265 @@
                         scrollTo: { y: target, offsetY: 70 },
                         ease: "power2.inOut"
                     });
-                    
-                    // Add visual feedback
-                    gsap.fromTo(this, 
-                        { color: "#00f3ff" }, 
-                        { color: "#ffffff", duration: 0.5 }
-                    );
-                    
-                    // Close mobile menu if open
-                    document.getElementById('mobile-menu').classList.remove('active');
                 }
             });
         });
 
-        // Enhanced button interactions with ripple effect
-        document.querySelectorAll('.cyber-button, .security-button').forEach(button => {
-            button.addEventListener('click', function(e) {
-                // Ripple effect
-                const ripple = document.createElement('span');
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size/2;
-                const y = e.clientY - rect.top - size/2;
-                
-                ripple.style.cssText = `
-                    width: ${size}px;
-                    height: ${size}px;
-                    left: ${x}px;
-                    top: ${y}px;
-                    position: absolute;
-                    background: rgba(255,255,255,0.5);
-                    border-radius: 50%;
-                    transform: scale(0);
-                    animation: ripple-animation 0.6s linear;
-                `;
-                
-                this.style.position = 'relative';
-                this.style.overflow = 'hidden';
-                this.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            });
-        });
+        // Enhanced Auth Modal Functionality
+        const authModal = document.getElementById('auth-modal');
+        const authButton = document.getElementById('auth-button');
+        const modalClose = document.getElementById('modal-close');
+        const authTabs = document.querySelectorAll('.auth-tab');
+        const authForms = document.querySelectorAll('.auth-form');
+        const userDropdown = document.getElementById('user-dropdown');
+        const userName = document.getElementById('user-name');
+        const userButton = document.querySelector('.user-button');
+        const userMenu = document.querySelector('.user-menu');
+        const logoutButton = document.getElementById('logout-button');
+        const profileButton = document.getElementById('profile-button');
+        const settingsButton = document.getElementById('settings-button');
+        const switchToSignupLinks = document.querySelectorAll('.switch-to-signup');
+        const switchToLoginLinks = document.querySelectorAll('.switch-to-login');
+        const demoLoginButtons = document.querySelectorAll('.demo-login-btn');
 
-        // Enhanced card hover animations
-        function enableExecutiveMode() {
-            // Enhanced animations
-            gsap.utils.toArray('.cyber-card, .security-card').forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    gsap.to(card, {
-                        y: -5,
-                        boxShadow: "0 10px 30px rgba(0, 243, 255, 0.3)",
-                        duration: 0.3
-                    });
-                });
-                
-                card.addEventListener('mouseleave', () => {
-                    gsap.to(card, {
-                        y: 0,
-                        boxShadow: "0 0 15px rgba(0, 243, 255, 0.2)",
-                        duration: 0.3
-                    });
-                });
-            });
+        // Check if user is logged in
+        let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        let currentUser = localStorage.getItem('currentUser') || '';
+
+        if (isLoggedIn && currentUser) {
+            authButton.style.display = 'none';
+            userDropdown.classList.add('active');
+            userName.textContent = currentUser;
         }
 
-        // Initialize Chart.js for Security Events
-        const ctx = document.getElementById('security-events-chart').getContext('2d');
-        const securityEventsChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['00:00', '02:00', '04:00', '06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
-                datasets: [{
-                    label: 'Security Events',
-                    data: [12, 19, 3, 5, 2, 3, 15, 22, 18, 14, 10, 8],
-                    borderColor: '#00f3ff',
-                    backgroundColor: 'rgba(0, 243, 255, 0.1)',
-                    borderWidth: 2,
-                    tension: 0.4,
-                    fill: true
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
+        authButton.addEventListener('click', () => {
+            authModal.style.display = 'flex';
+        });
+
+        modalClose.addEventListener('click', () => {
+            authModal.style.display = 'none';
+        });
+
+        authTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabName = tab.getAttribute('data-tab');
+                
+                // Update active tab
+                authTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Show corresponding form
+                authForms.forEach(form => {
+                    form.classList.remove('active');
+                    if (form.id === `${tabName}-form`) {
+                        form.classList.add('active');
                     }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        },
-                        ticks: {
-                            color: 'rgba(255, 255, 255, 0.7)'
-                        }
-                    },
-                    x: {
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        },
-                        ticks: {
-                            color: 'rgba(255, 255, 255, 0.7)'
-                        }
-                    }
-                }
+                });
+            });
+        });
+
+        // Switch between login and signup forms
+        switchToSignupLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                authTabs.forEach(t => t.classList.remove('active'));
+                document.querySelector('.auth-tab[data-tab="signup"]').classList.add('active');
+                
+                authForms.forEach(form => form.classList.remove('active'));
+                document.getElementById('signup-form').classList.add('active');
+            });
+        });
+
+        switchToLoginLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                authTabs.forEach(t => t.classList.remove('active'));
+                document.querySelector('.auth-tab[data-tab="login"]').classList.add('active');
+                
+                authForms.forEach(form => form.classList.remove('active'));
+                document.getElementById('login-form').classList.add('active');
+            });
+        });
+
+        // Demo account login functionality
+        demoLoginButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const demoAccount = button.closest('.demo-account');
+                const email = demoAccount.getAttribute('data-email');
+                const password = demoAccount.getAttribute('data-password');
+                const accountName = demoAccount.querySelector('.demo-account-name').textContent;
+                
+                // Fill in the login form
+                document.getElementById('login-email').value = email;
+                document.getElementById('login-password').value = password;
+                
+                // Auto-login after a short delay to show the filled form
+                setTimeout(() => {
+                    loginUser(email, accountName);
+                }, 500);
+            });
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === authModal) {
+                authModal.style.display = 'none';
             }
         });
 
-        // New Tools Functionality
-
-        // URL Checker Tool
-        document.getElementById('url-checker-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const url = document.getElementById('url-input').value;
-            const resultDiv = document.getElementById('url-checker-result');
-            const resultContent = document.getElementById('url-result-content');
-
-            // Simulate checking
-            resultContent.innerHTML = `<p>Checking URL: <strong>${url}</strong></p>`;
-            resultDiv.style.display = 'block';
-
-            // Simulate API call
-            setTimeout(() => {
-                // Mock result
-                const isSafe = Math.random() > 0.3;
-                if (isSafe) {
-                    resultContent.innerHTML = `
-                        <p class="text-security">✓ The URL <strong>${url}</strong> appears to be safe.</p>
-                        <p class="text-gray-300 mt-2">No malicious content or phishing attempts detected.</p>
-                    `;
-                } else {
-                    resultContent.innerHTML = `
-                        <p class="text-alert">⚠ The URL <strong>${url}</strong> may be suspicious!</p>
-                        <p class="text-gray-300 mt-2">Our analysis detected potential security risks. Proceed with caution.</p>
-                    `;
-                }
-            }, 1500);
+        // User dropdown toggle
+        userButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            userMenu.classList.toggle('active');
         });
 
-        // Mobile Number Analysis Tool
-        document.getElementById('mobile-number-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const number = document.getElementById('mobile-number-input').value;
-            const resultDiv = document.getElementById('mobile-number-result');
-            const resultContent = document.getElementById('mobile-number-content');
-
-            // Simulate checking
-            resultContent.innerHTML = `<p>Analyzing number: <strong>${number}</strong></p>`;
-            resultDiv.style.display = 'block';
-
-            // Simulate API call
-            setTimeout(() => {
-                // Mock result
-                const carriers = ['Verizon', 'AT&T', 'T-Mobile', 'Sprint', 'Vodafone', 'Airtel'];
-                const locations = ['New York, USA', 'London, UK', 'Mumbai, India', 'Sydney, Australia', 'Toronto, Canada'];
-                const riskLevels = ['Low', 'Medium', 'High'];
-                const carrier = carriers[Math.floor(Math.random() * carriers.length)];
-                const location = locations[Math.floor(Math.random() * locations.length)];
-                const risk = riskLevels[Math.floor(Math.random() * riskLevels.length)];
-
-                resultContent.innerHTML = `
-                    <div class="space-y-2">
-                        <p><strong>Number:</strong> ${number}</p>
-                        <p><strong>Carrier:</strong> ${carrier}</p>
-                        <p><strong>Location:</strong> ${location}</p>
-                        <p><strong>Risk Assessment:</strong> <span class="${risk === 'Low' ? 'text-security' : risk === 'Medium' ? 'text-warning' : 'text-alert'}">${risk}</span></p>
-                        <p class="text-gray-300 text-sm mt-3">Note: This is a simulated analysis for demonstration purposes.</p>
-                    </div>
-                `;
-            }, 1500);
+        // Close user menu when clicking outside
+        document.addEventListener('click', () => {
+            userMenu.classList.remove('active');
         });
 
-        // Advanced Security Tools
+        // Form submission handlers
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const rememberMe = document.getElementById('remember-me').checked;
+            
+            // Simulate login
+            loginUser(email, email.split('@')[0], rememberMe);
+        });
+
+        document.getElementById('signup-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('signup-confirm').value;
+            
+            if (password !== confirmPassword) {
+                showNotification('Passwords do not match!', 'error');
+                return;
+            }
+            
+            if (password.length < 8) {
+                showNotification('Password must be at least 8 characters long!', 'error');
+                return;
+            }
+            
+            // Simulate signup
+            isLoggedIn = true;
+            currentUser = name;
+            
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('currentUser', currentUser);
+            
+            authButton.style.display = 'none';
+            userDropdown.classList.add('active');
+            userName.textContent = currentUser;
+            
+            authModal.style.display = 'none';
+            
+            // Show success message
+            showNotification(`Welcome to CyberShield Pro, ${currentUser}!`, 'success');
+        });
+
+        // Login function
+        function loginUser(email, name, rememberMe = false) {
+            isLoggedIn = true;
+            currentUser = name;
+            
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('currentUser', currentUser);
+            if (rememberMe) {
+                localStorage.setItem('rememberMe', 'true');
+            }
+            
+            authButton.style.display = 'none';
+            userDropdown.classList.add('active');
+            userName.textContent = currentUser;
+            
+            authModal.style.display = 'none';
+            
+            // Show success message
+            showNotification(`Welcome back, ${currentUser}!`, 'success');
+        }
+
+        // Logout functionality
+        logoutButton.addEventListener('click', () => {
+            isLoggedIn = false;
+            currentUser = '';
+            
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('currentUser');
+            
+            authButton.style.display = 'block';
+            userDropdown.classList.remove('active');
+            userMenu.classList.remove('active');
+            
+            // Show logout message
+            showNotification('You have been logged out.', 'info');
+        });
+
+        // Profile and Settings buttons
+        profileButton.addEventListener('click', () => {
+            showNotification('Profile page would open here.', 'info');
+            userMenu.classList.remove('active');
+        });
+
+        settingsButton.addEventListener('click', () => {
+            showNotification('Settings page would open here.', 'info');
+            userMenu.classList.remove('active');
+        });
+
+        // Social auth buttons
+        document.querySelectorAll('.social-button').forEach(button => {
+            button.addEventListener('click', () => {
+                showNotification('Social authentication would be implemented here.', 'info');
+            });
+        });
+
+        // Notification system
+        function showNotification(message, type) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transform translate-x-full transition-transform duration-300 ${
+                type === 'success' ? 'bg-green-900 text-green-100' :
+                type === 'error' ? 'bg-red-900 text-red-100' :
+                'bg-blue-900 text-blue-100'
+            }`;
+            
+            notification.innerHTML = `
+                <div class="flex items-center">
+                    <i data-feather="${type === 'success' ? 'check-circle' : type === 'error' ? 'alert-circle' : 'info'}" class="w-5 h-5 mr-2"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            feather.replace();
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Animate out and remove
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Security Tools Functionality
 
         // Password Strength Analyzer
         document.getElementById('password-analyzer-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const password = document.getElementById('password-input').value;
             const resultContent = document.getElementById('password-result-content');
+            const resultDiv = document.getElementById('password-analyzer-result');
             
             // Calculate password strength
             let score = 0;
@@ -1745,53 +2269,7 @@
                     ${feedback.length > 0 ? `<p class="text-warning mt-2"><strong>Recommendations:</strong></p><ul class="text-gray-300 text-sm list-disc pl-5">${feedback.map(item => `<li>${item}</li>`).join('')}</ul>` : '<p class="text-security mt-2">Your password meets all security requirements!</p>'}
                 </div>
             `;
-        });
-
-        // Encryption Tool
-        document.getElementById('encrypt-btn').addEventListener('click', function() {
-            const text = document.getElementById('encryption-text').value;
-            const key = document.getElementById('encryption-key').value;
-            const resultContent = document.getElementById('encryption-result-content');
-            
-            if (!text || !key) {
-                resultContent.innerHTML = `<p class="text-alert">Please enter both text and encryption key</p>`;
-                return;
-            }
-            
-            try {
-                const encrypted = CryptoJS.AES.encrypt(text, key).toString();
-                resultContent.innerHTML = `
-                    <p class="text-security">Text encrypted successfully!</p>
-                    <p class="text-gray-300 mt-2 break-all">${encrypted}</p>
-                `;
-            } catch (error) {
-                resultContent.innerHTML = `<p class="text-alert">Encryption failed: ${error.message}</p>`;
-            }
-        });
-
-        document.getElementById('decrypt-btn').addEventListener('click', function() {
-            const text = document.getElementById('encryption-text').value;
-            const key = document.getElementById('encryption-key').value;
-            const resultContent = document.getElementById('encryption-result-content');
-            
-            if (!text || !key) {
-                resultContent.innerHTML = `<p class="text-alert">Please enter both encrypted text and decryption key</p>`;
-                return;
-            }
-            
-            try {
-                const decrypted = CryptoJS.AES.decrypt(text, key).toString(CryptoJS.enc.Utf8);
-                if (decrypted) {
-                    resultContent.innerHTML = `
-                        <p class="text-security">Text decrypted successfully!</p>
-                        <p class="text-gray-300 mt-2">${decrypted}</p>
-                    `;
-                } else {
-                    resultContent.innerHTML = `<p class="text-alert">Decryption failed. Please check your encryption key.</p>`;
-                }
-            } catch (error) {
-                resultContent.innerHTML = `<p class="text-alert">Decryption failed: ${error.message}</p>`;
-            }
+            resultDiv.style.display = 'block';
         });
 
         // Hash Generator
@@ -1800,9 +2278,11 @@
             const text = document.getElementById('hash-text').value;
             const algorithm = document.getElementById('hash-algorithm').value;
             const resultContent = document.getElementById('hash-result-content');
+            const resultDiv = document.getElementById('hash-generator-result');
             
             if (!text) {
                 resultContent.innerHTML = `<p class="text-alert">Please enter text to hash</p>`;
+                resultDiv.style.display = 'block';
                 return;
             }
             
@@ -1828,6 +2308,36 @@
                 <p class="text-security">${algorithm} Hash:</p>
                 <p class="text-gray-300 break-all">${hash}</p>
             `;
+            resultDiv.style.display = 'block';
+        });
+
+        // URL Checker Tool
+        document.getElementById('url-checker-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const url = document.getElementById('url-input').value;
+            const resultDiv = document.getElementById('url-checker-result');
+            const resultContent = document.getElementById('url-result-content');
+
+            // Simulate checking
+            resultContent.innerHTML = `<p>Checking URL: <strong>${url}</strong></p>`;
+            resultDiv.style.display = 'block';
+
+            // Simulate API call
+            setTimeout(() => {
+                // Mock result
+                const isSafe = Math.random() > 0.3;
+                if (isSafe) {
+                    resultContent.innerHTML = `
+                        <p class="text-security">✓ The URL <strong>${url}</strong> appears to be safe.</p>
+                        <p class="text-gray-300 mt-2">No malicious content or phishing attempts detected.</p>
+                    `;
+                } else {
+                    resultContent.innerHTML = `
+                        <p class="text-alert">⚠ The URL <strong>${url}</strong> may be suspicious!</p>
+                        <p class="text-gray-300 mt-2">Our analysis detected potential security risks. Proceed with caution.</p>
+                    `;
+                }
+            }, 1500);
         });
 
         // Network Scanner
@@ -1835,13 +2345,16 @@
             e.preventDefault();
             const domain = document.getElementById('network-domain').value;
             const resultContent = document.getElementById('network-result-content');
+            const resultDiv = document.getElementById('network-scanner-result');
             
             if (!domain) {
                 resultContent.innerHTML = `<p class="text-alert">Please enter a domain to scan</p>`;
+                resultDiv.style.display = 'block';
                 return;
             }
             
             resultContent.innerHTML = `<p>Scanning domain: <strong>${domain}</strong>...</p>`;
+            resultDiv.style.display = 'block';
             
             // Simulate scanning process
             setTimeout(() => {
@@ -1861,146 +2374,116 @@
             }, 2000);
         });
 
-        // File Analyzer
-        const fileInput = document.getElementById('file-input');
-        const fileUploadArea = document.getElementById('file-upload-area');
-        const fileInfo = document.getElementById('file-info');
-        const fileName = document.getElementById('file-name');
+        // Interactive Security Quiz
+        const quizOptions = document.querySelectorAll('.quiz-option');
+        const quizSubmit = document.getElementById('quiz-submit');
+        const quizResult = document.getElementById('quiz-result');
         
-        fileUploadArea.addEventListener('click', () => {
-            fileInput.click();
+        let selectedOption = null;
+        
+        quizOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove selected class from all options
+                quizOptions.forEach(opt => opt.classList.remove('selected'));
+                
+                // Add selected class to clicked option
+                option.classList.add('selected');
+                selectedOption = option;
+            });
         });
         
-        fileUploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            fileUploadArea.style.borderColor = '#00f3ff';
-            fileUploadArea.style.background = 'rgba(0, 243, 255, 0.05)';
-        });
-        
-        fileUploadArea.addEventListener('dragleave', () => {
-            fileUploadArea.style.borderColor = 'rgba(0, 243, 255, 0.3)';
-            fileUploadArea.style.background = 'rgba(255, 255, 255, 0.1)';
-        });
-        
-        fileUploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            fileUploadArea.style.borderColor = 'rgba(0, 243, 255, 0.3)';
-            fileUploadArea.style.background = 'rgba(255, 255, 255, 0.1)';
-            
-            if (e.dataTransfer.files.length) {
-                fileInput.files = e.dataTransfer.files;
-                handleFileSelection();
-            }
-        });
-        
-        fileInput.addEventListener('change', handleFileSelection);
-        
-        function handleFileSelection() {
-            if (fileInput.files.length) {
-                const file = fileInput.files[0];
-                fileName.textContent = file.name;
-                fileInfo.classList.remove('hidden');
-            }
-        }
-        
-        document.getElementById('file-analyzer-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const resultContent = document.getElementById('file-result-content');
-            
-            if (!fileInput.files.length) {
-                resultContent.innerHTML = `<p class="text-alert">Please select a file to analyze</p>`;
+        quizSubmit.addEventListener('click', () => {
+            if (!selectedOption) {
+                showNotification('Please select an answer!', 'error');
                 return;
             }
             
-            const file = fileInput.files[0];
-            resultContent.innerHTML = `<p>Analyzing file: <strong>${file.name}</strong>...</p>`;
+            const isCorrect = selectedOption.getAttribute('data-correct') === 'true';
             
-            // Simulate file analysis
-            setTimeout(() => {
-                const fileTypes = {
-                    'exe': 'Executable',
-                    'pdf': 'PDF Document',
-                    'doc': 'Word Document',
-                    'docx': 'Word Document',
-                    'jpg': 'Image',
-                    'png': 'Image',
-                    'zip': 'Archive'
-                };
-                
-                const extension = file.name.split('.').pop().toLowerCase();
-                const fileType = fileTypes[extension] || 'Unknown';
-                const isSafe = Math.random() > 0.3;
-                const fileSizeKB = (file.size / 1024).toFixed(2);
-                
-                resultContent.innerHTML = `
-                    <div class="space-y-2">
-                        <p><strong>File Name:</strong> ${file.name}</p>
-                        <p><strong>File Type:</strong> ${fileType}</p>
-                        <p><strong>File Size:</strong> ${fileSizeKB} KB</p>
-                        <p><strong>Security Assessment:</strong> <span class="${isSafe ? 'text-security' : 'text-alert'}">${isSafe ? 'Safe' : 'Potentially Risky'}</span></p>
-                        ${!isSafe ? '<p class="text-warning text-sm">Warning: This file type could potentially contain malicious content. Scan with antivirus software.</p>' : ''}
-                    </div>
+            // Show correct/incorrect styling
+            quizOptions.forEach(option => {
+                if (option.getAttribute('data-correct') === 'true') {
+                    option.classList.add('correct');
+                } else if (option === selectedOption && !isCorrect) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            // Show result
+            quizResult.style.display = 'block';
+            if (isCorrect) {
+                quizResult.className = 'quiz-result correct';
+                quizResult.innerHTML = `
+                    <i data-feather="check-circle" class="w-8 h-8 text-security mx-auto mb-2"></i>
+                    <p class="text-security font-bold">Correct!</p>
+                    <p class="text-gray-300 mt-1">Phishing attacks most commonly use deceptive emails to trick victims.</p>
                 `;
-            }, 2000);
+            } else {
+                quizResult.className = 'quiz-result incorrect';
+                quizResult.innerHTML = `
+                    <i data-feather="x-circle" class="w-8 h-8 text-alert mx-auto mb-2"></i>
+                    <p class="text-alert font-bold">Incorrect</p>
+                    <p class="text-gray-300 mt-1">The correct answer is "Deceptive emails". Phishing attacks most commonly use email to trick victims.</p>
+                `;
+            }
+            
+            feather.replace();
+            
+            // Disable further selection
+            quizOptions.forEach(option => {
+                option.style.pointerEvents = 'none';
+            });
+            
+            quizSubmit.disabled = true;
         });
 
-        // Security Headers Checker
-        document.getElementById('headers-checker-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const url = document.getElementById('headers-url').value;
-            const resultContent = document.getElementById('headers-result-content');
+        // Real-time Threat Feed
+        const threatFeed = document.getElementById('threat-feed');
+        const threats = [
+            { time: '10:23 AM', details: 'Phishing campaign targeting financial institutions', severity: 'high' },
+            { time: '10:15 AM', details: 'New ransomware variant detected in the wild', severity: 'high' },
+            { time: '09:58 AM', details: 'DDoS attack on major e-commerce platform', severity: 'medium' },
+            { time: '09:42 AM', details: 'Vulnerability discovered in popular CMS plugin', severity: 'medium' },
+            { time: '09:30 AM', details: 'Credential stuffing attempts on multiple services', severity: 'low' },
+            { time: '09:15 AM', details: 'Fake software updates distributing malware', severity: 'medium' },
+            { time: '08:55 AM', details: 'Business email compromise attempts increasing', severity: 'high' }
+        ];
+
+        function updateThreatFeed() {
+            threatFeed.innerHTML = '';
             
-            if (!url) {
-                resultContent.innerHTML = `<p class="text-alert">Please enter a URL to check</p>`;
-                return;
-            }
-            
-            resultContent.innerHTML = `<p>Checking security headers for: <strong>${url}</strong>...</p>`;
-            
-            // Simulate header check
-            setTimeout(() => {
-                const headers = [
-                    { name: 'Content-Security-Policy', present: Math.random() > 0.4, importance: 'High' },
-                    { name: 'X-Frame-Options', present: Math.random() > 0.3, importance: 'High' },
-                    { name: 'X-Content-Type-Options', present: Math.random() > 0.5, importance: 'Medium' },
-                    { name: 'Strict-Transport-Security', present: Math.random() > 0.6, importance: 'High' },
-                    { name: 'Referrer-Policy', present: Math.random() > 0.4, importance: 'Medium' },
-                    { name: 'Permissions-Policy', present: Math.random() > 0.5, importance: 'Medium' }
-                ];
+            threats.forEach(threat => {
+                const threatItem = document.createElement('div');
+                threatItem.className = 'threat-item';
                 
-                const presentHeaders = headers.filter(h => h.present);
-                const missingHeaders = headers.filter(h => !h.present);
-                const score = Math.round((presentHeaders.length / headers.length) * 100);
-                
-                let headersHTML = '';
-                
-                if (presentHeaders.length > 0) {
-                    headersHTML += `<p class="text-security mb-2">Present Headers (${presentHeaders.length}/${headers.length}):</p>`;
-                    headersHTML += '<ul class="text-gray-300 text-sm list-disc pl-5 mb-3">';
-                    presentHeaders.forEach(header => {
-                        headersHTML += `<li>${header.name} <span class="text-cyber">(${header.importance})</span></li>`;
-                    });
-                    headersHTML += '</ul>';
-                }
-                
-                if (missingHeaders.length > 0) {
-                    headersHTML += `<p class="text-warning mb-2">Missing Headers (${missingHeaders.length}/${headers.length}):</p>`;
-                    headersHTML += '<ul class="text-gray-300 text-sm list-disc pl-5">';
-                    missingHeaders.forEach(header => {
-                        headersHTML += `<li>${header.name} <span class="text-cyber">(${header.importance})</span></li>`;
-                    });
-                    headersHTML += '</ul>';
-                }
-                
-                resultContent.innerHTML = `
-                    <div class="space-y-3">
-                        <p><strong>Security Headers Score:</strong> <span class="${score >= 80 ? 'text-security' : score >= 60 ? 'text-warning' : 'text-alert'}">${score}%</span></p>
-                        ${headersHTML}
-                        ${score < 80 ? '<p class="text-warning text-sm">Recommendation: Implement missing security headers to improve website security.</p>' : ''}
-                    </div>
+                threatItem.innerHTML = `
+                    <div class="threat-time">${threat.time}</div>
+                    <div class="threat-details">${threat.details}</div>
+                    <div class="threat-severity severity-${threat.severity}">${threat.severity.toUpperCase()}</div>
                 `;
-            }, 2000);
-        });
+                
+                threatFeed.appendChild(threatItem);
+            });
+        }
+
+        // Live Threat Map
+        const threatMap = document.getElementById('threat-map');
+        
+        function updateThreatMap() {
+            threatMap.innerHTML = '';
+            
+            // Create random threat dots
+            for (let i = 0; i < 25; i++) {
+                const dot = document.createElement('div');
+                const severity = Math.random() > 0.7 ? 'high' : Math.random() > 0.5 ? 'medium' : 'low';
+                
+                dot.className = `threat-dot ${severity}`;
+                dot.style.left = `${Math.random() * 90 + 5}%`;
+                dot.style.top = `${Math.random() * 90 + 5}%`;
+                
+                threatMap.appendChild(dot);
+            }
+        }
 
         // Mock API Integration for Threat Dashboard
         const mockAPI = {
@@ -2053,16 +2536,6 @@
                             low: Math.floor(Math.random() * 15) + 5
                         });
                     }, 400);
-                });
-            },
-            
-            // Get chart data
-            getChartData: () => {
-                return new Promise((resolve) => {
-                    setTimeout(() => {
-                        const data = Array.from({length: 12}, () => Math.floor(Math.random() * 25));
-                        resolve(data);
-                    }, 600);
                 });
             }
         };
@@ -2120,38 +2593,9 @@
                 document.getElementById('medium-severity').textContent = vulnerabilities.medium;
                 document.getElementById('low-severity').textContent = vulnerabilities.low;
 
-                // Update Security Events chart
-                const chartData = await mockAPI.getChartData();
-                securityEventsChart.data.datasets[0].data = chartData;
-                securityEventsChart.update();
-
             } catch (error) {
                 console.error('Error updating dashboard:', error);
             }
-        }
-
-        // WebSocket simulation for real-time updates
-        function simulateWebSocket() {
-            // Toggle WebSocket status indicator
-            const statusIndicator = document.getElementById('websocket-status');
-            const statusDot = document.getElementById('websocket-dot');
-            
-            setInterval(() => {
-                // Randomly toggle connection status for realism
-                if (Math.random() > 0.9) {
-                    statusIndicator.classList.remove('websocket-connected');
-                    statusIndicator.classList.add('websocket-disconnected');
-                    statusDot.classList.remove('bg-green-500');
-                    statusDot.classList.add('bg-red-500');
-                    statusIndicator.querySelector('span:last-child').textContent = 'RECONNECTING';
-                } else {
-                    statusIndicator.classList.remove('websocket-disconnected');
-                    statusIndicator.classList.add('websocket-connected');
-                    statusDot.classList.remove('bg-red-500');
-                    statusDot.classList.add('bg-green-500');
-                    statusIndicator.querySelector('span:last-child').textContent = 'LIVE DATA';
-                }
-            }, 10000);
         }
 
         // Form submission handler
@@ -2166,7 +2610,7 @@
             
             // Simulate API call
             setTimeout(() => {
-                alert('Thank you for your message! Our security team will contact you shortly.');
+                showNotification('Thank you for your message! Our security team will contact you shortly.', 'success');
                 this.reset();
                 submitButton.textContent = originalText;
                 submitButton.disabled = false;
@@ -2177,9 +2621,17 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Initial dashboard update
             updateThreatDashboard();
+            updateThreatFeed();
+            updateThreatMap();
             
             // Update dashboard every 15 seconds
             setInterval(updateThreatDashboard, 15000);
+            
+            // Update threat feed every 30 seconds
+            setInterval(updateThreatFeed, 30000);
+            
+            // Update threat map every 10 seconds
+            setInterval(updateThreatMap, 10000);
             
             // Initialize AOS animations
             AOS.init({
@@ -2199,15 +2651,6 @@
                     spacing: 18.0
                 });
             }
-            
-            // Start WebSocket simulation
-            simulateWebSocket();
-            
-            // Add GSAP animations to hero section
-            gsap.fromTo('.floating', { y: 0 }, { y: -20, duration: 3, yoyo: true, repeat: -1, ease: "power1.inOut" });
-            
-            // Initialize executive mode
-            enableExecutiveMode();
         });
 
         // Handle window resize for responsive behavior
