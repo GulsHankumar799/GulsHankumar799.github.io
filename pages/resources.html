@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Security Resources | CyberShield Pro</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAD/AAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAAAAAEREREQAAERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERE" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/pages.css">
+    <style>
+        .resources-gradient {
+            background: linear-gradient(135deg, #0a0e17, #1a1d29);
+        }
+        .resource-card {
+            background: rgba(26, 29, 41, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 100%;
+        }
+        .resource-card:hover {
+            transform: translateY(-10px);
+            border-color: #00f3ff;
+            box-shadow: 0 15px 30px rgba(0, 243, 255, 0.2);
+        }
+        .resource-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .resource-type {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .type-whitepaper { background: rgba(0, 243, 255, 0.2); color: #00f3ff; }
+        .type-guide { background: rgba(0, 255, 149, 0.2); color: #00ff95; }
+        .type-checklist { background: rgba(185, 103, 255, 0.2); color: #b967ff; }
+        .type-template { background: rgba(255, 204, 0, 0.2); color: #ffcc00; }
+        .type-report { background: rgba(255, 42, 109, 0.2); color: #ff2a6d; }
+        .type-webinar { background: rgba(0, 123, 255, 0.2); color: #007bff; }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 20px;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 8px;
+            color: #00f3ff;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            background: rgba(0, 243, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        .file-info {
+            display: flex;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        .file-size {
+            margin-left: 15px;
+        }
+        .category-filter {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            margin: 0 5px 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .category-filter:hover, .category-filter.active {
+            background: rgba(0, 243, 255, 0.2);
+            border-color: #00f3ff;
+            color: #00f3ff;
+        }
+        .search-box {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 12px 15px;
+            width: 100%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .search-box:focus {
+            outline: none;
+            border-color: #00f3ff;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+        }
+        .tool-card {
+            background: rgba(26, 29, 41, 0.7);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .tool-card:hover {
+            border-color: #00f3ff;
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="resources-gradient text-white">
+    <!-- Navigation -->
+    <nav class="simplified-header fixed top-0 w-full z-50 py-4 px-4 md:px-6 flex justify-between items-center">
+        <div class="flex items-center">
+            <a href="../index.html" class="logo text-lg md:text-xl font-bold">CyberShield Pro</a>
+        </div>
+        <div class="hidden md:flex space-x-6 lg:space-x-8">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="blog.html" class="nav-link">Blog</a>
+            <a href="resources.html" class="nav-link active">Resources</a>
+            <a href="compliance.html" class="nav-link">Compliance</a>
+            <a href="tools.html" class="nav-link">Tools</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div class="flex items-center space-x-4">
+            <a href="../index.html#auth-modal" class="cyber-button text-sm py-2 px-4">Login</a>
+            <button id="mobile-menu-toggle" class="md:hidden text-white p-2">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 px-4 md:px-6">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                Security <span class="text-cyan-400">Resources</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10">
+                Free tools, guides, templates, and research to help you improve your security posture.
+            </p>
+            
+            <!-- Search -->
+            <div class="max-w-2xl mx-auto mb-12">
+                <div class="relative">
+                    <i data-feather="search" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    <input type="text" placeholder="Search resources, guides, tools..." 
+                           class="search-box pl-12">
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="flex flex-wrap justify-center mb-12">
+                <button class="category-filter active" data-category="all">All Resources</button>
+                <button class="category-filter" data-category="whitepaper">Whitepapers</button>
+                <button class="category-filter" data-category="guide">Guides</button>
+                <button class="category-filter" data-category="checklist">Checklists</button>
+                <button class="category-filter" data-category="template">Templates</button>
+                <button class="category-filter" data-category="report">Reports</button>
+                <button class="category-filter" data-category="webinar">Webinars</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Grid -->
+    <section class="py-10 px-4 md:px-6">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Resource 1 -->
+                <div class="resource-card" data-category="whitepaper" data-aos="fade-up">
+                    <div class="resource-icon" style="background: rgba(0, 243, 255, 0.2);">
+                        <i data-feather="file-text" class="w-8 h-8 text-cyan-400"></i>
+                    </div>
+                    <span class="resource-type type-whitepaper">Whitepaper</span>
+                    <h3 class="text-xl font-bold mb-4">Zero-Trust Architecture Implementation Guide</h3>
+                    <p class="text-gray-300 mb-6">
+                        Complete guide to implementing zero-trust security architecture in modern enterprises.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <a href="#" class="download-btn">
+                            <i data-feather="download" class="w-4 h-4 mr-2"></i>
+                            Download PDF
+                        </a>
+                        <div class="file-info">
+                            <span>PDF</span>
+                            <span class="file-size">2.4 MB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resource 2 -->
+                <div class="resource-card" data-category="checklist" data-aos="fade-up" data-aos-delay="100">
+                    <div class="resource-icon" style="background: rgba(185, 103, 255, 0.2);">
+                        <i data-feather="check-square" class="w-8 h-8 text-purple-400"></i>
+                    </div>
+                    <span class="resource-type type-checklist">Checklist</span>
+                    <h3 class="text-xl font-bold mb-4">Cloud Security Configuration Checklist</h3>
+                    <p class="text-gray-300 mb-6">
+                        Comprehensive checklist for securing AWS, Azure, and GCP environments.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <a href="#" class="download-btn">
+                            <i data-feather="download" class="w-4 h-4 mr-2"></i>
+                            Download Checklist
+                        </a>
+                        <div class="file-info">
+                            <span>Excel</span>
+                            <span class="file-size">1.2 MB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resource 3 -->
+                <div class="resource-card" data-category="guide" data-aos="fade-up" data-aos-delay="200">
+                    <div class="resource-icon" style="background: rgba(0, 255, 149, 0.2);">
+                        <i data-feather="book-open" class="w-8 h-8 text-green-400"></i>
+                    </div>
+                    <span class="resource-type type-guide">Guide</span>
+                    <h3 class="text-xl font-bold mb-4">Incident Response Playbook 2024</h3>
+                    <p class="text-gray-300 mb-6">
+                        Step-by-step incident response procedures for common security incidents.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <a href="#" class="download-btn">
+                            <i data-feather="download" class="w-4 h-4 mr-2"></i>
+                            Download Guide
+                        </a>
+                        <div class="file-info">
+                            <span>PDF</span>
+                            <span class="file-size">3.1 MB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resource 4 -->
+                <div class="resource-card" data-category="template" data-aos="fade-up">
+                    <div class="resource-icon" style="background: rgba(255, 204, 0, 0.2);">
+                        <i data-feather="clipboard" class="w-8 h-8 text-yellow-400"></i>
+                    </div>
+                    <span class="resource-type type-template">Template</span>
+                    <h3 class="text-xl font-bold mb-4">Security Policy Template Pack</h3>
+                    <p class="text-gray-300 mb-6">
+                        Complete set of security policy templates for organizations of all sizes.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <a href="#" class="download-btn">
+                            <i data-feather="download" class="w-4 h-4 mr-2"></i>
+                            Download Templates
+                        </a>
+                        <div class="file-info">
+                            <span>Word</span>
+                            <span class="file-size">4.5 MB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resource 5 -->
+                <div class="resource-card" data-category="report" data-aos="fade-up" data-aos-delay="100">
+                    <div class="resource-icon" style="background: rgba(255, 42, 109, 0.2);">
+                        <i data-feather="bar-chart" class="w-8 h-8 text-pink-400"></i>
+                    </div>
+                    <span class="resource-type type-report">Report</span>
+                    <h3 class="text-xl font-bold mb-4">2024 Global Threat Landscape Report</h3>
+                    <p class="text-gray-300 mb-6">
+                        Analysis of emerging threats, attack vectors, and security trends for 2024.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <a href="#" class="download-btn">
+                            <i data-feather="download" class="w-4 h-4 mr-2"></i>
+                            Download Report
+                        </a>
+                        <div class="file-info">
+                            <span>PDF</span>
+                            <span class="file-size">5.2 MB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resource 6 -->
+                <div class="resource-card" data-category="webinar" data-aos="fade-up" data-aos-delay="200">
+                    <div class="resource-icon" style="background: rgba(0, 123, 255, 0.2);">
+                        <i data-feather="video" class="w-8 h-8 text-blue-400"></i>
+                    </div>
+                    <span class="resource-type type-webinar">Webinar</span>
+                    <h3 class="text-xl font-bold mb-4">AI in Cybersecurity: Threats & Defense</h3>
+                    <p class="text-gray-300 mb-6">
+                        Recording of our latest webinar on AI-powered threats and defensive strategies.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <a href="#" class="download-btn">
+                            <i data-feather="play" class="w-4 h-4 mr-2"></i>
+                            Watch Recording
+                        </a>
+                        <div class="file-info">
+                            <span>MP4</span>
+                            <span class="file-size">125 MB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resource 7 -->
+                <div class="resource-card" data-category="guide" data-aos="fade-up">
+                    <div class="resource-icon" style="background: rgba(0, 243, 255, 0.2);">
+                        <i data-feather="shield" class="w-8 h-8 text-cyan-400"></i>
+                    </div>
+                    <span class="resource-type type-guide">Guide</span>
+                    <h3 class="text-xl font-bold mb-4">GDPR Compliance Implementation Guide</h3>
+                    <p class="text-gray-300 mb-6">
+                        Practical guide to achieving and maintaining GDPR compliance for organizations.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <a href="#" class="download-btn">
+                            <i data-feather="download" class="w-4 h-4 mr-2"></i>
+                            Download Guide
+                        </a>
+                        <div class="file-info">
+                            <span>PDF</span>
+                            <span class="file-size">2.8 MB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resource 8 -->
+                <div class="resource-card" data-category="checklist" data-aos="fade-up" data-aos-delay="100">
+                    <div class="resource-icon" style="background: rgba(185, 103, 255, 0.2);">
+                        <i data-feather="list" class="w-8 h-8 text-purple-400"></i>
+                    </div>
+                    <span class="resource-type type-checklist">Checklist</span>
+                    <h3 class="text-xl font-bold mb-4">Penetration Testing Readiness Checklist</h3>
+                    <p class="text-gray-300 mb-6">
+                        Prepare for penetration tests with this comprehensive readiness checklist.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <a href="#" class="download-btn">
+                            <i data-feather="download" class="w-4 h-4 mr-2"></i>
+                            Download Checklist
+                        </a>
+                        <div class="file-info">
+                            <span>PDF</span>
+                            <span class="file-size">1.5 MB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resource 9 -->
+                <div class="resource-card" data-category="whitepaper" data-aos="fade-up" data-aos-delay="200">
+                    <div class="resource-icon" style="background: rgba(0, 255, 149, 0.2);">
+                        <i data-feather="file-text" class="w-8 h-8 text-green-400"></i>
+                    </div>
+                    <span class="resource-type type-whitepaper">Whitepaper</span>
+                    <h3 class="text-xl font-bold mb-4">Secure Software Development Lifecycle</h3>
+                    <p class="text-gray-300 mb-6">
+                        Integrating security throughout the software development process.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <a href="#" class="download-btn">
+                            <i data-feather="download" class="w-4 h-4 mr-2"></i>
+                            Download PDF
+                        </a>
+                        <div class="file-info">
+                            <span>PDF</span>
+                            <span class="file-size">3.7 MB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More -->
+            <div class="text-center mt-12">
+                <button class="cyber-button px-8 py-3">
+                    Load More Resources
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Tools -->
+    <section class="py-20 px-4 md:px-6" style="background: linear-gradient(135deg, #0a0e17, #0d1f3a);">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Free Security Tools</h2>
+            <p class="text-xl text-gray-400 text-center mb-12 max-w-3xl mx-auto">
+                Useful tools to help you assess and improve your security posture.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="tool-card" data-aos="fade-up">
+                    <i data-feather="lock" class="w-12 h-12 text-cyan-400 mx-auto mb-4"></i>
+                    <h3 class="text-lg font-bold mb-2">Password Strength Checker</h3>
+                    <p class="text-gray-300 text-sm mb-4">Test your password strength instantly</p>
+                    <a href="../index.html#security-tools" class="text-cyan-400 hover:text-cyan-300 text-sm">
+                        Use Tool →
+                    </a>
+                </div>
+
+                <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
+                    <i data-feather="hash" class="w-12 h-12 text-purple-400 mx-auto mb-4"></i>
+                    <h3 class="text-lg font-bold mb-2">Hash Generator</h3>
+                    <p class="text-gray-300 text-sm mb-4">Generate cryptographic hashes</p>
+                    <a href="../index.html#security-tools" class="text-cyan-400 hover:text-cyan-300 text-sm">
+                        Use Tool →
+                    </a>
+                </div>
+
+                <div class="tool-card" data-aos="fade-up" data-aos-delay="200">
+                    <i data-feather="link" class="w-12 h-12 text-green-400 mx-auto mb-4"></i>
+                    <h3 class="text-lg font-bold mb-2">URL Safety Checker</h3>
+                    <p class="text-gray-300 text-sm mb-4">Check if URLs are safe to visit</p>
+                    <a href="../index.html#security-tools" class="text-cyan-400 hover:text-cyan-300 text-sm">
+                        Use Tool →
+                    </a>
+                </div>
+
+                <div class="tool-card" data-aos="fade-up" data-aos-delay="300">
+                    <i data-feather="shield" class="w-12 h-12 text-yellow-400 mx-auto mb-4"></i>
+                    <h3 class="text-lg font-bold mb-2">SSL Checker</h3>
+                    <p class="text-gray-300 text-sm mb-4">Check SSL certificate validity</p>
+                    <a href="../index.html#security-tools" class="text-cyan-400 hover:text-cyan-300 text-sm">
+                        Use Tool →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-20 px-4 md:px-6">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Get New Resources First</h2>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+                Subscribe to our newsletter and be the first to receive new security resources, guides, and tools.
+            </p>
+            <div class="max-w-md mx-auto">
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <input type="email" placeholder="Enter your work email" 
+                           class="flex-grow bg-gray-900 border border-gray-700 rounded-lg px-6 py-3 text-white">
+                    <button class="cyber-button px-8 py-3">Subscribe</button>
+                </div>
+                <p class="text-gray-400 text-sm mt-4">No spam. Unsubscribe anytime.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 md:px-6 bg-gray-950">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-cyan-300">CyberShield Pro</h3>
+                    <p class="text-gray-400">Free security resources and tools.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-cyan-300">Resource Types</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400">Whitepapers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400">Guides</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400">Checklists</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400">Templates</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-cyan-300">More Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="blog.html" class="text-gray-400 hover:text-cyan-400">Blog</a></li>
+                        <li><a href="case-studies.html" class="text-gray-400 hover:text-cyan-400">Case Studies</a></li>
+                        <li><a href="compliance.html" class="text-gray-400 hover:text-cyan-400">Compliance</a></li>
+                        <li><a href="tools.html" class="text-gray-400 hover:text-cyan-400">Security Tools</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-cyan-300">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-cyan-400"><i data-feather="linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400"><i data-feather="twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400"><i data-feather="github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
+                <p>&copy; 2024 CyberShield Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+        feather.replace();
+        AOS.init();
+
+        // Category filter functionality
+        const categoryFilters = document.querySelectorAll('.category-filter');
+        const resourceCards = document.querySelectorAll('.resource-card');
+
+        categoryFilters.forEach(filter => {
+            filter.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                
+                // Update active filter
+                categoryFilters.forEach(f => f.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter resources
+                resourceCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                        }, 100);
+                    } else {
+                        card.style.opacity = '0';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-box');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            resourceCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                    }, 100);
+                } else {
+                    card.style.opacity = '0';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
