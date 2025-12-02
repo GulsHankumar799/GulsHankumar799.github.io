@@ -275,4 +275,164 @@ const validateContact = [
     .isEmail().withMessage('Please enter a valid email'),
   
   body('company')
-    .
+    .optional()
+    .trim()
+    .isLength({ max: 200 }).withMessage('Company name too long'),
+  
+  body('phone')
+    .optional()
+    .trim()
+    .matches(/^[\+]?[0-9\s\-\(\)]{10,}$/).withMessage('Invalid phone number format'),
+  
+  body('service')
+    .notEmpty().withMessage('Service is required')
+    .isIn([
+      'security-audit',
+      'penetration-testing',
+      'incident-response',
+      'compliance',
+      'consultation',
+      'training',
+      'other'
+    ]).withMessage('Invalid service selected'),
+  
+  body('message')
+    .trim()
+    .notEmpty().withMessage('Message is required')
+    .isLength({ min: 10, max: 5000 }).withMessage('Message must be between 10 and 5000 characters'),
+  
+  body('priority')
+    .optional()
+    .isIn(['low', 'medium', 'high']).withMessage('Invalid priority level'),
+  
+  validate
+];
+
+/**
+ * Query parameter validation for threats
+ */
+const validateThreatQuery = [
+  query('page')
+    .optional()
+    .isInt({ min: 1 }).withMessage('Page must be a positive integer'),
+  
+  query('limit')
+    .optional()
+    .isInt({ min: 1, max: 100 }).withMessage('Limit must be between 1 and 100'),
+  
+  query('severity')
+    .optional()
+    .isIn(['low', 'medium', 'high', 'critical']).withMessage('Invalid severity level'),
+  
+  query('type')
+    .optional()
+    .isIn([
+      'phishing',
+      'malware',
+      'ransomware',
+      'ddos',
+      'brute-force',
+      'vulnerability',
+      'data-breach',
+      'insider-threat',
+      'zero-day',
+      'social-engineering'
+    ]).withMessage('Invalid threat type'),
+  
+  query('status')
+    .optional()
+    .isIn(['detected', 'investigating', 'contained', 'mitigated', 'resolved', 'false-positive'])
+    .withMessage('Invalid status'),
+  
+  query('sortBy')
+    .optional()
+    .isIn(['detectedAt', 'severity', 'impactScore', 'title', 'createdAt']).withMessage('Invalid sort field'),
+  
+  query('sortOrder')
+    .optional()
+    .isIn(['asc', 'desc']).withMessage('Sort order must be asc or desc'),
+  
+  query('search')
+    .optional()
+    .isLength({ max: 100 }).withMessage('Search term too long'),
+  
+  query('startDate')
+    .optional()
+    .isISO8601().withMessage('Invalid start date format'),
+  
+  query('endDate')
+    .optional()
+    .isISO8601().withMessage('Invalid end date format'),
+  
+  validate
+];
+
+/**
+ * ID parameter validation
+ */
+const validateId = [
+  param('id')
+    .notEmpty().withMessage('ID is required')
+    .isMongoId().withMessage('Invalid ID format'),
+  
+  validate
+];
+
+/**
+ * Email validation
+ */
+const validateEmail = [
+  body('email')
+    .trim()
+    .notEmpty().withMessage('Email is required')
+    .isEmail().withMessage('Please enter a valid email'),
+  
+  validate
+];
+
+/**
+ * Password reset validation
+ */
+const validatePasswordReset = [
+  body('token')
+    .notEmpty().withMessage('Token is required'),
+  
+  body('password')
+    .notEmpty().withMessage('Password is required')
+    .isLength({ min: 8 }).withMessage('Password must be at least 8 characters')
+    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/)
+    .withMessage('Password must contain at least one uppercase letter, one lowercase letter, one number and one special character'),
+  
+  validate
+];
+
+/**
+ * File upload validation
+ */
+const validateFileUpload = [
+  body('fileType')
+    .optional()
+    .isIn(['image', 'document', 'log', 'evidence']).withMessage('Invalid file type'),
+  
+  body('maxSize')
+    .optional()
+    .isInt({ min: 1024, max: 10485760 }).withMessage('Max size must be between 1KB and 10MB'),
+  
+  validate
+];
+
+module.exports = {
+  validate,
+  validateRegister,
+  validateLogin,
+  validateChangePassword,
+  validateUpdateProfile,
+  validateThreat,
+  validateToolRequest,
+  validateContact,
+  validateThreatQuery,
+  validateId,
+  validateEmail,
+  validatePasswordReset,
+  validateFileUpload
+};
