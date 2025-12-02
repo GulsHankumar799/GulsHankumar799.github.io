@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield Pro API Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-purple: #b967ff;
+            --neon-pink: #ff2a6d;
+            --cyber-green: #00ff95;
+            --deep-space: #0a0e17;
+        }
+        body {
+            background: var(--deep-space);
+            color: #fff;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        .cyber-gradient {
+            background: linear-gradient(135deg, #0a0e17, #1a1a2e);
+        }
+        .neon-text {
+            text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+        }
+        .endpoint-card {
+            background: rgba(26, 29, 41, 0.7);
+            border-left: 4px solid var(--neon-blue);
+            transition: all 0.3s ease;
+        }
+        .endpoint-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 243, 255, 0.2);
+        }
+        .method-get { border-left-color: #00ff95; }
+        .method-post { border-left-color: #00f3ff; }
+        .method-put { border-left-color: #ffcc00; }
+        .method-delete { border-left-color: #ff2a6d; }
+        code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="cyber-gradient min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <div class="inline-block p-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 mb-4">
+                <i class="fas fa-shield-alt text-4xl"></i>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 neon-text" style="color: var(--neon-blue);">
+                CyberShield Pro API
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                Complete backend API documentation for the CyberShield Pro cybersecurity platform.
+                Built with Node.js, Express, and MongoDB.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 mt-6">
+                <span class="px-4 py-2 rounded-full bg-cyan-900 bg-opacity-30 text-cyan-300">
+                    <i class="fas fa-bolt mr-2"></i>Real-time
+                </span>
+                <span class="px-4 py-2 rounded-full bg-purple-900 bg-opacity-30 text-purple-300">
+                    <i class="fas fa-lock mr-2"></i>Secure
+                </span>
+                <span class="px-4 py-2 rounded-full bg-green-900 bg-opacity-30 text-green-300">
+                    <i class="fas fa-database mr-2"></i>MongoDB
+                </span>
+                <span class="px-4 py-2 rounded-full bg-blue-900 bg-opacity-30 text-blue-300">
+                    <i class="fas fa-code mr-2"></i>REST API
+                </span>
+            </div>
+        </header>
+
+        <!-- API Status -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="endpoint-card p-6 rounded-lg">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-full bg-green-900 bg-opacity-30 flex items-center justify-center mr-4">
+                        <i class="fas fa-server text-green-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">API Status</h3>
+                        <p class="text-gray-400">Server Health</p>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-3 h-3 rounded-full bg-green-500 animate-pulse mr-2"></div>
+                    <span class="text-green-400 font-bold">Operational</span>
+                </div>
+            </div>
+
+            <div class="endpoint-card p-6 rounded-lg">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-full bg-blue-900 bg-opacity-30 flex items-center justify-center mr-4">
+                        <i class="fas fa-clock text-blue-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">Response Time</h3>
+                        <p class="text-gray-400">Average Latency</p>
+                    </div>
+                </div>
+                <p class="text-2xl font-bold text-blue-400">~150ms</p>
+            </div>
+
+            <div class="endpoint-card p-6 rounded-lg">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-full bg-purple-900 bg-opacity-30 flex items-center justify-center mr-4">
+                        <i class="fas fa-shield-alt text-purple-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">Security</h3>
+                        <p class="text-gray-400">JWT Authentication</p>
+                    </div>
+                </div>
+                <p class="text-2xl font-bold text-purple-400">Enabled</p>
+            </div>
+        </div>
+
+        <!-- Quick Start -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 neon-text" style="color: var(--cyber-green);">
+                <i class="fas fa-rocket mr-3"></i>Quick Start
+            </h2>
+            <div class="bg-gray-900 rounded-xl p-6 mb-6">
+                <h3 class="text-xl font-bold mb-4 text-cyan-300">Base URL</h3>
+                <code class="text-lg p-3 bg-black rounded-lg block">
+                    https://your-backend-url.com/api
+                </code>
+                <p class="mt-4 text-gray-300">
+                    Replace with your deployed backend URL (Render, Vercel, Cyclic, etc.)
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-gray-900 rounded-xl p-6">
+                    <h3 class="text-xl font-bold mb-4 text-green-300">Authentication</h3>
+                    <p class="mb-4 text-gray-300">All protected endpoints require JWT token in header:</p>
+                    <pre class="text-sm"><code>Authorization: Bearer your_jwt_token_here</code></pre>
+                </div>
+
+                <div class="bg-gray-900 rounded-xl p-6">
+                    <h3 class="text-xl font-bold mb-4 text-yellow-300">Demo Accounts</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><strong>Admin:</strong> admin@cybershield.com / admin123</li>
+                        <li><strong>Analyst:</strong> analyst@cybershield.com / analyst123</li>
+                        <li><strong>User:</strong> user@cybershield.com / user123</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Authentication Endpoints -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 neon-text" style="color: var(--neon-blue);">
+                <i class="fas fa-user-shield mr-3"></i>Authentication API
+            </h2>
+
+            <!-- Register -->
+            <div class="endpoint-card method-post p-6 rounded-lg mb-6">
+                <div class="flex items-center mb-4">
+                    <span class="px-3 py-1 rounded-full bg-blue-500 text-white font-bold mr-3">POST</span>
+                    <h3 class="text-xl font-bold">Register User</h3>
+                </div>
+                <code class="text-lg mb-4 block">/api/auth/register</code>
+                <p class="text-gray-300 mb-4">Create a new user account.</p>
+                
+                <h4 class="font-bold mb-2 text-gray-300">Request Body:</h4>
+                <pre class="text-sm mb-4"><code>{
+    "name": "John Doe",
+    "email": "john@example.com",
+    "password": "SecurePass123!",
+    "role": "user" // optional: user|analyst|admin
+}</code></pre>
+
+                <h4 class="font-bold mb-2 text-gray-300">Response:</h4>
+                <pre class="text-sm"><code>{
+    "success": true,
+    "message": "Registration successful",
+    "token": "jwt_token_here",
+    "user": {
+        "id": "user_id",
+        "name": "John Doe",
+        "email": "john@example.com",
+        "role": "user"
+    }
+}</code></pre>
+            </div>
+
+            <!-- Login -->
+            <div class="endpoint-card method-post p-6 rounded-lg mb-6">
+                <div class="flex items-center mb-4">
+                    <span class="px-3 py-1 rounded-full bg-blue-500 text-white font-bold mr-3">POST</span>
+                    <h3 class="text-xl font-bold">Login User</h3>
+                </div>
+                <code class="text-lg mb-4 block">/api/auth/login</code>
+                <p class="text-gray-300 mb-4">Authenticate user and get JWT token.</p>
+                
+                <h4 class="font-bold mb-2 text-gray-300">Request Body:</h4>
+                <pre class="text-sm mb-4"><code>{
+    "email": "john@example.com",
+    "password": "SecurePass123!"
+}</code></pre>
+
+                <h4 class="font-bold mb-2 text-gray-300">Response:</h4>
+                <pre class="text-sm"><code>{
+    "success": true,
+    "message": "Login successful",
+    "token": "jwt_token_here",
+    "user": {
+        "id": "user_id",
+        "name": "John Doe",
+        "email": "john@example.com",
+        "role": "user"
+    }
+}</code></pre>
+            </div>
+
+            <!-- Get Profile -->
+            <div class="endpoint-card method-get p-6 rounded-lg mb-6">
+                <div class="flex items-center mb-4">
+                    <span class="px-3 py-1 rounded-full bg-green-500 text-white font-bold mr-3">GET</span>
+                    <h3 class="text-xl font-bold">Get Current User</h3>
+                </div>
+                <code class="text-lg mb-4 block">/api/auth/me</code>
+                <p class="text-gray-300 mb-4">Get current authenticated user profile. Requires authentication.</p>
+                
+                <h4 class="font-bold mb-2 text-gray-300">Headers:</h4>
+                <pre class="text-sm mb-4"><code>Authorization: Bearer your_jwt_token_here</code></pre>
+
+                <h4 class="font-bold mb-2 text-gray-300">Response:</h4>
+                <pre class="text-sm"><code>{
+    "success": true,
+    "user": {
+        "id": "user_id",
+        "name": "John Doe",
+        "email": "john@example.com",
+        "role": "user",
+        "avatar": "https://ui-avatars.com/api/...",
+        "createdAt": "2024-01-01T00:00:00.000Z"
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <!-- Security Tools API -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 neon-text" style="color: var(--cyber-green);">
+                <i class="fas fa-tools mr-3"></i>Security Tools API
+            </h2>
+
+            <!-- Password Analyzer -->
+            <div class="endpoint-card method-post p-6 rounded-lg mb-6">
+                <div class="flex items-center mb-4">
+                    <span class="px-3 py-1 rounded-full bg-blue-500 text-white font-bold mr-3">POST</span>
+                    <h3 class="text-xl font-bold">Password Strength Analyzer</h3>
+                </div>
+                <code class="text-lg mb-4 block">/api/tools/password-analyzer</code>
+                <p class="text-gray-300 mb-4">Analyze password strength and get recommendations.</p>
+                
+                <h4 class="font-bold mb-2 text-gray-300">Request Body:</h4>
+                <pre class="text-sm mb-4"><code>{
+    "password": "YourPassword123!"
+}</code></pre>
+
+                <h4 class="font-bold mb-2 text-gray-300">Response:</h4>
+                <pre class="text-sm"><code>{
+    "success": true,
+    "data": {
+        "score": 5,
+        "strength": "Very Strong",
+        "feedback": ["Excellent password!"],
+        "length": 16,
+        "processingTime": "15ms"
+    }
+}</code></pre>
+            </div>
+
+            <!-- Hash Generator -->
+            <div class="endpoint-card method-post p-6 rounded-lg mb-6">
+                <div class="flex items-center mb-4">
+                    <span class="px-3 py-1 rounded-full bg-blue-500 text-white font-bold mr-3">POST</span>
+                    <h3 class="text-xl font-bold">Hash Generator</h3>
+                </div>
+                <code class="text-lg mb-4 block">/api/tools/hash-generator</code>
+                <p class="text-gray-300 mb-4">Generate cryptographic hash for text.</p>
+                
+                <h4 class="font-bold mb-2 text-gray-300">Request Body:</h4>
+                <pre class="text-sm mb-4"><code>{
+    "text": "Hello World",
+    "algorithm": "SHA256" // MD5, SHA1, SHA256, SHA512
+}</code></pre>
+
+                <h4 class="font-bold mb-2 text-gray-300">Response:</h4>
+                <pre class="text-sm"><code>{
+    "success": true,
+    "data": {
+        "hash": "a591a6d40bf420...",
+        "algorithm": "SHA256",
+        "inputLength": 11,
+        "processingTime": "8ms"
+    }
+}</code></pre>
+            </div>
+
+            <!-- URL Checker -->
+            <div class="endpoint-card method-post p-6 rounded-lg mb-6">
+                <div class="flex items-center mb-4">
+                    <span class="px-3 py-1 rounded-full bg-blue-500 text-white font-bold mr-3">POST</span>
+                    <h3 class="text-xl font-bold">URL Safety Checker</h3>
+                </div>
+                <code class="text-lg mb-4 block">/api/tools/url-checker</code>
+                <p class="text-gray-300 mb-4">Check if a URL is safe to visit.</p>
+                
+                <h4 class="font-bold mb-2 text-gray-300">Request Body:</h4>
+                <pre class="text-sm mb-4"><code>{
+    "url": "https://example.com"
+}</code></pre>
+
+                <h4 class="font-bold mb-2 text-gray-300">Response:</h4>
+                <pre class="text-sm"><code>{
+    "success": true,
+    "data": {
+        "url": "https://example.com",
+        "isSafe": true,
+        "hasHttps": true,
+        "warnings": [],
+        "processingTime": "120ms"
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <!-- Threat Management API -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 neon-text" style="color: var(--neon-pink);">
+                <i class="fas fa-bug mr-3"></i>Threat Management API
+            </h2>
+
+            <!-- Get Threats -->
+            <div class="endpoint-card method-get p-6 rounded-lg mb-6">
+                <div class="flex items-center mb-4">
+                    <span class="px-3 py-1 rounded-full bg-green-500 text-white font-bold mr-3">GET</span>
+                    <h3 class="text-xl font-bold">Get All Threats</h3>
+                </div>
+                <code class="text-lg mb-4 block">/api/threats?page=1&limit=10&severity=high&type=phishing</code>
+                <p class="text-gray-300 mb-4">Get threats with filtering and pagination.</p>
+                
+                <h4 class="font-bold mb-2 text-gray-300">Query Parameters:</h4>
+                <ul class="list-disc pl-5 text-gray-300 mb-4">
+                    <li><code>page</code> - Page number (default: 1)</li>
+                    <li><code>limit</code> - Items per page (default: 10)</li>
+                    <li><code>severity</code> - low|medium|high|critical</li>
+                    <li><code>type</code> - phishing|malware|ransomware|ddos</li>
+                    <li><code>status</code> - detected|investigating|contained|mitigated|resolved</li>
+                    <li><code>sortBy</code> - detectedAt|severity|impactScore</li>
+                    <li><code>sortOrder</code> - asc|desc (default: desc)</li>
+                </ul>
+
+                <h4 class="font-bold mb-2 text-gray-300">Response:</h4>
+                <pre class="text-sm"><code>{
+    "success": true,
+    "count": 5,
+    "pagination": {
+        "page": 1,
+        "limit": 10,
+        "total": 25,
+        "totalPages": 3,
+        "hasNextPage": true,
+        "hasPrevPage": false
+    },
+    "data": [...]
+}</code></pre>
+            </div>
+
+            <!-- Threat Statistics -->
+            <div class="endpoint-card method-get p-6 rounded-lg mb-6">
+                <div class="flex items-center mb-4">
+                    <span class="px-3 py-1 rounded-full bg-green-500 text-white font-bold mr-3">GET</span>
+                    <h3 class="text-xl font-bold">Get Threat Statistics</h3>
+                </div>
+                <code class="text-lg mb-4 block">/api/threats/statistics</code>
+                <p class="text-gray-300 mb-4">Get threat analytics and statistics.</p>
+                
+                <h4 class="font-bold mb-2 text-gray-300">Response:</h4>
+                <pre class="text-sm"><code>{
+    "success": true,
+    "data": {
+        "severityStats": [
+            { "_id": "high", "count": 12 },
+            { "_id": "medium", "count": 8 }
+        ],
+        "typeStats": [...],
+        "dailyThreats": [...],
+        "totalThreats": 45
+    }
+}</code></pre>
+            </div>
+
+            <!-- Real-time Threat Feed -->
+            <div class="endpoint-card method-get p-6 rounded-lg mb-6">
+                <div class="flex items-center mb-4">
+                    <span class="px-3 py-1 rounded-full bg-green-500 text-white font-bold mr-3">GET</span>
+                    <h3 class="text-xl font-bold">Real-time Threat Feed</h3>
+                </div>
+                <code class="text-lg mb-4 block">/api/threats/feed</code>
+                <p class="text-gray-300 mb-4">Get latest threats for real-time dashboard.</p>
+                
+                <h4 class="font-bold mb-2 text-gray-300">Response:</h4>
+                <pre class="text-sm"><code>{
+    "success": true,
+    "data": [
+        {
+            "title": "Phishing Campaign Detected",
+            "severity": "high",
+            "type": "phishing",
+            "status": "detected",
+            "detectedAt": "2024-01-01T12:00:00.000Z",
+            "sourceCountry": "USA"
+        }
+    ]
+}</code></pre>
+            </div>
+        </section>
+
+        <!-- Contact API -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 neon-text" style="color: var(--neon-purple);">
+                <i class="fas fa-envelope mr-3"></i>Contact API
+            </h2>
+
+            <!-- Submit Contact -->
+            <div class="endpoint-card method-post p-6 rounded-lg mb-6">
+                <div class="flex items-center mb-4">
+                    <span class="px-3 py-1 rounded-full bg-blue-500 text-white font-bold mr-3">POST</span>
+                    <h3 class="text-xl font-bold">Submit Contact Form</h3>
+                </div>
+                <code class="text-lg mb-4 block">/api/contact</code>
+                <p class="text-gray-300 mb-4">Submit contact form data.</p>
+                
+                <h4 class="font-bold mb-2 text-gray-300">Request Body:</h4>
+                <pre class="text-sm mb-4"><code>{
+    "name": "John Doe",
+    "email": "john@example.com",
+    "company": "Tech Corp",
+    "phone": "+1234567890",
+    "service": "security-audit",
+    "message": "Need security consultation...",
+    "priority": "high"
+}</code></pre>
+
+                <h4 class="font-bold mb-2 text-gray-300">Response:</h4>
+                <pre class="text-sm"><code>{
+    "success": true,
+    "message": "Contact request submitted successfully",
+    "data": {
+        "id": "contact_id",
+        "name": "John Doe",
+        "email": "john@example.com",
+        "status": "new",
+        "priority": "high"
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <!-- Testing Section -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 neon-text" style="color: var(--neon-blue);">
+                <i class="fas fa-vial mr-3"></i>API Testing
+            </h2>
+
+            <div class="bg-gray-900 rounded-xl p-6">
+                <h3 class="text-2xl font-bold mb-4">Test Endpoints</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h4 class="font-bold mb-2 text-green-300">Health Check</h4>
+                        <code class="block p-3 bg-black rounded-lg mb-2">GET /health</code>
+                        <button onclick="testEndpoint('/health')" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg">
+                            Test Now
+                        </button>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold mb-2 text-blue-300">API Documentation</h4>
+                        <code class="block p-3 bg-black rounded-lg mb-2">GET /api-docs</code>
+                        <button onclick="testEndpoint('/api-docs')" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg">
+                            Test Now
+                        </button>
+                    </div>
+                </div>
+
+                <div id="testResult" class="mt-6 hidden">
+                    <h4 class="font-bold mb-2">Response:</h4>
+                    <pre id="resultContent" class="text-sm p-4 bg-black rounded-lg overflow-auto max-h-60"></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center py-8 border-t border-gray-800">
+            <p class="text-gray-400 mb-4">
+                CyberShield Pro API Documentation • Version 1.0.0
+            </p>
+            <p class="text-gray-500 text-sm">
+                Built with ❤️ by Gulshan Kumar • 
+                <a href="https://gulshankumar799.github.io" class="text-cyan-400 hover:text-cyan-300">
+                    View Frontend
+                </a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // API Testing Function
+        async function testEndpoint(endpoint) {
+            const testResult = document.getElementById('testResult');
+            const resultContent = document.getElementById('resultContent');
+            
+            testResult.classList.remove('hidden');
+            resultContent.textContent = 'Testing...';
+            
+            try {
+                const baseUrl = window.location.origin;
+                const response = await fetch(baseUrl + endpoint);
+                const data = await response.json();
+                
+                resultContent.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultContent.textContent = 'Error: ' + error.message;
+            }
+        }
+
+        // Copy code blocks
+        document.addEventListener('DOMContentLoaded', function() {
+            const codeBlocks = document.querySelectorAll('pre code');
+            codeBlocks.forEach(block => {
+                block.addEventListener('click', function() {
+                    const text = this.textContent;
+                    navigator.clipboard.writeText(text).then(() => {
+                        const original = this.textContent;
+                        this.textContent = 'Copied!';
+                        setTimeout(() => {
+                            this.textContent = original;
+                        }, 2000);
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
