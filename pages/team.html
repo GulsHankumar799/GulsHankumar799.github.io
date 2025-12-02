@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Security Team | CyberShield Pro</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAD/AAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAAAAAEREREQAAERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERE" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/pages.css">
+    <style>
+        .team-gradient {
+            background: linear-gradient(135deg, #0a0e17, #1a1d29);
+        }
+        .team-card {
+            background: rgba(26, 29, 41, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 100%;
+        }
+        .team-card:hover {
+            transform: translateY(-10px);
+            border-color: #00f3ff;
+            box-shadow: 0 15px 30px rgba(0, 243, 255, 0.2);
+        }
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            object-fit: cover;
+            border: 3px solid;
+            padding: 3px;
+        }
+        .avatar-ceo { border-color: #00f3ff; }
+        .avatar-cto { border-color: #b967ff; }
+        .avatar-head { border-color: #00ff95; }
+        .avatar-specialist { border-color: #ff2a6d; }
+        .avatar-analyst { border-color: #ffcc00; }
+        .team-role {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        .role-ceo { background: rgba(0, 243, 255, 0.2); color: #00f3ff; }
+        .role-cto { background: rgba(185, 103, 255, 0.2); color: #b967ff; }
+        .role-head { background: rgba(0, 255, 149, 0.2); color: #00ff95; }
+        .role-specialist { background: rgba(255, 42, 109, 0.2); color: #ff2a6d; }
+        .role-analyst { background: rgba(255, 204, 0, 0.2); color: #ffcc00; }
+        .expertise-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            font-size: 0.75rem;
+            margin: 3px;
+        }
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 0 5px;
+            transition: all 0.3s ease;
+        }
+        .social-icon:hover {
+            background: rgba(0, 243, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        .stats-card {
+            background: rgba(26, 29, 41, 0.7);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #00f3ff;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #00f3ff;
+            border: 3px solid #0a0e17;
+        }
+    </style>
+</head>
+<body class="team-gradient text-white">
+    <!-- Navigation -->
+    <nav class="simplified-header fixed top-0 w-full z-50 py-4 px-4 md:px-6 flex justify-between items-center">
+        <div class="flex items-center">
+            <a href="../index.html" class="logo text-lg md:text-xl font-bold">CyberShield Pro</a>
+        </div>
+        <div class="hidden md:flex space-x-6 lg:space-x-8">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="case-studies.html" class="nav-link">Case Studies</a>
+            <a href="team.html" class="nav-link active">Team</a>
+            <a href="careers.html" class="nav-link">Careers</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div class="flex items-center space-x-4">
+            <a href="../index.html#auth-modal" class="cyber-button text-sm py-2 px-4">Login</a>
+            <button id="mobile-menu-toggle" class="md:hidden text-white p-2">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 px-4 md:px-6">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                Meet Our <span class="text-cyan-400">Security Experts</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10">
+                A team of cybersecurity veterans with decades of experience protecting organizations worldwide.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#team" class="cyber-button px-8 py-3 text-lg">Meet the Team</a>
+                <a href="careers.html" class="security-button px-8 py-3 text-lg">Join Our Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Stats -->
+    <section class="py-16 px-4 md:px-6">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="stats-card" data-aos="fade-up">
+                    <div class="stat-value text-cyan-400">50+</div>
+                    <div class="text-gray-300">Security Experts</div>
+                </div>
+                <div class="stats-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-value text-purple-400">250+</div>
+                    <div class="text-gray-300">Years Combined Experience</div>
+                </div>
+                <div class="stats-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-value text-green-400">50+</div>
+                    <div class="text-gray-300">Security Certifications</div>
+                </div>
+                <div class="stats-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-value text-pink-400">24/7</div>
+                    <div class="text-gray-300">Security Operations</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Team -->
+    <section id="team" class="py-16 px-4 md:px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Leadership Team</h2>
+            <p class="text-xl text-gray-400 text-center mb-12 max-w-3xl mx-auto">
+                Seasoned leaders with proven track records in cybersecurity and technology.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <!-- CEO -->
+                <div class="team-card" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Gulshan Kumar" class="team-avatar avatar-ceo">
+                    <h3 class="text-2xl font-bold mb-2">Gulshan Kumar</h3>
+                    <span class="team-role role-ceo">Founder & CEO</span>
+                    <p class="text-gray-300 my-4">
+                        12+ years in cybersecurity leadership. Former security architect at Fortune 500 companies.
+                    </p>
+                    <div class="mb-4">
+                        <span class="expertise-tag">Cloud Security</span>
+                        <span class="expertise-tag">Threat Intelligence</span>
+                        <span class="expertise-tag">Zero-Trust</span>
+                    </div>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i data-feather="linkedin" class="w-4 h-4"></i></a>
+                        <a href="#" class="social-icon"><i data-feather="twitter" class="w-4 h-4"></i></a>
+                        <a href="#" class="social-icon"><i data-feather="github" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+
+                <!-- CTO -->
+                <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Alex Johnson" class="team-avatar avatar-cto">
+                    <h3 class="text-2xl font-bold mb-2">Alex Johnson</h3>
+                    <span class="team-role role-cto">Chief Technology Officer</span>
+                    <p class="text-gray-300 my-4">
+                        Former security researcher at leading cybersecurity firms. 
+                        Published author on threat intelligence.
+                    </p>
+                    <div class="mb-4">
+                        <span class="expertise-tag">AI/ML Security</span>
+                        <span class="expertise-tag">Network Security</span>
+                        <span class="expertise-tag">Cryptography</span>
+                    </div>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i data-feather="linkedin" class="w-4 h-4"></i></a>
+                        <a href="#" class="social-icon"><i data-feather="twitter" class="w-4 h-4"></i></a>
+                        <a href="#" class="social-icon"><i data-feather="github" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+
+                <!-- Head of Security -->
+                <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b786d4d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Sarah Chen" class="team-avatar avatar-head">
+                    <h3 class="text-2xl font-bold mb-2">Sarah Chen</h3>
+                    <span class="team-role role-head">Head of Security Operations</span>
+                    <p class="text-gray-300 my-4">
+                        15+ years in SOC management. Expert in incident response and threat hunting.
+                    </p>
+                    <div class="mb-4">
+                        <span class="expertise-tag">Incident Response</span>
+                        <span class="expertise-tag">SOC Management</span>
+                        <span class="expertise-tag">Forensics</span>
+                    </div>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i data-feather="linkedin" class="w-4 h-4"></i></a>
+                        <a href="#" class="social-icon"><i data-feather="twitter" class="w-4 h-4"></i></a>
+                        <a href="#" class="social-icon"><i data-feather="github" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Specialists -->
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Security Specialists</h2>
+            <p class="text-xl text-gray-400 text-center mb-12 max-w-3xl mx-auto">
+                Experts in specialized areas of cybersecurity.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Penetration Tester -->
+                <div class="team-card" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Michael Rodriguez" class="team-avatar avatar-specialist">
+                    <h3 class="text-2xl font-bold mb-2">Michael Rodriguez</h3>
+                    <span class="team-role role-specialist">Senior Penetration Tester</span>
+                    <p class="text-gray-300 my-4">
+                        Certified Ethical Hacker with 8+ years experience in red team operations.
+                    </p>
+                    <div class="mb-4">
+                        <span class="expertise-tag">Penetration Testing</span>
+                        <span class="expertise-tag">Red Teaming</span>
+                        <span class="expertise-tag">Vulnerability Research</span>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <i data-feather="award" class="w-4 h-4 inline mr-2"></i>
+                        OSCP, GPEN, CEH Certified
+                    </div>
+                </div>
+
+                <!-- Cloud Security -->
+                <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="David Kim" class="team-avatar avatar-specialist">
+                    <h3 class="text-2xl font-bold mb-2">David Kim</h3>
+                    <span class="team-role role-specialist">Cloud Security Architect</span>
+                    <p class="text-gray-300 my-4">
+                        Expert in multi-cloud security architecture and container security.
+                    </p>
+                    <div class="mb-4">
+                        <span class="expertise-tag">AWS Security</span>
+                        <span class="expertise-tag">Azure Security</span>
+                        <span class="expertise-tag">Kubernetes</span>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <i data-feather="award" class="w-4 h-4 inline mr-2"></i>
+                        AWS Security Specialist, CCSP
+                    </div>
+                </div>
+
+                <!-- Threat Analyst -->
+                <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                         alt="Emma Wilson" class="team-avatar avatar-analyst">
+                    <h3 class="text-2xl font-bold mb-2">Emma Wilson</h3>
+                    <span class="team-role role-analyst">Threat Intelligence Analyst</span>
+                    <p class="text-gray-300 my-4">
+                        Specializes in threat hunting, malware analysis, and intelligence gathering.
+                    </p>
+                    <div class="mb-4">
+                        <span class="expertise-tag">Threat Hunting</span>
+                        <span class="expertise-tag">Malware Analysis</span>
+                        <span class="expertise-tag">OSINT</span>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <i data-feather="award" class="w-4 h-4 inline mr-2"></i>
+                        GCFA, GCTI Certified
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="py-20 px-4 md:px-6" style="background: linear-gradient(135deg, #0a0e17, #0d1f3a);">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Our Values</h2>
+            <p class="text-xl text-gray-400 text-center mb-12 max-w-3xl mx-auto">
+                The principles that guide our team and our work.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center" data-aos="fade-up">
+                    <div class="w-16 h-16 rounded-full bg-cyan-900 bg-opacity-30 flex items-center justify-center mx-auto mb-6">
+                        <i data-feather="shield" class="w-8 h-8 text-cyan-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Security First</h3>
+                    <p class="text-gray-300">
+                        We prioritize security in everything we do, implementing the highest standards to protect our clients.
+                    </p>
+                </div>
+
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 rounded-full bg-purple-900 bg-opacity-30 flex items-center justify-center mx-auto mb-6">
+                        <i data-feather="users" class="w-8 h-8 text-purple-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Collaborative Excellence</h3>
+                    <p class="text-gray-300">
+                        We believe in teamwork and collaboration, combining diverse expertise to solve complex security challenges.
+                    </p>
+                </div>
+
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 rounded-full bg-green-900 bg-opacity-30 flex items-center justify-center mx-auto mb-6">
+                        <i data-feather="trending-up" class="w-8 h-8 text-green-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Continuous Learning</h3>
+                    <p class="text-gray-300">
+                        We stay ahead of evolving threats through continuous education, research, and innovation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="py-20 px-4 md:px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Industry Certifications</h2>
+            <p class="text-xl text-gray-400 text-center mb-12 max-w-3xl mx-auto">
+                Our team holds the industry's most respected security certifications.
+            </p>
+
+            <div class="grid grid-cols-2 md:grid-cols-6 gap-6">
+                <div class="bg-gray-900 rounded-lg p-6 text-center" data-aos="fade-up">
+                    <div class="text-cyan-400 font-bold text-lg mb-2">CISSP</div>
+                    <div class="text-gray-400 text-sm">Certified Information Systems Security Professional</div>
+                </div>
+                <div class="bg-gray-900 rounded-lg p-6 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-cyan-400 font-bold text-lg mb-2">CEH</div>
+                    <div class="text-gray-400 text-sm">Certified Ethical Hacker</div>
+                </div>
+                <div class="bg-gray-900 rounded-lg p-6 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-cyan-400 font-bold text-lg mb-2">OSCP</div>
+                    <div class="text-gray-400 text-sm">Offensive Security Certified Professional</div>
+                </div>
+                <div class="bg-gray-900 rounded-lg p-6 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-cyan-400 font-bold text-lg mb-2">CCSP</div>
+                    <div class="text-gray-400 text-sm">Certified Cloud Security Professional</div>
+                </div>
+                <div class="bg-gray-900 rounded-lg p-6 text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-cyan-400 font-bold text-lg mb-2">CISM</div>
+                    <div class="text-gray-400 text-sm">Certified Information Security Manager</div>
+                </div>
+                <div class="bg-gray-900 rounded-lg p-6 text-center" data-aos="fade-up" data-aos-delay="500">
+                    <div class="text-cyan-400 font-bold text-lg mb-2">GPEN</div>
+                    <div class="text-gray-400 text-sm">GIAC Penetration Tester</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Team CTA -->
+    <section class="py-20 px-4 md:px-6" style="background: linear-gradient(135deg, #0a0e17, #1a1a2e);">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Join Our Security Team</h2>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+                Passionate about cybersecurity? We're always looking for talented security professionals to join our team.
+            </p>
+            <a href="careers.html" class="cyber-button px-8 py-3 text-lg inline-block">
+                View Open Positions
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 md:px-6 bg-gray-950">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-cyan-300">CyberShield Pro</h3>
+                    <p class="text-gray-400">Expert cybersecurity solutions by industry veterans.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-cyan-300">Our Team</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400">Leadership</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400">Security Specialists</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400">Our Values</a></li>
+                        <li><a href="careers.html" class="text-gray-400 hover:text-cyan-400">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-cyan-300">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="services.html" class="text-gray-400 hover:text-cyan-400">Managed Security</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-cyan-400">Penetration Testing</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-cyan-400">Cloud Security</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-cyan-400">Compliance</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-cyan-300">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-cyan-400"><i data-feather="linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400"><i data-feather="twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400"><i data-feather="github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
+                <p>&copy; 2024 CyberShield Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+        feather.replace();
+        AOS.init();
+    </script>
+</body>
+</html>
