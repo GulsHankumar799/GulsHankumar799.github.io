@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pricing Plans | CyberShield Pro</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAD/AAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAAAAAEREREQAAERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERE" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/pages.css">
+    <style>
+        .pricing-gradient {
+            background: linear-gradient(135deg, #0a0e17, #1a1d29);
+        }
+        .pricing-card {
+            background: rgba(26, 29, 41, 0.7);
+            border-radius: 15px;
+            padding: 40px 30px;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            height: 100%;
+        }
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 243, 255, 0.15);
+        }
+        .pricing-card.popular {
+            border-color: #00f3ff;
+            background: rgba(26, 29, 41, 0.9);
+            position: relative;
+            overflow: hidden;
+        }
+        .pricing-card.popular::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: #00f3ff;
+            color: #0a0e17;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .price-amount {
+            font-size: 3.5rem;
+            font-weight: bold;
+            line-height: 1;
+        }
+        .price-period {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+        }
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-left: 10px;
+        }
+        .feature-list li.available::before {
+            content: '✓';
+            color: #00ff95;
+            margin-right: 12px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .feature-list li.unavailable::before {
+            content: '✗';
+            color: #ff2a6d;
+            margin-right: 12px;
+            opacity: 0.5;
+        }
+        .tier-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .faq-item {
+            background: rgba(26, 29, 41, 0.7);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .faq-answer.active {
+            padding: 0 20px 20px;
+            max-height: 500px;
+        }
+        .comparison-table {
+            background: rgba(26, 29, 41, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .comparison-table th {
+            background: rgba(10, 14, 23, 0.9);
+            padding: 20px;
+            text-align: left;
+        }
+        .comparison-table td {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .toggle-container {
+            display: inline-flex;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 5px;
+            margin: 0 20px;
+        }
+        .toggle-btn {
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .toggle-btn.active {
+            background: #00f3ff;
+            color: #0a0e17;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="pricing-gradient text-white">
+    <!-- Navigation -->
+    <nav class="simplified-header fixed top-0 w-full z-50 py-4 px-4 md:px-6 flex justify-between items-center">
+        <div class="flex items-center">
+            <a href="../index.html" class="logo text-lg md:text-xl font-bold">CyberShield Pro</a>
+        </div>
+        <div class="hidden md:flex space-x-6 lg:space-x-8">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="pricing.html" class="nav-link active">Pricing</a>
+            <a href="case-studies.html" class="nav-link">Case Studies</a>
+            <a href="team.html" class="nav-link">Team</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div class="flex items-center space-x-4">
+            <a href="../index.html#auth-modal" class="cyber-button text-sm py-2 px-4">Login</a>
+            <button id="mobile-menu-toggle" class="md:hidden text-white p-2">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 px-4 md:px-6">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                Simple, Transparent <span class="text-cyan-400">Pricing</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10">
+                Choose the perfect security plan for your organization. All plans include 24/7 support.
+            </p>
+            
+            <!-- Billing Toggle -->
+            <div class="flex items-center justify-center mb-12">
+                <span class="text-lg">Monthly</span>
+                <div class="toggle-container mx-4">
+                    <div class="toggle-btn active" data-period="monthly">Monthly</div>
+                    <div class="toggle-btn" data-period="yearly">Yearly</div>
+                </div>
+                <span class="text-lg">Yearly <span class="text-green-400 text-sm">(Save 20%)</span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Cards -->
+    <section class="py-10 px-4 md:px-6">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Starter Plan -->
+                <div class="pricing-card" data-aos="fade-up">
+                    <div class="tier-icon" style="background: rgba(0, 243, 255, 0.2);">
+                        <i data-feather="shield" class="w-8 h-8 text-cyan-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Starter</h3>
+                    <p class="text-gray-400 mb-6">For small businesses starting with security</p>
+                    
+                    <div class="mb-8">
+                        <span class="price-amount monthly">$499</span>
+                        <span class="price-amount yearly hidden">$399</span>
+                        <span class="price-period monthly">/month</span>
+                        <span class="price-period yearly hidden">/month</span>
+                        <p class="text-gray-400 text-sm mt-2">Billed <span class="monthly">monthly</span><span class="yearly hidden">annually</span></p>
+                    </div>
+
+                    <ul class="feature-list mb-8">
+                        <li class="available">24/7 Security Monitoring</li>
+                        <li class="available">Basic Threat Detection</li>
+                        <li class="available">Weekly Security Reports</li>
+                        <li class="available">Email Support</li>
+                        <li class="available">Up to 50 Assets</li>
+                        <li class="unavailable">Advanced Threat Intelligence</li>
+                        <li class="unavailable">Penetration Testing</li>
+                        <li class="unavailable">Compliance Management</li>
+                    </ul>
+
+                    <button class="cyber-button w-full py-3">Get Started</button>
+                </div>
+
+                <!-- Professional Plan (Popular) -->
+                <div class="pricing-card popular" data-aos="fade-up" data-aos-delay="100">
+                    <div class="tier-icon" style="background: rgba(185, 103, 255, 0.2);">
+                        <i data-feather="award" class="w-8 h-8 text-purple-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Professional</h3>
+                    <p class="text-gray-400 mb-6">For growing businesses with advanced needs</p>
+                    
+                    <div class="mb-8">
+                        <span class="price-amount monthly">$1,299</span>
+                        <span class="price-amount yearly hidden">$1,039</span>
+                        <span class="price-period monthly">/month</span>
+                        <span class="price-period yearly hidden">/month</span>
+                        <p class="text-gray-400 text-sm mt-2">Billed <span class="monthly">monthly</span><span class="yearly hidden">annually</span></p>
+                    </div>
+
+                    <ul class="feature-list mb-8">
+                        <li class="available">Everything in Starter</li>
+                        <li class="available">Advanced Threat Detection</li>
+                        <li class="available">Daily Security Reports</li>
+                        <li class="available">Priority Support</li>
+                        <li class="available">Up to 200 Assets</li>
+                        <li class="available">Basic Penetration Testing</li>
+                        <li class="available">Compliance Dashboard</li>
+                        <li class="unavailable">Dedicated Security Engineer</li>
+                    </ul>
+
+                    <button class="cyber-button w-full py-3" style="background: linear-gradient(135deg, #b967ff, #00f3ff);">
+                        Get Professional Plan
+                    </button>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="pricing-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="tier-icon" style="background: rgba(0, 255, 149, 0.2);">
+                        <i data-feather="globe" class="w-8 h-8 text-green-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Enterprise</h3>
+                    <p class="text-gray-400 mb-6">For large organizations with complex needs</p>
+                    
+                    <div class="mb-8">
+                        <span class="price-amount">Custom</span>
+                        <p class="price-period">Tailored pricing</p>
+                        <p class="text-gray-400 text-sm mt-2">Contact for quote</p>
+                    </div>
+
+                    <ul class="feature-list mb-8">
+                        <li class="available">Everything in Professional</li>
+                        <li class="available">Dedicated Security Engineer</li>
+                        <li class="available">Real-time Threat Intelligence</li>
+                        <li class="available">24/7 Phone Support</li>
+                        <li class="available">Unlimited Assets</li>
+                        <li class="available">Advanced Penetration Testing</li>
+                        <li class="available">Full Compliance Management</li>
+                        <li class="available">Custom Security Solutions</li>
+                    </ul>
+
+                    <button class="cyber-button w-full py-3">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="py-20 px-4 md:px-6" style="background: rgba(10, 14, 23, 0.5);">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Plan Comparison</h2>
+            <p class="text-xl text-gray-400 text-center mb-12 max-w-3xl mx-auto">
+                Compare features across all plans to find the perfect fit for your organization.
+            </p>
+
+            <div class="comparison-table" data-aos="fade-up">
+                <table class="w-full">
+                    <thead>
+                        <tr>
+                            <th>Features</th>
+                            <th>Starter</th>
+                            <th>Professional</th>
+                            <th>Enterprise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>24/7 Security Monitoring</td>
+                            <td><i data-feather="check" class="text-green-400 w-5 h-5"></i></td>
+                            <td><i data-feather="check" class="text-green-400 w-5 h-5"></i></td>
+                            <td><i data-feather="check" class="text-green-400 w-5 h-5"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Threat Detection</td>
+                            <td>Basic</td>
+                            <td>Advanced</td>
+                            <td>Advanced + AI</td>
+                        </tr>
+                        <tr>
+                            <td>Security Reports</td>
+                            <td>Weekly</td>
+                            <td>Daily</td>
+                            <td>Real-time</td>
+                        </tr>
+                        <tr>
+                            <td>Support</td>
+                            <td>Email</td>
+                            <td>Priority</td>
+                            <td>24/7 Phone + Dedicated</td>
+                        </tr>
+                        <tr>
+                            <td>Assets Protected</td>
+                            <td>Up to 50</td>
+                            <td>Up to 200</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td>Penetration Testing</td>
+                            <td><i data-feather="x" class="text-red-400 w-5 h-5"></i></td>
+                            <td>Basic</td>
+                            <td>Advanced</td>
+                        </tr>
+                        <tr>
+                            <td>Compliance Management</td>
+                            <td><i data-feather="x" class="text-red-400 w-5 h-5"></i></td>
+                            <td>Dashboard</td>
+                            <td>Full Service</td>
+                        </tr>
+                        <tr>
+                            <td>Custom Solutions</td>
+                            <td><i data-feather="x" class="text-red-400 w-5 h-5"></i></td>
+                            <td><i data-feather="x" class="text-red-400 w-5 h-5"></i></td>
+                            <td><i data-feather="check" class="text-green-400 w-5 h-5"></i></td>
+                        </tr>
+                        <tr>
+                            <td>SLA Guarantee</td>
+                            <td>99.5%</td>
+                            <td>99.9%</td>
+                            <td>99.99%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 px-4 md:px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Frequently Asked Questions</h2>
+            <p class="text-xl text-gray-400 text-center mb-12 max-w-3xl mx-auto">
+                Find answers to common questions about our pricing and services.
+            </p>
+
+            <div class="max-w-3xl mx-auto">
+                <!-- FAQ 1 -->
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h3 class="text-lg font-semibold">Can I change plans later?</h3>
+                        <i data-feather="chevron-down" class="w-5 h-5"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-300">
+                            Yes, you can upgrade or downgrade your plan at any time. When upgrading, 
+                            you'll be charged the prorated difference. When downgrading, changes take 
+                            effect at the start of your next billing cycle.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faq-question">
+                        <h3 class="text-lg font-semibold">Is there a free trial?</h3>
+                        <i data-feather="chevron-down" class="w-5 h-5"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-300">
+                            We offer a 14-day free trial for our Professional plan. No credit card 
+                            required. Experience our full suite of security features before committing.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="faq-question">
+                        <h3 class="text-lg font-semibold">What payment methods do you accept?</h3>
+                        <i data-feather="chevron-down" class="w-5 h-5"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-300">
+                            We accept all major credit cards (Visa, MasterCard, American Express), 
+                            PayPal, and bank transfers for annual contracts.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="faq-question">
+                        <h3 class="text-lg font-semibold">Do you offer discounts for non-profits?</h3>
+                        <i data-feather="chevron-down" class="w-5 h-5"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-300">
+                            Yes, we offer a 25% discount for registered non-profit organizations. 
+                            Contact our sales team with your non-profit registration details.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="faq-question">
+                        <h3 class="text-lg font-semibold">What's your cancellation policy?</h3>
+                        <i data-feather="chevron-down" class="w-5 h-5"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-300">
+                            You can cancel anytime. No long-term contracts. If you cancel mid-cycle, 
+                            you'll have access until the end of your billing period.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 md:px-6" style="background: linear-gradient(135deg, #0a0e17, #0d1f3a);">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Not Sure Which Plan is Right?</h2>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+                Schedule a free security assessment with our experts. We'll recommend the perfect plan for your needs.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="contact.html" class="cyber-button px-8 py-3 text-lg">Get Free Assessment</a>
+                <a href="contact.html" class="security-button px-8 py-3 text-lg">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 md:px-6 bg-gray-950">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-cyan-300">CyberShield Pro</h3>
+                    <p class="text-gray-400">Secure your digital assets with confidence.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-cyan-300">Plans</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400">Starter</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400">Professional</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400">Enterprise</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400">Custom Solutions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-cyan-300">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="blog.html" class="text-gray-400 hover:text-cyan-400">Blog</a></li>
+                        <li><a href="case-studies.html" class="text-gray-400 hover:text-cyan-400">Case Studies</a></li>
+                        <li><a href="resources.html" class="text-gray-400 hover:text-cyan-400">Whitepapers</a></li>
+                        <li><a href="compliance.html" class="text-gray-400 hover:text-cyan-400">Compliance</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-cyan-300">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-cyan-400"><i data-feather="twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400"><i data-feather="linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400"><i data-feather="github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
+                <p>&copy; 2024 CyberShield Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+        feather.replace();
+        AOS.init();
+
+        // Billing toggle functionality
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const period = this.getAttribute('data-period');
+                
+                // Update active button
+                document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show/hide prices
+                if (period === 'monthly') {
+                    document.querySelectorAll('.monthly').forEach(el => el.classList.remove('hidden'));
+                    document.querySelectorAll('.yearly').forEach(el => el.classList.add('hidden'));
+                } else {
+                    document.querySelectorAll('.monthly').forEach(el => el.classList.add('hidden'));
+                    document.querySelectorAll('.yearly').forEach(el => el.classList.remove('hidden'));
+                }
+            });
+        });
+
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                
+                // Toggle answer
+                answer.classList.toggle('active');
+                
+                // Rotate icon
+                if (answer.classList.contains('active')) {
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
