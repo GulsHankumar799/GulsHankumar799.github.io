@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Case Studies | CyberShield Pro</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAD/AAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAAAAAEREREQAAERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERE" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/pages.css">
+    <style>
+        .case-studies-gradient {
+            background: linear-gradient(135deg, #0a0e17, #1a1a2e);
+        }
+        .case-study-card {
+            background: rgba(26, 29, 41, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .case-study-card:hover {
+            transform: translateY(-10px);
+            border-color: #00f3ff;
+            box-shadow: 0 15px 30px rgba(0, 243, 255, 0.2);
+        }
+        .case-study-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .case-study-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .tag-financial { background: rgba(0, 243, 255, 0.2); color: #00f3ff; }
+        .tag-healthcare { background: rgba(0, 255, 149, 0.2); color: #00ff95; }
+        .tag-ecommerce { background: rgba(185, 103, 255, 0.2); color: #b967ff; }
+        .tag-education { background: rgba(255, 204, 0, 0.2); color: #ffcc00; }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .result-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        .result-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .result-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .client-logo {
+            height: 40px;
+            width: auto;
+            filter: grayscale(100%) brightness(200%);
+            opacity: 0.8;
+        }
+        .filter-btn {
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            margin: 0 5px 10px;
+            transition: all 0.3s ease;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: rgba(0, 243, 255, 0.2);
+            border-color: #00f3ff;
+            color: #00f3ff;
+        }
+        .testimonial-card {
+            background: rgba(26, 29, 41, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            border-left: 4px solid #00f3ff;
+        }
+        .client-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="case-studies-gradient text-white">
+    <!-- Navigation -->
+    <nav class="simplified-header fixed top-0 w-full z-50 py-4 px-4 md:px-6 flex justify-between items-center">
+        <div class="flex items-center">
+            <a href="../index.html" class="logo text-lg md:text-xl font-bold">CyberShield Pro</a>
+        </div>
+        <div class="hidden md:flex space-x-6 lg:space-x-8">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="pricing.html" class="nav-link">Pricing</a>
+            <a href="case-studies.html" class="nav-link active">Case Studies</a>
+            <a href="team.html" class="nav-link">Team</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div class="flex items-center space-x-4">
+            <a href="../index.html#auth-modal" class="cyber-button text-sm py-2 px-4">Login</a>
+            <button id="mobile-menu-toggle" class="md:hidden text-white p-2">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 px-4 md:px-6">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                Success <span class="text-cyan-400">Stories</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10">
+                See how organizations across industries have strengthened their security posture with CyberShield Pro.
+            </p>
+            
+            <!-- Filters -->
+            <div class="flex flex-wrap justify-center mb-12">
+                <button class="filter-btn active" data-filter="all">All Industries</button>
+                <button class="filter-btn" data-filter="financial">Financial Services</button>
+                <button class="filter-btn" data-filter="healthcare">Healthcare</button>
+                <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+                <button class="filter-btn" data-filter="education">Education</button>
+                <button class="filter-btn" data-filter="technology">Technology</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Grid -->
+    <section class="py-10 px-4 md:px-6">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Case Study 1 -->
+                <div class="case-study-card" data-industry="financial" data-aos="fade-up">
+                    <div class="case-study-image" style="background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <span class="case-study-tag tag-financial">Financial Services</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                 alt="BankSecure" class="client-logo mr-3">
+                            <div>
+                                <h3 class="text-xl font-bold">BankSecure Financial</h3>
+                                <p class="text-gray-400 text-sm">Global Banking Institution</p>
+                            </div>
+                        </div>
+                        
+                        <h4 class="text-lg font-bold mb-3">Preventing Financial Fraud with AI Threat Detection</h4>
+                        <p class="text-gray-300 mb-6">
+                            Implemented advanced threat detection system that reduced fraudulent transactions by 92% 
+                            while maintaining compliance with financial regulations.
+                        </p>
+                        
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <div class="result-value text-cyan-400">92%</div>
+                                <div class="result-label">Fraud Reduction</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value text-green-400">99.99%</div>
+                                <div class="result-label">Uptime</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">24h</div>
+                                <div class="result-label">Response Time</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">$2.1M</div>
+                                <div class="result-label">Cost Savings</div>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold inline-flex items-center mt-4">
+                            Read Full Case Study <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Case Study 2 -->
+                <div class="case-study-card" data-industry="healthcare" data-aos="fade-up" data-aos-delay="100">
+                    <div class="case-study-image" style="background-image: url('https://images.unsplash.com/photo-1516549655669-df565bc5d2e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <span class="case-study-tag tag-healthcare">Healthcare</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1586773860418-dc22f8b874bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                 alt="MediCare Plus" class="client-logo mr-3">
+                            <div>
+                                <h3 class="text-xl font-bold">MediCare Plus</h3>
+                                <p class="text-gray-400 text-sm">Hospital Network</p>
+                            </div>
+                        </div>
+                        
+                        <h4 class="text-lg font-bold mb-3">HIPAA Compliance & Patient Data Protection</h4>
+                        <p class="text-gray-300 mb-6">
+                            Secured patient data across 15 hospitals with end-to-end encryption and 
+                            achieved full HIPAA compliance while improving system performance.
+                        </p>
+                        
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <div class="result-value text-green-400">100%</div>
+                                <div class="result-label">HIPAA Compliance</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">15</div>
+                                <div class="result-label">Hospitals Secured</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">2M+</div>
+                                <div class="result-label">Records Protected</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">40%</div>
+                                <div class="result-label">Faster Access</div>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold inline-flex items-center mt-4">
+                            Read Full Case Study <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Case Study 3 -->
+                <div class="case-study-card" data-industry="ecommerce" data-aos="fade-up" data-aos-delay="200">
+                    <div class="case-study-image" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <span class="case-study-tag tag-ecommerce">E-commerce</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                 alt="ShopSecure" class="client-logo mr-3">
+                            <div>
+                                <h3 class="text-xl font-bold">ShopSecure Global</h3>
+                                <p class="text-gray-400 text-sm">Online Retailer</p>
+                            </div>
+                        </div>
+                        
+                        <h4 class="text-lg font-bold mb-3">Securing Million-Dollar E-commerce Platform</h4>
+                        <p class="text-gray-300 mb-6">
+                            Protected against DDoS attacks and payment fraud during peak shopping seasons, 
+                            ensuring 100% uptime and securing customer transactions.
+                        </p>
+                        
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <div class="result-value">100%</div>
+                                <div class="result-label">Uptime</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">0</div>
+                                <div class="result-label">Successful Attacks</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">$50M+</div>
+                                <div class="result-label">Transactions Secured</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">99.9%</div>
+                                <div class="result-label">PCI DSS Compliance</div>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold inline-flex items-center mt-4">
+                            Read Full Case Study <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Case Study 4 -->
+                <div class="case-study-card" data-industry="education" data-aos="fade-up">
+                    <div class="case-study-image" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <span class="case-study-tag tag-education">Education</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                 alt="Tech University" class="client-logo mr-3">
+                            <div>
+                                <h3 class="text-xl font-bold">Tech University</h3>
+                                <p class="text-gray-400 text-sm">Higher Education</p>
+                            </div>
+                        </div>
+                        
+                        <h4 class="text-lg font-bold mb-3">Campus-wide Cybersecurity Implementation</h4>
+                        <p class="text-gray-300 mb-6">
+                            Secured research data, student information, and campus networks across 
+                            5 campuses with centralized security management and threat detection.
+                        </p>
+                        
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <div class="result-value">5</div>
+                                <div class="result-label">Campuses Secured</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">50K+</div>
+                                <div class="result-label">Users Protected</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">95%</div>
+                                <div class="result-label">Threat Reduction</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">24/7</div>
+                                <div class="result-label">Monitoring</div>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold inline-flex items-center mt-4">
+                            Read Full Case Study <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Case Study 5 -->
+                <div class="case-study-card" data-industry="technology" data-aos="fade-up" data-aos-delay="100">
+                    <div class="case-study-image" style="background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <span class="case-study-tag" style="background: rgba(255,42,109,0.2); color: #ff2a6d;">Technology</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                 alt="CloudTech Solutions" class="client-logo mr-3">
+                            <div>
+                                <h3 class="text-xl font-bold">CloudTech Solutions</h3>
+                                <p class="text-gray-400 text-sm">SaaS Provider</p>
+                            </div>
+                        </div>
+                        
+                        <h4 class="text-lg font-bold mb-3">Multi-Cloud Security for SaaS Platform</h4>
+                        <p class="text-gray-300 mb-6">
+                            Implemented comprehensive cloud security across AWS, Azure, and GCP 
+                            for a SaaS platform serving 10,000+ businesses worldwide.
+                        </p>
+                        
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <div class="result-value">3</div>
+                                <div class="result-label">Cloud Platforms</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">10K+</div>
+                                <div class="result-label">Businesses</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">99.95%</div>
+                                <div class="result-label">SLA Achievement</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">SOC 2</div>
+                                <div class="result-label">Certification</div>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold inline-flex items-center mt-4">
+                            Read Full Case Study <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Case Study 6 -->
+                <div class="case-study-card" data-industry="financial" data-aos="fade-up" data-aos-delay="200">
+                    <div class="case-study-image" style="background-image: url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <span class="case-study-tag tag-financial">FinTech</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                 alt="PaySecure" class="client-logo mr-3">
+                            <div>
+                                <h3 class="text-xl font-bold">PaySecure FinTech</h3>
+                                <p class="text-gray-400 text-sm">Payment Processing</p>
+                            </div>
+                        </div>
+                        
+                        <h4 class="text-lg font-bold mb-3">Real-time Fraud Detection System</h4>
+                        <p class="text-gray-300 mb-6">
+                            Developed and deployed AI-powered fraud detection that processes 
+                            1M+ transactions daily with 99.9% accuracy in real-time.
+                        </p>
+                        
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <div class="result-value">1M+</div>
+                                <div class="result-label">Daily Transactions</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">99.9%</div>
+                                <div class="result-label">Accuracy</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">50ms</div>
+                                <div class="result-label">Detection Time</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-value">$5M</div>
+                                <div class="result-label">Fraud Prevention</div>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold inline-flex items-center mt-4">
+                            Read Full Case Study <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More -->
+            <div class="text-center mt-12">
+                <button class="cyber-button px-8 py-3">
+                    Load More Case Studies
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 px-4 md:px-6" style="background: linear-gradient(135deg, #0a0e17, #0d1f3a);">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">What Our Clients Say</h2>
+            <p class="text-xl text-gray-400 text-center mb-12 max-w-3xl mx-auto">
+                Hear from organizations that have transformed their security with CyberShield Pro.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card" data-aos="fade-up">
+                    <div class="flex items-center mb-6">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                             alt="Client" class="client-avatar mr-4">
+                        <div>
+                            <h4 class="font-bold">Michael Rodriguez</h4>
+                            <p class="text-gray-400 text-sm">CTO, BankSecure Financial</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic mb-4">
+                        "CyberShield Pro's threat detection system prevented a major security breach 
+                        that could have cost us millions. Their team's expertise and 24/7 monitoring 
+                        give us complete peace of mind."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-6">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b786d4d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                             alt="Client" class="client-avatar mr-4">
+                        <div>
+                            <h4 class="font-bold">Sarah Chen</h4>
+                            <p class="text-gray-400 text-sm">Security Director, MediCare Plus</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic mb-4">
+                        "Achieving HIPAA compliance while improving system performance seemed impossible 
+                        until we partnered with CyberShield Pro. Their tailored solutions and expert guidance 
+                        were invaluable."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-6">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                             alt="Client" class="client-avatar mr-4">
+                        <div>
+                            <h4 class="font-bold">James Wilson</h4>
+                            <p class="text-gray-400 text-sm">CEO, ShopSecure Global</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic mb-4">
+                        "During peak shopping season, our platform faced multiple DDoS attacks. 
+                        CyberShield Pro's protection ensured 100% uptime and secured millions in 
+                        transactions. Their team is truly exceptional."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                        <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 md:px-6">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Write Your Success Story?</h2>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+                Join hundreds of organizations that have strengthened their security with CyberShield Pro.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="contact.html" class="cyber-button px-8 py-3 text-lg">Get Started Today</a>
+                <a href="services.html" class="security-button px-8 py-3 text-lg">View Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 md:px-6 bg-gray-950">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-cyan-300">CyberShield Pro</h3>
+                    <p class="text-gray-400">Proven security solutions for modern organizations.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-cyan-300">Case Studies</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400">Financial Services</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400">Healthcare</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400">E-commerce</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-cyan-400">Education</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-cyan-300">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="blog.html" class="text-gray-400 hover:text-cyan-400">Blog</a></li>
+                        <li><a href="resources.html" class="text-gray-400 hover:text-cyan-400">Whitepapers</a></li>
+                        <li><a href="compliance.html" class="text-gray-400 hover:text-cyan-400">Compliance Guides</a></li>
+                        <li><a href="team.html" class="text-gray-400 hover:text-cyan-400">Meet Our Team</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-cyan-300">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-cyan-400"><i data-feather="twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400"><i data-feather="linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400"><i data-feather="github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
+                <p>&copy; 2024 CyberShield Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+        feather.replace();
+        AOS.init();
+
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const caseStudies = document.querySelectorAll('.case-study-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter');
+                
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter case studies
+                caseStudies.forEach(study => {
+                    if (filter === 'all' || study.getAttribute('data-industry') === filter) {
+                        study.style.display = 'block';
+                    } else {
+                        study.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
