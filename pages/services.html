@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Security Services | CyberShield Pro</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAD/AAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAAAAAEREREQAAERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERE" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/pages.css">
+    <style>
+        .services-hero {
+            background: linear-gradient(rgba(10, 14, 23, 0.9), rgba(10, 14, 23, 0.9)),
+                        url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .service-card {
+            background: rgba(26, 29, 41, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: #00f3ff;
+            box-shadow: 0 15px 30px rgba(0, 243, 255, 0.2);
+        }
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .process-step {
+            position: relative;
+            padding-left: 40px;
+        }
+        .process-step::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+        .step-1::before { content: '1'; background: #00f3ff; }
+        .step-2::before { content: '2'; background: #b967ff; }
+        .step-3::before { content: '3'; background: #00ff95; }
+        .step-4::before { content: '4'; background: #ff2a6d; }
+        .pricing-card {
+            background: rgba(26, 29, 41, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .pricing-card.featured {
+            border: 2px solid #00f3ff;
+            transform: scale(1.05);
+        }
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .feature-list li::before {
+            content: '✓';
+            color: #00ff95;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Navigation -->
+    <nav class="simplified-header fixed top-0 w-full z-50 py-4 px-4 md:px-6 flex justify-between items-center">
+        <div class="flex items-center">
+            <a href="../index.html" class="logo text-lg md:text-xl font-bold">CyberShield Pro</a>
+        </div>
+        <div class="hidden md:flex space-x-6 lg:space-x-8">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="services.html" class="nav-link active">Services</a>
+            <a href="pricing.html" class="nav-link">Pricing</a>
+            <a href="case-studies.html" class="nav-link">Case Studies</a>
+            <a href="team.html" class="nav-link">Team</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div class="flex items-center space-x-4">
+            <a href="../index.html#auth-modal" class="cyber-button text-sm py-2 px-4">Login</a>
+            <button id="mobile-menu-toggle" class="md:hidden text-white p-2">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="services-hero pt-32 pb-20 px-4 md:px-6">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                Enterprise <span class="text-cyan-400">Security Services</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10">
+                Comprehensive cybersecurity solutions tailored to protect your organization from evolving threats.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="contact.html" class="cyber-button px-8 py-3 text-lg">Get Security Assessment</a>
+                <a href="pricing.html" class="security-button px-8 py-3 text-lg">View Pricing</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="py-20 px-4 md:px-6">
+        <div class="
