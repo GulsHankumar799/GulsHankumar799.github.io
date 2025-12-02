@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cybersecurity Blog | CyberShield Pro</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAD/AAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAAAAAEREREQAAERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERE" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/pages.css">
+    <style>
+        /* Blog specific styles */
+        .blog-gradient {
+            background: linear-gradient(135deg, #0a0e17, #1a1d29, #1a1a2e);
+        }
+        .blog-card {
+            transition: all 0.3s ease;
+            background: rgba(26, 29, 41, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 243, 255, 0.2);
+        }
+        .blog-category {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .category-threats { background: rgba(255, 42, 109, 0.2); color: #ff2a6d; }
+        .category-tools { background: rgba(0, 243, 255, 0.2); color: #00f3ff; }
+        .category-guides { background: rgba(0, 255, 149, 0.2); color: #00ff95; }
+        .category-news { background: rgba(185, 103, 255, 0.2); color: #b967ff; }
+        .read-time {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .pagination-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .pagination-btn:hover:not(.disabled) {
+            background: rgba(0, 243, 255, 0.2);
+            border-color: #00f3ff;
+        }
+        .pagination-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .search-box {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 10px 15px;
+        }
+        .search-box:focus-within {
+            border-color: #00f3ff;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+        }
+        .sidebar-card {
+            background: rgba(26, 29, 41, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .tag:hover {
+            background: rgba(0, 243, 255, 0.2);
+            color: #00f3ff;
+        }
+    </style>
+</head>
+<body class="blog-gradient text-white">
+    <!-- Navigation (Same as index.html) -->
+    <nav class="simplified-header fixed top-0 w-full z-50 py-4 px-4 md:px-6 flex justify-between items-center">
+        <div class="flex items-center">
+            <a href="../index.html" class="logo text-lg md:text-xl font-bold">CyberShield Pro</a>
+        </div>
+        <div class="hidden md:flex space-x-6 lg:space-x-8">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="blog.html" class="nav-link active">Blog</a>
+            <a href="resources.html" class="nav-link">Resources</a>
+            <a href="team.html" class="nav-link">Team</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div class="flex items-center space-x-4">
+            <a href="../index.html#auth-modal" class="cyber-button text-sm py-2 px-4">Login</a>
+            <button id="mobile-menu-toggle" class="md:hidden text-white p-2">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Blog Header -->
+    <section class="pt-32 pb-20 px-4 md:px-6">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 neon-text" style="color: #00f3ff;">
+                Cybersecurity Blog
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10">
+                Expert insights, threat analysis, security guides, and industry updates from our security team.
+            </p>
+            
+            <!-- Search Bar -->
+            <div class="max-w-2xl mx-auto mb-12">
+                <div class="search-box flex items-center">
+                    <i data-feather="search" class="text-gray-400 mr-3"></i>
+                    <input type="text" placeholder="Search articles, guides, or topics..." 
+                           class="bg-transparent border-none outline-none w-full text-white">
+                    <button class="cyber-button ml-3 px-4 py-2">Search</button>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <button class="blog-category category-threats active">All Topics</button>
+                <button class="blog-category category-threats">Threat Intelligence</button>
+                <button class="blog-category category-tools">Security Tools</button>
+                <button class="blog-category category-guides">How-to Guides</button>
+                <button class="blog-category category-news">Industry News</button>
+                <button class="blog-category" style="background: rgba(255,204,0,0.2); color: #ffcc00;">Compliance</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <section class="pb-20 px-4 md:px-6">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Main Content -->
+                <div class="lg:col-span-2">
+                    <!-- Featured Post -->
+                    <div class="blog-card mb-12" data-aos="fade-up">
+                        <div class="relative h-64 md:h-80 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                                 alt="Featured Post" class="w-full h-full object-cover">
+                            <div class="absolute top-4 left-4">
+                                <span class="blog-category category-threats">Featured</span>
+                            </div>
+                        </div>
+                        <div class="p-6 md:p-8">
+                            <div class="flex items-center mb-4">
+                                <img src="https://ui-avatars.com/api/?name=Gulshan+Kumar&background=0D8ABC&color=fff" 
+                                     alt="Author" class="author-avatar mr-3">
+                                <div>
+                                    <p class="font-semibold">Gulshan Kumar</p>
+                                    <p class="text-gray-400 text-sm">CEO & Security Expert • 2 days ago • 8 min read</p>
+                                </div>
+                            </div>
+                            <h2 class="text-2xl md:text-3xl font-bold mb-4">
+                                <a href="blog-post.html" class="hover:text-cyan-400 transition-colors">
+                                    Zero-Day Vulnerabilities in 2024: Complete Protection Guide
+                                </a>
+                            </h2>
+                            <p class="text-gray-300 mb-6">
+                                Discover the most critical zero-day vulnerabilities discovered this year and learn 
+                                how to protect your organization with our comprehensive defense strategies.
+                            </p>
+                            <div class="flex justify-between items-center">
+                                <a href="blog-post.html" class="cyber-button inline-flex items-center">
+                                    Read Article <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                                </a>
+                                <span class="text-gray-400 text-sm">
+                                    <i data-feather="eye" class="w-4 h-4 inline mr-1"></i> 2.4K views
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blog Posts Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Post 1 -->
+                        <div class="blog-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="h-48 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                     alt="Phishing Attacks" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-6">
+                                <div class="flex justify-between items-center mb-3">
+                                    <span class="blog-category category-threats">Threat Intelligence</span>
+                                    <span class="read-time">5 min read</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">
+                                    <a href="blog-post.html" class="hover:text-cyan-400 transition-colors">
+                                        Advanced Phishing Detection Techniques 2024
+                                    </a>
+                                </h3>
+                                <p class="text-gray-300 mb-4">
+                                    Learn how to identify and prevent sophisticated phishing attacks with our latest detection methodologies.
+                                </p>
+                                <div class="flex items-center">
+                                    <img src="https://ui-avatars.com/api/?name=Security+Analyst&background=00ff95&color=000" 
+                                         alt="Author" class="author-avatar mr-3">
+                                    <div>
+                                        <p class="text-sm font-semibold">Sarah Chen</p>
+                                        <p class="text-gray-400 text-xs">Security Analyst</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Post 2 -->
+                        <div class="blog-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="h-48 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                     alt="Cloud Security" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-6">
+                                <div class="flex justify-between items-center mb-3">
+                                    <span class="blog-category category-guides">How-to Guide</span>
+                                    <span class="read-time">12 min read</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">
+                                    <a href="blog-post.html" class="hover:text-cyan-400 transition-colors">
+                                        AWS Security Best Practices for Enterprises
+                                    </a>
+                                </h3>
+                                <p class="text-gray-300 mb-4">
+                                    Complete guide to securing your AWS infrastructure with industry best practices and compliance standards.
+                                </p>
+                                <div class="flex items-center">
+                                    <img src="https://ui-avatars.com/api/?name=Cloud+Architect&background=b967ff&color=fff" 
+                                         alt="Author" class="author-avatar mr-3">
+                                    <div>
+                                        <p class="text-sm font-semibold">Michael Rodriguez</p>
+                                        <p class="text-gray-400 text-xs">Cloud Architect</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Post 3 -->
+                        <div class="blog-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="h-48 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                     alt="GDPR Compliance" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-6">
+                                <div class="flex justify-between items-center mb-3">
+                                    <span class="blog-category category-news">Compliance</span>
+                                    <span class="read-time">7 min read</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">
+                                    <a href="blog-post.html" class="hover:text-cyan-400 transition-colors">
+                                        GDPR 2024 Updates: What You Need to Know
+                                    </a>
+                                </h3>
+                                <p class="text-gray-300 mb-4">
+                                    Stay compliant with the latest GDPR regulations and avoid costly fines with our compliance checklist.
+                                </p>
+                                <div class="flex items-center">
+                                    <img src="https://ui-avatars.com/api/?name=Compliance+Officer&background=ff2a6d&color=fff" 
+                                         alt="Author" class="author-avatar mr-3">
+                                    <div>
+                                        <p class="text-sm font-semibold">James Wilson</p>
+                                        <p class="text-gray-400 text-xs">Compliance Officer</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Post 4 -->
+                        <div class="blog-card" data-aos="fade-up" data-aos-delay="400">
+                            <div class="h-48 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                     alt="Password Security" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-6">
+                                <div class="flex justify-between items-center mb-3">
+                                    <span class="blog-category category-tools">Security Tools</span>
+                                    <span class="read-time">4 min read</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">
+                                    <a href="blog-post.html" class="hover:text-cyan-400 transition-colors">
+                                        Password Managers Comparison 2024
+                                    </a>
+                                </h3>
+                                <p class="text-gray-300 mb-4">
+                                    Detailed analysis of top password managers with security features, pricing, and recommendations.
+                                </p>
+                                <div class="flex items-center">
+                                    <img src="https://ui-avatars.com/api/?name=Tool+Expert&background=ffcc00&color=000" 
+                                         alt="Author" class="author-avatar mr-3">
+                                    <div>
+                                        <p class="text-sm font-semibold">Alex Turner</p>
+                                        <p class="text-gray-400 text-xs">Tools Specialist</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="flex justify-center items-center space-x-4 mt-12">
+                        <button class="pagination-btn disabled">
+                            <i data-feather="chevron-left" class="w-4 h-4"></i>
+                        </button>
+                        <button class="pagination-btn bg-cyan-900 text-cyan-300 border-cyan-500">1</button>
+                        <button class="pagination-btn">2</button>
+                        <button class="pagination-btn">3</button>
+                        <span class="text-gray-400">...</span>
+                        <button class="pagination-btn">8</button>
+                        <button class="pagination-btn">
+                            <i data-feather="chevron-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="lg:col-span-1">
+                    <!-- Newsletter -->
+                    <div class="sidebar-card" data-aos="fade-left">
+                        <h3 class="text-xl font-bold mb-4 text-cyan-300">Subscribe to Newsletter</h3>
+                        <p class="text-gray-300 mb-4">Get weekly security updates and exclusive content.</p>
+                        <div class="space-y-3">
+                            <input type="email" placeholder="Your email address" 
+                                   class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white">
+                            <button class="cyber-button w-full">Subscribe</button>
+                        </div>
+                    </div>
+
+                    <!-- Popular Posts -->
+                    <div class="sidebar-card" data-aos="fade-left" data-aos-delay="100">
+                        <h3 class="text-xl font-bold mb-4 text-cyan-300">Popular Posts</h3>
+                        <div class="space-y-4">
+                            <a href="#" class="flex items-center hover:text-cyan-400 transition-colors">
+                                <div class="w-16 h-16 rounded-lg overflow-hidden mr-3 flex-shrink-0">
+                                    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                         alt="Post" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-sm">Ransomware Protection</p>
+                                    <p class="text-gray-400 text-xs">2.1K views • 5 min read</p>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-center hover:text-cyan-400 transition-colors">
+                                <div class="w-16 h-16 rounded-lg overflow-hidden mr-3 flex-shrink-0">
+                                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                         alt="Post" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-sm">Cloud Security Tips</p>
+                                    <p class="text-gray-400 text-xs">1.8K views • 8 min read</p>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-center hover:text-cyan-400 transition-colors">
+                                <div class="w-16 h-16 rounded-lg overflow-hidden mr-3 flex-shrink-0">
+                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                         alt="Post" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-sm">GDPR Compliance</p>
+                                    <p class="text-gray-400 text-xs">1.5K views • 6 min read</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="sidebar-card" data-aos="fade-left" data-aos-delay="200">
+                        <h3 class="text-xl font-bold mb-4 text-cyan-300">Popular Tags</h3>
+                        <div class="flex flex-wrap">
+                            <a href="#" class="tag">#Cybersecurity</a>
+                            <a href="#" class="tag">#ThreatIntelligence</a>
+                            <a href="#" class="tag">#CloudSecurity</a>
+                            <a href="#" class="tag">#GDPR</a>
+                            <a href="#" class="tag">#ZeroDay</a>
+                            <a href="#" class="tag">#Phishing</a>
+                            <a href="#" class="tag">#Ransomware</a>
+                            <a href="#" class="tag">#Compliance</a>
+                            <a href="#" class="tag">#NetworkSecurity</a>
+                            <a href="#" class="tag">#IncidentResponse</a>
+                        </div>
+                    </div>
+
+                    <!-- About Blog -->
+                    <div class="sidebar-card" data-aos="fade-left" data-aos-delay="300">
+                        <h3 class="text-xl font-bold mb-4 text-cyan-300">About This Blog</h3>
+                        <p class="text-gray-300 mb-4">
+                            Our cybersecurity blog features expert analysis, threat intelligence, security guides, 
+                            and industry updates written by our team of security professionals.
+                        </p>
+                        <a href="team.html" class="text-cyan-400 hover:text-cyan-300 text-sm font-semibold">
+                            Meet Our Security Team →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 px-4 md:px-6" style="background: linear-gradient(135deg, #0a0e17, #0d1f3a);">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Stay Protected with Our Security Updates</h2>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+                Subscribe to get weekly threat intelligence reports, security tips, and exclusive content.
+            </p>
+            <div class="max-w-md mx-auto">
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <input type="email" placeholder="Enter your work email" 
+                           class="flex-grow bg-gray-900 border border-gray-700 rounded-lg px-6 py-3 text-white">
+                    <button class="cyber-button px-8 py-3">Subscribe Now</button>
+                </div>
+                <p class="text-gray-400 text-sm mt-4">No spam. Unsubscribe anytime.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Same as index.html) -->
+    <footer class="py-12 px-4 md:px-6" style="background: #0a0e17;">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-cyan-300">CyberShield Pro</h3>
+                    <p class="text-gray-400">Advanced cybersecurity solutions for modern organizations.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-cyan-300">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="../index.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Home</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Services</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Blog</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-cyan-300">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="resources.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Whitepapers</a></li>
+                        <li><a href="case-studies.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Case Studies</a></li>
+                        <li><a href="compliance.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Compliance</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-cyan-300">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-cyan-400"><i data-feather="twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400"><i data-feather="linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400"><i data-feather="github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
+                <p>&copy; 2024 CyberShield Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="../assets/js/pages.js"></script>
+    <script>
+        // Initialize
+        feather.replace();
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
+            alert('Mobile menu would open here');
+        });
+    </script>
+</body>
+</html>
