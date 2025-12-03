@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | CyberShield Pro</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/pages.css">
+    
+    <style>
+        .settings-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+            min-height: calc(100vh - 200px);
+        }
+        
+        .settings-sidebar {
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            padding-right: 2rem;
+        }
+        
+        .settings-nav {
+            position: sticky;
+            top: 100px;
+        }
+        
+        .settings-nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .settings-nav-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+        }
+        
+        .settings-nav-item.active {
+            background: rgba(0, 243, 255, 0.1);
+            color: var(--neon-blue);
+            border-left: 3px solid var(--neon-blue);
+        }
+        
+        .settings-nav-item i {
+            width: 18px;
+            height: 18px;
+            margin-right: 0.75rem;
+        }
+        
+        .settings-content {
+            padding: 1rem 0;
+        }
+        
+        .settings-section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .settings-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .setting-card {
+            background: rgba(26, 29, 41, 0.7);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: var(--cyber-green);
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+        
+        .color-scheme-option {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            margin-right: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .color-scheme-option.active {
+            border-color: var(--neon-blue);
+            transform: scale(1.1);
+        }
+        
+        .backup-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .backup-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .integration-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .danger-zone {
+            border: 2px solid var(--alert-red);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .danger-button {
+            background: rgba(255, 42, 109, 0.2);
+            border: 1px solid var(--alert-red);
+            color: var(--alert-red);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .danger-button:hover {
+            background: rgba(255, 42, 109, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .settings-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .settings-sidebar {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding-right: 0;
+                padding-bottom: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .settings-nav {
+                display: flex;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+            
+            .settings-nav-item {
+                white-space: nowrap;
+                margin-right: 1rem;
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body class="cyber-gradient">
+    <!-- Navigation will be loaded by main.js -->
+    
+    <div class="container mx-auto px-4 py-6 pt-24">
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-cyber">Settings</h1>
+                <p class="text-gray-400">Manage your account preferences and security settings</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="text-sm text-gray-400">Last saved: <span id="last-saved">Just now</span></span>
+                <button id="save-settings" class="cyber-button">
+                    <i data-feather="save" class="w-4 h-4 mr-2"></i>
+                    Save Changes
+                </button>
+            </div>
+        </div>
+        
+        <div class="settings-container" data-aos="fade-up">
+            <!-- Sidebar -->
+            <div class="settings-sidebar">
+                <div class="settings-nav">
+                    <a href="#profile" class="settings-nav-item active">
+                        <i data-feather="user"></i>
+                        Profile
+                    </a>
+                    <a href="#security" class="settings-nav-item">
+                        <i data-feather="shield"></i>
+                        Security
+                    </a>
+                    <a href="#notifications" class="settings-nav-item">
+                        <i data-feather="bell"></i>
+                        Notifications
+                    </a>
+                    <a href="#appearance" class="settings-nav-item">
+                        <i data-feather="eye"></i>
+                        Appearance
+                    </a>
+                    <a href="#integrations" class="settings-nav-item">
+                        <i data-feather="grid"></i>
+                        Integrations
+                    </a>
+                    <a href="#backup" class="settings-nav-item">
+                        <i data-feather="hard-drive"></i>
+                        Backup & Restore
+                    </a>
+                    <a href="#api" class="settings-nav-item">
+                        <i data-feather="code"></i>
+                        API
+                    </a>
+                    <a href="#billing" class="settings-nav-item">
+                        <i data-feather="credit-card"></i>
+                        Billing
+                    </a>
+                    <a href="#danger" class="settings-nav-item text-alert">
+                        <i data-feather="alert-triangle"></i>
+                        Danger Zone
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="settings-content">
+                <!-- Profile Section -->
+                <div id="profile-section" class="settings-section active">
+                    <h2 class="text-2xl font-bold text-cyber mb-6">Profile Settings</h2>
+                    
+                    <!-- Personal Information -->
+                    <div class="setting-card">
+                        <h3 class="text-xl font-bold text-cyber mb-4">Personal Information</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-gray-300 mb-2">First Name</label>
+                                <input type="text" id="settings-firstname" 
+                                       class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white"
+                                       value="John">
+                            </div>
+                            <div>
+                                <label class="block text-gray-300 mb-2">Last Name</label>
+                                <input type="text" id="settings-lastname"
+                                       class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white"
+                                       value="Doe">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-gray-300 mb-2">Email Address</label>
+                                <input type="email" id="settings-email"
+                                       class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white"
+                                       value="john.doe@example.com">
+                            </div>
+                            <div>
+                                <label class="block text-gray-300 mb-2">Phone Number</label>
+                                <input type="tel" id="settings-phone"
+                                       class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white"
+                                       value="+1 (555) 123-4567">
+                            </div>
+                            <div>
+                                <label class="block text-gray-300 mb-2">Job Title</label>
+                                <input type="text" id="settings-jobtitle"
+                                       class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white"
+                                       value="Security Analyst">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-gray-300 mb-2">Company</label>
+                                <input type="text" id="settings-company"
+                                       class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white"
+                                       value="Tech Security Inc.">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bio & Preferences -->
+                    <div class="setting-card">
+                        <h3 class="text-xl font-bold text-cyber mb-4">Bio & Preferences</h3>
+                        
+                        <div class="mb-4">
+                            <label class="block text-gray-300 mb-2">Bio</label>
+                            <textarea id="settings-bio" rows="3"
+                                      class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white"
+                                      placeholder="Tell us about yourself">Cybersecurity enthusiast with 5+ years of experience in threat analysis and network security.</textarea>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-gray-300 mb-2">Time Zone</label>
+                            <select id="settings-timezone"
+                                    class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white">
+                                <option value="UTC-5">Eastern Time (ET)</option>
+                                <option value="UTC-6">Central Time (CT)</option>
+                                <option value="UTC-7">Mountain Time (MT)</option>
+                                <option value="UTC-8" selected>Pacific Time (PT)</option>
+                                <option value="UTC+0">Greenwich Mean Time (GMT)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-gray-300 mb-2">Language</label>
+                            <select id="settings-language"
+                                    class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white">
+                                <option value="en" selected>English</option>
+                                <option value="es">Español</option>
+                                <option value="fr">Français</option>
+                                <option value="de">Deutsch</option>
+                                <option value="ja">日本語</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Security Section -->
+                <div id="security-section" class="settings-section">
+                    <h2 class="text-2xl font-bold text-cyber mb-6">Security Settings</h2>
+                    
+                    <!-- Password -->
+                    <div class="setting-card">
+                        <h3 class="text-xl font-bold text-cyber mb-4">Password</h3>
+                        <p class="text-gray-400 mb-4">Last changed: <span id="password-change-date">15 days ago</span></p>
+                        
+                        <button onclick="showPasswordModal()" class="cyber-button">
+                            <i data-feather="lock" class="w-4 h-4 mr-2"></i>
+                            Change Password
+                        </button>
+                    </div>
+                    
+                    <!-- Two-Factor Authentication -->
+                    <div class="setting-card">
+                        <h3 class="text-xl font-bold text-cyber mb-4">Two-Factor Authentication</h3>
+                        <p class="text-gray-400 mb-4">Add an extra layer of security to your account</p>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <h4 class="font-bold text-white">Authenticator App</h4>
+                                <p class="text-gray-400 text-sm">Use an app like Google Authenticator or Authy</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="2fa-toggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        
+                        <div id="2fa-setup" class="hidden mt-4 p-4 bg-gray-800 rounded-lg">
+                            <p class="text-gray-300 mb-3">Scan this QR code with your authenticator app:</p>
+                            <div class="w-32 h-32 bg-white p-2 rounded-lg mx-auto mb-3">
+                                <!-- QR Code would go here -->
+                                <div class="w-full h-full bg-gray-300 flex items-center justify-center">
+                                    <span class="text-gray-700 text-sm">QR Code</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-400 text-sm text-center mb-3">Or enter this code manually: <code class="bg-gray-900 px-2 py-1 rounded">JBSWY3DPEHPK3PXP</code></p>
+                            <div class="mb-3">
+                                <label class="block text-gray-300 mb-2">Enter verification code</label>
+                                <input type="text" id="2fa-code" 
+                                       class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-center tracking-widest"
+                                       placeholder="000000"
+                                       maxlength="6">
+                            </div>
+                            <button id="verify-2fa" class="security-button w-full">
+                                Verify and Enable
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Security Questions -->
+                    <div class="setting-card">
+                        <h3 class="text-xl font-bold text-cyber mb-4">Security Questions</h3>
+                        <p class="text-gray-400 mb-4">Set up security questions for account recovery</p>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-gray-300 mb-2">Question 1</label>
+                                <select class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white">
+                                    <option>What was your first pet's name?</option>
+                                    <option>What city were you born in?</option>
+                                    <option>What is your mother's maiden name?</option>
+                                </select>
+                                <input type="text" class="w-full mt-2 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white" placeholder="Answer">
+                            </div>
+                            <div>
+                                <label class="block text-gray-300 mb-2">Question 2</label>
+                                <select class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white">
+                                    <option>What was your first car?</option>
+                                    <option>What is your favorite book?</option>
+                                    <option>What is your childhood nickname?</option>
+                                </select>
+                                <input type="text" class="w-full mt-2 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white" placeholder="Answer">
+                            </div>
+                        </div>
+                        
+                        <button class="cyber-button mt-4">
+                            <i data-feather="save" class="w-4 h-4 mr-2"></i>
+                            Save Questions
+                        </button>
+                    </div>
+                    
+                    <!-- Active Sessions -->
+                    <div class="setting-card">
+                        <h3 class="text-xl font-bold text-cyber mb-4">Active Sessions</h3>
+                        <p class="text-gray-400 mb-4">Manage your active login sessions</p>
+                        
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center p-3 bg-gray-800 rounded-lg">
+                                <div>
+                                    <p class="text-white">Chrome on Windows</p>
+                                    <p class="text-gray-400 text-sm">New York, USA • Current</p>
+                                </div>
+                                <span class="text-green-500 text-sm">Active</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-gray-800 rounded-lg">
+                                <div>
+                                    <p class="text-white">Safari on iPhone</p>
+                                    <p class="text-gray-400 text-sm">San Francisco, USA • 2 hours ago</p>
+                                </div>
+                                <button class="text-alert hover:text-red-300">
+                                    <i data-feather="x" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <button class="security-button w-full mt-4">
+                            <i data-feather="log-out" class="w-4 h-4 mr-2"></i>
+                            Terminate All Other Sessions
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Continue with remaining sections in next message -->
+                <div id="notifications-section" class="settings-section">
+                    <h2 class="text-2xl font-bold text-cyber mb-6">Notification Settings</h2>
+                    
+                    <div class="setting-card">
+                        <h3 class="text-xl font-bold text-cyber mb-4">Email Notifications</h3>
+                        
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-bold text-white">Security Alerts</h4>
+                                    <p class="text-gray-400 text-sm">Critical security events and threats</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-bold text-white">System Updates</h4>
+                                    <p class="text-gray-400 text-sm">Platform updates and maintenance</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-bold text-white">Weekly Reports</h4>
+                                    <p class="text-gray-400 text-sm">Weekly security summary and analytics</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Continue with Push, Slack, SMS notifications -->
+                </div>
+                
+                <!-- Danger Zone -->
+                <div id="danger-section" class="settings-section">
+                    <div class="danger-zone">
+                        <h3 class="text-2xl font-bold text-alert mb-4">Danger Zone</h3>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-bold text-white mb-2">Delete Account</h4>
+                                <p class="text-gray-400 mb-3">Permanently delete your account and all associated data. This action cannot be undone.</p>
+                                <button onclick="showDeleteAccountModal()" class="danger-button">
+                                    <i data-feather="trash-2" class="w-4 h-4 mr-2"></i>
+                                    Delete Account
+                                </button>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold text-white mb-2">Export Data</h4>
+                                <p class="text-gray-400 mb-3">Download all your personal data in JSON format.</p>
+                                <button onclick="exportUserData()" class="cyber-button">
+                                    <i data-feather="download" class="w-4 h-4 mr-2"></i>
+                                    Export Data
+                                </button>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold text-white mb-2">Reset All Settings</h4>
+                                <p class="text-gray-400 mb-3">Reset all your settings to their default values.</p>
+                                <button onclick="resetSettings()" class="cyber-button">
+                                    <i data-feather="refresh-cw" class="w-4 h-4 mr-2"></i>
+                                    Reset Settings
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Password Change Modal -->
+    <div id="password-modal" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 500px;">
+            <button class="modal-close" onclick="hidePasswordModal()">&times;</button>
+            <h3 class="text-xl font-bold text-cyber mb-4">Change Password</h3>
+            
+            <form id="password-change-form">
+                <div class="form-group">
+                    <label class="block text-gray-300 mb-2">Current Password</label>
+                    <input type="password" id="current-password" required
+                           class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white">
+                </div>
+                
+                <div class="form-group mt-4">
+                    <label class="block text-gray-300 mb-2">New Password</label>
+                    <input type="password" id="new-password" required
+                           class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white">
+                    <div class="password-strength mt-2" style="height: 4px; background: rgba(255,255,255,0.1);">
+                        <div id="new-password-strength" style="height: 100%; transition: width 0.3s;"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group mt-4">
+                    <label class="block text-gray-300 mb-2">Confirm New Password</label>
+                    <input type="password" id="confirm-new-password" required
+                           class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white">
+                    <div id="password-match" class="text-sm mt-1"></div>
+                </div>
+                
+                <div class="flex justify-end space-x-3 mt-6">
+                    <button type="button" onclick="hidePasswordModal()" class="px-4 py-2 text-gray-300 hover:text-white">
+                        Cancel
+                    </button>
+                    <button type="submit" class="cyber-button">
+                        Change Password
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+            AOS.init();
+            
+            // Check authentication
+            if (!window.authManager || !window.authManager.isLoggedIn()) {
+                window.location.href = '../auth/login.html';
+                return;
+            }
+            
+            // Tab switching
+            document.querySelectorAll('.settings-nav-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    
+                    // Update active nav item
+                    document.querySelectorAll('.settings-nav-item').forEach(nav => {
+                        nav.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // Show corresponding section
+                    document.querySelectorAll('.settings-section').forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    document.getElementById(`${targetId}-section`).classList.add('active');
+                });
+            });
+            
+            // Handle URL hash
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1);
+                const targetNav = document.querySelector(`.settings-nav-item[href="#${targetId}"]`);
+                const targetSection = document.getElementById(`${targetId}-section`);
+                
+                if (targetNav && targetSection) {
+                    document.querySelectorAll('.settings-nav-item').forEach(nav => {
+                        nav.classList.remove('active');
+                    });
+                    document.querySelectorAll('.settings-section').forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    targetNav.classList.add('active');
+                    targetSection.classList.add('active');
+                }
+            }
+            
+            // 2FA toggle
+            document.getElementById('2fa-toggle').addEventListener('change', function() {
+                const setupDiv = document.getElementById('2fa-setup');
+                if (this.checked) {
+                    setupDiv.classList.remove('hidden');
+                } else {
+                    setupDiv.classList.add('hidden');
+                }
+            });
+            
+            // Save settings
+            document.getElementById('save-settings').addEventListener('click', saveSettings);
+            
+            // Auto-save indicator
+            let saveTimeout;
+            document.querySelectorAll('input, select, textarea').forEach(element => {
+                element.addEventListener('change', function() {
+                    clearTimeout(saveTimeout);
+                    saveTimeout = setTimeout(saveSettings, 2000);
+                });
+            });
+            
+            // Password strength checker
+            document.getElementById('new-password')?.addEventListener('input', function() {
+                const strength = window.authManager.getPasswordStrength(this.value);
+                const strengthBar = document.getElementById('new-password-strength');
+                const width = strength * 10; // 0-100%
+                
+                if (strength <= 3) {
+                    strengthBar.style.background = 'var(--alert-red)';
+                } else if (strength <= 6) {
+                    strengthBar.style.background = 'var(--warning-yellow)';
+                } else {
+                    strengthBar.style.background = 'var(--cyber-green)';
+                }
+                
+                strengthBar.style.width = `${width}%`;
+            });
+            
+            // Password match checker
+            const confirmPass = document.getElementById('confirm-new-password');
+            if (confirmPass) {
+                confirmPass.addEventListener('input', function() {
+                    const newPass = document.getElementById('new-password').value;
+                    const matchDiv = document.getElementById('password-match');
+                    
+                    if (!this.value) {
+                        matchDiv.textContent = '';
+                    } else if (newPass === this.value) {
+                        matchDiv.textContent = '✓ Passwords match';
+                        matchDiv.className = 'text-sm mt-1 text-green-500';
+                    } else {
+                        matchDiv.textContent = '✗ Passwords do not match';
+                        matchDiv.className = 'text-sm mt-1 text-red-500';
+                    }
+                });
+            }
+            
+            // Password change form
+            document.getElementById('password-change-form')?.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const currentPass = document.getElementById('current-password').value;
+                const newPass = document.getElementById('new-password').value;
+                const confirmPass = document.getElementById('confirm-new-password').value;
+                
+                if (newPass !== confirmPass) {
+                    alert('Passwords do not match!');
+                    return;
+                }
+                
+                const result = await window.authManager.changePassword(currentPass, newPass);
+                if (result.success) {
+                    alert('Password changed successfully!');
+                    hidePasswordModal();
+                    document.getElementById('password-change-form').reset();
+                } else {
+                    alert(result.message);
+                }
+            });
+        });
+        
+        function saveSettings() {
+            // Collect all settings
+            const settings = {
+                profile: {
+                    firstName: document.getElementById('settings-firstname')?.value,
+                    lastName: document.getElementById('settings-lastname')?.value,
+                    email: document.getElementById('settings-email')?.value,
+                    phone: document.getElementById('settings-phone')?.value,
+                    jobTitle: document.getElementById('settings-jobtitle')?.value,
+                    company: document.getElementById('settings-company')?.value,
+                    bio: document.getElementById('settings-bio')?.value,
+                    timezone: document.getElementById('settings-timezone')?.value,
+                    language: document.getElementById('settings-language')?.value
+                },
+                security: {
+                    twoFactorEnabled: document.getElementById('2fa-toggle')?.checked
+                },
+                notifications: {
+                    // Collect notification settings
+                }
+            };
+            
+            // Save to localStorage (in production, would save to backend)
+            localStorage.setItem('user_settings', JSON.stringify(settings));
+            
+            // Update last saved time
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            document.getElementById('last-saved').textContent = timeString;
+            
+            // Show success message
+            const notification = document.createElement('div');
+            notification.className = 'fixed bottom-4 right-4 bg-green-900 text-green-100 px-4 py-2 rounded-lg shadow-lg';
+            notification.textContent = 'Settings saved successfully!';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.remove(), 3000);
+        }
+        
+        function showPasswordModal() {
+            document.getElementById('password-modal').style.display = 'flex';
+        }
+        
+        function hidePasswordModal() {
+            document.getElementById('password-modal').style.display = 'none';
+            document.getElementById('password-change-form').reset();
+        }
+        
+        function showDeleteAccountModal() {
+            if (confirm('Are you sure you want to delete your account? This action cannot be undone. All your data will be permanently deleted.')) {
+                if (prompt('Type "DELETE" to confirm:') === 'DELETE') {
+                    // In production, call API to delete account
+                    window.authManager.logout();
+                    alert('Account deletion scheduled. You will be logged out.');
+                }
+            }
+        }
+        
+        function exportUserData() {
+            const userData = {
+                user: JSON.parse(localStorage.getItem('user') || '{}'),
+                settings: JSON.parse(localStorage.getItem('user_settings') || '{}'),
+                exportDate: new Date().toISOString()
+            };
+            
+            const dataStr = JSON.stringify(userData, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = `cybershield-data-${new Date().toISOString().split('T')[0]}.json`;
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+        }
+        
+        function resetSettings() {
+            if (confirm('Reset all settings to default values?')) {
+                localStorage.removeItem('user_settings');
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>
