@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | CyberShield Pro</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/pages.css">
+    
+    <style>
+        .profile-header {
+            background: linear-gradient(135deg, rgba(10, 14, 23, 0.9), rgba(26, 29, 41, 0.8));
+            border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--neon-blue);
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+        }
+        
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .avatar-upload {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: var(--deep-space);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 2px solid var(--neon-blue);
+        }
+        
+        .profile-tabs {
+            display: flex;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+        
+        .profile-tab {
+            padding: 1rem 1.5rem;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .profile-tab:hover {
+            color: white;
+        }
+        
+        .profile-tab.active {
+            color: var(--neon-blue);
+            border-bottom: 2px solid var(--neon-blue);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 255, 149, 0.1);
+            border: 1px solid rgba(0, 255, 149, 0.3);
+            border-radius: 20px;
+            color: var(--cyber-green);
+            font-size: 0.9rem;
+            margin: 0.5rem;
+        }
+        
+        .session-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .session-active {
+            border-left: 4px solid var(--cyber-green);
+        }
+        
+        .session-inactive {
+            border-left: 4px solid var(--alert-red);
+        }
+        
+        .activity-log {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .log-entry {
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        
+        .log-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .api-key {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: monospace;
+            margin-bottom: 1rem;
+            word-break: break-all;
+        }
+        
+        .permission-level {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .level-admin {
+            background: rgba(185, 103, 255, 0.2);
+            color: var(--neon-purple);
+        }
+        
+        .level-user {
+            background: rgba(0, 243, 255, 0.2);
+            color: var(--neon-blue);
+        }
+        
+        .level-viewer {
+            background: rgba(0, 255, 149, 0.2);
+            color: var(--cyber-green);
+        }
+    </style>
+</head>
+<body class="cyber-gradient">
+    <!-- Navigation will be loaded by main.js -->
+    
+    <!-- Profile Header -->
+    <div class="profile-header">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center md:items-end">
+                <div class="relative mb-4 md:mb-0 md:mr-8">
+                    <div class="profile-avatar" id="profile-avatar">
+                        <div class="flex items-center justify-center h-full text-white text-4xl font-bold" id="avatar-initials">
+                            <!-- Initials will be set by JS -->
+                        </div>
+                        <div class="avatar-upload" onclick="document.getElementById('avatar-input').click()">
+                            <i data-feather="camera" class="w-4 h-4"></i>
+                        </div>
+                        <input type="file" id="avatar-input" accept="image/*" class="hidden">
+                    </div>
+                </div>
+                
+                <div class="text-center md:text-left flex-1">
+                    <h1 class="text-3xl font-bold text-white mb-2" id="profile-name">Loading...</h1>
+                    <p class="text-gray-400 mb-4" id="profile-email">user@example.com</p>
+                    
+                    <div class="flex flex-wrap justify-center md:justify-start">
+                        <div class="security-badge">
+                            <i data-feather="shield" class="w-4 h-4 mr-2"></i>
+                            <span id="security-score">Security Score: 85%</span>
+                        </div>
+                        <div class="security-badge">
+                            <i data-feather="user-check" class="w-4 h-4 mr-2"></i>
+                            <span id="member-since">Member since 2024</span>
+                        </div>
+                        <div class="security-badge">
+                            <i data-feather="star" class="w-4 h-4 mr-2"></i>
+                            <span id="user-role">Security Analyst</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-4 md:mt-0">
+                    <button onclick="window.location.href='dashboard.html'" class="cyber-button mr-2">
+                        <i data-feather="grid" class="w-4 h-4 mr-2"></i>
+                        Dashboard
+                    </button>
+                    <button onclick="window.location.href='settings.html'" class="security-button">
+                        <i data-feather="settings" class="w-4 h-4 mr-2"></i>
+                        Settings
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container mx-auto px-4 py-6">
+        <!-- Profile Tabs -->
+        <div class="profile-tabs">
+            <button class="profile-tab active" data-tab="overview">Overview</button>
+            <button class="profile-tab" data-tab="activity">Activity</button>
+            <button class="profile-tab" data-tab="sessions">Sessions</button>
+            <button class="profile-tab" data-tab="security">Security</button>
+            <button class="profile-tab" data-tab="api">API Access</button>
+            <button class="profile-tab" data-tab="team">Team</button>
+        </div>
+        
+        <!-- Tab Contents -->
+        <div class="tab-content active" id="overview-tab" data-aos="fade-up">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Personal Info -->
+                <div class="lg:col-span-2">
+                    <div class="cyber-card p-6">
+                        <h3 class="text-xl font-bold text-cyber mb-4">Personal Information</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-gray-400 text-sm mb-1">First Name</label>
+                                <p class="text-white" id="info-firstname">Loading...</p>
+                            </div>
+                            <div>
+                                <label class="block text-gray-400 text-sm mb-1">Last Name</label>
+                                <p class="text-white" id="info-lastname">Loading...</p>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-gray-400 text-sm mb-1">Email Address</label>
+                                <p class="text-white" id="info-email">Loading...</p>
+                            </div>
+                            <div>
+                                <label class="block text-gray-400 text-sm mb-1">Phone Number</label>
+                                <p class="text-white" id="info-phone">Not set</p>
+                            </div>
+                            <div>
+                                <label class="block text-gray-400 text-sm mb-1">Company</label>
+                                <p class="text-white" id="info-company">Not set</p>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-gray-400 text-sm mb-1">Job Title</label>
+                                <p class="text-white" id="info-jobtitle">Not set</p>
+                            </div>
+                        </div>
+                        
+                        <button onclick="window.location.href='settings.html#personal'" class="cyber-button mt-6">
+                            <i data-feather="edit" class="w-4 h-4 mr-2"></i>
+                            Edit Profile
+                        </button>
+                    </div>
+                    
+                    <!-- Recent Projects -->
+                    <div class="cyber-card p-6 mt-6">
+                        <h3 class="text-xl font-bold text-cyber mb-4">Recent Projects</h3>
+                        <div id="recent-projects">
+                            <!-- Projects will be loaded by JS -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Security Status -->
+                <div>
+                    <div class="cyber-card p-6 mb-6">
+                        <h3 class="text-xl font-bold text-cyber mb-4">Security Status</h3>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm">Account Security</span>
+                                    <span class="text-sm text-security">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress bg-green-500" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm">Password Strength</span>
+                                    <span class="text-sm text-security">Strong</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress bg-green-500" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm">2FA Enabled</span>
+                                    <span class="text-sm text-alert">No</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress bg-red-500" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button onclick="window.location.href='settings.html#security'" class="security-button w-full mt-6">
+                            <i data-feather="shield" class="w-4 h-4 mr-2"></i>
+                            Improve Security
+                        </button>
+                    </div>
+                    
+                    <!-- Quick Stats -->
+                    <div class="cyber-card p-6">
+                        <h3 class="text-xl font-bold text-cyber mb-4">Quick Stats</h3>
+                        
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Threats Blocked</span>
+                                <span class="text-white font-bold" id="stats-threats">1,247</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Scans Completed</span>
+                                <span class="text-white font-bold" id="stats-scans">42</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Alerts Resolved</span>
+                                <span class="text-white font-bold" id="stats-alerts">156</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Active Sessions</span>
+                                <span class="text-white font-bold" id="stats-sessions">3</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">API Calls (24h)</span>
+                                <span class="text-white font-bold" id="stats-api">1.2k</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Activity Tab -->
+        <div class="tab-content" id="activity-tab" data-aos="fade-up">
+            <div class="cyber-card p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-cyber">Recent Activity</h3>
+                    <div class="flex space-x-2">
+                        <select id="activity-filter" class="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white">
+                            <option value="all">All Activity</option>
+                            <option value="login">Logins</option>
+                            <option value="security">Security Events</option>
+                            <option value="settings">Settings Changes</option>
+                            <option value="api">API Activity</option>
+                        </select>
+                        <button id="export-activity" class="cyber-button">
+                            <i data-feather="download" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="activity-log" id="activity-log">
+                    <!-- Activity logs will be loaded by JS -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sessions Tab -->
+        <div class="tab-content" id="sessions-tab" data-aos="fade-up">
+            <div class="cyber-card p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-cyber">Active Sessions</h3>
+                    <button id="terminate-all-sessions" class="security-button">
+                        <i data-feather="log-out" class="w-4 h-4 mr-2"></i>
+                        Terminate All Other Sessions
+                    </button>
+                </div>
+                
+                <div id="sessions-list">
+                    <!-- Sessions will be loaded by JS -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Security Tab -->
+        <div class="tab-content" id="security-tab" data-aos="fade-up">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="cyber-card p-6">
+                    <h3 class="text-xl font-bold text-cyber mb-4">Authentication Methods</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="font-bold text-white">Password</h4>
+                                <p class="text-gray-400 text-sm">Last changed: <span id="password-last-changed">15 days ago</span></p>
+                            </div>
+                            <button onclick="window.location.href='settings.html#password'" class="cyber-button text-sm">
+                                Change
+                            </button>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="font-bold text-white">Two-Factor Authentication</h4>
+                                <p class="text-gray-400 text-sm">Add an extra layer of security</p>
+                            </div>
+                            <div>
+                                <span class="text-alert text-sm mr-2">Disabled</span>
+                                <button onclick="window.location.href='settings.html#2fa'" class="security-button text-sm">
+                                    Enable
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="font-bold text-white">Security Questions</h4>
+                                <p class="text-gray-400 text-sm">Set up account recovery questions</p>
+                            </div>
+                            <button onclick="window.location.href='settings.html#recovery'" class="cyber-button text-sm">
+                                Setup
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cyber-card p-6">
+                    <h3 class="text-xl font-bold text-cyber mb-4">Security Recommendations</h3>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <i data-feather="alert-circle" class="text-alert w-5 h-5 mr-3 mt-0.5"></i>
+                            <div>
+                                <h4 class="font-bold text-alert">Enable Two-Factor Authentication</h4>
+                                <p class="text-gray-400 text-sm">Protect your account from unauthorized access</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <i data-feather="alert-triangle" class="text-warning w-5 h-5 mr-3 mt-0.5"></i>
+                            <div>
+                                <h4 class="font-bold text-warning">Update Recovery Email</h4>
+                                <p class="text-gray-400 text-sm">Your recovery email is outdated</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <i data-feather="info" class="text-cyber w-5 h-5 mr-3 mt-0.5"></i>
+                            <div>
+                                <h4 class="font-bold text-cyber">Review Login Locations</h4>
+                                <p class="text-gray-400 text-sm">Check recent login locations for suspicious activity</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button onclick="window.location.href='settings.html#security'" class="security-button w-full mt-6">
+                        <i data-feather="shield" class="w-4 h-4 mr-2"></i>
+                        View Security Settings
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- API Access Tab -->
+        <div class="tab-content" id="api-tab" data-aos="fade-up">
+            <div class="cyber-card p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-cyber">API Keys</h3>
+                    <button id="generate-api-key" class="cyber-button">
+                        <i data-feather="plus" class="w-4 h-4 mr-2"></i>
+                        Generate New Key
+                    </button>
+                </div>
+                
+                <div class="mb-6">
+                    <p class="text-gray-400 mb-3">Your API keys carry many privileges. Be sure to keep them secure!</p>
+                    
+                    <div class="api-key">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-cyber font-bold">Production Key</span>
+                            <span class="text-xs text-gray-400">Created: 2024-01-15</span>
+                        </div>
+                        <code class="text-sm" id="api-key-value">sk_live_***************</code>
+                        <div class="flex space-x-2 mt-2">
+                            <button class="text-cyber hover:text-cyan-300 text-sm" onclick="copyToClipboard('api-key-value')">
+                                <i data-feather="copy" class="w-3 h-3 mr-1 inline"></i>
+                                Copy
+                            </button>
+                            <button class="text-alert hover:text-red-300 text-sm" onclick="revokeApiKey('production')">
+                                <i data-feather="trash-2" class="w-3 h-3 mr-1 inline"></i>
+                                Revoke
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <h4 class="text-lg font-bold text-cyber mb-4">API Usage</h4>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="border-b border-gray-700">
+                                <th class="py-2 px-4 text-gray-400">Endpoint</th>
+                                <th class="py-2 px-4 text-gray-400">Last Used</th>
+                                <th class="py-2 px-4 text-gray-400">Requests (24h)</th>
+                                <th class="py-2 px-4 text-gray-400">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="api-usage-table">
+                            <!-- API usage data will be loaded by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Team Tab -->
+        <div class="tab-content" id="team-tab" data-aos="fade-up">
+            <div class="cyber-card p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-cyber">Team Members</h3>
+                    <button onclick="window.location.href='team-management.html'" class="cyber-button">
+                        <i data-feather="users" class="w-4 h-4 mr-2"></i>
+                        Manage Team
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="team-members">
+                    <!-- Team members will be loaded by JS -->
+                </div>
+                
+                <div class="mt-8">
+                    <h4 class="text-lg font-bold text-cyber mb-4">Permissions</h4>
+                    <div id="permissions-list">
+                        <!-- Permissions will be loaded by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer will be loaded by main.js -->
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+            AOS.init();
+            
+            // Check authentication
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            const token = localStorage.getItem('auth_token');
+            
+            if (!user.id || !token) {
+                window.location.href = '../auth/login.html';
+                return;
+            }
+            
+            // Load profile data
+            loadProfileData();
+            
+            // Tab switching
+            document.querySelectorAll('.profile-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    document.querySelectorAll('.profile-tab').forEach(t => {
+                        t.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                    
+                    // Load data for the tab if needed
+                    if (tabId === 'activity') {
+                        loadActivityLogs();
+                    } else if (tabId === 'sessions') {
+                        loadSessions();
+                    } else if (tabId === 'api') {
+                        loadApiData();
+                    } else if (tabId === 'team') {
+                        loadTeamData();
+                    }
+                });
+            });
+            
+            // Avatar upload
+            document.getElementById('avatar-input').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    if (file.size > 5 * 1024 * 1024) { // 5MB limit
+                        alert('File size too large. Maximum 5MB allowed.');
+                        return;
+                    }
+                    
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        // In production, upload to server
+                        // For demo, just show preview
+                        const avatarDiv = document.getElementById('profile-avatar');
+                        avatarDiv.innerHTML = `
+                            <img src="${e.target.result}" alt="Profile Picture">
+                            <div class="avatar-upload" onclick="document.getElementById('avatar-input').click()">
+                                <i data-feather="camera" class="w-4 h-4"></i>
+                            </div>
+                            <input type="file" id="avatar-input" accept="image/*" class="hidden">
+                        `;
+                        feather.replace();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Activity filter
+            document.getElementById('activity-filter').addEventListener('change', loadActivityLogs);
+            
+            // Export activity
+            document.getElementById('export-activity').addEventListener('click', function() {
+                // In production, this would trigger a download
+                alert('Activity log export would be generated and downloaded.');
+            });
+            
+            // Terminate all sessions
+            document.getElementById('terminate-all-sessions').addEventListener('click', function() {
+                if (confirm('Are you sure you want to terminate all other sessions? You will be logged out from all other devices.')) {
+                    // In production, call API to terminate sessions
+                    alert('All other sessions have been terminated.');
+                    loadSessions();
+                }
+            });
+            
+            // Generate API key
+            document.getElementById('generate-api-key').addEventListener('click', function() {
+                if (confirm('Generate a new API key? The old key will be invalidated.')) {
+                    // Generate mock key
+                    const newKey = 'sk_live_' + Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2);
+                    document.getElementById('api-key-value').textContent = newKey;
+                    alert('New API key generated! Make sure to copy and store it securely.');
+                }
+            });
+        });
+        
+        function loadProfileData() {
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            
+            // Set basic info
+            document.getElementById('profile-name').textContent = user.name || 'User';
+            document.getElementById('profile-email').textContent = user.email || 'user@example.com';
+            
+            // Set avatar initials
+            const name = user.name || 'User';
+            const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+            document.getElementById('avatar-initials').textContent = initials;
+            
+            // Set personal info
+            document.getElementById('info-firstname').textContent = user.firstName || 'Not set';
+            document.getElementById('info-lastname').textContent = user.lastName || 'Not set';
+            document.getElementById('info-email').textContent = user.email || 'Not set';
+            document.getElementById('info-phone').textContent = user.phone || 'Not set';
+            document.getElementById('info-company').textContent = user.company || 'Not set';
+            document.getElementById('info-jobtitle').textContent = user.jobTitle || 'Not set';
+            
+            // Set stats (mock data)
+            document.getElementById('stats-threats').textContent = '1,247';
+            document.getElementById('stats-scans').textContent = '42';
+            document.getElementById('stats-alerts').textContent = '156';
+            document.getElementById('stats-sessions').textContent = '3';
+            document.getElementById('stats-api').textContent = '1.2k';
+            
+            // Load recent projects
+            loadRecentProjects();
+            
+            // Load initial tab data
+            loadActivityLogs();
+        }
+        
+        function loadRecentProjects() {
+            const projects = [
+                { name: 'Cloud Infrastructure Security', status: 'active', progress: 85 },
+                { name: 'Network Penetration Test', status: 'completed', progress: 100 },
+                { name: 'Compliance Audit', status: 'in-progress', progress: 60 },
+                { name: 'Employee Security Training', status: 'pending', progress: 0 }
+            ];
+            
+            const container = document.getElementById('recent-projects');
+            container.innerHTML = projects.map(project => `
+                <div class="flex items-center justify-between p-3 bg-gray-800 rounded-lg mb-2">
+                    <div>
+                        <h4 class="font-bold text-white">${project.name}</h4>
+                        <div class="flex items-center mt-1">
+                            <div class="w-24 h-2 bg-gray-700 rounded-full mr-3">
+                                <div class="h-full rounded-full ${project.progress === 100 ? 'bg-green-500' : project.progress > 50 ? 'bg-blue-500' : 'bg-yellow-500'}" 
+                                     style="width: ${project.progress}%"></div>
+                            </div>
+                            <span class="text-xs ${project.status === 'active' ? 'text-green-500' : project.status === 'completed' ? 'text-blue-500' : 'text-yellow-500'}">
+                                ${project.status}
+                            </span>
+                        </div>
+                    </div>
+                    <span class="font-bold ${project.progress === 100 ? 'text-green-500' : project.progress > 50 ? 'text-blue-500' : 'text-yellow-500'}">
+                        ${project.progress}%
+                    </span>
+                </div>
+            `).join('');
+        }
+        
+        function loadActivityLogs() {
+            const filter = document.getElementById('activity-filter').value;
+            
+            const activities = [
+                { type: 'login', desc: 'Successful login from Chrome on Windows', time: '2 minutes ago', icon: 'log-in', color: 'green' },
+                { type: 'security', desc: 'Malware scan completed - 0 threats found', time: '1 hour ago', icon: 'shield', color: 'blue' },
+                { type: 'settings', desc: 'Password changed successfully', time: '2 hours ago', icon: 'lock', color: 'cyan' },
+                { type: 'api', desc: 'API request to threat intelligence endpoint', time: '3 hours ago', icon: 'code', color: 'purple' },
+                { type: 'login', desc: 'Failed login attempt from unknown location', time: '5 hours ago', icon: 'alert-triangle', color: 'red' },
+                { type: 'security', desc: 'Firewall rules updated', time: '1 day ago', icon: 'fire', color: 'orange' },
+                { type: 'settings', desc: 'Email notification preferences updated', time: '2 days ago', icon: 'mail', color: 'blue' },
+                { type: 'api', desc: 'New API key generated', time: '3 days ago', icon: 'key', color: 'cyan' }
+            ];
+            
+            const filteredActivities = filter === 'all' 
+                ? activities 
+                : activities.filter(a => a.type === filter);
+            
+            const container = document.getElementById('activity-log');
+            container.innerHTML = filteredActivities.map(activity => `
+                <div class="log-entry">
+                    <div class="log-icon" style="background: rgba(var(--${activity.color}-rgb), 0.2); color: var(--${activity.color})">
+                        <i data-feather="${activity.icon}" class="w-4 h-4"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-gray-300">${activity.desc}</p>
+                        <p class="text-gray-500 text-sm">${activity.time}</p>
+                    </div>
+                </div>
+            `).join('');
+            
+            feather.replace();
+        }
+        
+        function loadSessions() {
+            const sessions = [
+                { device: 'Chrome on Windows', location: 'New York, USA', ip: '192.168.1.1', lastActive: 'Current', active: true },
+                { device: 'Safari on iPhone', location: 'San Francisco, USA', ip: '10.0.0.1', lastActive: '2 hours ago', active: true },
+                { device: 'Firefox on Linux', location: 'London, UK', ip: '172.16.0.1', lastActive: '1 day ago', active: false },
+                { device: 'Mobile App', location: 'Tokyo, Japan', ip: '203.0.113.1', lastActive: '3 days ago', active: false }
+            ];
+            
+            const container = document.getElementById('sessions-list');
+            container.innerHTML = sessions.map(session => `
+                <div class="session-card ${session.active ? 'session-active' : 'session-inactive'}">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-bold text-white">${session.device}</h4>
+                            <p class="text-gray-400 text-sm">${session.location} • ${session.ip}</p>
+                            <p class="text-gray-500 text-xs mt-1">Last active: ${session.lastActive}</p>
+                        </div>
+                        <div>
+                            ${session.active ? 
+                                '<span class="text-green-500 text-sm">Active</span>' : 
+                                '<span class="text-red-500 text-sm">Inactive</span>'
+                            }
+                            ${!session.active ? `
+                                <button class="text-alert hover:text-red-300 ml-2" onclick="terminateSession('${session.ip}')">
+                                    <i data-feather="x" class="w-4 h-4"></i>
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            feather.replace();
+        }
+        
+        function loadApiData() {
+            const usageData = [
+                { endpoint: '/api/v1/threats', lastUsed: '5 minutes ago', requests: '142', status: 'active' },
+                { endpoint: '/api/v1/scans', lastUsed: '1 hour ago', requests: '89', status: 'active' },
+                { endpoint: '/api/v1/logs', lastUsed: '3 hours ago', requests: '256', status: 'active' },
+                { endpoint: '/api/v1/alerts', lastUsed: '1 day ago', requests: '34', status: 'inactive' }
+            ];
+            
+            const container = document.getElementById('api-usage-table');
+            container.innerHTML = usageData.map(row => `
+                <tr class="border-b border-gray-800">
+                    <td class="py-3 px-4 font-mono text-sm">${row.endpoint}</td>
+                    <td class="py-3 px-4 text-gray-300">${row.lastUsed}</td>
+                    <td class="py-3 px-4 text-gray-300">${row.requests}</td>
+                    <td class="py-3 px-4">
+                        <span class="px-2 py-1 rounded text-xs ${row.status === 'active' ? 'bg-green-900 text-green-300' : 'bg-gray-700 text-gray-300'}">
+                            ${row.status}
+                        </span>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        function loadTeamData() {
+            const teamMembers = [
+                { name: 'Alex Johnson', role: 'Security Admin', email: 'alex@example.com', status: 'active' },
+                { name: 'Maria Garcia', role: 'Threat Analyst', email: 'maria@example.com', status: 'active' },
+                { name: 'David Chen', role: 'Compliance Officer', email: 'david@example.com', status: 'inactive' },
+                { name: 'Sarah Williams', role: 'Security Engineer', email: 'sarah@example.com', status: 'active' }
+            ];
+            
+            const container = document.getElementById('team-members');
+            container.innerHTML = teamMembers.map(member => `
+                <div class="bg-gray-800 rounded-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 rounded-full bg-cyan-900 flex items-center justify-center mr-3">
+                            <span class="text-white font-bold">${member.name.split(' ').map(n => n[0]).join('')}</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white">${member.name}</h4>
+                            <p class="text-gray-400 text-sm">${member.role}</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-3">${member.email}</p>
+                    <div class="flex justify-between items-center">
+                        <span class="px-2 py-1 rounded text-xs ${member.status === 'active' ? 'bg-green-900 text-green-300' : 'bg-gray-700 text-gray-300'}">
+                            ${member.status}
+                        </span>
+                        <button class="text-cyber hover:text-cyan-300 text-sm">
+                            <i data-feather="message-square" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Load permissions
+            const permissions = [
+                { name: 'Full Access', level: 'admin', description: 'Complete access to all features' },
+                { name: 'Threat Analysis', level: 'user', description: 'Access to threat detection and analysis tools' },
+                { name: 'Reports View', level: 'viewer', description: 'Read-only access to security reports' },
+                { name: 'API Management', level: 'admin', description: 'Manage API keys and endpoints' }
+            ];
+            
+            const permContainer = document.getElementById('permissions-list');
+            permContainer.innerHTML = permissions.map(perm => `
+                <div class="flex items-center justify-between p-3 bg-gray-800 rounded-lg mb-2">
+                    <div>
+                        <h4 class="font-bold text-white">${perm.name}</h4>
+                        <p class="text-gray-400 text-sm">${perm.description}</p>
+                    </div>
+                    <span class="permission-level level-${perm.level}">${perm.level}</span>
+                </div>
+            `).join('');
+            
+            feather.replace();
+        }
+        
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('API key copied to clipboard!');
+            });
+        }
+        
+        function revokeApiKey(keyType) {
+            if (confirm(`Are you sure you want to revoke the ${keyType} API key? This action cannot be undone.`)) {
+                alert(`${keyType} API key revoked successfully.`);
+                // In production, call API to revoke key
+            }
+        }
+        
+        function terminateSession(ip) {
+            if (confirm(`Terminate session from IP ${ip}?`)) {
+                alert('Session terminated successfully.');
+                loadSessions();
+            }
+        }
+    </script>
+</body>
+</html>
