@@ -237,6 +237,104 @@
             width: 100%;
             height: 100%;
         }
+        
+        /* Cookie Consent Styles */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 29, 41, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-top: 1px solid rgba(0, 243, 255, 0.2);
+            z-index: 9999;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .cookie-banner.active {
+            transform: translateY(0);
+        }
+        
+        .cookie-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .cookie-content p {
+            margin: 0;
+            color: #94a3b8;
+            flex: 1;
+        }
+        
+        .cookie-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+        
+        /* Back to Top Button */
+        #back-to-top {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* User Dropdown */
+        .user-dropdown {
+            position: relative;
+        }
+        
+        .user-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 200px;
+            background: rgba(26, 29, 41, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .user-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .user-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        
+        .user-menu-item:hover {
+            background: rgba(0, 243, 255, 0.1);
+            color: var(--neon-blue);
+        }
     </style>
 </head>
 <body class="cyber-gradient">
@@ -301,7 +399,7 @@
                             </div>
                             <i data-feather="chevron-down" class="w-4 h-4 text-gray-300"></i>
                         </button>
-                        <div class="user-menu absolute top-full right-0 mt-2 w-48 py-2 bg-gray-900 rounded-lg shadow-xl border border-gray-800 z-50">
+                        <div class="user-menu">
                             <a href="pages/user/dashboard.html" class="user-menu-item">
                                 <i data-feather="grid" class="w-4 h-4 mr-2"></i>
                                 Dashboard
@@ -345,7 +443,7 @@
     <div id="mobile-menu" class="mobile-menu">
         <div class="flex justify-between items-center mb-8">
             <div class="logo text-xl font-bold gradient-text">CyberShield Pro</div>
-            <button class="mobile-menu-close text-white p-2">
+            <button id="mobile-menu-close" class="mobile-menu-close text-white p-2">
                 <i data-feather="x" class="w-6 h-6"></i>
             </button>
         </div>
@@ -362,13 +460,8 @@
             <a href="pages/security-tools.html" class="nav-link text-lg">Tools</a>
             <a href="pages/contact.html" class="nav-link text-lg">Contact</a>
             
-            <div class="pt-4 border-t border-gray-800">
-                <a href="pages/auth/login.html" class="cyber-button w-full text-center mb-3">
-                    Sign In
-                </a>
-                <a href="pages/auth/signup.html" class="security-button w-full text-center">
-                    Get Started
-                </a>
+            <div id="mobile-auth-section" class="pt-4 border-t border-gray-800">
+                <!-- Mobile auth section will be populated by JavaScript -->
             </div>
         </div>
     </div>
@@ -478,19 +571,19 @@
         <div class="container mx-auto px-4 md:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div class="text-center" data-aos="fade-up">
-                    <p class="stats-counter" id="clients-counter">0</p>
+                    <p class="stats-counter">500+</p>
                     <p class="text-gray-400">Enterprise Clients</p>
                 </div>
                 <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-                    <p class="stats-counter" id="threats-counter">0</p>
+                    <p class="stats-counter">2.5M</p>
                     <p class="text-gray-400">Threats Neutralized</p>
                 </div>
                 <div class="text-center" data-aos="fade-up" data-aos-delay="200">
-                    <p class="stats-counter" id="uptime-counter">0</p>
+                    <p class="stats-counter">99.9%</p>
                     <p class="text-gray-400">Uptime Guarantee</p>
                 </div>
                 <div class="text-center" data-aos="fade-up" data-aos-delay="300">
-                    <p class="stats-counter" id="response-counter">0</p>
+                    <p class="stats-counter">24s</p>
                     <p class="text-gray-400">Avg Response Time</p>
                 </div>
             </div>
@@ -780,7 +873,7 @@
             </div>
             
             <div class="flex justify-center mt-8 space-x-2">
-                <button class="testimonial-nav w-3 h-3 rounded-full bg-gray-700 active:bg-cyan-500" data-slide="0"></button>
+                <button class="testimonial-nav w-3 h-3 rounded-full bg-gray-700" data-slide="0"></button>
                 <button class="testimonial-nav w-3 h-3 rounded-full bg-gray-700" data-slide="1"></button>
                 <button class="testimonial-nav w-3 h-3 rounded-full bg-gray-700" data-slide="2"></button>
             </div>
@@ -929,7 +1022,7 @@
             
             <div class="border-t border-cyan-900 mt-8 pt-8 text-center">
                 <p class="text-gray-500 text-sm">
-                    &copy; 2024 CyberShield Pro. All rights reserved. | 
+                    &copy; <span class="current-year">2024</span> CyberShield Pro. All rights reserved. | 
                     <a href="pages/privacy-policy.html" class="text-gray-400 hover:text-cyan-400">Privacy Policy</a> | 
                     <a href="pages/terms.html" class="text-gray-400 hover:text-cyan-400">Terms of Service</a>
                 </p>
@@ -1008,129 +1101,205 @@
             const mobileMenu = document.getElementById('mobile-menu');
             const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
             
-            mobileMenuToggle.addEventListener('click', () => {
-                mobileMenu.classList.add('active');
-                mobileMenuOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
+            if (mobileMenuToggle && mobileMenu) {
+                mobileMenuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.add('active');
+                    mobileMenuOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+                
+                mobileMenuClose.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+                
+                mobileMenuOverlay.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
             
-            mobileMenuClose.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                mobileMenuOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-            
-            mobileMenuOverlay.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                mobileMenuOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-            
-            // Smooth Scrolling
+            // Smooth Scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
+                    const href = this.getAttribute('href');
                     
-                    const target = document.querySelector(targetId);
-                    if (target) {
-                        gsap.to(window, {
-                            duration: 1,
-                            scrollTo: { y: target, offsetY: 80 },
-                            ease: "power2.inOut"
-                        });
+                    // Skip if it's just a # link
+                    if (href === '#') return;
+                    
+                    // Check if it's an on-page anchor
+                    if (href.startsWith('#') && href.length > 1) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
                         
-                        // Close mobile menu if open
-                        mobileMenu.classList.remove('active');
-                        mobileMenuOverlay.classList.remove('active');
-                        document.body.style.overflow = '';
+                        if (target) {
+                            // Close mobile menu if open
+                            if (mobileMenu && mobileMenu.classList.contains('active')) {
+                                mobileMenu.classList.remove('active');
+                                mobileMenuOverlay.classList.remove('active');
+                                document.body.style.overflow = '';
+                            }
+                            
+                            // Scroll to target
+                            const header = document.querySelector('nav');
+                            const headerHeight = header ? header.offsetHeight : 80;
+                            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                            
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
                     }
                 });
             });
             
             // Back to Top Button
             const backToTop = document.getElementById('back-to-top');
-            backToTop.addEventListener('click', () => {
-                gsap.to(window, {
-                    duration: 1,
-                    scrollTo: { y: 0 },
-                    ease: "power2.inOut"
-                });
-            });
-            
-            // Show/Hide Back to Top Button
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 500) {
-                    backToTop.style.opacity = '1';
-                    backToTop.style.visibility = 'visible';
-                } else {
-                    backToTop.style.opacity = '0';
-                    backToTop.style.visibility = 'hidden';
-                }
-            });
-            
-            // Animated Counters
-            const counters = document.querySelectorAll('.stats-counter');
-            counters.forEach(counter => {
-                const target = parseInt(counter.textContent);
-                let current = 0;
-                const increment = target / 100;
-                
-                const updateCounter = () => {
-                    if (current < target) {
-                        current += increment;
-                        counter.textContent = current === target ? 
-                            (target === 99.9 ? '99.9%' : 
-                             target === 24 ? '24s' : 
-                             target.toLocaleString()) : 
-                            Math.ceil(current).toLocaleString();
-                        setTimeout(updateCounter, 20);
-                    }
-                };
-                
-                // Start counter when in view
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            updateCounter();
-                            observer.unobserve(entry.target);
-                        }
+            if (backToTop) {
+                backToTop.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
                     });
                 });
                 
-                observer.observe(counter);
-            });
-            
-            // Testimonial Slider
-            let currentSlide = 0;
-            const slides = document.querySelectorAll('.testimonial-slide');
-            const navButtons = document.querySelectorAll('.testimonial-nav');
-            
-            function showSlide(index) {
-                slides.forEach((slide, i) => {
-                    slide.classList.toggle('active', i === index);
+                // Show/Hide Back to Top Button
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 500) {
+                        backToTop.classList.add('visible');
+                    } else {
+                        backToTop.classList.remove('visible');
+                    }
                 });
-                
-                navButtons.forEach((button, i) => {
-                    button.classList.toggle('active', i === index);
-                    button.style.background = i === index ? 'var(--neon-blue)' : 'var(--gray-700)';
-                });
-                
-                currentSlide = index;
             }
             
-            navButtons.forEach((button, index) => {
-                button.addEventListener('click', () => showSlide(index));
-                button.classList.add('cursor-pointer');
-            });
+            // Animated Counters (if not already handled by main.js)
+            const counters = document.querySelectorAll('.stats-counter');
+            if (counters.length > 0) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const counter = entry.target;
+                            const targetText = counter.textContent;
+                            let target = 0;
+                            let suffix = '';
+                            
+                            // Parse the target value
+                            if (targetText.includes('+')) {
+                                target = parseFloat(targetText);
+                                suffix = '+';
+                            } else if (targetText.includes('M')) {
+                                target = parseFloat(targetText) * 1000000;
+                                suffix = 'M';
+                            } else if (targetText.includes('%')) {
+                                target = parseFloat(targetText);
+                                suffix = '%';
+                            } else if (targetText.includes('s')) {
+                                target = parseFloat(targetText);
+                                suffix = 's';
+                            } else {
+                                target = parseInt(targetText.replace(/,/g, ''));
+                            }
+                            
+                            if (!isNaN(target)) {
+                                let current = 0;
+                                const duration = 2000;
+                                const increment = target / (duration / 16);
+                                
+                                const updateCounter = () => {
+                                    current += increment;
+                                    if (current >= target) {
+                                        counter.textContent = target + suffix;
+                                    } else {
+                                        let displayValue;
+                                        if (suffix === '%') {
+                                            displayValue = current.toFixed(1);
+                                        } else if (suffix === '+') {
+                                            displayValue = Math.floor(current) + '+';
+                                        } else if (suffix === 'M') {
+                                            displayValue = (current / 1000000).toFixed(1) + 'M';
+                                        } else if (suffix === 's') {
+                                            displayValue = Math.floor(current) + 's';
+                                        } else {
+                                            displayValue = Math.floor(current).toLocaleString();
+                                        }
+                                        counter.textContent = displayValue;
+                                        requestAnimationFrame(updateCounter);
+                                    }
+                                };
+                                
+                                updateCounter();
+                                observer.unobserve(counter);
+                            }
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                counters.forEach(counter => observer.observe(counter));
+            }
             
-            // Auto-rotate testimonials
-            setInterval(() => {
-                let nextSlide = currentSlide + 1;
-                if (nextSlide >= slides.length) nextSlide = 0;
-                showSlide(nextSlide);
-            }, 5000);
+            // Testimonial Slider
+            const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+            const testimonialNavs = document.querySelectorAll('.testimonial-nav');
+            
+            if (testimonialSlides.length > 0) {
+                let currentSlide = 0;
+                
+                function showSlide(index) {
+                    // Hide all slides
+                    testimonialSlides.forEach(slide => {
+                        slide.classList.remove('active');
+                    });
+                    
+                    // Remove active from all nav buttons
+                    testimonialNavs.forEach(nav => {
+                        nav.classList.remove('active');
+                        nav.style.background = '';
+                    });
+                    
+                    // Show selected slide
+                    testimonialSlides[index].classList.add('active');
+                    
+                    // Update nav button
+                    if (testimonialNavs[index]) {
+                        testimonialNavs[index].classList.add('active');
+                        testimonialNavs[index].style.background = 'var(--neon-blue)';
+                    }
+                    
+                    currentSlide = index;
+                }
+                
+                // Add click events to nav buttons
+                testimonialNavs.forEach((button, index) => {
+                    button.addEventListener('click', () => showSlide(index));
+                });
+                
+                // Auto-rotate slides
+                let slideInterval = setInterval(() => {
+                    let nextSlide = currentSlide + 1;
+                    if (nextSlide >= testimonialSlides.length) nextSlide = 0;
+                    showSlide(nextSlide);
+                }, 5000);
+                
+                // Pause on hover
+                const testimonialSlider = document.querySelector('.testimonial-slider');
+                if (testimonialSlider) {
+                    testimonialSlider.addEventListener('mouseenter', () => {
+                        clearInterval(slideInterval);
+                    });
+                    
+                    testimonialSlider.addEventListener('mouseleave', () => {
+                        slideInterval = setInterval(() => {
+                            let nextSlide = currentSlide + 1;
+                            if (nextSlide >= testimonialSlides.length) nextSlide = 0;
+                            showSlide(nextSlide);
+                        }, 5000);
+                    });
+                }
+            }
             
             // Hover Effects for Cards
             const cards = document.querySelectorAll('.hover-card');
@@ -1162,6 +1331,26 @@
             document.querySelectorAll('.current-year').forEach(el => {
                 el.textContent = new Date().getFullYear();
             });
+            
+            // Set active navigation link
+            function setActiveNavLink() {
+                const currentPath = window.location.pathname;
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    const href = link.getAttribute('href');
+                    
+                    // Check if current path matches link href
+                    if (href === 'index.html' && (currentPath.endsWith('/') || currentPath.endsWith('index.html'))) {
+                        link.classList.add('active');
+                    } else if (href && currentPath.includes(href.replace('./', '').replace('../', ''))) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            setActiveNavLink();
         });
         
         // Window Load Events
@@ -1172,6 +1361,9 @@
                 preloader.style.opacity = '0';
                 setTimeout(() => preloader.remove(), 500);
             }
+            
+            // Add loaded class to body for transition effects
+            document.body.classList.add('loaded');
             
             // Update page load time
             const loadTime = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart;
