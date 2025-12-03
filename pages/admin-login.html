@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login | CyberShield Pro</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-cyan: #00f3ff;
+            --primary-purple: #b967ff;
+            --dark-bg: #0a0e17;
+            --card-bg: rgba(26, 29, 41, 0.9);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1d29 50%, #2a2d42 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .admin-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 15px;
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .form-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 8px;
+            padding: 12px 16px;
+            width: 100%;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 0 2px rgba(0, 243, 255, 0.1);
+        }
+        
+        .admin-button {
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 243, 255, 0.4);
+        }
+        
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 20px;
+            color: var(--primary-cyan);
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .alert-success {
+            background: rgba(0, 255, 149, 0.1);
+            border: 1px solid rgba(0, 255, 149, 0.3);
+            color: #00ff95;
+        }
+        
+        .alert-error {
+            background: rgba(255, 42, 109, 0.1);
+            border: 1px solid rgba(255, 42, 109, 0.3);
+            color: #ff2a6d;
+        }
+        
+        .admin-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-card">
+        <div class="text-center mb-8">
+            <div class="admin-icon">
+                <i class="fas fa-shield-alt text-white text-3xl"></i>
+            </div>
+            <h1 class="text-3xl font-bold mb-2 gradient-text">Admin Portal</h1>
+            <p class="text-gray-400">CyberShield Pro Admin Dashboard</p>
+            <div class="security-badge mt-4">
+                <i class="fas fa-lock mr-2"></i>
+                Secure Admin Access
+            </div>
+        </div>
+        
+        <div id="error-alert" class="alert alert-error">
+            <i class="fas fa-exclamation-circle mr-2"></i>
+            <span id="error-message"></span>
+        </div>
+        
+        <div id="success-alert" class="alert alert-success">
+            <i class="fas fa-check-circle mr-2"></i>
+            <span id="success-message"></span>
+        </div>
+        
+        <form id="admin-login-form">
+            <div class="mb-6">
+                <label class="block text-gray-300 mb-2" for="admin-username">Admin Username</label>
+                <input type="text" id="admin-username" class="form-input" placeholder="Enter admin username" required>
+            </div>
+            
+            <div class="mb-6">
+                <label class="block text-gray-300 mb-2" for="admin-password">Admin Password</label>
+                <input type="password" id="admin-password" class="form-input" placeholder="Enter admin password" required>
+                <div class="flex justify-end mt-2">
+                    <button type="button" id="show-password" class="text-sm text-cyan-400 hover:text-cyan-300">
+                        <i class="fas fa-eye mr-1"></i> Show Password
+                    </button>
+                </div>
+            </div>
+            
+            <div class="mb-6">
+                <label class="flex items-center">
+                    <input type="checkbox" id="remember-me" class="mr-2">
+                    <span class="text-gray-300 text-sm">Remember this device</span>
+                </label>
+            </div>
+            
+            <button type="submit" class="admin-button mb-6">
+                <i class="fas fa-sign-in-alt mr-2"></i>
+                Login to Admin Panel
+            </button>
+            
+            <div class="text-center">
+                <a href="../index.html" class="text-cyan-400 hover:text-cyan-300 text-sm">
+                    <i class="fas fa-arrow-left mr-1"></i> Back to Main Site
+                </a>
+            </div>
+        </form>
+        
+        <div class="mt-8 pt-6 border-t border-gray-800">
+            <p class="text-gray-500 text-xs text-center">
+                <i class="fas fa-info-circle mr-1"></i>
+                This area is restricted to authorized personnel only.
+                All activities are logged and monitored.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Admin Authentication
+        const adminCredentials = {
+            username: "admin",
+            password: "CyberShield@2024",
+            // In production, this would be handled by a secure backend
+        };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('admin-login-form');
+            const errorAlert = document.getElementById('error-alert');
+            const successAlert = document.getElementById('success-alert');
+            const showPasswordBtn = document.getElementById('show-password');
+            const passwordInput = document.getElementById('admin-password');
+            
+            // Check if already logged in
+            if (localStorage.getItem('adminLoggedIn') === 'true') {
+                window.location.href = 'admin-dashboard.html';
+            }
+            
+            // Show/Hide Password
+            showPasswordBtn.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.innerHTML = type === 'password' ? 
+                    '<i class="fas fa-eye mr-1"></i> Show Password' : 
+                    '<i class="fas fa-eye-slash mr-1"></i> Hide Password';
+            });
+            
+            // Handle Login
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('admin-username').value;
+                const password = document.getElementById('admin-password').value;
+                const rememberMe = document.getElementById('remember-me').checked;
+                
+                // Hide alerts
+                errorAlert.style.display = 'none';
+                successAlert.style.display = 'none';
+                
+                // Basic validation
+                if (!username || !password) {
+                    showError('Please enter both username and password');
+                    return;
+                }
+                
+                // Check credentials
+                if (username === adminCredentials.username && password === adminCredentials.password) {
+                    // Successful login
+                    localStorage.setItem('adminLoggedIn', 'true');
+                    localStorage.setItem('adminUsername', username);
+                    
+                    if (rememberMe) {
+                        localStorage.setItem('adminRememberMe', 'true');
+                    }
+                    
+                    // Log the login
+                    const loginLog = {
+                        timestamp: new Date().toISOString(),
+                        username: username,
+                        ip: '127.0.0.1', // In production, get actual IP
+                        userAgent: navigator.userAgent
+                    };
+                    localStorage.setItem('lastAdminLogin', JSON.stringify(loginLog));
+                    
+                    showSuccess('Login successful! Redirecting to admin dashboard...');
+                    
+                    // Redirect after delay
+                    setTimeout(() => {
+                        window.location.href = 'admin-dashboard.html';
+                    }, 1500);
+                    
+                } else {
+                    // Failed login
+                    showError('Invalid admin credentials');
+                    
+                    // Log failed attempt
+                    const failedAttempt = {
+                        timestamp: new Date().toISOString(),
+                        username: username,
+                        ip: '127.0.0.1'
+                    };
+                    
+                    let failedLogs = JSON.parse(localStorage.getItem('failedAdminLogins') || '[]');
+                    failedLogs.push(failedAttempt);
+                    localStorage.setItem('failedAdminLogins', JSON.stringify(failedLogs));
+                }
+            });
+            
+            function showError(message) {
+                document.getElementById('error-message').textContent = message;
+                errorAlert.style.display = 'flex';
+                successAlert.style.display = 'none';
+            }
+            
+            function showSuccess(message) {
+                document.getElementById('success-message').textContent = message;
+                successAlert.style.display = 'flex';
+                errorAlert.style.display = 'none';
+            }
+            
+            // Auto-focus on username field
+            document.getElementById('admin-username').focus();
+        });
+    </script>
+</body>
+</html>
