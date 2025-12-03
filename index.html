@@ -37,7 +37,6 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/pages.css">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,7 +55,7 @@
         .stats-counter {
             font-size: 3.5rem;
             font-weight: 900;
-            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            background: linear-gradient(135deg, #00f3ff, #b967ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1;
@@ -157,7 +156,7 @@
         
         .typewriter-text {
             overflow: hidden;
-            border-right: 3px solid var(--neon-blue);
+            border-right: 3px solid #00f3ff;
             white-space: nowrap;
             margin: 0 auto;
             animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
@@ -170,7 +169,7 @@
         
         @keyframes blink-caret {
             from, to { border-color: transparent }
-            50% { border-color: var(--neon-blue) }
+            50% { border-color: #00f3ff }
         }
         
         .security-badge {
@@ -180,7 +179,7 @@
             background: rgba(0, 255, 149, 0.1);
             border: 1px solid rgba(0, 255, 149, 0.3);
             border-radius: 25px;
-            color: var(--cyber-green);
+            color: #00ff95;
             font-size: 0.9rem;
             margin-right: 0.5rem;
             margin-bottom: 0.5rem;
@@ -191,7 +190,7 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: var(--alert-red);
+            background: #ff2a6d;
             margin-right: 8px;
             animation: pulse 2s infinite;
         }
@@ -214,7 +213,7 @@
         
         /* Gradient Text Effects */
         .gradient-text {
-            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+            background: linear-gradient(135deg, #00f3ff, #b967ff, #ff2a6d);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -333,11 +332,19 @@
         
         .user-menu-item:hover {
             background: rgba(0, 243, 255, 0.1);
-            color: var(--neon-blue);
+            color: #00f3ff;
         }
     </style>
 </head>
 <body class="cyber-gradient">
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 bg-dark-bg z-50 flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-16 h-16 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-cyan-400 font-orbitron">Initializing Security Protocols...</p>
+        </div>
+    </div>
+
     <!-- Vanta.js Background -->
     <div id="vanta-bg" class="fixed top-0 left-0 w-full h-full z-0"></div>
     
@@ -475,7 +482,7 @@
                 <div class="text-left" data-aos="fade-right" data-aos-duration="1000">
                     <div class="inline-flex items-center mb-6">
                         <span class="live-threat-indicator"></span>
-                        <span class="text-sm text-alert font-medium">Live Threat Protection Active</span>
+                        <span class="text-sm text-red-400 font-medium">Live Threat Protection Active</span>
                     </div>
                     
                     <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
@@ -523,7 +530,7 @@
                         <!-- Animated Threat Dashboard Preview -->
                         <div class="mb-6">
                             <div class="flex items-center justify-between mb-4">
-                                <h3 class="text-xl font-bold text-cyber">Live Threat Dashboard</h3>
+                                <h3 class="text-xl font-bold text-cyan-400">Live Threat Dashboard</h3>
                                 <div class="flex items-center">
                                     <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
                                     <span class="text-sm text-green-500">All Systems Secure</span>
@@ -534,11 +541,11 @@
                             <div class="grid grid-cols-2 gap-4 mb-6">
                                 <div class="bg-gray-800 rounded-lg p-4">
                                     <p class="text-sm text-gray-400 mb-1">Threats Blocked</p>
-                                    <p class="text-2xl font-bold text-security">1,247</p>
+                                    <p class="text-2xl font-bold text-green-400">1,247</p>
                                 </div>
                                 <div class="bg-gray-800 rounded-lg p-4">
                                     <p class="text-sm text-gray-400 mb-1">Active Alerts</p>
-                                    <p class="text-2xl font-bold text-alert">3</p>
+                                    <p class="text-2xl font-bold text-red-400">3</p>
                                 </div>
                             </div>
                             
@@ -607,52 +614,52 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
                 <div class="cyber-card p-8 hover-card" data-aos="fade-up">
-                    <div class="feature-icon" style="color: var(--neon-blue); background: rgba(0, 243, 255, 0.1);">
+                    <div class="feature-icon" style="color: #00f3ff; background: rgba(0, 243, 255, 0.1);">
                         <i data-feather="shield" class="w-8 h-8"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-cyber">Threat Intelligence</h3>
+                    <h3 class="text-2xl font-bold mb-4 text-cyan-400">Threat Intelligence</h3>
                     <p class="text-gray-300 mb-6">
                         Real-time threat detection powered by AI and global intelligence feeds. 
                         Proactive identification and mitigation of emerging threats.
                     </p>
                     <ul class="space-y-2">
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i>Behavioral Analysis</li>
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i>Malware Detection</li>
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i>Zero-Day Protection</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-green-400 w-4 h-4 mr-2"></i>Behavioral Analysis</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-green-400 w-4 h-4 mr-2"></i>Malware Detection</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-green-400 w-4 h-4 mr-2"></i>Zero-Day Protection</li>
                     </ul>
                 </div>
                 
                 <!-- Feature 2 -->
                 <div class="cyber-card p-8 hover-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature-icon" style="color: var(--neon-purple); background: rgba(185, 103, 255, 0.1);">
+                    <div class="feature-icon" style="color: #b967ff; background: rgba(185, 103, 255, 0.1);">
                         <i data-feather="cloud" class="w-8 h-8"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-cyber">Cloud Security</h3>
+                    <h3 class="text-2xl font-bold mb-4 text-purple-400">Cloud Security</h3>
                     <p class="text-gray-300 mb-6">
                         Comprehensive protection for multi-cloud environments including 
                         AWS, Azure, Google Cloud, and hybrid infrastructure.
                     </p>
                     <ul class="space-y-2">
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i>CSPM & CWPP</li>
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i>Cloud DLP</li>
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i>Container Security</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-green-400 w-4 h-4 mr-2"></i>CSPM & CWPP</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-green-400 w-4 h-4 mr-2"></i>Cloud DLP</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-green-400 w-4 h-4 mr-2"></i>Container Security</li>
                     </ul>
                 </div>
                 
                 <!-- Feature 3 -->
                 <div class="cyber-card p-8 hover-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature-icon" style="color: var(--cyber-green); background: rgba(0, 255, 149, 0.1);">
+                    <div class="feature-icon" style="color: #00ff95; background: rgba(0, 255, 149, 0.1);">
                         <i data-feather="lock" class="w-8 h-8"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-cyber">Network Defense</h3>
+                    <h3 class="text-2xl font-bold mb-4 text-green-400">Network Defense</h3>
                     <p class="text-gray-300 mb-6">
                         Advanced network monitoring, intrusion detection, 
                         and next-generation firewall management.
                     </p>
                     <ul class="space-y-2">
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i>Next-Gen Firewall</li>
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i>IDS/IPS Systems</li>
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i>Network Segmentation</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-green-400 w-4 h-4 mr-2"></i>Next-Gen Firewall</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-green-400 w-4 h-4 mr-2"></i>IDS/IPS Systems</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-green-400 w-4 h-4 mr-2"></i>Network Segmentation</li>
                     </ul>
                 </div>
             </div>
@@ -680,9 +687,9 @@
                         from sophisticated cyber threats with real-time monitoring and automated response.
                     </p>
                     <ul class="space-y-3 mb-8">
-                        <li class="flex items-center"><i data-feather="play-circle" class="text-cyber w-5 h-5 mr-3"></i>Live threat detection demonstration</li>
-                        <li class="flex items-center"><i data-feather="play-circle" class="text-cyber w-5 h-5 mr-3"></i>Security dashboard walkthrough</li>
-                        <li class="flex items-center"><i data-feather="play-circle" class="text-cyber w-5 h-5 mr-3"></i>Automated incident response</li>
+                        <li class="flex items-center"><i data-feather="play-circle" class="text-cyan-400 w-5 h-5 mr-3"></i>Live threat detection demonstration</li>
+                        <li class="flex items-center"><i data-feather="play-circle" class="text-cyan-400 w-5 h-5 mr-3"></i>Security dashboard walkthrough</li>
+                        <li class="flex items-center"><i data-feather="play-circle" class="text-cyan-400 w-5 h-5 mr-3"></i>Automated incident response</li>
                     </ul>
                     <a href="pages/auth/signup.html" class="cyber-button text-lg py-3 px-8">
                         <i data-feather="play" class="w-5 h-5 mr-2"></i>
@@ -724,11 +731,11 @@
                 <!-- Tool 1 -->
                 <div class="cyber-card p-6 hover-card" data-aos="fade-up">
                     <div class="w-12 h-12 rounded-full bg-cyan-900 bg-opacity-30 flex items-center justify-center mb-4">
-                        <i data-feather="lock" class="text-cyber w-6 h-6"></i>
+                        <i data-feather="lock" class="text-cyan-400 w-6 h-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-cyber">Password Analyzer</h3>
+                    <h3 class="text-xl font-bold mb-3 text-cyan-400">Password Analyzer</h3>
                     <p class="text-gray-300 text-sm mb-4">Check password strength and get improvement suggestions</p>
-                    <a href="pages/security-tools.html#password-analyzer" class="text-cyber hover:text-cyan-300 text-sm font-medium">
+                    <a href="pages/security-tools.html#password-analyzer" class="text-cyan-400 hover:text-cyan-300 text-sm font-medium">
                         Try Tool →
                     </a>
                 </div>
@@ -736,11 +743,11 @@
                 <!-- Tool 2 -->
                 <div class="cyber-card p-6 hover-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="w-12 h-12 rounded-full bg-purple-900 bg-opacity-30 flex items-center justify-center mb-4">
-                        <i data-feather="hash" class="text-cyber w-6 h-6"></i>
+                        <i data-feather="hash" class="text-cyan-400 w-6 h-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-cyber">Hash Generator</h3>
+                    <h3 class="text-xl font-bold mb-3 text-cyan-400">Hash Generator</h3>
                     <p class="text-gray-300 text-sm mb-4">Generate cryptographic hashes using multiple algorithms</p>
-                    <a href="pages/security-tools.html#hash-generator" class="text-cyber hover:text-cyan-300 text-sm font-medium">
+                    <a href="pages/security-tools.html#hash-generator" class="text-cyan-400 hover:text-cyan-300 text-sm font-medium">
                         Try Tool →
                     </a>
                 </div>
@@ -748,11 +755,11 @@
                 <!-- Tool 3 -->
                 <div class="cyber-card p-6 hover-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="w-12 h-12 rounded-full bg-blue-900 bg-opacity-30 flex items-center justify-center mb-4">
-                        <i data-feather="link" class="text-cyber w-6 h-6"></i>
+                        <i data-feather="link" class="text-cyan-400 w-6 h-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-cyber">URL Checker</h3>
+                    <h3 class="text-xl font-bold mb-3 text-cyan-400">URL Checker</h3>
                     <p class="text-gray-300 text-sm mb-4">Verify website URLs for safety and potential threats</p>
-                    <a href="pages/security-tools.html#url-checker" class="text-cyber hover:text-cyan-300 text-sm font-medium">
+                    <a href="pages/security-tools.html#url-checker" class="text-cyan-400 hover:text-cyan-300 text-sm font-medium">
                         Try Tool →
                     </a>
                 </div>
@@ -760,11 +767,11 @@
                 <!-- Tool 4 -->
                 <div class="cyber-card p-6 hover-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="w-12 h-12 rounded-full bg-green-900 bg-opacity-30 flex items-center justify-center mb-4">
-                        <i data-feather="globe" class="text-cyber w-6 h-6"></i>
+                        <i data-feather="globe" class="text-cyan-400 w-6 h-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-cyber">Network Scanner</h3>
+                    <h3 class="text-xl font-bold mb-3 text-cyan-400">Network Scanner</h3>
                     <p class="text-gray-300 text-sm mb-4">Scan domains for security information and open ports</p>
-                    <a href="pages/security-tools.html#network-scanner" class="text-cyber hover:text-cyan-300 text-sm font-medium">
+                    <a href="pages/security-tools.html#network-scanner" class="text-cyan-400 hover:text-cyan-300 text-sm font-medium">
                         Try Tool →
                     </a>
                 </div>
@@ -873,7 +880,7 @@
             </div>
             
             <div class="flex justify-center mt-8 space-x-2">
-                <button class="testimonial-nav w-3 h-3 rounded-full bg-gray-700" data-slide="0"></button>
+                <button class="testimonial-nav w-3 h-3 rounded-full bg-gray-700 active" data-slide="0" style="background: #00f3ff;"></button>
                 <button class="testimonial-nav w-3 h-3 rounded-full bg-gray-700" data-slide="1"></button>
                 <button class="testimonial-nav w-3 h-3 rounded-full bg-gray-700" data-slide="2"></button>
             </div>
@@ -985,7 +992,7 @@
                 
                 <!-- Quick Links -->
                 <div>
-                    <h4 class="text-lg font-bold mb-4 text-cyber">Quick Links</h4>
+                    <h4 class="text-lg font-bold mb-4 text-cyan-400">Quick Links</h4>
                     <ul class="space-y-2">
                         <li><a href="index.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Home</a></li>
                         <li><a href="pages/about.html" class="text-gray-400 hover:text-cyan-400 transition-colors">About Us</a></li>
@@ -997,7 +1004,7 @@
                 
                 <!-- Resources -->
                 <div>
-                    <h4 class="text-lg font-bold mb-4 text-cyber">Resources</h4>
+                    <h4 class="text-lg font-bold mb-4 text-cyan-400">Resources</h4>
                     <ul class="space-y-2">
                         <li><a href="pages/blog.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Blog</a></li>
                         <li><a href="pages/case-studies.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Case Studies</a></li>
@@ -1009,7 +1016,7 @@
                 
                 <!-- Legal -->
                 <div>
-                    <h4 class="text-lg font-bold mb-4 text-cyber">Legal</h4>
+                    <h4 class="text-lg font-bold mb-4 text-cyan-400">Legal</h4>
                     <ul class="space-y-2">
                         <li><a href="pages/privacy-policy.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Privacy Policy</a></li>
                         <li><a href="pages/terms.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Terms of Service</a></li>
@@ -1049,17 +1056,21 @@
             feather.replace();
             
             // Initialize AOS Animations
-            AOS.init({
-                duration: 800,
-                once: true,
-                offset: 100
-            });
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    once: true,
+                    offset: 100
+                });
+            }
             
             // Initialize GSAP
-            gsap.registerPlugin(ScrollTrigger);
+            if (typeof gsap !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+            }
             
             // Initialize Vanta.js Background (only on desktop)
-            if (window.innerWidth > 768) {
+            if (typeof VANTA !== 'undefined' && window.innerWidth > 768) {
                 VANTA.NET({
                     el: "#vanta-bg",
                     mouseControls: true,
@@ -1078,21 +1089,27 @@
             }
             
             // Initialize Auth Manager
-            if (window.authManager) {
+            if (typeof window.authManager !== 'undefined') {
                 window.authManager.updateAuthUI();
                 
                 // Update user initials
                 const user = window.authManager.getCurrentUser();
                 if (user && user.name) {
                     const initials = user.name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
-                    document.getElementById('user-initials').textContent = initials;
+                    const userInitials = document.getElementById('user-initials');
+                    if (userInitials) {
+                        userInitials.textContent = initials;
+                    }
                 }
                 
                 // Logout functionality
-                document.getElementById('logout-button')?.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    window.authManager.logout();
-                });
+                const logoutButton = document.getElementById('logout-button');
+                if (logoutButton) {
+                    logoutButton.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        window.authManager.logout();
+                    });
+                }
             }
             
             // Mobile Menu Functionality
@@ -1121,6 +1138,22 @@
                 });
             }
             
+            // User Dropdown Functionality
+            const userButton = document.querySelector('.user-button');
+            const userMenu = document.querySelector('.user-menu');
+            
+            if (userButton && userMenu) {
+                userButton.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    userMenu.classList.toggle('show');
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', () => {
+                    userMenu.classList.remove('show');
+                });
+            }
+            
             // Smooth Scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
@@ -1140,6 +1173,11 @@
                                 mobileMenu.classList.remove('active');
                                 mobileMenuOverlay.classList.remove('active');
                                 document.body.style.overflow = '';
+                            }
+                            
+                            // Close user dropdown if open
+                            if (userMenu && userMenu.classList.contains('show')) {
+                                userMenu.classList.remove('show');
                             }
                             
                             // Scroll to target
@@ -1176,7 +1214,7 @@
                 });
             }
             
-            // Animated Counters (if not already handled by main.js)
+            // Animated Counters
             const counters = document.querySelectorAll('.stats-counter');
             if (counters.length > 0) {
                 const observer = new IntersectionObserver((entries) => {
@@ -1266,7 +1304,7 @@
                     // Update nav button
                     if (testimonialNavs[index]) {
                         testimonialNavs[index].classList.add('active');
-                        testimonialNavs[index].style.background = 'var(--neon-blue)';
+                        testimonialNavs[index].style.background = '#00f3ff';
                     }
                     
                     currentSlide = index;
@@ -1314,23 +1352,28 @@
             });
             
             // Initialize GSAP Animations
-            gsap.utils.toArray('[data-aos]').forEach(element => {
-                gsap.from(element, {
-                    opacity: 0,
-                    y: 50,
-                    duration: 1,
-                    scrollTrigger: {
-                        trigger: element,
-                        start: "top 80%",
-                        toggleActions: "play none none reverse"
-                    }
+            if (typeof gsap !== 'undefined') {
+                gsap.utils.toArray('[data-aos]').forEach(element => {
+                    gsap.from(element, {
+                        opacity: 0,
+                        y: 50,
+                        duration: 1,
+                        scrollTrigger: {
+                            trigger: element,
+                            start: "top 80%",
+                            toggleActions: "play none none reverse"
+                        }
+                    });
                 });
-            });
+            }
             
             // Update copyright year
             document.querySelectorAll('.current-year').forEach(el => {
                 el.textContent = new Date().getFullYear();
             });
+            
+            // Update auth section for mobile
+            updateMobileAuthSection();
             
             // Set active navigation link
             function setActiveNavLink() {
@@ -1350,24 +1393,67 @@
                 });
             }
             
+            function updateMobileAuthSection() {
+                const mobileAuthSection = document.getElementById('mobile-auth-section');
+                if (!mobileAuthSection) return;
+                
+                const user = window.authManager ? window.authManager.getCurrentUser() : null;
+                
+                if (user) {
+                    mobileAuthSection.innerHTML = `
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center">
+                                <span class="text-white font-bold text-sm">${user.name ? user.name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2) : 'U'}</span>
+                            </div>
+                            <div>
+                                <p class="text-white font-medium">${user.name || 'User'}</p>
+                                <p class="text-gray-400 text-sm">${user.email || ''}</p>
+                            </div>
+                        </div>
+                        <a href="pages/user/dashboard.html" class="nav-link text-lg block py-2">Dashboard</a>
+                        <a href="pages/user/profile.html" class="nav-link text-lg block py-2">My Profile</a>
+                        <a href="pages/user/settings.html" class="nav-link text-lg block py-2">Settings</a>
+                        <button id="mobile-logout-button" class="text-red-400 text-lg block py-2 w-full text-left">Logout</button>
+                    `;
+                    
+                    document.getElementById('mobile-logout-button')?.addEventListener('click', () => {
+                        if (window.authManager) {
+                            window.authManager.logout();
+                        }
+                    });
+                } else {
+                    mobileAuthSection.innerHTML = `
+                        <div class="flex flex-col space-y-4">
+                            <a href="pages/auth/login.html" class="cyber-button text-center py-3">Sign In</a>
+                            <a href="pages/auth/signup.html" class="security-button text-center py-3">Get Started</a>
+                        </div>
+                    `;
+                }
+            }
+            
             setActiveNavLink();
         });
         
         // Window Load Events
         window.addEventListener('load', function() {
-            // Remove preloader if exists
+            // Remove preloader
             const preloader = document.getElementById('preloader');
             if (preloader) {
                 preloader.style.opacity = '0';
-                setTimeout(() => preloader.remove(), 500);
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500);
             }
+            
+            // Update Feather Icons
+            feather.replace();
             
             // Add loaded class to body for transition effects
             document.body.classList.add('loaded');
             
-            // Update page load time
+            // Log page load time
             const loadTime = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart;
-            console.log(`Page loaded in ${loadTime}ms`);
+            console.log(`CyberShield Pro loaded in ${loadTime}ms`);
         });
     </script>
 </body>
