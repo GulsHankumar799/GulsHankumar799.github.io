@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CyberShield Pro | Admin System</title>
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- No external links to main site -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --admin-blue: #1a56db;
+            --admin-dark: #0f172a;
+            --admin-card: #1e293b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: var(--admin-dark);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(26, 86, 219, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(26, 86, 219, 0.1) 0%, transparent 20%);
+        }
+        
+        .admin-container {
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .admin-card {
+            background: var(--admin-card);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .admin-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--admin-blue), #3b82f6);
+        }
+        
+        .admin-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .admin-logo i {
+            font-size: 48px;
+            color: var(--admin-blue);
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .admin-logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--admin-blue), #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .admin-logo p {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid #475569;
+            border-radius: 8px;
+            color: white;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--admin-blue);
+            box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.2);
+        }
+        
+        .btn-admin {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, var(--admin-blue), #3b82f6);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-admin:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(26, 86, 219, 0.3);
+        }
+        
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        
+        .alert-error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+        }
+        
+        .alert-success {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #22c55e;
+        }
+        
+        .security-notice {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            text-align: center;
+        }
+        
+        .security-notice p {
+            color: #94a3b8;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+        }
+        
+        .input-wrapper {
+            position: relative;
+        }
+        
+        .login-info {
+            background: rgba(26, 86, 219, 0.05);
+            border: 1px solid rgba(26, 86, 219, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #94a3b8;
+        }
+        
+        .login-info strong {
+            color: #e2e8f0;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        @media (max-width: 480px) {
+            .admin-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-card">
+            <div class="admin-logo">
+                <i class="fas fa-user-shield"></i>
+                <h1>Admin System</h1>
+                <p>CyberShield Pro Control Panel</p>
+            </div>
+            
+            <div class="login-info">
+                <strong>⚠️ Restricted Access</strong>
+                This area is strictly for authorized administrators only.
+            </div>
+            
+            <div id="error-alert" class="alert alert-error">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="error-message"></span>
+            </div>
+            
+            <div id="success-alert" class="alert alert-success">
+                <i class="fas fa-check-circle"></i>
+                <span id="success-message"></span>
+            </div>
+            
+            <form id="admin-login-form">
+                <div class="form-group">
+                    <label for="username">
+                        <i class="fas fa-user mr-1"></i>
+                        Admin ID
+                    </label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        class="form-input" 
+                        placeholder="Enter admin username"
+                        autocomplete="off"
+                        autocapitalize="off"
+                        spellcheck="false"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">
+                        <i class="fas fa-lock mr-1"></i>
+                        Master Password
+                    </label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            class="form-input" 
+                            placeholder="Enter admin password"
+                            autocomplete="off"
+                        >
+                        <button type="button" class="password-toggle" id="toggle-password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="secure-session">
+                        <span class="ml-2 text-sm text-gray-300">Enable secure session (2-hour timeout)</span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn-admin" id="login-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Access Admin System
+                </button>
+            </form>
+            
+            <div class="security-notice">
+                <p>
+                    <i class="fas fa-shield-alt mr-1"></i>
+                    All login attempts are logged and monitored. 
+                    Unauthorized access is strictly prohibited.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Admin credentials (change these in production!)
+        const ADMIN_CREDENTIALS = {
+            username: "cybershield_admin",
+            password: "MasterSecure@2024#Admin",
+            // For production, this should be handled by backend
+        };
+        
+        // Failed attempts tracking
+        let failedAttempts = 0;
+        const MAX_ATTEMPTS = 5;
+        let lockUntil = 0;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if already logged in
+            const adminSession = localStorage.getItem('admin_session');
+            if (adminSession && JSON.parse(adminSession).expires > Date.now()) {
+                window.location.href = 'dashboard.html';
+                return;
+            }
+            
+            // Setup form
+            const loginForm = document.getElementById('admin-login-form');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const togglePasswordBtn = document.getElementById('toggle-password');
+            const loginBtn = document.getElementById('login-btn');
+            
+            // Focus username field
+            usernameInput.focus();
+            
+            // Toggle password visibility
+            togglePasswordBtn.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.innerHTML = type === 'password' ? 
+                    '<i class="fas fa-eye"></i>' : 
+                    '<i class="fas fa-eye-slash"></i>';
+            });
+            
+            // Handle login form submission
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Check if account is locked
+                if (lockUntil > Date.now()) {
+                    const remaining = Math.ceil((lockUntil - Date.now()) / 60000);
+                    showError(`Account locked. Try again in ${remaining} minutes.`);
+                    return;
+                }
+                
+                // Get form values
+                const username = usernameInput.value.trim();
+                const password = passwordInput.value;
+                const secureSession = document.getElementById('secure-session').checked;
+                
+                // Basic validation
+                if (!username || !password) {
+                    showError('Please enter both username and password');
+                    return;
+                }
+                
+                // Disable login button
+                loginBtn.disabled = true;
+                loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
+                
+                // Simulate network delay (remove in production)
+                await new Promise(resolve => setTimeout(resolve, 800));
+                
+                // Check credentials
+                if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+                    // Successful login
+                    failedAttempts = 0;
+                    
+                    // Create session
+                    const session = {
+                        username: username,
+                        loggedIn: true,
+                        loginTime: Date.now(),
+                        expires: Date.now() + (secureSession ? 7200000 : 3600000), // 2 hours or 1 hour
+                        sessionId: generateSessionId(),
+                        ip: await getClientIP()
+                    };
+                    
+                    localStorage.setItem('admin_session', JSON.stringify(session));
+                    
+                    // Log the login (in production, send to server)
+                    const loginLog = {
+                        timestamp: new Date().toISOString(),
+                        username: username,
+                        ip: session.ip,
+                        userAgent: navigator.userAgent,
+                        success: true
+                    };
+                    localStorage.setItem('admin_login_log', JSON.stringify(loginLog));
+                    
+                    showSuccess('Authentication successful! Redirecting...');
+                    
+                    // Redirect to dashboard
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1000);
+                    
+                } else {
+                    // Failed login
+                    failedAttempts++;
+                    
+                    if (failedAttempts >= MAX_ATTEMPTS) {
+                        // Lock account for 15 minutes
+                        lockUntil = Date.now() + 900000; // 15 minutes
+                        showError(`Too many failed attempts. Account locked for 15 minutes.`);
+                    } else {
+                        showError(`Invalid credentials. ${MAX_ATTEMPTS - failedAttempts} attempts remaining.`);
+                    }
+                    
+                    // Log failed attempt
+                    const failedLog = {
+                        timestamp: new Date().toISOString(),
+                        username: username,
+                        ip: await getClientIP(),
+                        attempt: failedAttempts
+                    };
+                    
+                    let failedLogs = JSON.parse(localStorage.getItem('admin_failed_logs') || '[]');
+                    failedLogs.push(failedLog);
+                    localStorage.setItem('admin_failed_logs', JSON.stringify(failedLogs));
+                    
+                    // Reset button
+                    loginBtn.disabled = false;
+                    loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Access Admin System';
+                }
+            });
+            
+            // Prevent autofill showing previous credentials
+            usernameInput.value = '';
+            passwordInput.value = '';
+        });
+        
+        function showError(message) {
+            const alert = document.getElementById('error-alert');
+            const messageEl = document.getElementById('error-message');
+            
+            messageEl.textContent = message;
+            alert.style.display = 'flex';
+            
+            // Hide success alert if shown
+            document.getElementById('success-alert').style.display = 'none';
+            
+            // Auto hide after 5 seconds
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 5000);
+        }
+        
+        function showSuccess(message) {
+            const alert = document.getElementById('success-alert');
+            const messageEl = document.getElementById('success-message');
+            
+            messageEl.textContent = message;
+            alert.style.display = 'flex';
+            
+            // Hide error alert if shown
+            document.getElementById('error-alert').style.display = 'none';
+        }
+        
+        function generateSessionId() {
+            return 'admin_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+        
+        async function getClientIP() {
+            // In production, this would come from your server
+            // For demo, return a placeholder
+            return '127.0.0.1';
+        }
+        
+        // Prevent right-click and inspect element (basic security)
+        document.addEventListener('contextmenu', function(e) {
+            if (window.location.pathname.includes('admin')) {
+                e.preventDefault();
+                showError('Right-click is disabled in admin area');
+                return false;
+            }
+        });
+        
+        // Prevent keyboard shortcuts for dev tools (not foolproof but adds layer)
+        document.addEventListener('keydown', function(e) {
+            if (window.location.pathname.includes('admin')) {
+                // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C, Ctrl+U
+                if (
+                    e.keyCode === 123 || 
+                    (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) ||
+                    (e.ctrlKey && e.keyCode === 85)
+                ) {
+                    e.preventDefault();
+                    showError('Developer tools are restricted in admin area');
+                    return false;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
