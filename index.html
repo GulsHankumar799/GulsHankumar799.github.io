@@ -28,6 +28,7 @@
     <!-- GSAP Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,6 +56,12 @@
             background-color: var(--dark-bg);
             color: #fff;
             overflow-x: hidden;
+            opacity: 0;
+            animation: fadeInBody 1s ease 0.3s forwards;
+        }
+        
+        @keyframes fadeInBody {
+            to { opacity: 1; }
         }
         
         h1, h2, h3, h4, h5, h6 {
@@ -85,6 +92,12 @@
             background: rgba(10, 14, 23, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+            transform: translateY(-100%);
+            animation: slideDownHeader 0.8s ease 0.5s forwards;
+        }
+        
+        @keyframes slideDownHeader {
+            to { transform: translateY(0); }
         }
         
         .nav-link {
@@ -117,6 +130,9 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards;
         }
         
         .cyber-button::before {
@@ -135,8 +151,8 @@
         }
         
         .cyber-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 243, 255, 0.3);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 243, 255, 0.4);
         }
         
         .security-button {
@@ -150,12 +166,15 @@
             text-decoration: none;
             display: inline-block;
             transition: all 0.3s ease;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeUp 0.6s ease 0.2s forwards;
         }
         
         .security-button:hover {
             background: rgba(0, 243, 255, 0.1);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 243, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 243, 255, 0.3);
         }
         
         /* Card Styles */
@@ -164,12 +183,13 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(0, 243, 255, 0.2);
             border-radius: 15px;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .cyber-card:hover {
             border-color: var(--primary-cyan);
-            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 243, 255, 0.25);
+            transform: translateY(-10px);
         }
         
         /* Mobile Menu */
@@ -183,7 +203,7 @@
             backdrop-filter: blur(10px);
             z-index: 1001;
             padding: 30px;
-            transition: right 0.4s ease;
+            transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
             border-left: 1px solid rgba(0, 243, 255, 0.2);
         }
@@ -245,6 +265,12 @@
             margin-bottom: 1.5rem;
             position: relative;
             overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        
+        .feature-icon.animated {
+            animation: fadeUp 0.6s ease forwards;
         }
         
         .feature-icon::before {
@@ -271,7 +297,7 @@
             width: 100%;
             opacity: 0;
             transform: translateX(50px);
-            transition: all 0.8s ease;
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .testimonial-slide.active {
@@ -283,12 +309,18 @@
             filter: grayscale(100%) brightness(2);
             opacity: 0.7;
             transition: all 0.3s ease;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        
+        .partner-logo.animated {
+            animation: fadeUp 0.6s ease forwards;
         }
         
         .partner-logo:hover {
             filter: grayscale(0%) brightness(1);
             opacity: 1;
-            transform: scale(1.05);
+            transform: scale(1.05) translateY(-5px);
         }
         
         .cta-section {
@@ -325,8 +357,15 @@
         }
         
         @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg) scale(1); 
+            }
+            33% { 
+                transform: translateY(-30px) rotate(120deg) scale(1.1); 
+            }
+            66% { 
+                transform: translateY(-15px) rotate(240deg) scale(0.9); 
+            }
         }
         
         .typewriter-text {
@@ -358,6 +397,12 @@
             font-size: 0.9rem;
             margin-right: 0.5rem;
             margin-bottom: 0.5rem;
+            animation: badgePulse 2s infinite;
+        }
+        
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
         
         .live-threat-indicator {
@@ -367,13 +412,18 @@
             border-radius: 50%;
             background: var(--primary-pink);
             margin-right: 8px;
-            animation: pulse 2s infinite;
+            animation: pulse 2s infinite, glow 1.5s infinite alternate;
         }
         
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(255, 42, 109, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(255, 42, 109, 0); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 42, 109, 0); }
             100% { box-shadow: 0 0 0 0 rgba(255, 42, 109, 0); }
+        }
+        
+        @keyframes glow {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.5); }
         }
         
         /* Enhanced Card Hover Effects */
@@ -381,11 +431,17 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             z-index: 1;
+            transform: translateY(30px);
+            opacity: 0;
+        }
+        
+        .hover-card.animated {
+            animation: fadeUp 0.6s ease forwards;
         }
         
         .hover-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 50px -12px rgba(0, 243, 255, 0.25);
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 30px 60px -12px rgba(0, 243, 255, 0.35);
             z-index: 10;
         }
         
@@ -395,6 +451,13 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientFlow 3s ease infinite;
+        }
+        
+        @keyframes gradientFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
         
         /* Responsive Video Container */
@@ -405,6 +468,13 @@
             overflow: hidden;
             border-radius: 15px;
             border: 2px solid rgba(0, 243, 255, 0.3);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .video-container:hover {
+            transform: perspective(1000px) rotateY(0deg) scale(1.02);
+            border-color: var(--primary-cyan);
         }
         
         .video-container iframe {
@@ -427,7 +497,7 @@
             border-top: 1px solid rgba(0, 243, 255, 0.2);
             z-index: 9999;
             transform: translateY(100%);
-            transition: transform 0.3s ease;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .cookie-banner.active {
@@ -478,18 +548,26 @@
             align-items: center;
             justify-content: center;
             z-index: 100;
-            box-shadow: 0 4px 15px rgba(0, 243, 255, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 243, 255, 0.4);
+            transform: scale(0.8);
         }
         
         #back-to-top.visible {
             opacity: 1;
             visibility: visible;
+            transform: scale(1);
         }
         
         #back-to-top:hover {
             background: var(--primary-purple);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(185, 103, 255, 0.4);
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 8px 30px rgba(185, 103, 255, 0.5);
+            animation: buttonGlow 1.5s infinite alternate;
+        }
+        
+        @keyframes buttonGlow {
+            from { box-shadow: 0 8px 30px rgba(185, 103, 255, 0.5); }
+            to { box-shadow: 0 8px 40px rgba(185, 103, 255, 0.8); }
         }
         
         /* User Dropdown */
@@ -510,7 +588,7 @@
             opacity: 0;
             visibility: hidden;
             transform: translateY(10px);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 1000;
         }
         
@@ -538,6 +616,7 @@
         .user-menu-item:hover {
             background: rgba(0, 243, 255, 0.1);
             color: var(--primary-cyan);
+            transform: translateX(5px);
         }
         
         .user-button {
@@ -548,6 +627,11 @@
             align-items: center;
             gap: 8px;
             color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .user-button:hover {
+            transform: scale(1.05);
         }
         
         /* Preloader */
@@ -562,7 +646,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
         
         .preloader-spinner {
@@ -571,11 +655,18 @@
             border: 4px solid rgba(0, 243, 255, 0.2);
             border-top-color: var(--primary-cyan);
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite, colorChange 2s infinite alternate;
         }
         
         @keyframes spin {
             to { transform: rotate(360deg); }
+        }
+        
+        @keyframes colorChange {
+            0% { border-top-color: var(--primary-cyan); }
+            33% { border-top-color: var(--primary-purple); }
+            66% { border-top-color: var(--primary-pink); }
+            100% { border-top-color: var(--primary-green); }
         }
         
         /* Responsive Styles */
@@ -606,6 +697,10 @@
                 width: 100%;
                 justify-content: center;
             }
+            
+            .video-container {
+                transform: perspective(1000px) rotateY(0deg);
+            }
         }
         
         /* Fix for Vanta.js z-index */
@@ -629,6 +724,94 @@
             display: flex;
             align-items: center;
         }
+        
+        /* Fade Up Animation */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Stagger animations */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        /* Enhanced scroll animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Cyber grid lines animation */
+        .cyber-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 49%, rgba(0, 243, 255, 0.1) 50%, transparent 51%) 0 0/50px 50px,
+                linear-gradient(0deg, transparent 49%, rgba(0, 243, 255, 0.1) 50%, transparent 51%) 0 0/50px 50px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        /* Glitch text effect */
+        .glitch-text {
+            position: relative;
+            animation: glitch 3s infinite;
+        }
+        
+        @keyframes glitch {
+            0%, 12%, 15%, 50%, 55%, 82%, 85%, 100% { transform: translate(0); }
+            13% { transform: translate(-2px, 2px); }
+            14% { transform: translate(2px, -1px); }
+            83% { transform: translate(1px, -2px); }
+            84% { transform: translate(-1px, 1px); }
+        }
+        
+        /* Particle animation */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-cyan);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            animation: particleFloat 3s ease-out infinite;
+        }
+        
+        @keyframes particleFloat {
+            0% {
+                transform: translate(0, 0) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx, 100px), var(--ty, -100px)) scale(1);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body class="cyber-gradient">
@@ -636,17 +819,20 @@
     <div id="preloader">
         <div class="text-center">
             <div class="preloader-spinner mx-auto mb-4"></div>
-            <p class="text-cyan-400 font-bold">Initializing Security Protocols...</p>
+            <p class="text-cyan-400 font-bold glitch-text">Initializing Security Protocols...</p>
         </div>
     </div>
 
     <!-- Vanta.js Background -->
     <div id="vanta-bg"></div>
     
+    <!-- Cyber Grid Overlay -->
+    <div class="cyber-grid"></div>
+    
     <!-- Floating Shapes -->
     <div class="floating-shape" style="width: 300px; height: 300px; top: 10%; right: 5%;"></div>
-    <div class="floating-shape" style="width: 200px; height: 200px; bottom: 20%; left: 10%;"></div>
-    <div class="floating-shape" style="width: 150px; height: 150px; top: 40%; left: 5%;"></div>
+    <div class="floating-shape" style="width: 200px; height: 200px; bottom: 20%; left: 10%; animation-delay: -2s;"></div>
+    <div class="floating-shape" style="width: 150px; height: 150px; top: 40%; left: 5%; animation-delay: -4s;"></div>
 
     <!-- Navigation -->
     <nav class="simplified-header fixed top-0 w-full z-50 py-4 px-4 md:px-8 flex justify-between items-center">
@@ -735,7 +921,7 @@
             </div>
             
             <!-- Mobile Menu Toggle -->
-            <button id="mobile-menu-toggle" class="lg:hidden text-white p-2 hover:bg-gray-800 rounded-lg">
+            <button id="mobile-menu-toggle" class="lg:hidden text-white p-2 hover:bg-gray-800 rounded-lg transition-all duration-300">
                 <i class="fas fa-bars text-xl"></i>
             </button>
         </div>
@@ -778,31 +964,31 @@
                         <span class="text-sm text-red-400 font-medium">Live Threat Protection Active</span>
                     </div>
                     
-                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight reveal">
                         <span class="text-white">Advanced</span>
                         <span class="gradient-text block">Cybersecurity</span>
                         <span class="text-white">Solutions</span>
                     </h1>
                     
-                    <p class="text-xl text-gray-300 mb-8 max-w-2xl">
+                    <p class="text-xl text-gray-300 mb-8 max-w-2xl reveal" data-delay="0.2">
                         Enterprise-grade security platform protecting organizations worldwide from sophisticated cyber threats. 
                         Real-time threat intelligence, automated defense, and 24/7 security operations.
                     </p>
                     
                     <div class="flex flex-col sm:flex-row gap-4 mb-12">
-                        <a href="signup.html" class="cyber-button text-lg py-4 px-8 text-center group">
+                        <a href="signup.html" class="cyber-button text-lg py-4 px-8 text-center group" data-delay="0.3">
                             <span class="flex items-center justify-center">
                                 Start Free Trial
-                                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
                             </span>
                         </a>
-                        <a href="services.html" class="security-button text-lg py-4 px-8 text-center">
+                        <a href="services.html" class="security-button text-lg py-4 px-8 text-center" data-delay="0.4">
                             View Our Services
                         </a>
                     </div>
                     
                     <!-- Trust Badges -->
-                    <div class="flex flex-wrap items-center gap-6">
+                    <div class="flex flex-wrap items-center gap-6 reveal" data-delay="0.5">
                         <div class="security-badge">
                             <i class="fas fa-shield-alt mr-2"></i>
                             99.9% Uptime
@@ -818,25 +1004,25 @@
                     </div>
                 </div>
                 
-                <div class="relative" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
+                <div class="relative reveal" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
                     <div class="cyber-card p-8 rounded-2xl">
                         <!-- Animated Threat Dashboard Preview -->
                         <div class="mb-6">
                             <div class="flex items-center justify-between mb-4">
                                 <h3 class="text-xl font-bold text-cyan-400">Live Threat Dashboard</h3>
                                 <div class="flex items-center">
-                                    <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
+                                    <div class="w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse"></div>
                                     <span class="text-sm text-green-500">All Systems Secure</span>
                                 </div>
                             </div>
                             
                             <!-- Mini Dashboard -->
                             <div class="grid grid-cols-2 gap-4 mb-6">
-                                <div class="bg-gray-800 rounded-lg p-4">
+                                <div class="bg-gray-800 rounded-lg p-4 hover:bg-gray-700 transition-colors duration-300">
                                     <p class="text-sm text-gray-400 mb-1">Threats Blocked</p>
                                     <p class="text-2xl font-bold text-green-400">1,247</p>
                                 </div>
-                                <div class="bg-gray-800 rounded-lg p-4">
+                                <div class="bg-gray-800 rounded-lg p-4 hover:bg-gray-700 transition-colors duration-300">
                                     <p class="text-sm text-gray-400 mb-1">Active Alerts</p>
                                     <p class="text-2xl font-bold text-red-400">3</p>
                                 </div>
@@ -846,9 +1032,9 @@
                             <div class="relative h-48 bg-gray-900 rounded-lg overflow-hidden">
                                 <!-- Simulated threat dots -->
                                 <div class="absolute top-1/4 left-1/4 w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
-                                <div class="absolute top-1/3 right-1/3 w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></div>
-                                <div class="absolute bottom-1/4 left-1/3 w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                                <div class="absolute top-1/2 right-1/4 w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+                                <div class="absolute top-1/3 right-1/3 w-2 h-2 rounded-full bg-yellow-500 animate-pulse" style="animation-delay: 0.5s"></div>
+                                <div class="absolute bottom-1/4 left-1/3 w-2 h-2 rounded-full bg-green-500 animate-pulse" style="animation-delay: 1s"></div>
+                                <div class="absolute top-1/2 right-1/4 w-2 h-2 rounded-full bg-red-500 animate-pulse" style="animation-delay: 1.5s"></div>
                             </div>
                         </div>
                         
@@ -859,8 +1045,8 @@
                     </div>
                     
                     <!-- Floating Elements -->
-                    <div class="absolute -top-4 -right-4 w-20 h-20 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 opacity-20 blur-xl"></div>
-                    <div class="absolute -bottom-4 -left-4 w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 opacity-20 blur-xl"></div>
+                    <div class="absolute -top-4 -right-4 w-20 h-20 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 opacity-20 blur-xl animate-pulse"></div>
+                    <div class="absolute -bottom-4 -left-4 w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 opacity-20 blur-xl animate-pulse" style="animation-delay: 1s"></div>
                 </div>
             </div>
         </div>
@@ -870,21 +1056,21 @@
     <section class="py-16 security-gradient">
         <div class="container mx-auto px-4 md:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="text-center" data-aos="fade-up">
-                    <p class="stats-counter">500+</p>
-                    <p class="text-gray-400">Enterprise Clients</p>
+                <div class="text-center reveal" data-aos="fade-up">
+                    <p class="stats-counter" data-target="500" data-suffix="+">0+</p>
+                    <p class="text-gray-400 mt-2">Enterprise Clients</p>
                 </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-                    <p class="stats-counter">2.5M</p>
-                    <p class="text-gray-400">Threats Neutralized</p>
+                <div class="text-center reveal" data-aos="fade-up" data-aos-delay="100">
+                    <p class="stats-counter" data-target="2500000" data-suffix="M">0M</p>
+                    <p class="text-gray-400 mt-2">Threats Neutralized</p>
                 </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
-                    <p class="stats-counter">99.9%</p>
-                    <p class="text-gray-400">Uptime Guarantee</p>
+                <div class="text-center reveal" data-aos="fade-up" data-aos-delay="200">
+                    <p class="stats-counter" data-target="99.9" data-suffix="%">0%</p>
+                    <p class="text-gray-400 mt-2">Uptime Guarantee</p>
                 </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
-                    <p class="stats-counter">24s</p>
-                    <p class="text-gray-400">Avg Response Time</p>
+                <div class="text-center reveal" data-aos="fade-up" data-aos-delay="300">
+                    <p class="stats-counter" data-target="24" data-suffix="s">0s</p>
+                    <p class="text-gray-400 mt-2">Avg Response Time</p>
                 </div>
             </div>
         </div>
@@ -893,7 +1079,7 @@
     <!-- Features Section -->
     <section id="features" class="py-20 grid-pattern">
         <div class="container mx-auto px-4 md:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
+            <div class="text-center mb-16 reveal" data-aos="fade-up">
                 <h2 class="section-title text-4xl md:text-5xl font-bold mb-6">
                     <span class="text-white">Comprehensive</span>
                     <span class="gradient-text block">Security Features</span>
@@ -906,8 +1092,8 @@
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
-                <div class="cyber-card p-8 hover-card" data-aos="fade-up">
-                    <div class="feature-icon" style="color: #00f3ff; background: rgba(0, 243, 255, 0.1);">
+                <div class="cyber-card p-8 hover-card animated" data-aos="fade-up" data-delay="0">
+                    <div class="feature-icon animated" style="color: #00f3ff; background: rgba(0, 243, 255, 0.1);" data-delay="0.1">
                         <i class="fas fa-shield-alt text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4 text-cyan-400">Threat Intelligence</h3>
@@ -923,8 +1109,8 @@
                 </div>
                 
                 <!-- Feature 2 -->
-                <div class="cyber-card p-8 hover-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature-icon" style="color: #b967ff; background: rgba(185, 103, 255, 0.1);">
+                <div class="cyber-card p-8 hover-card animated" data-aos="fade-up" data-aos-delay="100" data-delay="0.2">
+                    <div class="feature-icon animated" style="color: #b967ff; background: rgba(185, 103, 255, 0.1);" data-delay="0.3">
                         <i class="fas fa-cloud text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4 text-purple-400">Cloud Security</h3>
@@ -940,8 +1126,8 @@
                 </div>
                 
                 <!-- Feature 3 -->
-                <div class="cyber-card p-8 hover-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature-icon" style="color: #00ff95; background: rgba(0, 255, 149, 0.1);">
+                <div class="cyber-card p-8 hover-card animated" data-aos="fade-up" data-aos-delay="200" data-delay="0.4">
+                    <div class="feature-icon animated" style="color: #00ff95; background: rgba(0, 255, 149, 0.1);" data-delay="0.5">
                         <i class="fas fa-lock text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4 text-green-400">Network Defense</h3>
@@ -957,7 +1143,7 @@
                 </div>
             </div>
             
-            <div class="text-center mt-12" data-aos="fade-up">
+            <div class="text-center mt-12 reveal" data-aos="fade-up" data-delay="0.6">
                 <a href="services.html" class="cyber-button text-lg py-3 px-8 inline-flex items-center">
                     View All Features
                     <i class="fas fa-arrow-right ml-2"></i>
@@ -970,32 +1156,32 @@
     <section class="py-20 security-gradient">
         <div class="container mx-auto px-4 md:px-8">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div data-aos="fade-right">
+                <div class="reveal" data-aos="fade-right">
                     <h2 class="text-4xl font-bold mb-6">
                         <span class="text-white">See Our Platform</span>
                         <span class="gradient-text block">In Action</span>
                     </h2>
-                    <p class="text-gray-300 mb-6">
+                    <p class="text-gray-300 mb-6 reveal" data-delay="0.2">
                         Watch a quick demo to see how CyberShield Pro protects organizations 
                         from sophisticated cyber threats with real-time monitoring and automated response.
                     </p>
-                    <ul class="space-y-3 mb-8">
+                    <ul class="space-y-3 mb-8 reveal" data-delay="0.3">
                         <li class="flex items-center"><i class="fas fa-play-circle text-cyan-400 mr-3"></i>Live threat detection demonstration</li>
                         <li class="flex items-center"><i class="fas fa-play-circle text-cyan-400 mr-3"></i>Security dashboard walkthrough</li>
                         <li class="flex items-center"><i class="fas fa-play-circle text-cyan-400 mr-3"></i>Automated incident response</li>
                     </ul>
-                    <a href="signup.html" class="cyber-button text-lg py-3 px-8">
+                    <a href="signup.html" class="cyber-button text-lg py-3 px-8 reveal" data-delay="0.4">
                         <i class="fas fa-play mr-2"></i>
                         Watch Full Demo
                     </a>
                 </div>
                 
-                <div data-aos="fade-left">
+                <div class="reveal" data-aos="fade-left" data-delay="0.5">
                     <div class="video-container">
                         <!-- Demo Video Placeholder -->
                         <div class="absolute inset-0 bg-gradient-to-br from-cyan-900 to-purple-900 flex items-center justify-center">
                             <div class="text-center">
-                                <i class="fas fa-play-circle text-6xl text-white mx-auto mb-4"></i>
+                                <i class="fas fa-play-circle text-6xl text-white mx-auto mb-4 hover:scale-110 transition-transform duration-300"></i>
                                 <p class="text-white font-semibold">Platform Demo Video</p>
                                 <p class="text-gray-300 text-sm">2:45 minutes</p>
                             </div>
@@ -1009,7 +1195,7 @@
     <!-- Security Tools Preview -->
     <section id="tools-preview" class="py-20 grid-pattern">
         <div class="container mx-auto px-4 md:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
+            <div class="text-center mb-16 reveal" data-aos="fade-up">
                 <h2 class="section-title text-4xl md:text-5xl font-bold mb-6">
                     <span class="text-white">Free Security</span>
                     <span class="gradient-text block">Tools</span>
@@ -1022,55 +1208,55 @@
             
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Tool 1 -->
-                <div class="cyber-card p-6 hover-card" data-aos="fade-up">
+                <div class="cyber-card p-6 hover-card animated" data-aos="fade-up" data-delay="0">
                     <div class="w-12 h-12 rounded-full bg-cyan-900 bg-opacity-30 flex items-center justify-center mb-4">
                         <i class="fas fa-lock text-cyan-400 text-xl"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-cyan-400">Password Analyzer</h3>
                     <p class="text-gray-300 text-sm mb-4">Check password strength and get improvement suggestions</p>
-                    <a href="security-tools.html#password-analyzer" class="text-cyan-400 hover:text-cyan-300 text-sm font-medium">
-                        Try Tool →
+                    <a href="security-tools.html#password-analyzer" class="text-cyan-400 hover:text-cyan-300 text-sm font-medium inline-flex items-center">
+                        Try Tool <i class="fas fa-arrow-right ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
                     </a>
                 </div>
                 
                 <!-- Tool 2 -->
-                <div class="cyber-card p-6 hover-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="cyber-card p-6 hover-card animated" data-aos="fade-up" data-aos-delay="100" data-delay="0.1">
                     <div class="w-12 h-12 rounded-full bg-purple-900 bg-opacity-30 flex items-center justify-center mb-4">
                         <i class="fas fa-hashtag text-cyan-400 text-xl"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-cyan-400">Hash Generator</h3>
                     <p class="text-gray-300 text-sm mb-4">Generate cryptographic hashes using multiple algorithms</p>
-                    <a href="security-tools.html#hash-generator" class="text-cyan-400 hover:text-cyan-300 text-sm font-medium">
-                        Try Tool →
+                    <a href="security-tools.html#hash-generator" class="text-cyan-400 hover:text-cyan-300 text-sm font-medium inline-flex items-center">
+                        Try Tool <i class="fas fa-arrow-right ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
                     </a>
                 </div>
                 
                 <!-- Tool 3 -->
-                <div class="cyber-card p-6 hover-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="cyber-card p-6 hover-card animated" data-aos="fade-up" data-aos-delay="200" data-delay="0.2">
                     <div class="w-12 h-12 rounded-full bg-blue-900 bg-opacity-30 flex items-center justify-center mb-4">
                         <i class="fas fa-link text-cyan-400 text-xl"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-cyan-400">URL Checker</h3>
                     <p class="text-gray-300 text-sm mb-4">Verify website URLs for safety and potential threats</p>
-                    <a href="security-tools.html#url-checker" class="text-cyan-400 hover:text-cyan-300 text-sm font-medium">
-                        Try Tool →
+                    <a href="security-tools.html#url-checker" class="text-cyan-400 hover:text-cyan-300 text-sm font-medium inline-flex items-center">
+                        Try Tool <i class="fas fa-arrow-right ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
                     </a>
                 </div>
                 
                 <!-- Tool 4 -->
-                <div class="cyber-card p-6 hover-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="cyber-card p-6 hover-card animated" data-aos="fade-up" data-aos-delay="300" data-delay="0.3">
                     <div class="w-12 h-12 rounded-full bg-green-900 bg-opacity-30 flex items-center justify-center mb-4">
                         <i class="fas fa-globe text-cyan-400 text-xl"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-cyan-400">Network Scanner</h3>
                     <p class="text-gray-300 text-sm mb-4">Scan domains for security information and open ports</p>
-                    <a href="security-tools.html#network-scanner" class="text-cyan-400 hover:text-cyan-300 text-sm font-medium">
-                        Try Tool →
+                    <a href="security-tools.html#network-scanner" class="text-cyan-400 hover:text-cyan-300 text-sm font-medium inline-flex items-center">
+                        Try Tool <i class="fas fa-arrow-right ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
                     </a>
                 </div>
             </div>
             
-            <div class="text-center mt-12" data-aos="fade-up">
+            <div class="text-center mt-12 reveal" data-aos="fade-up" data-delay="0.4">
                 <a href="security-tools.html" class="security-button text-lg py-3 px-8">
                     <i class="fas fa-tools mr-2"></i>
                     Explore All Tools
@@ -1082,14 +1268,14 @@
     <!-- Testimonials -->
     <section class="py-20 security-gradient">
         <div class="container mx-auto px-4 md:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
+            <div class="text-center mb-16 reveal" data-aos="fade-up">
                 <h2 class="section-title text-4xl md:text-5xl font-bold mb-6">
                     <span class="text-white">Trusted by</span>
                     <span class="gradient-text block">Security Leaders</span>
                 </h2>
             </div>
             
-            <div class="testimonial-slider" data-aos="fade-up">
+            <div class="testimonial-slider reveal" data-aos="fade-up">
                 <!-- Testimonial 1 -->
                 <div class="testimonial-slide active">
                     <div class="cyber-card p-8 max-w-3xl mx-auto">
@@ -1172,7 +1358,7 @@
                 </div>
             </div>
             
-            <div class="flex justify-center mt-8 space-x-2">
+            <div class="flex justify-center mt-8 space-x-2 reveal" data-aos="fade-up" data-delay="0.3">
                 <button class="testimonial-nav w-3 h-3 rounded-full bg-gray-700 active" data-slide="0" style="background: #00f3ff;"></button>
                 <button class="testimonial-nav w-3 h-3 rounded-full bg-gray-700" data-slide="1"></button>
                 <button class="testimonial-nav w-3 h-3 rounded-full bg-gray-700" data-slide="2"></button>
@@ -1183,37 +1369,37 @@
     <!-- Partners -->
     <section class="py-16">
         <div class="container mx-auto px-4 md:px-8">
-            <div class="text-center mb-12" data-aos="fade-up">
+            <div class="text-center mb-12 reveal" data-aos="fade-up">
                 <h3 class="text-2xl font-bold text-gray-300 mb-6">Trusted by Industry Leaders</h3>
             </div>
             
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center" data-aos="fade-up">
-                <div class="partner-logo text-center">
+                <div class="partner-logo animated text-center" data-delay="0">
                     <div class="w-32 h-12 mx-auto bg-gray-800 rounded-lg flex items-center justify-center">
                         <span class="text-gray-400 font-bold">TECH CORP</span>
                     </div>
                 </div>
-                <div class="partner-logo text-center">
+                <div class="partner-logo animated text-center" data-delay="0.1">
                     <div class="w-32 h-12 mx-auto bg-gray-800 rounded-lg flex items-center justify-center">
                         <span class="text-gray-400 font-bold">SECURE BANK</span>
                     </div>
                 </div>
-                <div class="partner-logo text-center">
+                <div class="partner-logo animated text-center" data-delay="0.2">
                     <div class="w-32 h-12 mx-auto bg-gray-800 rounded-lg flex items-center justify-center">
                         <span class="text-gray-400 font-bold">HEALTH PLUS</span>
                     </div>
                 </div>
-                <div class="partner-logo text-center">
+                <div class="partner-logo animated text-center" data-delay="0.3">
                     <div class="w-32 h-12 mx-auto bg-gray-800 rounded-lg flex items-center justify-center">
                         <span class="text-gray-400 font-bold">GLOBAL TECH</span>
                     </div>
                 </div>
-                <div class="partner-logo text-center">
+                <div class="partner-logo animated text-center" data-delay="0.4">
                     <div class="w-32 h-12 mx-auto bg-gray-800 rounded-lg flex items-center justify-center">
                         <span class="text-gray-400 font-bold">DATA SAFE</span>
                     </div>
                 </div>
-                <div class="partner-logo text-center">
+                <div class="partner-logo animated text-center" data-delay="0.5">
                     <div class="w-32 h-12 mx-auto bg-gray-800 rounded-lg flex items-center justify-center">
                         <span class="text-gray-400 font-bold">CLOUD SEC</span>
                     </div>
@@ -1225,17 +1411,17 @@
     <!-- CTA Section -->
     <section class="cta-section py-20 relative overflow-hidden">
         <div class="container mx-auto px-4 md:px-8 relative z-10">
-            <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <div class="max-w-4xl mx-auto text-center reveal" data-aos="fade-up">
                 <h2 class="text-4xl md:text-5xl font-bold mb-6">
                     <span class="text-white">Ready to Secure</span>
                     <span class="gradient-text block">Your Organization?</span>
                 </h2>
-                <p class="text-xl text-gray-300 mb-8">
+                <p class="text-xl text-gray-300 mb-8 reveal" data-delay="0.2">
                     Join thousands of organizations that trust CyberShield Pro for their cybersecurity needs. 
                     Start your free trial today and experience enterprise-grade security.
                 </p>
                 
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center reveal" data-delay="0.3">
                     <a href="signup.html" class="cyber-button text-lg py-4 px-8">
                         <i class="fas fa-shield-alt mr-2"></i>
                         Start Free Trial
@@ -1246,7 +1432,7 @@
                     </a>
                 </div>
                 
-                <p class="text-gray-400 mt-6">
+                <p class="text-gray-400 mt-6 reveal" data-delay="0.4">
                     <i class="fas fa-clock mr-2"></i>
                     No credit card required • 14-day free trial • 24/7 support
                 </p>
@@ -1259,7 +1445,7 @@
         <div class="container mx-auto px-4 md:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
                 <!-- Company Info -->
-                <div class="lg:col-span-2">
+                <div class="lg:col-span-2 reveal" data-aos="fade-right">
                     <div class="flex items-center mb-4">
                         <div class="logo text-2xl font-bold gradient-text">CyberShield Pro</div>
                     </div>
@@ -1268,23 +1454,23 @@
                         Enterprise-grade protection powered by AI and expert security intelligence.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl">
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl hover:scale-110 transition-transform duration-300">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl">
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl hover:scale-110 transition-transform duration-300">
                             <i class="fab fa-linkedin"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl">
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl hover:scale-110 transition-transform duration-300">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl">
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl hover:scale-110 transition-transform duration-300">
                             <i class="fab fa-youtube"></i>
                         </a>
                     </div>
                 </div>
                 
                 <!-- Quick Links -->
-                <div>
+                <div class="reveal" data-aos="fade-up" data-delay="0.1">
                     <h4 class="text-lg font-bold mb-4 text-cyan-400">Quick Links</h4>
                     <ul class="space-y-2">
                         <li><a href="index.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Home</a></li>
@@ -1296,7 +1482,7 @@
                 </div>
                 
                 <!-- Resources -->
-                <div>
+                <div class="reveal" data-aos="fade-up" data-delay="0.2">
                     <h4 class="text-lg font-bold mb-4 text-cyan-400">Resources</h4>
                     <ul class="space-y-2">
                         <li><a href="blog.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Blog</a></li>
@@ -1308,7 +1494,7 @@
                 </div>
                 
                 <!-- Legal -->
-                <div>
+                <div class="reveal" data-aos="fade-up" data-delay="0.3">
                     <h4 class="text-lg font-bold mb-4 text-cyan-400">Legal</h4>
                     <ul class="space-y-2">
                         <li><a href="privacy-policy.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Privacy Policy</a></li>
@@ -1320,7 +1506,7 @@
                 </div>
             </div>
             
-            <div class="border-t border-cyan-900 mt-8 pt-8 text-center">
+            <div class="border-t border-cyan-900 mt-8 pt-8 text-center reveal" data-aos="fade-up">
                 <p class="text-gray-500 text-sm">
                     &copy; <span class="current-year">2024</span> CyberShield Pro. All rights reserved. | 
                     <a href="privacy-policy.html" class="text-gray-400 hover:text-cyan-400">Privacy Policy</a> | 
@@ -1342,25 +1528,52 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Global variables
+        let vantaEffect = null;
+        
         // Initialize on DOM Load
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize AOS Animations
+            // Initialize AOS Animations with enhanced settings
             if (typeof AOS !== 'undefined') {
                 AOS.init({
-                    duration: 800,
-                    once: true,
-                    offset: 100
+                    duration: 1000,
+                    once: false,
+                    offset: 100,
+                    easing: 'ease-in-out-cubic',
+                    delay: 0,
+                    mirror: true
                 });
             }
             
             // Initialize GSAP
             if (typeof gsap !== 'undefined') {
-                gsap.registerPlugin(ScrollTrigger);
+                gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+                
+                // Enhanced scroll animations with GSAP
+                gsap.utils.toArray('.reveal').forEach((el, i) => {
+                    const delay = el.getAttribute('data-delay') || i * 0.1;
+                    
+                    gsap.fromTo(el, {
+                        opacity: 0,
+                        y: 50
+                    }, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1,
+                        delay: parseFloat(delay),
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 80%',
+                            end: 'bottom 20%',
+                            toggleActions: 'play none none reverse'
+                        }
+                    });
+                });
             }
             
-            // Initialize Vanta.js Background
-            if (typeof VANTA !== 'undefined') {
-                VANTA.NET({
+            // Initialize Vanta.js Background with enhanced settings
+            if (typeof VANTA !== 'undefined' && window.innerWidth > 768) {
+                vantaEffect = VANTA.NET({
                     el: "#vanta-bg",
                     mouseControls: true,
                     touchControls: true,
@@ -1371,18 +1584,23 @@
                     scaleMobile: 1.00,
                     color: 0x00f3ff,
                     backgroundColor: 0x0a0e17,
-                    points: 12.00,
-                    maxDistance: 22.00,
-                    spacing: 18.00
+                    points: 15.00,
+                    maxDistance: 25.00,
+                    spacing: 20.00,
+                    showDots: false
                 });
             }
             
-            // Simple Auth Manager (Mock implementation)
+            // Simple Auth Manager (Enhanced Mock implementation)
             window.authManager = {
                 getCurrentUser: function() {
-                    // Check if user is logged in (mock implementation)
-                    const userData = localStorage.getItem('cybershield_user');
-                    return userData ? JSON.parse(userData) : null;
+                    try {
+                        const userData = localStorage.getItem('cybershield_user');
+                        return userData ? JSON.parse(userData) : null;
+                    } catch (e) {
+                        console.error('Error reading user data:', e);
+                        return null;
+                    }
                 },
                 
                 updateAuthUI: function() {
@@ -1394,11 +1612,15 @@
                         if (loggedInState) loggedInState.classList.remove('hidden');
                         if (loggedOutState) loggedOutState.classList.add('hidden');
                         
-                        // Update user initials
+                        // Update user initials with animation
                         const userInitials = document.getElementById('user-initials');
                         if (userInitials && user.name) {
                             const initials = user.name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
-                            userInitials.textContent = initials;
+                            gsap.to(userInitials, {
+                                textContent: initials,
+                                duration: 0.5,
+                                ease: 'power2.out'
+                            });
                         }
                     } else {
                         if (loggedInState) loggedInState.classList.add('hidden');
@@ -1409,15 +1631,39 @@
                     this.updateMobileAuthSection();
                 },
                 
+                login: function(userData) {
+                    try {
+                        localStorage.setItem('cybershield_user', JSON.stringify(userData));
+                        this.updateAuthUI();
+                        this.showNotification('Successfully logged in!', 'success');
+                        return true;
+                    } catch (e) {
+                        console.error('Error saving user data:', e);
+                        this.showNotification('Login failed. Please try again.', 'error');
+                        return false;
+                    }
+                },
+                
                 logout: function() {
                     localStorage.removeItem('cybershield_user');
                     this.updateAuthUI();
+                    
                     // Close user dropdown if open
                     const userMenu = document.querySelector('.user-menu');
                     if (userMenu) userMenu.classList.remove('show');
                     
-                    // Show success message
-                    this.showNotification('Successfully logged out', 'success');
+                    // Animate logout
+                    if (typeof gsap !== 'undefined') {
+                        gsap.to('#logged-in-state', {
+                            opacity: 0,
+                            duration: 0.3,
+                            onComplete: () => {
+                                this.showNotification('Successfully logged out', 'success');
+                            }
+                        });
+                    } else {
+                        this.showNotification('Successfully logged out', 'success');
+                    }
                 },
                 
                 updateMobileAuthSection: function() {
@@ -1438,18 +1684,31 @@
                                     <p class="text-gray-400 text-sm">${user.email || ''}</p>
                                 </div>
                             </div>
-                            <a href="dashboard.html" class="nav-link text-lg block py-2">Dashboard</a>
-                            <a href="profile.html" class="nav-link text-lg block py-2">My Profile</a>
-                            <a href="settings.html" class="nav-link text-lg block py-2">Settings</a>
-                            <button id="mobile-logout-button" class="text-red-400 text-lg block py-2 w-full text-left">Logout</button>
+                            <a href="dashboard.html" class="nav-link text-lg block py-2 hover:pl-2 transition-all duration-300">Dashboard</a>
+                            <a href="profile.html" class="nav-link text-lg block py-2 hover:pl-2 transition-all duration-300">My Profile</a>
+                            <a href="settings.html" class="nav-link text-lg block py-2 hover:pl-2 transition-all duration-300">Settings</a>
+                            <button id="mobile-logout-button" class="text-red-400 text-lg block py-2 w-full text-left hover:pl-2 transition-all duration-300">Logout</button>
                         `;
                         
                         document.getElementById('mobile-logout-button')?.addEventListener('click', () => {
                             this.logout();
-                            // Close mobile menu
-                            mobileMenu.classList.remove('active');
-                            mobileMenuOverlay.classList.remove('active');
-                            document.body.style.overflow = '';
+                            // Animate mobile menu close
+                            if (typeof gsap !== 'undefined') {
+                                gsap.to(mobileMenu, {
+                                    x: 300,
+                                    duration: 0.4,
+                                    ease: 'power2.in',
+                                    onComplete: () => {
+                                        mobileMenu.classList.remove('active');
+                                        mobileMenuOverlay.classList.remove('active');
+                                        document.body.style.overflow = '';
+                                    }
+                                });
+                            } else {
+                                mobileMenu.classList.remove('active');
+                                mobileMenuOverlay.classList.remove('active');
+                                document.body.style.overflow = '';
+                            }
                         });
                     } else {
                         mobileAuthSection.innerHTML = `
@@ -1465,9 +1724,9 @@
                     // Create notification element
                     const notification = document.createElement('div');
                     notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 transform transition-all duration-300 ${
-                        type === 'success' ? 'bg-green-900 text-green-100' : 
-                        type === 'error' ? 'bg-red-900 text-red-100' : 
-                        'bg-blue-900 text-blue-100'
+                        type === 'success' ? 'bg-green-900/90 text-green-100 border border-green-700' : 
+                        type === 'error' ? 'bg-red-900/90 text-red-100 border border-red-700' : 
+                        'bg-blue-900/90 text-blue-100 border border-blue-700'
                     }`;
                     notification.innerHTML = `
                         <div class="flex items-center">
@@ -1478,14 +1737,42 @@
                     
                     document.body.appendChild(notification);
                     
+                    // Animate in
+                    if (typeof gsap !== 'undefined') {
+                        gsap.fromTo(notification, 
+                            { opacity: 0, x: 100 },
+                            { opacity: 1, x: 0, duration: 0.5, ease: 'back.out(1.7)' }
+                        );
+                    }
+                    
                     // Remove notification after 3 seconds
                     setTimeout(() => {
-                        notification.style.opacity = '0';
-                        notification.style.transform = 'translateX(100%)';
-                        setTimeout(() => {
-                            document.body.removeChild(notification);
-                        }, 300);
+                        if (typeof gsap !== 'undefined') {
+                            gsap.to(notification, {
+                                opacity: 0,
+                                x: 100,
+                                duration: 0.3,
+                                onComplete: () => {
+                                    if (notification.parentNode) {
+                                        document.body.removeChild(notification);
+                                    }
+                                }
+                            });
+                        } else {
+                            if (notification.parentNode) {
+                                document.body.removeChild(notification);
+                            }
+                        }
                     }, 3000);
+                },
+                
+                // Demo login for testing
+                demoLogin: function() {
+                    this.login({
+                        name: 'John Cyber',
+                        email: 'john@cybershieldpro.com',
+                        role: 'admin'
+                    });
                 }
             };
             
@@ -1501,7 +1788,7 @@
                 });
             }
             
-            // Mobile Menu Functionality
+            // Mobile Menu Functionality with enhanced animations
             const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
             const mobileMenuClose = document.getElementById('mobile-menu-close');
             const mobileMenu = document.getElementById('mobile-menu');
@@ -1512,22 +1799,59 @@
                     mobileMenu.classList.add('active');
                     mobileMenuOverlay.classList.add('active');
                     document.body.style.overflow = 'hidden';
+                    
+                    // Animate menu items
+                    if (typeof gsap !== 'undefined') {
+                        const menuItems = mobileMenu.querySelectorAll('.nav-link, #mobile-auth-section a, #mobile-auth-section button');
+                        gsap.fromTo(menuItems, 
+                            { opacity: 0, x: 20 },
+                            { opacity: 1, x: 0, duration: 0.4, stagger: 0.1, ease: 'power2.out' }
+                        );
+                    }
                 });
                 
                 mobileMenuClose.addEventListener('click', () => {
-                    mobileMenu.classList.remove('active');
-                    mobileMenuOverlay.classList.remove('active');
-                    document.body.style.overflow = '';
+                    if (typeof gsap !== 'undefined') {
+                        gsap.to(mobileMenu, {
+                            x: 300,
+                            duration: 0.4,
+                            ease: 'power2.in',
+                            onComplete: () => {
+                                mobileMenu.classList.remove('active');
+                                mobileMenuOverlay.classList.remove('active');
+                                document.body.style.overflow = '';
+                                mobileMenu.style.transform = '';
+                            }
+                        });
+                    } else {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
                 });
                 
                 mobileMenuOverlay.addEventListener('click', () => {
-                    mobileMenu.classList.remove('active');
-                    mobileMenuOverlay.classList.remove('active');
-                    document.body.style.overflow = '';
+                    if (typeof gsap !== 'undefined') {
+                        gsap.to(mobileMenu, {
+                            x: 300,
+                            duration: 0.4,
+                            ease: 'power2.in',
+                            onComplete: () => {
+                                mobileMenu.classList.remove('active');
+                                mobileMenuOverlay.classList.remove('active');
+                                document.body.style.overflow = '';
+                                mobileMenu.style.transform = '';
+                            }
+                        });
+                    } else {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
                 });
             }
             
-            // User Dropdown Functionality
+            // User Dropdown Functionality with animation
             const userButton = document.querySelector('.user-button');
             const userMenu = document.querySelector('.user-menu');
             
@@ -1535,11 +1859,34 @@
                 userButton.addEventListener('click', (e) => {
                     e.stopPropagation();
                     userMenu.classList.toggle('show');
+                    
+                    if (typeof gsap !== 'undefined') {
+                        if (userMenu.classList.contains('show')) {
+                            gsap.fromTo(userMenu, 
+                                { opacity: 0, y: -10, scale: 0.95 },
+                                { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: 'back.out(1.7)' }
+                            );
+                        }
+                    }
                 });
                 
                 // Close dropdown when clicking outside
                 document.addEventListener('click', () => {
-                    userMenu.classList.remove('show');
+                    if (userMenu.classList.contains('show')) {
+                        if (typeof gsap !== 'undefined') {
+                            gsap.to(userMenu, {
+                                opacity: 0,
+                                y: -10,
+                                scale: 0.95,
+                                duration: 0.2,
+                                onComplete: () => {
+                                    userMenu.classList.remove('show');
+                                }
+                            });
+                        } else {
+                            userMenu.classList.remove('show');
+                        }
+                    }
                 });
                 
                 // Prevent dropdown close when clicking inside
@@ -1548,7 +1895,7 @@
                 });
             }
             
-            // Smooth Scrolling for anchor links
+            // Enhanced Smooth Scrolling for anchor links with GSAP
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     const href = this.getAttribute('href');
@@ -1574,31 +1921,47 @@
                                 userMenu.classList.remove('show');
                             }
                             
-                            // Scroll to target
+                            // Scroll to target with GSAP
                             const header = document.querySelector('nav');
                             const headerHeight = header ? header.offsetHeight : 80;
                             const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
                             
-                            window.scrollTo({
-                                top: targetPosition,
-                                behavior: 'smooth'
-                            });
+                            if (typeof gsap !== 'undefined') {
+                                gsap.to(window, {
+                                    duration: 1.2,
+                                    scrollTo: { y: targetPosition, autoKill: false },
+                                    ease: 'power2.inOut'
+                                });
+                            } else {
+                                window.scrollTo({
+                                    top: targetPosition,
+                                    behavior: 'smooth'
+                                });
+                            }
                         }
                     }
                 });
             });
             
-            // Back to Top Button
+            // Enhanced Back to Top Button with GSAP
             const backToTop = document.getElementById('back-to-top');
             if (backToTop) {
                 backToTop.addEventListener('click', () => {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
+                    if (typeof gsap !== 'undefined') {
+                        gsap.to(window, {
+                            duration: 1.2,
+                            scrollTo: { y: 0, autoKill: false },
+                            ease: 'power2.inOut'
+                        });
+                    } else {
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    }
                 });
                 
-                // Show/Hide Back to Top Button
+                // Show/Hide Back to Top Button with animation
                 window.addEventListener('scroll', () => {
                     if (window.scrollY > 500) {
                         backToTop.classList.add('visible');
@@ -1608,72 +1971,68 @@
                 });
             }
             
-            // Animated Counters
+            // Enhanced Animated Counters with GSAP
             const counters = document.querySelectorAll('.stats-counter');
-            if (counters.length > 0) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const counter = entry.target;
-                            const originalText = counter.textContent;
-                            let targetValue = 0;
-                            let suffix = '';
-                            
-                            // Parse the target value
-                            if (originalText.includes('+')) {
-                                targetValue = parseFloat(originalText);
-                                suffix = '+';
-                            } else if (originalText.includes('M')) {
-                                targetValue = parseFloat(originalText) * 1000000;
-                                suffix = 'M';
-                            } else if (originalText.includes('%')) {
-                                targetValue = parseFloat(originalText);
-                                suffix = '%';
-                            } else if (originalText.includes('s')) {
-                                targetValue = parseFloat(originalText);
-                                suffix = 's';
-                            } else {
-                                targetValue = parseInt(originalText.replace(/,/g, ''));
-                            }
-                            
-                            if (!isNaN(targetValue)) {
+            if (counters.length > 0 && typeof gsap !== 'undefined') {
+                counters.forEach(counter => {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                const target = parseFloat(counter.getAttribute('data-target'));
+                                const suffix = counter.getAttribute('data-suffix') || '';
                                 let current = 0;
-                                const duration = 2000;
-                                const increment = targetValue / (duration / 16);
                                 
-                                const updateCounter = () => {
-                                    current += increment;
-                                    if (current >= targetValue) {
-                                        counter.textContent = originalText;
-                                    } else {
+                                // Create a counter animation with GSAP
+                                gsap.to(counter, {
+                                    duration: 2.5,
+                                    ease: 'power2.out',
+                                    onUpdate: function() {
+                                        const progress = this.progress();
+                                        current = target * progress;
+                                        
                                         let displayValue;
                                         if (suffix === '%') {
                                             displayValue = current.toFixed(1) + suffix;
-                                        } else if (suffix === '+') {
-                                            displayValue = Math.floor(current) + suffix;
                                         } else if (suffix === 'M') {
                                             displayValue = (current / 1000000).toFixed(1) + suffix;
                                         } else if (suffix === 's') {
                                             displayValue = Math.floor(current) + suffix;
+                                        } else if (suffix === '+') {
+                                            displayValue = Math.floor(current) + suffix;
                                         } else {
                                             displayValue = Math.floor(current).toLocaleString();
                                         }
+                                        
                                         counter.textContent = displayValue;
-                                        requestAnimationFrame(updateCounter);
+                                    },
+                                    onComplete: function() {
+                                        // Ensure final value is exact
+                                        let finalValue;
+                                        if (suffix === '%') {
+                                            finalValue = target.toFixed(1) + suffix;
+                                        } else if (suffix === 'M') {
+                                            finalValue = (target / 1000000).toFixed(1) + suffix;
+                                        } else if (suffix === 's') {
+                                            finalValue = Math.floor(target) + suffix;
+                                        } else if (suffix === '+') {
+                                            finalValue = Math.floor(target) + suffix;
+                                        } else {
+                                            finalValue = target.toLocaleString();
+                                        }
+                                        counter.textContent = finalValue;
                                     }
-                                };
+                                });
                                 
-                                updateCounter();
                                 observer.unobserve(counter);
                             }
-                        }
-                    });
-                }, { threshold: 0.5 });
-                
-                counters.forEach(counter => observer.observe(counter));
+                        });
+                    }, { threshold: 0.5, rootMargin: '0px 0px -50px 0px' });
+                    
+                    observer.observe(counter);
+                });
             }
             
-            // Testimonial Slider
+            // Enhanced Testimonial Slider with GSAP
             const testimonialSlides = document.querySelectorAll('.testimonial-slide');
             const testimonialNavs = document.querySelectorAll('.testimonial-nav');
             
@@ -1681,7 +2040,7 @@
                 let currentSlide = 0;
                 let slideInterval;
                 
-                function showSlide(index) {
+                function showSlide(index, animate = true) {
                     // Hide all slides
                     testimonialSlides.forEach(slide => {
                         slide.classList.remove('active');
@@ -1693,13 +2052,28 @@
                         nav.style.background = '#374151';
                     });
                     
-                    // Show selected slide
+                    // Show selected slide with animation
+                    if (animate && typeof gsap !== 'undefined') {
+                        gsap.fromTo(testimonialSlides[index], 
+                            { opacity: 0, x: 50 },
+                            { opacity: 1, x: 0, duration: 0.8, ease: 'power2.out' }
+                        );
+                    }
+                    
                     testimonialSlides[index].classList.add('active');
                     
                     // Update nav button
                     if (testimonialNavs[index]) {
                         testimonialNavs[index].classList.add('active');
                         testimonialNavs[index].style.background = '#00f3ff';
+                        
+                        // Animate nav button
+                        if (typeof gsap !== 'undefined') {
+                            gsap.fromTo(testimonialNavs[index],
+                                { scale: 0.8 },
+                                { scale: 1.2, duration: 0.3, yoyo: true, repeat: 1 }
+                            );
+                        }
                     }
                     
                     currentSlide = index;
@@ -1720,11 +2094,11 @@
                         let nextSlide = currentSlide + 1;
                         if (nextSlide >= testimonialSlides.length) nextSlide = 0;
                         showSlide(nextSlide);
-                    }, 5000);
+                    }, 6000);
                 }
                 
                 // Initialize slider
-                showSlide(0);
+                showSlide(0, false);
                 startAutoSlide();
                 
                 // Pause on hover
@@ -1740,11 +2114,18 @@
                 }
             }
             
-            // Hover Effects for Cards
+            // Enhanced Hover Effects for Cards with particle effects
             const cards = document.querySelectorAll('.hover-card');
             cards.forEach(card => {
-                card.addEventListener('mouseenter', () => {
+                card.addEventListener('mouseenter', (e) => {
                     card.style.zIndex = '10';
+                    
+                    // Create particle effect
+                    if (typeof gsap !== 'undefined') {
+                        for (let i = 0; i < 5; i++) {
+                            createParticle(e, card);
+                        }
+                    }
                 });
                 
                 card.addEventListener('mouseleave', () => {
@@ -1752,12 +2133,31 @@
                 });
             });
             
+            // Particle creation function
+            function createParticle(e, parent) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = (e.clientX - parent.getBoundingClientRect().left) + 'px';
+                particle.style.top = (e.clientY - parent.getBoundingClientRect().top) + 'px';
+                particle.style.setProperty('--tx', (Math.random() * 100 - 50) + 'px');
+                particle.style.setProperty('--ty', (Math.random() * -100) + 'px');
+                
+                parent.appendChild(particle);
+                
+                // Remove particle after animation
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }, 3000);
+            }
+            
             // Update copyright year
             document.querySelectorAll('.current-year').forEach(el => {
                 el.textContent = new Date().getFullYear();
             });
             
-            // Set active navigation link
+            // Set active navigation link with animation
             function setActiveNavLink() {
                 const currentPath = window.location.pathname;
                 const navLinks = document.querySelectorAll('.nav-link');
@@ -1777,9 +2177,43 @@
             
             setActiveNavLink();
             
-            // Mock login for demonstration
-            // Uncomment the following line to simulate a logged in user
-            // localStorage.setItem('cybershield_user', JSON.stringify({ name: 'John Doe', email: 'john@example.com' }));
+            // Initialize animated elements
+            function initAnimations() {
+                // Animate feature icons
+                document.querySelectorAll('.feature-icon').forEach((icon, i) => {
+                    setTimeout(() => {
+                        icon.classList.add('animated');
+                    }, i * 100);
+                });
+                
+                // Animate partner logos
+                document.querySelectorAll('.partner-logo').forEach((logo, i) => {
+                    setTimeout(() => {
+                        logo.classList.add('animated');
+                    }, i * 100);
+                });
+                
+                // Animate hover cards
+                document.querySelectorAll('.hover-card').forEach((card, i) => {
+                    setTimeout(() => {
+                        card.classList.add('animated');
+                    }, i * 100);
+                });
+                
+                // Animate buttons with delay
+                document.querySelectorAll('.cyber-button, .security-button').forEach((btn, i) => {
+                    const delay = btn.getAttribute('data-delay') || i * 0.1;
+                    setTimeout(() => {
+                        btn.style.animationDelay = delay + 's';
+                    }, 100);
+                });
+            }
+            
+            // Demo login for demonstration (uncomment to test)
+            // setTimeout(() => window.authManager.demoLogin(), 1000);
+            
+            // Initialize animations
+            setTimeout(initAnimations, 500);
             
             // Initialize auth UI
             window.authManager.updateAuthUI();
@@ -1787,9 +2221,38 @@
         
         // Window Load Events
         window.addEventListener('load', function() {
-            // Remove preloader
+            // Remove preloader with enhanced animation
             const preloader = document.getElementById('preloader');
-            if (preloader) {
+            if (preloader && typeof gsap !== 'undefined') {
+                gsap.to(preloader, {
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: 'power2.inOut',
+                    onComplete: function() {
+                        preloader.style.display = 'none';
+                        
+                        // Create welcome particle effect
+                        for (let i = 0; i < 20; i++) {
+                            setTimeout(() => {
+                                const particle = document.createElement('div');
+                                particle.className = 'particle';
+                                particle.style.left = Math.random() * 100 + 'vw';
+                                particle.style.top = Math.random() * 100 + 'vh';
+                                particle.style.setProperty('--tx', (Math.random() * 200 - 100) + 'px');
+                                particle.style.setProperty('--ty', (Math.random() * -200) + 'px');
+                                document.body.appendChild(particle);
+                                
+                                // Remove particle after animation
+                                setTimeout(() => {
+                                    if (particle.parentNode) {
+                                        particle.parentNode.removeChild(particle);
+                                    }
+                                }, 3000);
+                            }, i * 50);
+                        }
+                    }
+                });
+            } else if (preloader) {
                 setTimeout(() => {
                     preloader.style.opacity = '0';
                     setTimeout(() => {
@@ -1804,11 +2267,11 @@
             // Log page load time
             if (window.performance) {
                 const loadTime = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart;
-                console.log(`CyberShield Pro loaded in ${loadTime}ms`);
+                console.log(`%cCyberShield Pro loaded in ${loadTime}ms`, 'background: #0a0e17; color: #00f3ff; padding: 5px 10px; border-radius: 3px;');
             }
         });
         
-        // Cookie Consent (Basic Implementation)
+        // Cookie Consent (Enhanced Implementation)
         function initCookieConsent() {
             if (!localStorage.getItem('cookies_accepted')) {
                 setTimeout(() => {
@@ -1827,29 +2290,100 @@
                     
                     setTimeout(() => {
                         cookieBanner.classList.add('active');
+                        
+                        // Animate in
+                        if (typeof gsap !== 'undefined') {
+                            gsap.fromTo(cookieBanner,
+                                { y: 100 },
+                                { y: 0, duration: 0.6, ease: 'back.out(1.7)' }
+                            );
+                        }
                     }, 1000);
                     
                     document.getElementById('accept-cookies').addEventListener('click', () => {
                         localStorage.setItem('cookies_accepted', 'true');
-                        cookieBanner.classList.remove('active');
-                        setTimeout(() => {
-                            document.body.removeChild(cookieBanner);
-                        }, 300);
+                        
+                        if (typeof gsap !== 'undefined') {
+                            gsap.to(cookieBanner, {
+                                y: 100,
+                                duration: 0.5,
+                                ease: 'power2.in',
+                                onComplete: () => {
+                                    cookieBanner.classList.remove('active');
+                                    setTimeout(() => {
+                                        if (cookieBanner.parentNode) {
+                                            document.body.removeChild(cookieBanner);
+                                        }
+                                    }, 300);
+                                }
+                            });
+                        } else {
+                            cookieBanner.classList.remove('active');
+                            setTimeout(() => {
+                                if (cookieBanner.parentNode) {
+                                    document.body.removeChild(cookieBanner);
+                                }
+                            }, 300);
+                        }
                     });
                     
                     document.getElementById('decline-cookies').addEventListener('click', () => {
                         localStorage.setItem('cookies_accepted', 'false');
-                        cookieBanner.classList.remove('active');
-                        setTimeout(() => {
-                            document.body.removeChild(cookieBanner);
-                        }, 300);
+                        
+                        if (typeof gsap !== 'undefined') {
+                            gsap.to(cookieBanner, {
+                                y: 100,
+                                duration: 0.5,
+                                ease: 'power2.in',
+                                onComplete: () => {
+                                    cookieBanner.classList.remove('active');
+                                    setTimeout(() => {
+                                        if (cookieBanner.parentNode) {
+                                            document.body.removeChild(cookieBanner);
+                                        }
+                                    }, 300);
+                                }
+                            });
+                        } else {
+                            cookieBanner.classList.remove('active');
+                            setTimeout(() => {
+                                if (cookieBanner.parentNode) {
+                                    document.body.removeChild(cookieBanner);
+                                }
+                            }, 300);
+                        }
                     });
                 }, 2000);
             }
         }
         
         // Initialize cookie consent
-        initCookieConsent();
+        setTimeout(initCookieConsent, 3000);
+        
+        // Handle window resize for Vanta.js
+        window.addEventListener('resize', function() {
+            if (vantaEffect && window.innerWidth <= 768) {
+                vantaEffect.destroy();
+                vantaEffect = null;
+            } else if (!vantaEffect && window.innerWidth > 768 && typeof VANTA !== 'undefined') {
+                vantaEffect = VANTA.NET({
+                    el: "#vanta-bg",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00,
+                    color: 0x00f3ff,
+                    backgroundColor: 0x0a0e17,
+                    points: 15.00,
+                    maxDistance: 25.00,
+                    spacing: 20.00,
+                    showDots: false
+                });
+            }
+        });
     </script>
 </body>
 </html>
