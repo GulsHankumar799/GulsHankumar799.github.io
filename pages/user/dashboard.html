@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | CyberShield Pro</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/pages.css">
+    
+    <style>
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: rgba(26, 29, 41, 0.7);
+            border-radius: 15px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-change {
+            font-size: 0.9rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 15px;
+            display: inline-block;
+        }
+        
+        .change-positive {
+            background: rgba(0, 255, 149, 0.2);
+            color: var(--cyber-green);
+        }
+        
+        .change-negative {
+            background: rgba(255, 42, 109, 0.2);
+            color: var(--alert-red);
+        }
+        
+        .activity-feed {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .activity-item {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .action-card {
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .action-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .security-level {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+        
+        .security-progress {
+            height: 100%;
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+<body class="cyber-gradient">
+    <!-- Navigation will be loaded by main.js -->
+    
+    <div class="container mx-auto px-4 py-6 pt-24">
+        <!-- Dashboard Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-cyber mb-2">Security Dashboard</h1>
+                <p class="text-gray-400">Welcome back, <span id="user-name-display" class="text-security">User</span></p>
+            </div>
+            <div class="flex items-center space-x-4 mt-4 md:mt-0">
+                <div class="text-right">
+                    <p class="text-sm text-gray-400">Last updated</p>
+                    <p id="last-updated" class="text-security">Just now</p>
+                </div>
+                <button id="refresh-dashboard" class="cyber-button">
+                    <i data-feather="refresh-cw" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Security Score -->
+        <div class="cyber-card p-6 mb-8" data-aos="fade-up">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                <div>
+                    <h2 class="text-xl font-bold text-cyber mb-2">Overall Security Score</h2>
+                    <p class="text-gray-400">Based on your security settings and recent activity</p>
+                </div>
+                <div class="text-center mt-4 md:mt-0">
+                    <div class="relative w-32 h-32 mx-auto">
+                        <canvas id="security-score-chart"></canvas>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span id="security-score-value" class="text-3xl font-bold text-security">85%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="security-level mt-6">
+                <div id="security-progress" class="security-progress" style="width: 85%; background: var(--cyber-green);"></div>
+            </div>
+        </div>
+        
+        <!-- Stats Grid -->
+        <div class="dashboard-grid">
+            <!-- Threat Detection -->
+            <div class="stat-card" data-aos="fade-up">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-bold text-cyber">Threats Blocked</h3>
+                    <div class="w-10 h-10 rounded-full bg-cyan-900 bg-opacity-30 flex items-center justify-center">
+                        <i data-feather="shield" class="text-cyber"></i>
+                    </div>
+                </div>
+                <div class="stat-value text-cyber" id="threats-blocked">1,247</div>
+                <p class="text-gray-400">Last 30 days</p>
+                <div class="stat-change change-positive mt-2">+12% from last month</div>
+            </div>
+            
+            <!-- Active Alerts -->
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-bold text-alert">Active Alerts</h3>
+                    <div class="w-10 h-10 rounded-full bg-red-900 bg-opacity-30 flex items-center justify-center">
+                        <i data-feather="alert-triangle" class="text-alert"></i>
+                    </div>
+                </div>
+                <div class="stat-value text-alert" id="active-alerts">3</div>
+                <p class="text-gray-400">Requiring attention</p>
+                <div class="stat-change change-negative mt-2">2 high severity</div>
+            </div>
+            
+            <!-- Uptime -->
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-bold text-security">System Uptime</h3>
+                    <div class="w-10 h-10 rounded-full bg-green-900 bg-opacity-30 flex items-center justify-center">
+                        <i data-feather="activity" class="text-security"></i>
+                    </div>
+                </div>
+                <div class="stat-value text-security" id="uptime">99.9%</div>
+                <p class="text-gray-400">Current month</p>
+                <div class="stat-change change-positive mt-2">No downtime</div>
+            </div>
+            
+            <!-- Protected Assets -->
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-bold text-cyber">Protected Assets</h3>
+                    <div class="w-10 h-10 rounded-full bg-blue-900 bg-opacity-30 flex items-center justify-center">
+                        <i data-feather="database" class="text-cyber"></i>
+                    </div>
+                </div>
+                <div class="stat-value text-cyber" id="protected-assets">42</div>
+                <p class="text-gray-400">Servers & endpoints</p>
+                <div class="stat-change change-positive mt-2">+3 this week</div>
+            </div>
+        </div>
+        
+        <!-- Charts & Activity -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+            <!-- Threat Activity Chart -->
+            <div class="cyber-card p-6" data-aos="fade-right">
+                <h3 class="text-xl font-bold text-cyber mb-4">Threat Activity (Last 7 Days)</h3>
+                <div class="chart-container" style="height: 300px;">
+                    <canvas id="threat-activity-chart"></canvas>
+                </div>
+            </div>
+            
+            <!-- Recent Activity -->
+            <div class="cyber-card p-6" data-aos="fade-left">
+                <h3 class="text-xl font-bold text-cyber mb-4">Recent Activity</h3>
+                <div class="activity-feed">
+                    <!-- Activities will be populated by JS -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quick Actions -->
+        <div class="mt-8">
+            <h3 class="text-xl font-bold text-cyber mb-4">Quick Actions</h3>
+            <div class="quick-actions">
+                <div class="action-card cyber-card" onclick="window.location.href='security-scan.html'">
+                    <div class="w-12 h-12 rounded-full bg-cyan-900 bg-opacity-30 flex items-center justify-center mx-auto mb-3">
+                        <i data-feather="search" class="text-cyber w-6 h-6"></i>
+                    </div>
+                    <h4 class="font-bold text-cyber">Run Security Scan</h4>
+                    <p class="text-gray-400 text-sm mt-1">Scan for vulnerabilities</p>
+                </div>
+                
+                <div class="action-card cyber-card" onclick="window.location.href='threat-reports.html'">
+                    <div class="w-12 h-12 rounded-full bg-purple-900 bg-opacity-30 flex items-center justify-center mx-auto mb-3">
+                        <i data-feather="file-text" class="text-cyber w-6 h-6"></i>
+                    </div>
+                    <h4 class="font-bold text-cyber">View Reports</h4>
+                    <p class="text-gray-400 text-sm mt-1">Security analysis reports</p>
+                </div>
+                
+                <div class="action-card cyber-card" onclick="window.location.href='settings.html#notifications'">
+                    <div class="w-12 h-12 rounded-full bg-blue-900 bg-opacity-30 flex items-center justify-center mx-auto mb-3">
+                        <i data-feather="bell" class="text-cyber w-6 h-6"></i>
+                    </div>
+                    <h4 class="font-bold text-cyber">Alert Settings</h4>
+                    <p class="text-gray-400 text-sm mt-1">Configure notifications</p>
+                </div>
+                
+                <div class="action-card cyber-card" onclick="window.location.href='security-tools.html'">
+                    <div class="w-12 h-12 rounded-full bg-green-900 bg-opacity-30 flex items-center justify-center mx-auto mb-3">
+                        <i data-feather="tool" class="text-cyber w-6 h-6"></i>
+                    </div>
+                    <h4 class="font-bold text-cyber">Security Tools</h4>
+                    <p class="text-gray-400 text-sm mt-1">Access security utilities</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Security Recommendations -->
+        <div class="cyber-card p-6 mt-8" data-aos="fade-up">
+            <h3 class="text-xl font-bold text-cyber mb-4">Security Recommendations</h3>
+            <div id="recommendations-list" class="space-y-3">
+                <!-- Recommendations will be populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer will be loaded by main.js -->
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+            AOS.init();
+            
+            // Check if user is logged in
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            if (!user.id) {
+                window.location.href = '../auth/login.html';
+                return;
+            }
+            
+            // Update user name
+            document.getElementById('user-name-display').textContent = user.name || user.email;
+            
+            // Initialize charts
+            initializeCharts();
+            
+            // Load dashboard data
+            loadDashboardData();
+            
+            // Refresh button
+            document.getElementById('refresh-dashboard').addEventListener('click', loadDashboardData);
+            
+            // Auto refresh every 30 seconds
+            setInterval(loadDashboardData, 30000);
+            
+            // Update last updated time
+            function updateLastUpdated() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                document.getElementById('last-updated').textContent = timeString;
+            }
+            
+            updateLastUpdated();
+            setInterval(updateLastUpdated, 60000);
+        });
+        
+        function initializeCharts() {
+            // Security Score Gauge Chart
+            const scoreCtx = document.getElementById('security-score-chart').getContext('2d');
+            const securityScore = 85; // This would come from backend
+            
+            new Chart(scoreCtx, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [securityScore, 100 - securityScore],
+                        backgroundColor: [
+                            getComputedStyle(document.documentElement).getPropertyValue('--cyber-green').trim(),
+                            'rgba(255, 255, 255, 0.1)'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    cutout: '75%',
+                    rotation: -90,
+                    circumference: 180,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { enabled: false }
+                    }
+                }
+            });
+            
+            // Threat Activity Line Chart
+            const threatCtx = document.getElementById('threat-activity-chart').getContext('2d');
+            
+            new Chart(threatCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Threats Detected',
+                        data: [12, 19, 8, 15, 22, 10, 17],
+                        borderColor: getComputedStyle(document.documentElement).getPropertyValue('--alert-red').trim(),
+                        backgroundColor: 'rgba(255, 42, 109, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            ticks: { color: 'rgba(255, 255, 255, 0.7)' }
+                        },
+                        x: {
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            ticks: { color: 'rgba(255, 255, 255, 0.7)' }
+                        }
+                    }
+                }
+            });
+        }
+        
+        async function loadDashboardData() {
+            try {
+                // Show loading state
+                const refreshBtn = document.getElementById('refresh-dashboard');
+                refreshBtn.disabled = true;
+                refreshBtn.innerHTML = '<i data-feather="loader" class="w-4 h-4 animate-spin"></i>';
+                feather.replace();
+                
+                // Mock API call
+                await new Promise(resolve => setTimeout(resolve, 800));
+                
+                // Mock data - in production, this would come from backend
+                const mockData = {
+                    threatsBlocked: Math.floor(Math.random() * 100) + 1200,
+                    activeAlerts: Math.floor(Math.random() * 5),
+                    uptime: '99.' + (Math.floor(Math.random() * 5) + 95) + '%',
+                    protectedAssets: Math.floor(Math.random() * 10) + 40,
+                    securityScore: Math.floor(Math.random() * 10) + 80,
+                    activities: [
+                        { type: 'login', desc: 'Successful login from new device', time: '2 mins ago', icon: 'log-in', color: 'green' },
+                        { type: 'scan', desc: 'Completed weekly security scan', time: '1 hour ago', icon: 'search', color: 'blue' },
+                        { type: 'alert', desc: 'Malware detected and quarantined', time: '3 hours ago', icon: 'alert-triangle', color: 'red' },
+                        { type: 'update', desc: 'Security policies updated', time: '5 hours ago', icon: 'shield', color: 'cyan' },
+                        { type: 'backup', desc: 'System backup completed', time: '1 day ago', icon: 'save', color: 'purple' }
+                    ],
+                    recommendations: [
+                        { title: 'Enable 2FA', desc: 'Add an extra layer of security to your account', priority: 'high' },
+                        { title: 'Update SSL Certificate', desc: 'Your certificate expires in 15 days', priority: 'medium' },
+                        { title: 'Review Access Logs', desc: '3 failed login attempts detected', priority: 'medium' },
+                        { title: 'Backup Configuration', desc: 'Last backup was 7 days ago', priority: 'low' }
+                    ]
+                };
+                
+                // Update stats
+                document.getElementById('threats-blocked').textContent = mockData.threatsBlocked.toLocaleString();
+                document.getElementById('active-alerts').textContent = mockData.activeAlerts;
+                document.getElementById('uptime').textContent = mockData.uptime;
+                document.getElementById('protected-assets').textContent = mockData.protectedAssets;
+                document.getElementById('security-score-value').textContent = mockData.securityScore + '%';
+                document.getElementById('security-progress').style.width = mockData.securityScore + '%';
+                
+                // Update activities
+                const activityFeed = document.querySelector('.activity-feed');
+                activityFeed.innerHTML = mockData.activities.map(activity => `
+                    <div class="activity-item">
+                        <div class="activity-icon" style="background: rgba(var(--${activity.color}-rgb), 0.2); color: var(--${activity.color})">
+                            <i data-feather="${activity.icon}" class="w-5 h-5"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-gray-300">${activity.desc}</p>
+                            <p class="text-gray-500 text-sm">${activity.time}</p>
+                        </div>
+                    </div>
+                `).join('');
+                
+                // Update recommendations
+                const recommendationsList = document.getElementById('recommendations-list');
+                recommendationsList.innerHTML = mockData.recommendations.map(rec => `
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 rounded-full ${rec.priority === 'high' ? 'bg-red-900 bg-opacity-30' : rec.priority === 'medium' ? 'bg-yellow-900 bg-opacity-30' : 'bg-blue-900 bg-opacity-30'} flex items-center justify-center mr-3 mt-1">
+                            <i data-feather="${rec.priority === 'high' ? 'alert-circle' : 'info'}" class="${rec.priority === 'high' ? 'text-alert' : rec.priority === 'medium' ? 'text-warning' : 'text-cyber'} w-4 h-4"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-bold ${rec.priority === 'high' ? 'text-alert' : rec.priority === 'medium' ? 'text-warning' : 'text-cyber'}">${rec.title}</h4>
+                            <p class="text-gray-400 text-sm">${rec.desc}</p>
+                        </div>
+                        <button class="security-button text-xs py-1 px-3">Fix</button>
+                    </div>
+                `).join('');
+                
+                feather.replace();
+                
+            } catch (error) {
+                console.error('Failed to load dashboard data:', error);
+            } finally {
+                const refreshBtn = document.getElementById('refresh-dashboard');
+                refreshBtn.disabled = false;
+                refreshBtn.innerHTML = '<i data-feather="refresh-cw" class="w-4 h-4"></i>';
+                feather.replace();
+            }
+        }
+    </script>
+</body>
+</html>
