@@ -1,0 +1,22 @@
+# Deny access to everyone except specific IPs
+Order Deny,Allow
+Deny from all
+
+# Allow specific IP addresses (replace with your admin IPs)
+Allow from 192.168.1.100
+Allow from 10.0.0.50
+
+# Password protect the directory
+AuthType Basic
+AuthName "Admin Access"
+AuthUserFile /path/to/.htpasswd
+Require valid-user
+
+# Disable directory listing
+Options -Indexes
+
+# Prevent access to sensitive files
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|inc|bak)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
