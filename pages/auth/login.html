@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | CyberShield Pro</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/pages.css">
+    
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--deep-space), var(--cyber-gray));
+        }
+        
+        .auth-card {
+            background: rgba(26, 29, 41, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 450px;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .auth-logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .auth-logo h1 {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--neon-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .auth-logo p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .auth-divider::before,
+        .auth-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .auth-divider span {
+            padding: 0 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .social-auth {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .auth-footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        .auth-footer a {
+            color: var(--neon-blue);
+            text-decoration: none;
+        }
+        
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            background: rgba(255, 42, 109, 0.1);
+            border: 1px solid var(--alert-red);
+            color: var(--alert-red);
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+        
+        .success-message {
+            background: rgba(0, 255, 149, 0.1);
+            border: 1px solid var(--cyber-green);
+            color: var(--cyber-green);
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+    </style>
+</head>
+<body class="cyber-gradient">
+    <div class="auth-container">
+        <div class="auth-card" data-aos="fade-up">
+            <!-- Logo -->
+            <div class="auth-logo">
+                <h1>CyberShield Pro</h1>
+                <p>Advanced Cybersecurity Platform</p>
+            </div>
+            
+            <!-- Error/Success Messages -->
+            <div id="error-message" class="error-message"></div>
+            <div id="success-message" class="success-message"></div>
+            
+            <!-- Login Form -->
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email" class="block text-gray-300 mb-2">Email Address</label>
+                    <div class="relative">
+                        <i data-feather="mail" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="email" id="email" name="email" 
+                               class="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white"
+                               placeholder="you@example.com"
+                               required>
+                    </div>
+                </div>
+                
+                <div class="form-group mt-4">
+                    <label for="password" class="block text-gray-300 mb-2">Password</label>
+                    <div class="relative">
+                        <i data-feather="lock" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="password" id="password" name="password"
+                               class="w-full pl-10 pr-10 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white"
+                               placeholder="Enter your password"
+                               required>
+                        <button type="button" id="toggle-password" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white">
+                            <i data-feather="eye" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between mt-4">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="remember" name="remember" class="w-4 h-4 text-cyan-600 rounded focus:ring-cyan-500">
+                        <label for="remember" class="ml-2 text-sm text-gray-300">Remember me</label>
+                    </div>
+                    <a href="forgot-password.html" class="text-sm text-cyan-400 hover:text-cyan-300">Forgot password?</a>
+                </div>
+                
+                <button type="submit" id="login-btn" 
+                        class="w-full mt-6 py-3 px-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-semibold rounded-lg shadow-lg transition-all duration-300">
+                    Sign In
+                </button>
+            </form>
+            
+            <!-- Social Login Divider -->
+            <div class="auth-divider">
+                <span>Or continue with</span>
+            </div>
+            
+            <!-- Social Login Buttons -->
+            <div class="social-auth">
+                <button type="button" class="social-btn google-btn" onclick="socialLogin('google')">
+                    <i data-feather="mail" class="w-5 h-5"></i>
+                </button>
+                <button type="button" class="social-btn github-btn" onclick="socialLogin('github')">
+                    <i data-feather="github" class="w-5 h-5"></i>
+                </button>
+                <button type="button" class="social-btn microsoft-btn" onclick="socialLogin('microsoft')">
+                    <i data-feather="briefcase" class="w-5 h-5"></i>
+                </button>
+            </div>
+            
+            <!-- Auth Footer -->
+            <div class="auth-footer">
+                Don't have an account? 
+                <a href="signup.html" class="font-semibold">Sign up</a>
+                <div class="mt-4">
+                    <a href="../index.html" class="text-gray-400 hover:text-white">
+                        <i data-feather="arrow-left" class="w-4 h-4 inline mr-1"></i>
+                        Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script>
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+            AOS.init();
+            
+            // Toggle password visibility
+            const togglePassword = document.getElementById('toggle-password');
+            const passwordInput = document.getElementById('password');
+            
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                const icon = togglePassword.querySelector('i');
+                icon.setAttribute('data-feather', type === 'password' ? 'eye' : 'eye-off');
+                feather.replace();
+            });
+            
+            // Handle form submission
+            document.getElementById('login-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const loginBtn = document.getElementById('login-btn');
+                const errorDiv = document.getElementById('error-message');
+                const successDiv = document.getElementById('success-message');
+                
+                // Reset messages
+                errorDiv.style.display = 'none';
+                successDiv.style.display = 'none';
+                
+                // Get form data
+                const formData = {
+                    email: document.getElementById('email').value,
+                    password: document.getElementById('password').value,
+                    remember: document.getElementById('remember').checked
+                };
+                
+                // Validate
+                if (!formData.email || !formData.password) {
+                    showError('Please fill in all fields');
+                    return;
+                }
+                
+                // Disable button and show loading
+                loginBtn.disabled = true;
+                loginBtn.innerHTML = '<i data-feather="loader" class="w-5 h-5 mr-2 animate-spin"></i>Signing in...';
+                feather.replace();
+                
+                try {
+                    // Simulate API call
+                    await new Promise(resolve => setTimeout(resolve, 1500));
+                    
+                    // Mock success response
+                    const response = {
+                        success: true,
+                        user: {
+                            id: 1,
+                            name: formData.email.split('@')[0],
+                            email: formData.email,
+                            role: 'user'
+                        },
+                        token: 'mock-jwt-token-123456'
+                    };
+                    
+                    if (response.success) {
+                        // Store user data
+                        localStorage.setItem('auth_token', response.token);
+                        localStorage.setItem('user', JSON.stringify(response.user));
+                        localStorage.setItem('isLoggedIn', 'true');
+                        
+                        // Show success message
+                        showSuccess('Login successful! Redirecting...');
+                        
+                        // Redirect to dashboard
+                        setTimeout(() => {
+                            window.location.href = '../index.html';
+                        }, 1000);
+                    } else {
+                        showError('Invalid email or password');
+                    }
+                } catch (error) {
+                    showError('Network error. Please try again.');
+                } finally {
+                    // Reset button
+                    loginBtn.disabled = false;
+                    loginBtn.innerHTML = 'Sign In';
+                    feather.replace();
+                }
+            });
+            
+            function showError(message) {
+                const errorDiv = document.getElementById('error-message');
+                errorDiv.textContent = message;
+                errorDiv.style.display = 'block';
+            }
+            
+            function showSuccess(message) {
+                const successDiv = document.getElementById('success-message');
+                successDiv.textContent = message;
+                successDiv.style.display = 'block';
+            }
+            
+            // Social login function
+            window.socialLogin = function(provider) {
+                showSuccess(`Redirecting to ${provider} authentication...`);
+                // In production, this would redirect to OAuth endpoint
+                setTimeout(() => {
+                    showError(`${provider} login is not configured yet. Please use email login.`);
+                }, 1000);
+            };
+        });
+    </script>
+</body>
+</html>
