@@ -102,11 +102,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Show download confirmation
                 const resourceName = this.getAttribute('data-resource');
-                showNotification(`Downloading "${resourceName}"...`, 'info');
+                showPageNotification(`Downloading "${resourceName}"...`, 'info');
                 
                 // Simulate download
                 setTimeout(() => {
-                    showNotification('Download complete!', 'success');
+                    showPageNotification('Download complete!', 'success');
                 }, 1500);
             }
         });
@@ -176,57 +176,216 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Basic validation
             if (!data.name || !data.email || !data.comment) {
-                showNotification('Please fill in all required fields', 'error');
+                showPageNotification('Please fill in all required fields', 'error');
                 return;
             }
             
             if (!validateEmail(data.email)) {
-                showNotification('Please enter a valid email address', 'error');
+                showPageNotification('Please enter a valid email address', 'error');
                 return;
             }
             
             // Simulate form submission
-            showNotification('Submitting your comment...', 'info');
+            showPageNotification('Submitting your comment...', 'info');
             
             setTimeout(() => {
-                showNotification('Comment submitted successfully! It will appear after approval.', 'success');
+                showPageNotification('Comment submitted successfully! It will appear after approval.', 'success');
                 this.reset();
             }, 2000);
         });
     }
     
-    // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            
-            if (href !== '#') {
-                e.preventDefault();
-                const target = document.querySelector(href);
+    // ===== FAQ ACCORDION =====
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        if (question) {
+            question.addEventListener('click', () => {
+                // Close other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
                 
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        }
+    });
+    
+    // ===== ANIMATE ELEMENTS ON SCROLL =====
+    const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.service-feature, .pricing-card, .team-member, .case-study-card, .resource-category, .compliance-card');
+        
+        elements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.2;
+            
+            if (elementPosition < screenPosition) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }
+        });
+    };
+    
+    // Set initial state for animated elements
+    const animatedElements = document.querySelectorAll('.service-feature, .pricing-card, .team-member, .case-study-card, .resource-category, .compliance-card');
+    
+    animatedElements.forEach(element => {
+        // Only set if not already animated
+        if (!element.classList.contains('animated')) {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        }
+    });
+    
+    // Initial check
+    animateOnScroll();
+    
+    // Throttle scroll event for performance
+    let isScrolling = false;
+    window.addEventListener('scroll', () => {
+        if (!isScrolling) {
+            window.requestAnimationFrame(() => {
+                animateOnScroll();
+                isScrolling = false;
+            });
+            isScrolling = true;
+        }
+    });
+    
+    // ===== CONTENT WITH SIDEBAR INTERACTIONS =====
+    const sidebarSearchForms = document.querySelectorAll('.sidebar-search');
+    
+    sidebarSearchForms.forEach(form => {
+        const input = form.querySelector('input');
+        const button = form.querySelector('button');
+        
+        if (button && input) {
+            button.addEventListener('click', () => {
+                if (input.value.trim()) {
+                    showPageNotification(`Searching for: "${input.value}"`, 'info');
                 }
+            });
+            
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && input.value.trim()) {
+                    showPageNotification(`Searching for: "${input.value}"`, 'info');
+                }
+            });
+        }
+    });
+    
+    // ===== NEWSLETTER FORM (PAGE SPECIFIC) =====
+    const pageNewsletterForms = document.querySelectorAll('.newsletter-form');
+    
+    pageNewsletterForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const emailInput = this.querySelector('input[type="email"]');
+            if (emailInput && emailInput.value.trim()) {
+                showPageNotification('Thank you for subscribing to our newsletter!', 'success');
+                emailInput.value = '';
             }
         });
     });
     
-    // ===== UTILITY FUNCTIONS =====
+    // ===== TABBED CONTENT =====
+    const tabButtons = document.querySelectorAll('[data-tab]');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const tabId = this.getAttribute('data-tab');
+            const tabContainer = this.closest('.tabs-container') || document;
+            
+            // Remove active class from all buttons in same container
+            const allButtons = tabContainer.querySelectorAll('[data-tab]');
+            allButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Hide all tab contents
+            const tabContents = tabContainer.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Show selected tab content
+            const selectedTab = tabContainer.querySelector(`#${tabId}`);
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+            }
+        });
+    });
+    
+    // ===== ACCORDION TOGGLE (Alternative to FAQ) =====
+    const accordionItems = document.querySelectorAll('.accordion-item');
+    
+    accordionItems.forEach(item => {
+        const header = item.querySelector('.accordion-header');
+        if (header) {
+            header.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        }
+    });
+    
+    // ===== MODAL TRIGGERS IN PAGES =====
+    const pageModalTriggers = document.querySelectorAll('[data-modal]');
+    
+    pageModalTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function() {
+            const modalId = this.getAttribute('data-modal');
+            const modal = document.getElementById(modalId);
+            
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+    
+    // ===== COUNTER ANIMATION FOR STATS =====
+    const statNumbers = document.querySelectorAll('.stat-number:not(.animated)');
+    
+    if (statNumbers.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target;
+                    const target = parseInt(element.textContent) || parseInt(element.getAttribute('data-target')) || 0;
+                    
+                    if (target > 0) {
+                        animateCounter(element, target);
+                        element.classList.add('animated');
+                        observer.unobserve(element);
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        statNumbers.forEach(stat => {
+            observer.observe(stat);
+        });
+    }
+    
+    // ===== UTILITY FUNCTIONS (PAGE SPECIFIC) =====
     
     function performBlogSearch(query) {
         if (!query.trim()) {
-            showNotification('Please enter a search term', 'warning');
+            showPageNotification('Please enter a search term', 'warning');
             return;
         }
         
-        showNotification(`Searching for: "${query}"`, 'info');
+        showPageNotification(`Searching for: "${query}"`, 'info');
         
         // In a real implementation, this would be an AJAX request
         setTimeout(() => {
-            showNotification(`Found 5 results for "${query}"`, 'success');
+            showPageNotification(`Found results for "${query}"`, 'success');
         }, 1000);
     }
     
@@ -235,14 +394,19 @@ document.addEventListener('DOMContentLoaded', function() {
         return re.test(email);
     }
     
-    function showNotification(message, type = 'info') {
-        // Remove existing notification
+    function showPageNotification(message, type = 'info') {
+        // Check if main.js notification function exists
+        if (typeof showNotification !== 'undefined') {
+            showNotification(message, type);
+            return;
+        }
+        
+        // Fallback notification function
         const existingNotification = document.querySelector('.notification');
         if (existingNotification) {
             existingNotification.remove();
         }
         
-        // Create notification element
         const notification = document.createElement('div');
         notification.className = `notification notification-${type}`;
         notification.innerHTML = `
@@ -250,7 +414,6 @@ document.addEventListener('DOMContentLoaded', function() {
             <button class="notification-close">&times;</button>
         `;
         
-        // Add styles
         notification.style.cssText = `
             position: fixed;
             top: 20px;
@@ -266,34 +429,46 @@ document.addEventListener('DOMContentLoaded', function() {
             gap: 20px;
             z-index: 10000;
             animation: slideIn 0.3s ease;
+            max-width: 400px;
         `;
         
-        // Add keyframes for animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from {
-                    transform: translateX(100%);
-                    opacity: 0;
+        // Ensure animation styles exist
+        if (!document.querySelector('#pages-notification-styles')) {
+            const style = document.createElement('style');
+            style.id = 'pages-notification-styles';
+            style.textContent = `
+                @keyframes slideIn {
+                    from {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
                 }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
+                @keyframes slideOut {
+                    from {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                    to {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
                 }
-            }
-        `;
-        document.head.appendChild(style);
+            `;
+            document.head.appendChild(style);
+        }
         
         document.body.appendChild(notification);
         
-        // Add close button functionality
         const closeButton = notification.querySelector('.notification-close');
         closeButton.addEventListener('click', () => {
             notification.style.animation = 'slideOut 0.3s ease';
             setTimeout(() => notification.remove(), 300);
         });
         
-        // Auto-remove after 5 seconds
         setTimeout(() => {
             if (notification.parentNode) {
                 notification.style.animation = 'slideOut 0.3s ease';
@@ -302,88 +477,124 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
     
-    // ===== FAQ ACCORDION =====
-    const faqItems = document.querySelectorAll('.faq-item');
+    function animateCounter(element, target, duration = 2000) {
+        let start = 0;
+        const increment = target / (duration / 16);
+        const timer = setInterval(() => {
+            start += increment;
+            if (start >= target) {
+                element.textContent = formatNumber(target) + (element.getAttribute('data-suffix') || '');
+                clearInterval(timer);
+            } else {
+                element.textContent = formatNumber(Math.floor(start)) + (element.getAttribute('data-suffix') || '');
+            }
+        }, 16);
+    }
     
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
+    function formatNumber(num) {
+        if (num >= 1000000) {
+            return (num / 1000000).toFixed(1) + 'M';
+        }
+        if (num >= 1000) {
+            return (num / 1000).toFixed(1) + 'K';
+        }
+        return num.toString();
+    }
+    
+    // ===== INITIALIZE PAGE SPECIFIC FEATURES =====
+    
+    // Add loading class to body for CSS transitions
+    document.body.classList.add('page-loaded');
+    
+    // Initialize tooltips
+    const pageTooltips = document.querySelectorAll('[title]');
+    pageTooltips.forEach(element => {
+        element.addEventListener('mouseenter', showTooltip);
+        element.addEventListener('mouseleave', hideTooltip);
+    });
+    
+    function showTooltip(e) {
+        const tooltip = document.createElement('div');
+        tooltip.className = 'tooltip';
+        tooltip.textContent = this.getAttribute('title');
         
-        question.addEventListener('click', () => {
-            // Close other items
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item && otherItem.classList.contains('active')) {
-                    otherItem.classList.remove('active');
+        const rect = this.getBoundingClientRect();
+        tooltip.style.cssText = `
+            position: fixed;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            z-index: 1000;
+            top: ${rect.bottom + 5}px;
+            left: ${rect.left + (rect.width / 2)}px;
+            transform: translateX(-50%);
+        `;
+        
+        document.body.appendChild(tooltip);
+        this.tooltipElement = tooltip;
+    }
+    
+    function hideTooltip() {
+        if (this.tooltipElement) {
+            this.tooltipElement.remove();
+            this.tooltipElement = null;
+        }
+    }
+    
+    // ===== LAZY LOAD IMAGES IN PAGES =====
+    const pageLazyImages = document.querySelectorAll('img[loading="lazy"]');
+    
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.getAttribute('src') || img.getAttribute('data-src');
+                    img.classList.add('loaded');
+                    imageObserver.unobserve(img);
                 }
             });
-            
-            // Toggle current item
-            item.classList.toggle('active');
         });
+        
+        pageLazyImages.forEach(img => imageObserver.observe(img));
+    }
+    
+    // ===== FORM ENHANCEMENTS =====
+    const pageTextareas = document.querySelectorAll('textarea');
+    
+    pageTextareas.forEach(textarea => {
+        // Auto-resize textarea
+        textarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+        
+        // Trigger initial resize
+        textarea.dispatchEvent(new Event('input'));
     });
     
-    // ===== BACK TO TOP BUTTON =====
-    const backToTopButton = document.createElement('button');
-    backToTopButton.innerHTML = '<i class="fas fa-chevron-up"></i>';
-    backToTopButton.className = 'back-to-top';
-    backToTopButton.style.cssText = `
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        background: var(--primary);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-        z-index: 1000;
-        box-shadow: 0 5px 15px rgba(42, 157, 143, 0.3);
-        transition: all 0.3s;
-    `;
-    
-    document.body.appendChild(backToTopButton);
-    
-    backToTopButton.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-    
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            backToTopButton.style.display = 'flex';
-        } else {
-            backToTopButton.style.display = 'none';
+    // ===== KEYBOARD SHORTCUTS =====
+    document.addEventListener('keydown', function(e) {
+        // Close modals with Escape key
+        if (e.key === 'Escape') {
+            const activeModal = document.querySelector('.modal.active');
+            if (activeModal) {
+                activeModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        
+        // Focus search with Ctrl+K or Cmd+K
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            const searchInput = document.querySelector('.sidebar-search input, [type="search"]');
+            if (searchInput) {
+                searchInput.focus();
+            }
         }
     });
     
-    // ===== ANIMATE ELEMENTS ON SCROLL =====
-    const animateOnScroll = () => {
-        const elements = document.querySelectorAll('.service-feature, .pricing-card, .team-member, .case-study-card');
-        
-        elements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.2;
-            
-            if (elementPosition < screenPosition) {
-                element.style.opacity = '1';
-                element.style.transform = 'translateY(0)';
-            }
-        });
-    };
-    
-    // Set initial state for animated elements
-    document.querySelectorAll('.service-feature, .pricing-card, .team-member, .case-study-card').forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(30px)';
-        element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    });
-    
-    window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Initial check
 });
