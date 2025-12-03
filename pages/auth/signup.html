@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | CyberShield Pro</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/pages.css">
+    
+    <style>
+        /* Same styles as login page */
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--deep-space), var(--cyber-gray));
+        }
+        
+        .auth-card {
+            background: rgba(26, 29, 41, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 500px;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .password-strength {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+        
+        .strength-bar {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        .strength-0 { width: 0%; background: var(--alert-red); }
+        .strength-1 { width: 25%; background: var(--alert-red); }
+        .strength-2 { width: 50%; background: var(--warning-yellow); }
+        .strength-3 { width: 75%; background: var(--warning-yellow); }
+        .strength-4 { width: 100%; background: var(--cyber-green); }
+        
+        .requirements {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .requirement {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.25rem;
+        }
+        
+        .requirement.valid {
+            color: var(--cyber-green);
+        }
+        
+        .requirement.invalid {
+            color: var(--alert-red);
+        }
+        
+        .requirement i {
+            width: 16px;
+            height: 16px;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body class="cyber-gradient">
+    <div class="auth-container">
+        <div class="auth-card" data-aos="fade-up">
+            <!-- Logo -->
+            <div class="auth-logo">
+                <h1>Create Account</h1>
+                <p>Join CyberShield Pro for advanced security</p>
+            </div>
+            
+            <!-- Error/Success Messages -->
+            <div id="error-message" class="error-message"></div>
+            <div id="success-message" class="success-message"></div>
+            
+            <!-- Signup Form -->
+            <form id="signup-form">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="form-group">
+                        <label for="firstName" class="block text-gray-300 mb-2">First Name</label>
+                        <div class="relative">
+                            <i data-feather="user" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            <input type="text" id="firstName" name="firstName"
+                                   class="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white"
+                                   placeholder="John"
+                                   required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lastName" class="block text-gray-300 mb-2">Last Name</label>
+                        <div class="relative">
+                            <i data-feather="user" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            <input type="text" id="lastName" name="lastName"
+                                   class="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white"
+                                   placeholder="Doe"
+                                   required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group mt-4">
+                    <label for="email" class="block text-gray-300 mb-2">Email Address</label>
+                    <div class="relative">
+                        <i data-feather="mail" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="email" id="email" name="email"
+                               class="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white"
+                               placeholder="you@example.com"
+                               required>
+                    </div>
+                </div>
+                
+                <div class="form-group mt-4">
+                    <label for="company" class="block text-gray-300 mb-2">Company (Optional)</label>
+                    <div class="relative">
+                        <i data-feather="briefcase" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" id="company" name="company"
+                               class="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white"
+                               placeholder="Your Company">
+                    </div>
+                </div>
+                
+                <div class="form-group mt-4">
+                    <label for="password" class="block text-gray-300 mb-2">Password</label>
+                    <div class="relative">
+                        <i data-feather="lock" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="password" id="password" name="password"
+                               class="w-full pl-10 pr-10 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white"
+                               placeholder="Create a strong password"
+                               required>
+                        <button type="button" id="toggle-password" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white">
+                            <i data-feather="eye" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Password Strength -->
+                    <div class="password-strength" id="password-strength">
+                        <div class="strength-bar" id="strength-bar"></div>
+                    </div>
+                    
+                    <!-- Password Requirements -->
+                    <div class="requirements" id="password-requirements">
+                        <div class="requirement invalid" id="req-length">
+                            <i data-feather="minus-circle"></i>
+                            At least 8 characters
+                        </div>
+                        <div class="requirement invalid" id="req-uppercase">
+                            <i data-feather="minus-circle"></i>
+                            One uppercase letter
+                        </div>
+                        <div class="requirement invalid" id="req-lowercase">
+                            <i data-feather="minus-circle"></i>
+                            One lowercase letter
+                        </div>
+                        <div class="requirement invalid" id="req-number">
+                            <i data-feather="minus-circle"></i>
+                            One number
+                        </div>
+                        <div class="requirement invalid" id="req-special">
+                            <i data-feather="minus-circle"></i>
+                            One special character
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group mt-4">
+                    <label for="confirmPassword" class="block text-gray-300 mb-2">Confirm Password</label>
+                    <div class="relative">
+                        <i data-feather="lock" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="password" id="confirmPassword" name="confirmPassword"
+                               class="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white"
+                               placeholder="Confirm your password"
+                               required>
+                    </div>
+                    <div id="password-match" class="text-sm mt-1"></div>
+                </div>
+                
+                <div class="mt-6">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="terms" name="terms" class="w-4 h-4 text-cyan-600 rounded focus:ring-cyan-500" required>
+                        <label for="terms" class="ml-2 text-sm text-gray-300">
+                            I agree to the 
+                            <a href="../terms.html" class="text-cyan-400 hover:text-cyan-300">Terms of Service</a>
+                            and 
+                            <a href="../privacy-policy.html" class="text-cyan-400 hover:text-cyan-300">Privacy Policy</a>
+                        </label>
+                    </div>
+                    
+                    <div class="flex items-center mt-3">
+                        <input type="checkbox" id="newsletter" name="newsletter" class="w-4 h-4 text-cyan-600 rounded focus:ring-cyan-500">
+                        <label for="newsletter" class="ml-2 text-sm text-gray-300">
+                            Subscribe to security updates and newsletters
+                        </label>
+                    </div>
+                </div>
+                
+                <button type="submit" id="signup-btn" 
+                        class="w-full mt-6 py-3 px-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-semibold rounded-lg shadow-lg transition-all duration-300">
+                    Create Account
+                </button>
+            </form>
+            
+            <!-- Auth Footer -->
+            <div class="auth-footer mt-6">
+                Already have an account? 
+                <a href="login.html" class="font-semibold">Sign in</a>
+                <div class="mt-4">
+                    <a href="../index.html" class="text-gray-400 hover:text-white">
+                        <i data-feather="arrow-left" class="w-4 h-4 inline mr-1"></i>
+                        Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+            AOS.init();
+            
+            // Password validation logic
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const strengthBar = document.getElementById('strength-bar');
+            
+            // Check password strength
+            function checkPasswordStrength(password) {
+                let strength = 0;
+                
+                // Length check
+                if (password.length >= 8) {
+                    strength++;
+                    document.getElementById('req-length').className = 'requirement valid';
+                } else {
+                    document.getElementById('req-length').className = 'requirement invalid';
+                }
+                
+                // Uppercase check
+                if (/[A-Z]/.test(password)) {
+                    strength++;
+                    document.getElementById('req-uppercase').className = 'requirement valid';
+                } else {
+                    document.getElementById('req-uppercase').className = 'requirement invalid';
+                }
+                
+                // Lowercase check
+                if (/[a-z]/.test(password)) {
+                    strength++;
+                    document.getElementById('req-lowercase').className = 'requirement valid';
+                } else {
+                    document.getElementById('req-lowercase').className = 'requirement invalid';
+                }
+                
+                // Number check
+                if (/[0-9]/.test(password)) {
+                    strength++;
+                    document.getElementById('req-number').className = 'requirement valid';
+                } else {
+                    document.getElementById('req-number').className = 'requirement invalid';
+                }
+                
+                // Special character check
+                if (/[^A-Za-z0-9]/.test(password)) {
+                    strength++;
+                    document.getElementById('req-special').className = 'requirement valid';
+                } else {
+                    document.getElementById('req-special').className = 'requirement invalid';
+                }
+                
+                // Update strength bar
+                strengthBar.className = `strength-bar strength-${strength}`;
+                
+                return strength;
+            }
+            
+            // Check password match
+            function checkPasswordMatch() {
+                const password = passwordInput.value;
+                const confirmPassword = confirmPasswordInput.value;
+                const matchDiv = document.getElementById('password-match');
+                
+                if (confirmPassword === '') {
+                    matchDiv.textContent = '';
+                    matchDiv.className = 'text-sm mt-1';
+                } else if (password === confirmPassword) {
+                    matchDiv.textContent = '✓ Passwords match';
+                    matchDiv.className = 'text-sm mt-1 text-green-500';
+                } else {
+                    matchDiv.textContent = '✗ Passwords do not match';
+                    matchDiv.className = 'text-sm mt-1 text-red-500';
+                }
+            }
+            
+            // Event listeners
+            passwordInput.addEventListener('input', function() {
+                checkPasswordStrength(this.value);
+                checkPasswordMatch();
+                feather.replace();
+            });
+            
+            confirmPasswordInput.addEventListener('input', checkPasswordMatch);
+            
+            // Toggle password visibility
+            document.getElementById('toggle-password').addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                const icon = this.querySelector('i');
+                icon.setAttribute('data-feather', type === 'password' ? 'eye' : 'eye-off');
+                feather.replace();
+            });
+            
+            // Form submission
+            document.getElementById('signup-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const signupBtn = document.getElementById('signup-btn');
+                const errorDiv = document.getElementById('error-message');
+                const successDiv = document.getElementById('success-message');
+                
+                // Reset messages
+                errorDiv.style.display = 'none';
+                successDiv.style.display = 'none';
+                
+                // Get form data
+                const formData = {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    email: document.getElementById('email').value,
+                    company: document.getElementById('company').value,
+                    password: passwordInput.value,
+                    confirmPassword: confirmPasswordInput.value,
+                    terms: document.getElementById('terms').checked,
+                    newsletter: document.getElementById('newsletter').checked
+                };
+                
+                // Validation
+                if (!formData.firstName || !formData.lastName || !formData.email || !formData.password || !formData.confirmPassword) {
+                    showError('Please fill in all required fields');
+                    return;
+                }
+                
+                if (!formData.terms) {
+                    showError('You must agree to the Terms of Service');
+                    return;
+                }
+                
+                if (formData.password !== formData.confirmPassword) {
+                    showError('Passwords do not match');
+                    return;
+                }
+                
+                const strength = checkPasswordStrength(formData.password);
+                if (strength < 3) {
+                    showError('Please create a stronger password');
+                    return;
+                }
+                
+                // Disable button and show loading
+                signupBtn.disabled = true;
+                signupBtn.innerHTML = '<i data-feather="loader" class="w-5 h-5 mr-2 animate-spin"></i>Creating Account...';
+                feather.replace();
+                
+                try {
+                    // Simulate API call
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    
+                    // Mock success response
+                    const response = {
+                        success: true,
+                        message: 'Account created successfully! Please check your email for verification.',
+                        user: {
+                            id: Date.now(),
+                            name: `${formData.firstName} ${formData.lastName}`,
+                            email: formData.email,
+                            company: formData.company
+                        }
+                    };
+                    
+                    if (response.success) {
+                        showSuccess(response.message);
+                        
+                        // Redirect to login after delay
+                        setTimeout(() => {
+                            window.location.href = 'login.html?registered=true';
+                        }, 3000);
+                    }
+                } catch (error) {
+                    showError('Registration failed. Please try again.');
+                } finally {
+                    // Reset button
+                    signupBtn.disabled = false;
+                    signupBtn.innerHTML = 'Create Account';
+                    feather.replace();
+                }
+            });
+            
+            function showError(message) {
+                const errorDiv = document.getElementById('error-message');
+                errorDiv.textContent = message;
+                errorDiv.style.display = 'block';
+            }
+            
+            function showSuccess(message) {
+                const successDiv = document.getElementById('success-message');
+                successDiv.textContent = message;
+                successDiv.style.display = 'block';
+            }
+            
+            // Check for registration success parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('registered') === 'true') {
+                showSuccess('Registration successful! Please log in with your credentials.');
+            }
+        });
+    </script>
+</body>
+</html>
