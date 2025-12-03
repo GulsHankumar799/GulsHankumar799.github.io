@@ -1427,3 +1427,31 @@ input:checked + .toggle-slider:before {
         height: 250px;
     }
 }
+
+/* ===== CONTENT WITH SIDEBAR LAYOUT ===== */
+.content-with-sidebar {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 40px;
+    align-items: start;
+}
+
+.main-content {
+    flex: 1;
+}
+
+.sidebar {
+    position: sticky;
+    top: 100px;
+}
+
+@media (max-width: 992px) {
+    .content-with-sidebar {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        position: static;
+    }
+}
+
