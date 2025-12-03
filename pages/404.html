@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | CyberShield Pro</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/pages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles for 404 page */
+        .error-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .search-box-404 {
+            max-width: 500px;
+            margin: 40px auto;
+            position: relative;
+        }
+        
+        .search-box-404 input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 2px solid var(--light-bg);
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+        
+        .search-box-404 button {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        .suggested-links {
+            margin-top: 60px;
+        }
+        
+        .suggested-links h3 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .link-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .link-card i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .link-card a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .link-card a:hover {
+            color: var(--primary);
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        .error-icon {
+            font-size: 6rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>CyberShield<span class="logo-highlight">Pro</span></span>
+                </a>
+                
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="case-studies.html">Case Studies</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+                
+                <div class="nav-buttons">
+                    <a href="login.html" class="btn btn-outline">Login</a>
+                    <a href="signup.html" class="btn btn-primary">Get Started</a>
+                </div>
+                
+                <button class="nav-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 404 Error Content -->
+    <section class="error-section">
+        <div class="container">
+            <div class="error-content">
+                <div class="error-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                
+                <div class="error-code">404</div>
+                <div class="error-message">Page Not Found</div>
+                
+                <div class="error-description">
+                    <p>The page you're looking for doesn't exist or has been moved. Don't worry - even the best security systems can't protect against missing pages!</p>
+                </div>
+                
+                <div class="search-box-404">
+                    <input type="text" placeholder="Search for pages, articles, or resources...">
+                    <button type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <div class="error-actions">
+                    <a href="../index.html" class="btn btn-primary btn-large">
+                        <i class="fas fa-home"></i> Back to Home
+                    </a>
+                    <a href="javascript:history.back()" class="btn btn-outline btn-large">
+                        <i class="fas fa-arrow-left"></i> Go Back
+                    </a>
+                    <a href="../index.html#contact" class="btn btn-outline btn-large">
+                        <i class="fas fa-headset"></i> Contact Support
+                    </a>
+                </div>
+            </div>
+            
+            <div class="suggested-links">
+                <h3>Popular Pages You Might Be Looking For</h3>
+                
+                <div class="links-grid">
+                    <div class="link-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <a href="services.html">Our Services</a>
+                        <p>Explore our comprehensive cybersecurity solutions</p>
+                    </div>
+                    
+                    <div class="link-card">
+                        <i class="fas fa-dollar-sign"></i>
+                        <a href="pricing.html">Pricing Plans</a>
+                        <p>View our flexible pricing options</p>
+                    </div>
+                    
+                    <div class="link-card">
+                        <i class="fas fa-newspaper"></i>
+                        <a href="blog.html">Security Blog</a>
+                        <p>Read the latest cybersecurity insights</p>
+                    </div>
+                    
+                    <div class="link-card">
+                        <i class="fas fa-book"></i>
+                        <a href="resources.html">Resources</a>
+                        <p>Download guides, tools, and templates</p>
+                    </div>
+                    
+                    <div class="link-card">
+                        <i class="fas fa-users"></i>
+                        <a href="team.html">Our Team</a>
+                        <p>Meet our cybersecurity experts</p>
+                    </div>
+                    
+                    <div class="link-card">
+                        <i class="fas fa-file-contract"></i>
+                        <a href="compliance.html">Compliance</a>
+                        <p>Learn about regulatory compliance solutions</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="security-tip">
+                <div class="tip-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <div class="tip-content">
+                        <h4>Security Tip</h4>
+                        <p>Always verify URLs before entering sensitive information. Look for "https://" and the padlock icon in your browser's address bar.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="../index.html" class="logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>CyberShield<span class="logo-highlight">Pro</span></span>
+                    </a>
+                    <p>Enterprise-grade cybersecurity solutions to protect your digital assets and ensure business continuity.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html">Threat Detection</a></li>
+                        <li><a href="services.html">Vulnerability Assessment</a></li>
+                        <li><a href="services.html">Incident Response</a></li>
+                        <li><a href="services.html">Security Consulting</a></li>
+                        <li><a href="services.html">Compliance Auditing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Security Blvd, San Francisco, CA</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@cybershieldpro.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 CyberShield Pro. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script>
+        // 404 Page Specific JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search functionality
+            const searchInput = document.querySelector('.search-box-404 input');
+            const searchButton = document.querySelector('.search-box-404 button');
+            
+            searchButton.addEventListener('click', function() {
+                performSearch(searchInput.value);
+            });
+            
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch(this.value);
+                }
+            });
+            
+            function performSearch(query) {
+                if (!query.trim()) {
+                    return;
+                }
+                
+                // In a real implementation, this would redirect to search results
+                // For now, we'll show an alert
+                alert(`Searching for: "${query}"\n\nThis would normally redirect to search results.`);
+                searchInput.value = '';
+            }
+            
+            // Add animation to error icon
+            const errorIcon = document.querySelector('.error-icon');
+            setInterval(() => {
+                errorIcon.style.animation = 'none';
+                setTimeout(() => {
+                    errorIcon.style.animation = 'float 3s ease-in-out infinite';
+                }, 10);
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
