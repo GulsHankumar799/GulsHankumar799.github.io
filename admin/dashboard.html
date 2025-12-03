@@ -5,14 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard | CyberShield Pro</title>
     <meta name="robots" content="noindex, nofollow">
-    
+
     <!-- External Libraries -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            important: true,
+        }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+
     <!-- Custom Admin Styles -->
     <link rel="stylesheet" href="../assets/css/admin.css">
+    <style>
+        /* Additional styles for grid compatibility */
+        .grid {
+            display: grid;
+        }
+        
+        .grid-cols-1 {
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+        
+        @media (min-width: 768px) {
+            .md\:grid-cols-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .lg\:grid-cols-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        
+        .gap-6 {
+            gap: 1.5rem;
+        }
+        
+        .mb-8 {
+            margin-bottom: 2rem;
+        }
+    </style>
 </head>
 <body>
     <!-- Sidebar -->
@@ -21,7 +56,7 @@
             <h2>🔒 Admin System</h2>
             <p>CyberShield Pro v2.4</p>
         </div>
-        
+
         <div class="nav-section">
             <div class="nav-section-title">Main</div>
             <a href="#" class="nav-item active" data-section="overview">
@@ -37,7 +72,7 @@
                 Security Center
             </a>
         </div>
-        
+
         <div class="nav-section">
             <div class="nav-section-title">Monitoring</div>
             <a href="#" class="nav-item" data-section="threats">
@@ -53,7 +88,7 @@
                 Analytics
             </a>
         </div>
-        
+
         <div class="nav-section">
             <div class="nav-section-title">System</div>
             <a href="#" class="nav-item" data-section="settings">
@@ -65,7 +100,7 @@
                 Backup & Restore
             </a>
         </div>
-        
+
         <div class="mt-auto">
             <div class="nav-item" id="logout-btn">
                 <i class="fas fa-sign-out-alt"></i>
@@ -82,7 +117,7 @@
                 <h1>Admin Dashboard</h1>
                 <p id="current-time">Loading...</p>
             </div>
-            
+
             <div class="user-info">
                 <div class="user-avatar" id="user-avatar">A</div>
                 <div>
@@ -108,7 +143,7 @@
                             <span class="badge badge-success">+245 this month</span>
                         </div>
                     </div>
-                    
+
                     <div class="admin-card stat-card">
                         <div class="stat-number">98.7%</div>
                         <p class="stat-label">System Uptime</p>
@@ -116,7 +151,7 @@
                             <span class="badge badge-success">Optimal</span>
                         </div>
                     </div>
-                    
+
                     <div class="admin-card stat-card">
                         <div class="stat-number">24</div>
                         <p class="stat-label">Critical Threats</p>
@@ -124,7 +159,7 @@
                             <span class="badge badge-danger">Attention Required</span>
                         </div>
                     </div>
-                    
+
                     <div class="admin-card stat-card">
                         <div class="stat-number">₹2.8L</div>
                         <p class="stat-label">Monthly Revenue</p>
@@ -135,14 +170,14 @@
                 </div>
 
                 <!-- Charts -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <div class="charts-grid mb-8">
                     <div class="admin-card">
                         <h3 class="card-title">User Growth</h3>
                         <div class="chart-container">
                             <canvas id="userGrowthChart"></canvas>
                         </div>
                     </div>
-                    
+
                     <div class="admin-card">
                         <h3 class="card-title">Threat Activity</h3>
                         <div class="chart-container">
@@ -160,7 +195,7 @@
                             Refresh
                         </button>
                     </div>
-                    
+
                     <div class="activity-log" id="activity-log">
                         <!-- Activity items will be loaded dynamically -->
                     </div>
@@ -190,6 +225,5 @@
 
     <!-- External Admin JavaScript -->
     <script src="../assets/js/admin.js"></script>
-    <script src="../assets/css/admin.css"></script>
 </body>
 </html>
