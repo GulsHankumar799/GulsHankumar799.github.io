@@ -4,1874 +4,877 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CyberShield Pro | Advanced Cybersecurity Solutions</title>
-    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAD/AAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAAAAAEREREQAAERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERE" />
+    <meta name="description" content="Enterprise-grade cybersecurity solutions, threat intelligence, and advanced security tools for modern organizations.">
+    <meta name="keywords" content="cybersecurity, threat protection, security solutions, phishing protection, malware defense, network security">
+    <meta name="author" content="CyberShield Pro">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="CyberShield Pro | Advanced Cybersecurity Solutions">
+    <meta property="og:description" content="Protect your digital assets with enterprise-grade cybersecurity solutions">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cybershieldpro.com">
+    <meta property="og:image" content="assets/images/og-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+    
+    <!-- External Libraries -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Vanta.js Background Effects -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    
+    <!-- GSAP Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/pages.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap');
-        :root {
-            --neon-blue: #00f3ff;
-            --neon-purple: #b967ff;
-            --neon-pink: #ff2a6d;
-            --cyber-green: #00ff95;
-            --deep-space: #0a0e17;
-            --cyber-gray: #1a1d29;
-            --alert-red: #ff2a6d;
-            --warning-yellow: #ffcc00;
+        /* Additional Styles for Enhanced Homepage */
+        .hero-gradient {
+            background: linear-gradient(135deg, 
+                rgba(10, 14, 23, 0.95) 0%,
+                rgba(26, 29, 41, 0.9) 50%,
+                rgba(42, 45, 66, 0.85) 100%);
         }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Exo 2', sans-serif;
-            background-color: var(--deep-space);
-            color: #fff;
-            overflow-x: hidden;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Orbitron', sans-serif;
-        }
-        .cyber-gradient {
-            background: linear-gradient(135deg, var(--deep-space), var(--cyber-gray), #1a1a2e);
-        }
-        .security-gradient {
-            background: linear-gradient(135deg, #0a0e17, #0d1f3a, #1a1a2e);
-        }
-        .neon-text {
-            text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 40px currentColor;
-        }
-        .cyber-border {
-            border: 1px solid rgba(0, 243, 255, 0.3);
-            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
-        }
-        .security-border {
-            border: 1px solid rgba(0, 255, 149, 0.3);
-            box-shadow: 0 0 15px rgba(0, 255, 149, 0.2);
-        }
-        .cyber-card {
-            background: rgba(26, 29, 41, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            overflow: hidden;
-            position: relative;
-        }
-        .cyber-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
-        }
-        .security-card {
-            background: rgba(13, 31, 58, 0.3);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            overflow: hidden;
-            position: relative;
-        }
-        .security-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--cyber-green), #00ff95, #00cc76);
-        }
-        .floating {
-            animation: floating 6s ease-in-out infinite;
-        }
-        @keyframes floating {
-            0% { transform: translate(0, 0px); }
-            50% { transform: translate(0, -15px); }
-            100% { transform: translate(0, 0px); }
-        }
-        .pulse-glow {
-            animation: pulse-glow 2s infinite;
-        }
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 5px rgba(0, 243, 255, 0.5); }
-            50% { box-shadow: 0 0 20px rgba(0, 243, 255, 0.8), 0 0 30px rgba(0, 243, 255, 0.6); }
-            100% { box-shadow: 0 0 5px rgba(0, 243, 255, 0.5); }
-        }
-        .nav-blur {
-            background: rgba(10, 14, 23, 0.95);
-            backdrop-filter: blur(10px);
-        }
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            max-width: 320px;
-            height: 100vh;
-            background: rgba(10, 14, 23, 0.98);
-            backdrop-filter: blur(15px);
-            padding: 2rem 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            transition: right 0.3s ease;
-            z-index: 1000;
-            box-shadow: -5px 0 25px rgba(0, 243, 255, 0.2);
-        }
-        .mobile-menu.active {
-            right: 0;
-        }
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 999;
-            display: none;
-        }
-        .mobile-menu-overlay.active {
-            display: block;
-        }
-        .mobile-menu-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        .scanline {
-            position: relative;
-            overflow: hidden;
-        }
-        .scanline::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 50%, rgba(0, 243, 255, 0.03) 50%);
-            background-size: 100% 4px;
-            pointer-events: none;
-            z-index: 1;
-        }
-        .glow-cyber {
-            color: var(--neon-blue);
-            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 40px var(--neon-blue);
-        }
-        .glow-security {
-            color: var(--cyber-green);
-            text-shadow: 0 0 10px var(--cyber-green), 0 0 20px var(--cyber-green), 0 0 40px var(--cyber-green);
-        }
-        .cyber-button {
+        
+        .stats-counter {
+            font-size: 3.5rem;
+            font-weight: 900;
             background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
             position: relative;
             overflow: hidden;
         }
-        .cyber-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 243, 255, 0.4);
-        }
-        .security-button {
-            background: linear-gradient(135deg, var(--cyber-green), #00cc76);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        .security-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 255, 149, 0.4);
-        }
-        .section-title {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 3rem;
-        }
-        .section-title::after {
+        
+        .feature-icon::before {
             content: '';
             position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, currentColor, transparent);
+            opacity: 0.1;
         }
-        .security-title::after {
-            background: linear-gradient(90deg, var(--cyber-green), #00cc76);
-        }
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        .threat-indicator {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-        .threat-low {
-            background-color: var(--cyber-green);
-            box-shadow: 0 0 10px var(--cyber-green);
-        }
-        .threat-medium {
-            background-color: var(--warning-yellow);
-            box-shadow: 0 0 10px var(--warning-yellow);
-        }
-        .threat-high {
-            background-color: var(--alert-red);
-            box-shadow: 0 0 10px var(--alert-red);
-        }
-        .threat-level-low {
-            background: rgba(0, 255, 149, 0.1);
-        }
-        .threat-level-medium {
-            background: rgba(255, 204, 0, 0.1);
-        }
-        .threat-level-high {
-            background: rgba(255, 42, 109, 0.1);
-        }
-        .skill-bar {
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        .skill-progress {
-            height: 100%;
-            border-radius: 4px;
-            transition: width 1s ease-in-out;
-        }
-        .grid-pattern {
-            background-image: 
-                linear-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 243, 255, 0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-        .simulation-terminal {
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid var(--neon-blue);
-            border-radius: 8px;
-            padding: 1rem;
-            height: 200px;
-            overflow-y: auto;
-            font-family: monospace;
-            margin-bottom: 1rem;
-        }
-        .terminal-line {
-            margin-bottom: 0.5rem;
-        }
-        .terminal-prompt {
-            color: var(--cyber-green);
-            font-weight: bold;
-        }
-        .simulation-controls {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        .text-cyber {
-            color: var(--neon-blue);
-        }
-        .text-security {
-            color: var(--cyber-green);
-        }
-        .text-alert {
-            color: var(--alert-red);
-        }
-        .text-warning {
-            color: var(--warning-yellow);
-        }
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-
-        /* Portfolio Grid Styles */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-        .portfolio-item {
-            transition: transform 0.3s ease;
-        }
-        .portfolio-item:hover {
-            transform: translateY(-10px);
-        }
-        .portfolio-image {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 10px 10px 0 0;
-        }
-
-        /* Testimonial Styles */
+        
         .testimonial-slider {
             position: relative;
+            height: 320px;
             overflow: hidden;
-            height: 300px;
         }
+        
         .testimonial-slide {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             opacity: 0;
-            transition: opacity 0.5s ease;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
         }
+        
         .testimonial-slide.active {
             opacity: 1;
-        }
-
-        /* Contact Form Styles */
-        .contact-form input,
-        .contact-form textarea,
-        .contact-form select {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(0, 243, 255, 0.3);
-            border-radius: 8px;
-            padding: 0.75rem 1rem;
-            color: white;
-            width: 100%;
-            margin-bottom: 1rem;
-        }
-        .contact-form input:focus,
-        .contact-form textarea:focus,
-        .contact-form select:focus {
-            outline: none;
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
-        }
-
-        /* Blog Styles */
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        .blog-card {
-            transition: transform 0.3s ease;
-        }
-        .blog-card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Chart Container */
-        .chart-container {
-            position: relative;
-            height: 300px;
-            width: 100%;
-        }
-
-        /* GSAP Animation Classes */
-        .gsap-card {
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        /* Tools Grid Styles */
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        /* Ripple Animation */
-        @keyframes ripple-animation {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-
-        /* New Tools Section Styles */
-        .tool-input {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(0, 243, 255, 0.3);
-            border-radius: 8px;
-            padding: 0.75rem 1rem;
-            color: white;
-            width: 100%;
-            margin-bottom: 1rem;
-        }
-        .tool-input:focus {
-            outline: none;
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
-        }
-        .tool-result {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 8px;
-            padding: 1rem;
-            margin-top: 1rem;
-            display: none;
-        }
-        .protection-apps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-        .app-card {
-            transition: all 0.3s ease;
-        }
-        .app-card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Security Tools Section */
-        .security-tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-        .tool-card {
-            transition: all 0.3s ease;
-            min-height: 400px;
-        }
-        .tool-card:hover {
-            transform: translateY(-5px);
-        }
-        .tool-output {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 8px;
-            padding: 1rem;
-            margin-top: 1rem;
-            min-height: 150px;
-            max-height: 300px;
-            overflow-y: auto;
-            font-family: monospace;
-            font-size: 0.9rem;
-        }
-        .tool-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .tool-textarea {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(0, 243, 255, 0.3);
-            border-radius: 8px;
-            padding: 0.75rem 1rem;
-            color: white;
-            width: 100%;
-            min-height: 120px;
-            resize: vertical;
-        }
-        .tool-textarea:focus {
-            outline: none;
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
-        }
-        .tool-select {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(0, 243, 255, 0.3);
-            border-radius: 8px;
-            padding: 0.75rem 1rem;
-            color: white;
-            width: 100%;
-        }
-        .tool-select:focus {
-            outline: none;
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
-        }
-        .file-upload {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px dashed rgba(0, 243, 255, 0.3);
-            border-radius: 8px;
-            padding: 1.5rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .file-upload:hover {
-            border-color: var(--neon-blue);
-            background: rgba(0, 243, 255, 0.05);
-        }
-        .file-upload input {
-            display: none;
-        }
-
-        /* Simplified Header Styles */
-        .simplified-header {
-            background: rgba(10, 14, 23, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .logo {
-            font-weight: 900;
-            font-size: 1.5rem;
-            color: #00f3ff;
-        }
-        .nav-link {
-            color: rgba(255, 255, 255, 0.8);
-            transition: color 0.3s ease;
-            font-weight: 500;
-        }
-        .nav-link:hover {
-            color: #00f3ff;
-        }
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-        }
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 2rem;
-            max-width: 600px;
-        }
-
-        /* Enhanced Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-        .modal-content {
-            background: rgba(26, 29, 41, 0.95);
-            border-radius: 15px;
-            padding: 2.5rem;
-            width: 90%;
-            max-width: 450px;
-            position: relative;
-            border: 1px solid rgba(0, 243, 255, 0.3);
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
-        }
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        .auth-tabs {
-            display: flex;
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .auth-tab {
-            padding: 0.75rem 1.5rem;
-            background: none;
-            border: none;
-            color: rgba(255, 255, 255, 0.7);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-bottom: 2px solid transparent;
-        }
-        .auth-tab.active {
-            color: #00f3ff;
-            border-bottom: 2px solid #00f3ff;
-        }
-        .auth-form {
-            display: none;
-        }
-        .auth-form.active {
-            display: block;
-        }
-        .form-group {
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: rgba(255, 255, 255, 0.8);
-            font-weight: 500;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 0.75rem 1rem 0.75rem 2.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            color: white;
-            transition: all 0.3s ease;
-        }
-        .form-group input:focus {
-            outline: none;
-            border-color: #00f3ff;
-            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
-        }
-        .form-icon {
-            position: absolute;
-            left: 0.75rem;
-            top: 2.5rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-        .form-options {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            font-size: 0.9rem;
-        }
-        .remember-me {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .remember-me input {
-            margin: 0;
-        }
-        .forgot-password {
-            color: #00f3ff;
-            text-decoration: none;
-        }
-        .forgot-password:hover {
-            text-decoration: underline;
-        }
-        .auth-divider {
-            display: flex;
-            align-items: center;
-            margin: 1.5rem 0;
-            color: rgba(255, 255, 255, 0.5);
-        }
-        .auth-divider::before,
-        .auth-divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.2);
-        }
-        .auth-divider span {
-            padding: 0 1rem;
-        }
-        .social-auth {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .social-button {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 0.75rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .social-button:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
-        .auth-footer {
-            text-align: center;
-            margin-top: 1.5rem;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-        }
-        .auth-footer a {
-            color: #00f3ff;
-            text-decoration: none;
-        }
-        .auth-footer a:hover {
-            text-decoration: underline;
+            transform: translateX(0);
         }
         
-        /* Demo Accounts Section */
-        .demo-accounts {
-            margin: 1.5rem 0;
-            padding: 1rem;
-            background: rgba(0, 243, 255, 0.05);
-            border-radius: 8px;
-            border: 1px solid rgba(0, 243, 255, 0.2);
-        }
-        .demo-title {
-            text-align: center;
-            margin-bottom: 1rem;
-            font-weight: 600;
-            color: #00f3ff;
-        }
-        .demo-account {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.75rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 6px;
-            margin-bottom: 0.5rem;
-            cursor: pointer;
+        .partner-logo {
+            filter: grayscale(100%) brightness(2);
+            opacity: 0.7;
             transition: all 0.3s ease;
-        }
-        .demo-account:hover {
-            background: rgba(0, 243, 255, 0.1);
-        }
-        .demo-account:last-child {
-            margin-bottom: 0;
-        }
-        .demo-account-info {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-        .demo-account-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.8rem;
-        }
-        .demo-account-details {
-            display: flex;
-            flex-direction: column;
-        }
-        .demo-account-name {
-            font-weight: 500;
-        }
-        .demo-account-role {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-        .demo-login-btn {
-            background: rgba(0, 243, 255, 0.2);
-            border: 1px solid rgba(0, 243, 255, 0.3);
-            color: #00f3ff;
-            padding: 0.25rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .demo-login-btn:hover {
-            background: rgba(0, 243, 255, 0.3);
         }
         
-        /* User Account Dropdown */
-        .user-dropdown {
-            position: relative;
-            display: none;
+        .partner-logo:hover {
+            filter: grayscale(0%) brightness(1);
+            opacity: 1;
+            transform: scale(1.05);
         }
-        .user-dropdown.active {
-            display: block;
-        }
-        .user-button {
-            background: transparent;
-            border: none;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 8px;
-            transition: background 0.3s ease;
-        }
-        .user-button:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .user-menu {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: rgba(26, 29, 41, 0.95);
-            border-radius: 8px;
-            padding: 0.5rem;
-            min-width: 150px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            display: none;
-            z-index: 100;
-        }
-        .user-menu.active {
-            display: block;
-        }
-        .user-menu-item {
-            display: block;
-            width: 100%;
-            padding: 0.5rem 1rem;
-            background: none;
-            border: none;
-            color: white;
-            text-align: left;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background 0.3s ease;
-        }
-        .user-menu-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Hero Section Background */
-        .hero-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(10, 14, 23, 0.9), rgba(26, 29, 41, 0.8)), 
-                        url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            z-index: 1;
-        }
-
-        /* Cyber Threats Section */
-        .threats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        .threat-card {
-            transition: all 0.3s ease;
-            height: 100%;
-        }
-        .threat-card:hover {
-            transform: translateY(-5px);
-        }
-        .threat-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-        .phishing-icon {
-            background: rgba(255, 42, 109, 0.2);
-            color: var(--alert-red);
-        }
-        .malware-icon {
-            background: rgba(255, 204, 0, 0.2);
-            color: var(--warning-yellow);
-        }
-        .ransomware-icon {
-            background: rgba(185, 103, 255, 0.2);
-            color: var(--neon-purple);
-        }
-        .ddos-icon {
-            background: rgba(0, 243, 255, 0.2);
-            color: var(--neon-blue);
-        }
-
-        /* Real-time Threat Feed */
-        .threat-feed {
-            height: 300px;
-            overflow-y: auto;
-            border: 1px solid rgba(0, 243, 255, 0.3);
-            border-radius: 8px;
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.3);
-        }
-        .threat-item {
-            padding: 0.75rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        .threat-item:last-child {
-            border-bottom: none;
-        }
-        .threat-time {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-        .threat-details {
-            flex: 1;
-        }
-        .threat-severity {
-            font-size: 0.8rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-        }
-        .severity-high {
-            background: rgba(255, 42, 109, 0.2);
-            color: var(--alert-red);
-        }
-        .severity-medium {
-            background: rgba(255, 204, 0, 0.2);
-            color: var(--warning-yellow);
-        }
-        .severity-low {
-            background: rgba(0, 255, 149, 0.2);
-            color: var(--cyber-green);
-        }
-
-        /* Interactive Security Quiz */
-        .quiz-container {
-            background: rgba(26, 29, 41, 0.7);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-top: 2rem;
-        }
-        .quiz-question {
-            margin-bottom: 1.5rem;
-        }
-        .quiz-options {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .quiz-option {
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .quiz-option:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
-        .quiz-option.selected {
-            background: rgba(0, 243, 255, 0.2);
-            border-color: var(--neon-blue);
-        }
-        .quiz-option.correct {
-            background: rgba(0, 255, 149, 0.2);
-            border-color: var(--cyber-green);
-        }
-        .quiz-option.incorrect {
-            background: rgba(255, 42, 109, 0.2);
-            border-color: var(--alert-red);
-        }
-        .quiz-result {
-            display: none;
-            text-align: center;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-top: 1.5rem;
-        }
-        .quiz-result.correct {
-            background: rgba(0, 255, 149, 0.2);
-            border: 1px solid var(--cyber-green);
-        }
-        .quiz-result.incorrect {
-            background: rgba(255, 42, 109, 0.2);
-            border: 1px solid var(--alert-red);
-        }
-
-        /* Live Threat Map */
-        .threat-map {
-            height: 300px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
-            border: 1px solid rgba(0, 243, 255, 0.3);
+        
+        .cta-section {
+            background: linear-gradient(135deg, 
+                rgba(0, 243, 255, 0.1) 0%,
+                rgba(185, 103, 255, 0.1) 50%,
+                rgba(255, 42, 109, 0.1) 100%);
             position: relative;
             overflow: hidden;
         }
-        .threat-dot {
+        
+        .cta-section::before {
+            content: '';
             position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0,243,255,0.05) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(0, 243, 255, 0.05);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .typewriter-text {
+            overflow: hidden;
+            border-right: 3px solid var(--neon-blue);
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--neon-blue) }
+        }
+        
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 255, 149, 0.1);
+            border: 1px solid rgba(0, 255, 149, 0.3);
+            border-radius: 25px;
+            color: var(--cyber-green);
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .live-threat-indicator {
+            display: inline-block;
             width: 8px;
             height: 8px;
             border-radius: 50%;
+            background: var(--alert-red);
+            margin-right: 8px;
             animation: pulse 2s infinite;
         }
-        .threat-dot.high {
-            background: var(--alert-red);
-            box-shadow: 0 0 10px var(--alert-red);
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 42, 109, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 42, 109, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 42, 109, 0); }
         }
-        .threat-dot.medium {
-            background: var(--warning-yellow);
-            box-shadow: 0 0 10px var(--warning-yellow);
+        
+        /* Enhanced Card Hover Effects */
+        .hover-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .threat-dot.low {
-            background: var(--cyber-green);
-            box-shadow: 0 0 10px var(--cyber-green);
+        
+        .hover-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 243, 255, 0.25);
         }
-
-        /* Mobile Responsive Improvements */
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: 1.75rem;
-            }
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-            .tools-grid {
-                grid-template-columns: 1fr;
-            }
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-            .protection-apps-grid {
-                grid-template-columns: 1fr;
-            }
-            .security-tools-grid {
-                grid-template-columns: 1fr;
-            }
-            .threats-grid {
-                grid-template-columns: 1fr;
-            }
-            .simulation-controls {
-                flex-direction: column;
-            }
-            .cyber-button, .security-button {
-                width: 100%;
-                text-align: center;
-            }
-            .floating {
-                display: none; /* Improve mobile performance */
-            }
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-            .mobile-menu .nav-link {
-                font-size: 1.1rem;
-                padding: 0.75rem 0;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            }
-            .social-auth {
-                flex-direction: column;
-            }
-            .demo-account {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-            .demo-login-btn {
-                align-self: flex-end;
-            }
+        
+        /* Gradient Text Effects */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
-        @media (max-width: 480px) {
-            .section-title {
-                font-size: 1.5rem;
-            }
-            .cyber-card, .security-card {
-                padding: 1rem;
-            }
-            .tool-card {
-                min-height: auto;
-            }
-            .hero-title {
-                font-size: 2rem;
-            }
-            .modal-content {
-                padding: 1.5rem;
-            }
+        
+        /* Responsive Video Container */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            border: 2px solid rgba(0, 243, 255, 0.3);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
 <body class="cyber-gradient">
     <!-- Vanta.js Background -->
     <div id="vanta-bg" class="fixed top-0 left-0 w-full h-full z-0"></div>
+    
+    <!-- Floating Shapes -->
+    <div class="floating-shape" style="width: 300px; height: 300px; top: 10%; right: 5%;"></div>
+    <div class="floating-shape" style="width: 200px; height: 200px; bottom: 20%; left: 10%;"></div>
+    <div class="floating-shape" style="width: 150px; height: 150px; top: 40%; left: 5%;"></div>
 
     <!-- Navigation -->
-    <nav class="simplified-header fixed top-0 w-full z-50 py-4 px-4 md:px-6 flex justify-between items-center">
+    <nav class="simplified-header fixed top-0 w-full z-50 py-4 px-4 md:px-8 flex justify-between items-center">
         <div class="flex items-center">
-            <h1 class="logo">CyberShield Pro</h1>
+            <a href="index.html" class="logo text-2xl md:text-3xl font-bold">
+                <span class="gradient-text">CyberShield Pro</span>
+            </a>
         </div>
-        <div class="hidden md:flex space-x-6 lg:space-x-8">
-            <a href="#home" class="nav-link">Home</a>
-            <a href="#about" class="nav-link">About</a>
-            <a href="#threats" class="nav-link">Threats</a>
-            <a href="#threat-dashboard" class="nav-link">Dashboard</a>
-            <a href="#tools" class="nav-link">Solutions</a>
-            <a href="#security-tools" class="nav-link">Tools</a>
-            <a href="#contact" class="nav-link">Contact</a>
+        
+        <!-- Desktop Navigation -->
+        <div class="hidden lg:flex space-x-8">
+            <a href="index.html" class="nav-link active group">
+                <span>Home</span>
+                <span class="block h-0.5 w-0 group-hover:w-full bg-cyan-400 transition-all duration-300"></span>
+            </a>
+            <a href="pages/about.html" class="nav-link group">
+                <span>About</span>
+                <span class="block h-0.5 w-0 group-hover:w-full bg-cyan-400 transition-all duration-300"></span>
+            </a>
+            <a href="pages/services.html" class="nav-link group">
+                <span>Services</span>
+                <span class="block h-0.5 w-0 group-hover:w-full bg-cyan-400 transition-all duration-300"></span>
+            </a>
+            <a href="pages/pricing.html" class="nav-link group">
+                <span>Pricing</span>
+                <span class="block h-0.5 w-0 group-hover:w-full bg-cyan-400 transition-all duration-300"></span>
+            </a>
+            <a href="pages/case-studies.html" class="nav-link group">
+                <span>Case Studies</span>
+                <span class="block h-0.5 w-0 group-hover:w-full bg-cyan-400 transition-all duration-300"></span>
+            </a>
+            <a href="pages/blog.html" class="nav-link group">
+                <span>Blog</span>
+                <span class="block h-0.5 w-0 group-hover:w-full bg-cyan-400 transition-all duration-300"></span>
+            </a>
+            <a href="pages/security-tools.html" class="nav-link group">
+                <span>Tools</span>
+                <span class="block h-0.5 w-0 group-hover:w-full bg-cyan-400 transition-all duration-300"></span>
+            </a>
         </div>
-        <div class="flex items-center space-x-2 md:space-x-4">
-            <div id="user-dropdown" class="user-dropdown">
-                <button class="user-button">
-                    <i data-feather="user" class="w-5 h-5"></i>
-                    <span id="user-name">User</span>
-                    <i data-feather="chevron-down" class="w-4 h-4"></i>
-                </button>
-                <div class="user-menu">
-                    <button class="user-menu-item" id="profile-button">My Profile</button>
-                    <button class="user-menu-item" id="settings-button">Settings</button>
-                    <button class="user-menu-item" id="logout-button">Logout</button>
+        
+        <!-- Auth & Mobile Menu -->
+        <div class="flex items-center space-x-4">
+            <!-- Auth Section -->
+            <div id="auth-section">
+                <!-- Logged in state -->
+                <div id="logged-in-state" class="hidden items-center space-x-4">
+                    <div class="user-dropdown relative">
+                        <button class="user-button flex items-center space-x-2">
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center">
+                                <span class="text-white font-bold text-sm" id="user-initials">U</span>
+                            </div>
+                            <i data-feather="chevron-down" class="w-4 h-4 text-gray-300"></i>
+                        </button>
+                        <div class="user-menu absolute top-full right-0 mt-2 w-48 py-2 bg-gray-900 rounded-lg shadow-xl border border-gray-800 z-50">
+                            <a href="pages/user/dashboard.html" class="user-menu-item">
+                                <i data-feather="grid" class="w-4 h-4 mr-2"></i>
+                                Dashboard
+                            </a>
+                            <a href="pages/user/profile.html" class="user-menu-item">
+                                <i data-feather="user" class="w-4 h-4 mr-2"></i>
+                                My Profile
+                            </a>
+                            <a href="pages/user/settings.html" class="user-menu-item">
+                                <i data-feather="settings" class="w-4 h-4 mr-2"></i>
+                                Settings
+                            </a>
+                            <div class="border-t border-gray-800 my-2"></div>
+                            <button id="logout-button" class="user-menu-item text-red-400 w-full text-left">
+                                <i data-feather="log-out" class="w-4 h-4 mr-2"></i>
+                                Logout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Logged out state -->
+                <div id="logged-out-state" class="flex items-center space-x-4">
+                    <a href="pages/auth/login.html" class="text-gray-300 hover:text-white transition-colors">
+                        Sign In
+                    </a>
+                    <a href="pages/auth/signup.html" class="cyber-button text-sm py-2 px-4">
+                        Get Started
+                    </a>
                 </div>
             </div>
-            <button id="auth-button" class="cyber-button text-sm md:text-base py-2 px-3 md:py-2 md:px-4">Login</button>
-            <button id="mobile-menu-toggle" class="md:hidden text-white p-2">
-                <i data-feather="menu"></i>
+            
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-toggle" class="lg:hidden text-white p-2 hover:bg-gray-800 rounded-lg">
+                <i data-feather="menu" class="w-6 h-6"></i>
             </button>
-        </div>
-
-        <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu">
-            <button class="mobile-menu-close" id="mobile-menu-close">
-                <i data-feather="x"></i>
-            </button>
-            <div class="flex flex-col gap-6 mt-8">
-                <a href="#home" class="nav-link text-lg">Home</a>
-                <a href="#about" class="nav-link text-lg">About Us</a>
-                <a href="#threats" class="nav-link text-lg">Cyber Threats</a>
-                <a href="#threat-dashboard" class="nav-link text-lg">Threat Dashboard</a>
-                <a href="#tools" class="nav-link text-lg">Solutions</a>
-                <a href="#security-tools" class="nav-link text-lg">Tools</a>
-                <a href="#contact" class="nav-link text-lg">Contact</a>
-            </div>
         </div>
     </nav>
 
-    <!-- Enhanced Auth Modal -->
-    <div id="auth-modal" class="modal">
-        <div class="modal-content">
-            <button class="modal-close" id="modal-close">&times;</button>
-            <div class="auth-tabs">
-                <button class="auth-tab active" data-tab="login">Login</button>
-                <button class="auth-tab" data-tab="signup">Sign Up</button>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu">
+        <div class="flex justify-between items-center mb-8">
+            <div class="logo text-xl font-bold gradient-text">CyberShield Pro</div>
+            <button class="mobile-menu-close text-white p-2">
+                <i data-feather="x" class="w-6 h-6"></i>
+            </button>
+        </div>
+        
+        <div class="flex flex-col space-y-4">
+            <a href="index.html" class="nav-link text-lg active">Home</a>
+            <a href="pages/about.html" class="nav-link text-lg">About</a>
+            <a href="pages/services.html" class="nav-link text-lg">Services</a>
+            <a href="pages/pricing.html" class="nav-link text-lg">Pricing</a>
+            <a href="pages/case-studies.html" class="nav-link text-lg">Case Studies</a>
+            <a href="pages/team.html" class="nav-link text-lg">Team</a>
+            <a href="pages/blog.html" class="nav-link text-lg">Blog</a>
+            <a href="pages/resources.html" class="nav-link text-lg">Resources</a>
+            <a href="pages/security-tools.html" class="nav-link text-lg">Tools</a>
+            <a href="pages/contact.html" class="nav-link text-lg">Contact</a>
+            
+            <div class="pt-4 border-t border-gray-800">
+                <a href="pages/auth/login.html" class="cyber-button w-full text-center mb-3">
+                    Sign In
+                </a>
+                <a href="pages/auth/signup.html" class="security-button w-full text-center">
+                    Get Started
+                </a>
             </div>
-            
-            <!-- Login Form -->
-            <form id="login-form" class="auth-form active">
-                <div class="form-group">
-                    <label for="login-email">Email</label>
-                    <i data-feather="mail" class="form-icon"></i>
-                    <input type="email" id="login-email" placeholder="Enter your email" required>
-                </div>
-                <div class="form-group">
-                    <label for="login-password">Password</label>
-                    <i data-feather="lock" class="form-icon"></i>
-                    <input type="password" id="login-password" placeholder="Enter your password" required>
-                </div>
-                
-                <div class="form-options">
-                    <div class="remember-me">
-                        <input type="checkbox" id="remember-me">
-                        <label for="remember-me">Remember me</label>
-                    </div>
-                    <a href="#" class="forgot-password">Forgot password?</a>
-                </div>
-                
-                <button type="submit" class="cyber-button w-full">Login</button>
-                
-                <!-- Demo Accounts Section -->
-                <div class="demo-accounts">
-                    <p class="demo-title">Demo Accounts</p>
-                    <div class="demo-account" data-email="admin@cybershield.com" data-password="admin123">
-                        <div class="demo-account-info">
-                            <div class="demo-account-avatar" style="background: rgba(0, 243, 255, 0.2); color: #00f3ff;">A</div>
-                            <div class="demo-account-details">
-                                <span class="demo-account-name">Admin User</span>
-                                <span class="demo-account-role">Full Access</span>
-                            </div>
-                        </div>
-                        <button type="button" class="demo-login-btn">Use This Account</button>
-                    </div>
-                    <div class="demo-account" data-email="analyst@cybershield.com" data-password="analyst123">
-                        <div class="demo-account-info">
-                            <div class="demo-account-avatar" style="background: rgba(0, 255, 149, 0.2); color: #00ff95;">SA</div>
-                            <div class="demo-account-details">
-                                <span class="demo-account-name">Security Analyst</span>
-                                <span class="demo-account-role">Threat Analysis</span>
-                            </div>
-                        </div>
-                        <button type="button" class="demo-login-btn">Use This Account</button>
-                    </div>
-                    <div class="demo-account" data-email="user@cybershield.com" data-password="user123">
-                        <div class="demo-account-info">
-                            <div class="demo-account-avatar" style="background: rgba(185, 103, 255, 0.2); color: #b967ff;">U</div>
-                            <div class="demo-account-details">
-                                <span class="demo-account-name">Standard User</span>
-                                <span class="demo-account-role">Basic Access</span>
-                            </div>
-                        </div>
-                        <button type="button" class="demo-login-btn">Use This Account</button>
-                    </div>
-                </div>
-                
-                <div class="auth-divider">
-                    <span>or continue with</span>
-                </div>
-                
-                <div class="social-auth">
-                    <button type="button" class="social-button">
-                        <i data-feather="github"></i>
-                        <span>GitHub</span>
-                    </button>
-                    <button type="button" class="social-button">
-                        <i data-feather="twitter"></i>
-                        <span>Twitter</span>
-                    </button>
-                    <button type="button" class="social-button">
-                        <i data-feather="linkedin"></i>
-                        <span>LinkedIn</span>
-                    </button>
-                </div>
-                
-                <div class="auth-footer">
-                    Don't have an account? <a href="#" class="switch-to-signup">Sign up</a>
-                </div>
-            </form>
-            
-            <!-- Signup Form -->
-            <form id="signup-form" class="auth-form">
-                <div class="form-group">
-                    <label for="signup-name">Full Name</label>
-                    <i data-feather="user" class="form-icon"></i>
-                    <input type="text" id="signup-name" placeholder="Enter your full name" required>
-                </div>
-                <div class="form-group">
-                    <label for="signup-email">Email</label>
-                    <i data-feather="mail" class="form-icon"></i>
-                    <input type="email" id="signup-email" placeholder="Enter your email" required>
-                </div>
-                <div class="form-group">
-                    <label for="signup-password">Password</label>
-                    <i data-feather="lock" class="form-icon"></i>
-                    <input type="password" id="signup-password" placeholder="Create a password" required>
-                </div>
-                <div class="form-group">
-                    <label for="signup-confirm">Confirm Password</label>
-                    <i data-feather="lock" class="form-icon"></i>
-                    <input type="password" id="signup-confirm" placeholder="Confirm your password" required>
-                </div>
-                
-                <button type="submit" class="cyber-button w-full">Create Account</button>
-                
-                <div class="auth-divider">
-                    <span>or continue with</span>
-                </div>
-                
-                <div class="social-auth">
-                    <button type="button" class="social-button">
-                        <i data-feather="github"></i>
-                        <span>GitHub</span>
-                    </button>
-                    <button type="button" class="social-button">
-                        <i data-feather="twitter"></i>
-                        <span>Twitter</span>
-                    </button>
-                    <button type="button" class="social-button">
-                        <i data-feather="linkedin"></i>
-                        <span>LinkedIn</span>
-                    </button>
-                </div>
-                
-                <div class="auth-footer">
-                    Already have an account? <a href="#" class="switch-to-login">Log in</a>
-                </div>
-            </form>
         </div>
     </div>
+    
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen relative flex items-center justify-center overflow-hidden pt-16">
-        <div class="hero-background"></div>
-        <div class="container mx-auto px-4 md:px-6 text-center relative z-10" data-aos="fade-up" data-aos-duration="1000">
-            <h2 class="hero-title">Advanced Cybersecurity <span class="text-security">Defense Platform</span></h2>
-            <p class="hero-subtitle">Comprehensive threat protection, security intelligence, and advanced tools for modern organizations. Protect against phishing, malware, ransomware, and other cyber threats.</p>
-            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
-                <a href="#threat-dashboard" class="cyber-button text-base md:text-lg py-3 px-6 md:px-8 inline-block">View Threat Dashboard</a>
-                <a href="#security-tools" class="security-button text-base md:text-lg py-3 px-6 md:px-8 inline-block">Use Our Tools</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Us Section -->
-    <section id="about" class="py-16 md:py-20 grid-pattern relative">
-        <div class="container mx-auto px-4 md:px-6">
-            <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-cyber" data-aos="fade-up">About CyberShield Pro</h2>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
-                <div data-aos="fade-right">
-                    <h3 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-cyber">Security Leadership</h3>
-                    <p class="text-gray-300 mb-4 md:mb-6">
-                        Founded by <strong class="text-security">Gulshan Kumar</strong>, CyberShield Pro delivers comprehensive 
-                        cybersecurity solutions for organizations facing complex digital threats.
-                    </p>
-                    <p class="text-gray-300 mb-4 md:mb-6">
-                        Our expert team combines cutting-edge technology with strategic security expertise 
-                        to protect critical assets and ensure regulatory compliance.
+    <section id="hero" class="min-h-screen relative flex items-center overflow-hidden pt-20">
+        <div class="container mx-auto px-4 md:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-left" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="inline-flex items-center mb-6">
+                        <span class="live-threat-indicator"></span>
+                        <span class="text-sm text-alert font-medium">Live Threat Protection Active</span>
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                        <span class="text-white">Advanced</span>
+                        <span class="gradient-text block">Cybersecurity</span>
+                        <span class="text-white">Solutions</span>
+                    </h1>
+                    
+                    <p class="text-xl text-gray-300 mb-8 max-w-2xl">
+                        Enterprise-grade security platform protecting organizations worldwide from sophisticated cyber threats. 
+                        Real-time threat intelligence, automated defense, and 24/7 security operations.
                     </p>
                     
-                    <div class="cyber-card p-4 md:p-6 mt-6 md:mt-8">
-                        <h4 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-security">Our Mission</h4>
-                        <p class="text-gray-300">
-                            To provide enterprise-grade security solutions that enable organizations to operate securely 
-                            in an increasingly complex threat landscape.
-                        </p>
+                    <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                        <a href="pages/auth/signup.html" class="cyber-button text-lg py-4 px-8 text-center group">
+                            <span class="flex items-center justify-center">
+                                Start Free Trial
+                                <i data-feather="arrow-right" class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                            </span>
+                        </a>
+                        <a href="pages/services.html" class="security-button text-lg py-4 px-8 text-center">
+                            View Our Services
+                        </a>
+                    </div>
+                    
+                    <!-- Trust Badges -->
+                    <div class="flex flex-wrap items-center gap-6">
+                        <div class="security-badge">
+                            <i data-feather="shield" class="w-4 h-4 mr-2"></i>
+                            99.9% Uptime
+                        </div>
+                        <div class="security-badge">
+                            <i data-feather="lock" class="w-4 h-4 mr-2"></i>
+                            GDPR Compliant
+                        </div>
+                        <div class="security-badge">
+                            <i data-feather="award" class="w-4 h-4 mr-2"></i>
+                            ISO 27001 Certified
+                        </div>
                     </div>
                 </div>
                 
-                <div data-aos="fade-left">
-                    <div class="cyber-card p-6 md:p-8">
-                        <div class="text-center mb-6 md:mb-8">
-                            <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto mb-3 md:mb-4 flex items-center justify-center">
-                                <span class="text-white text-xl md:text-2xl font-bold">GK</span>
-                            </div>
-                            <h3 class="text-xl md:text-2xl font-bold text-cyber">Gulshan Kumar</h3>
-                            <p class="text-gray-400">Founder & CEO</p>
-                        </div>
-                        
-                        <div class="space-y-3 md:space-y-4">
-                            <div>
-                                <h4 class="font-bold text-security mb-1 md:mb-2">Experience</h4>
-                                <p class="text-gray-300 text-sm">
-                                    12+ years in cybersecurity leadership, specializing in threat intelligence 
-                                    and security architecture for enterprise organizations.
-                                </p>
+                <div class="relative" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
+                    <div class="cyber-card p-8 rounded-2xl">
+                        <!-- Animated Threat Dashboard Preview -->
+                        <div class="mb-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold text-cyber">Live Threat Dashboard</h3>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
+                                    <span class="text-sm text-green-500">All Systems Secure</span>
+                                </div>
                             </div>
                             
-                            <div>
-                                <h4 class="font-bold text-security mb-1 md:mb-2">Expertise</h4>
-                                <ul class="text-gray-300 text-sm space-y-1">
-                                    <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Cloud Security Architecture</li>
-                                    <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Threat Intelligence & Analysis</li>
-                                    <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Zero-Trust Implementation</li>
-                                    <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Security Operations</li>
-                                </ul>
+                            <!-- Mini Dashboard -->
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div class="bg-gray-800 rounded-lg p-4">
+                                    <p class="text-sm text-gray-400 mb-1">Threats Blocked</p>
+                                    <p class="text-2xl font-bold text-security">1,247</p>
+                                </div>
+                                <div class="bg-gray-800 rounded-lg p-4">
+                                    <p class="text-sm text-gray-400 mb-1">Active Alerts</p>
+                                    <p class="text-2xl font-bold text-alert">3</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Threat Map Preview -->
+                            <div class="relative h-48 bg-gray-900 rounded-lg overflow-hidden">
+                                <!-- Simulated threat dots -->
+                                <div class="absolute top-1/4 left-1/4 w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+                                <div class="absolute top-1/3 right-1/3 w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></div>
+                                <div class="absolute bottom-1/4 left-1/3 w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                                <div class="absolute top-1/2 right-1/4 w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
                             </div>
                         </div>
+                        
+                        <a href="pages/user/dashboard.html" class="cyber-button w-full text-center">
+                            <i data-feather="bar-chart-2" class="w-4 h-4 mr-2"></i>
+                            View Full Dashboard
+                        </a>
                     </div>
-                </div>
-            </div>
-            
-            <!-- Company Stats -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mt-12 md:mt-16">
-                <div class="text-center" data-aos="fade-up">
-                    <p class="text-3xl md:text-4xl font-bold text-security mb-1 md:mb-2">10,000+</p>
-                    <p class="text-gray-400 text-sm md:text-base">Assets Protected</p>
-                </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-                    <p class="text-3xl md:text-4xl font-bold text-security mb-1 md:mb-2">50+</p>
-                    <p class="text-gray-400 text-sm md:text-base">Countries Served</p>
-                </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
-                    <p class="text-3xl md:text-4xl font-bold text-security mb-1 md:mb-2">99.9%</p>
-                    <p class="text-gray-400 text-sm md:text-base">Uptime Guarantee</p>
-                </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
-                    <p class="text-3xl md:text-4xl font-bold text-security mb-1 md:mb-2">24/7</p>
-                    <p class="text-gray-400 text-sm md:text-base">Security Operations</p>
+                    
+                    <!-- Floating Elements -->
+                    <div class="absolute -top-4 -right-4 w-20 h-20 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 opacity-20 blur-xl"></div>
+                    <div class="absolute -bottom-4 -left-4 w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 opacity-20 blur-xl"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Cyber Threats Section -->
-    <section id="threats" class="py-16 md:py-20 security-gradient relative overflow-hidden">
-        <div class="container mx-auto px-4 md:px-6">
-            <h2 class="section-title security-title text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-security" data-aos="fade-up">Understanding Cyber Threats</h2>
+    <!-- Stats Section -->
+    <section class="py-16 security-gradient">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center" data-aos="fade-up">
+                    <p class="stats-counter" id="clients-counter">0</p>
+                    <p class="text-gray-400">Enterprise Clients</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <p class="stats-counter" id="threats-counter">0</p>
+                    <p class="text-gray-400">Threats Neutralized</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <p class="stats-counter" id="uptime-counter">0</p>
+                    <p class="text-gray-400">Uptime Guarantee</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <p class="stats-counter" id="response-counter">0</p>
+                    <p class="text-gray-400">Avg Response Time</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 grid-pattern">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title text-4xl md:text-5xl font-bold mb-6">
+                    <span class="text-white">Comprehensive</span>
+                    <span class="gradient-text block">Security Features</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Our platform combines cutting-edge technology with expert security intelligence 
+                    to provide complete protection across all attack vectors.
+                </p>
+            </div>
             
-            <div class="threats-grid mb-12 md:mb-16">
-                <!-- Phishing -->
-                <div class="threat-card cyber-card p-6 md:p-8" data-aos="fade-up">
-                    <div class="threat-icon phishing-icon">
-                        <i data-feather="mail" class="w-6 h-6"></i>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="cyber-card p-8 hover-card" data-aos="fade-up">
+                    <div class="feature-icon" style="color: var(--neon-blue); background: rgba(0, 243, 255, 0.1);">
+                        <i data-feather="shield" class="w-8 h-8"></i>
                     </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-cyber">Phishing Attacks</h3>
-                    <p class="text-gray-300 mb-4">
-                        Deceptive attempts to obtain sensitive information by disguising as a trustworthy entity in electronic communication.
+                    <h3 class="text-2xl font-bold mb-4 text-cyber">Threat Intelligence</h3>
+                    <p class="text-gray-300 mb-6">
+                        Real-time threat detection powered by AI and global intelligence feeds. 
+                        Proactive identification and mitigation of emerging threats.
                     </p>
-                    <ul class="text-gray-400 text-sm space-y-2">
-                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> Spear phishing targets specific individuals</li>
-                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> Often uses urgent or threatening language</li>
-                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> May contain malicious links or attachments</li>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i>Behavioral Analysis</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i>Malware Detection</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i>Zero-Day Protection</li>
                     </ul>
                 </div>
                 
-                <!-- Malware -->
-                <div class="threat-card cyber-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="100">
-                    <div class="threat-icon malware-icon">
-                        <i data-feather="alert-octagon" class="w-6 h-6"></i>
+                <!-- Feature 2 -->
+                <div class="cyber-card p-8 hover-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon" style="color: var(--neon-purple); background: rgba(185, 103, 255, 0.1);">
+                        <i data-feather="cloud" class="w-8 h-8"></i>
                     </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-cyber">Malware</h3>
-                    <p class="text-gray-300 mb-4">
-                        Malicious software designed to disrupt, damage, or gain unauthorized access to computer systems.
+                    <h3 class="text-2xl font-bold mb-4 text-cyber">Cloud Security</h3>
+                    <p class="text-gray-300 mb-6">
+                        Comprehensive protection for multi-cloud environments including 
+                        AWS, Azure, Google Cloud, and hybrid infrastructure.
                     </p>
-                    <ul class="text-gray-400 text-sm space-y-2">
-                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> Viruses, worms, and trojans</li>
-                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> Spyware and keyloggers</li>
-                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> Often spread through email attachments</li>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i>CSPM & CWPP</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i>Cloud DLP</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i>Container Security</li>
                     </ul>
                 </div>
                 
-                <!-- Ransomware -->
-                <div class="threat-card cyber-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="200">
-                    <div class="threat-icon ransomware-icon">
-                        <i data-feather="lock" class="w-6 h-6"></i>
+                <!-- Feature 3 -->
+                <div class="cyber-card p-8 hover-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon" style="color: var(--cyber-green); background: rgba(0, 255, 149, 0.1);">
+                        <i data-feather="lock" class="w-8 h-8"></i>
                     </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-cyber">Ransomware</h3>
-                    <p class="text-gray-300 mb-4">
-                        Malicious software that blocks access to a computer system until a sum of money is paid.
+                    <h3 class="text-2xl font-bold mb-4 text-cyber">Network Defense</h3>
+                    <p class="text-gray-300 mb-6">
+                        Advanced network monitoring, intrusion detection, 
+                        and next-generation firewall management.
                     </p>
-                    <ul class="text-gray-400 text-sm space-y-2">
-                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> Encrypts files and demands ransom</li>
-                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> Often targets businesses and organizations</li>
-                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> Can cause significant downtime and data loss</li>
-                    </ul>
-                </div>
-                
-                <!-- DDoS -->
-                <div class="threat-card cyber-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="300">
-                    <div class="threat-icon ddos-icon">
-                        <i data-feather="server" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-cyber">DDoS Attacks</h3>
-                    <p class="text-gray-300 mb-4">
-                        Distributed Denial of Service attacks overwhelm a system with traffic, making it unavailable to users.
-                    </p>
-                    <ul class="text-gray-400 text-sm space-y-2">
-                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> Uses multiple compromised systems</li>
-                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> Targets websites, servers, and networks</li>
-                        <li class="flex items-start"><i data-feather="alert-triangle" class="text-alert w-4 h-4 mr-2 mt-0.5"></i> Can be mitigated with proper infrastructure</li>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i>Next-Gen Firewall</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i>IDS/IPS Systems</li>
+                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i>Network Segmentation</li>
                     </ul>
                 </div>
             </div>
             
-            <!-- Real-time Threat Feed -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+            <div class="text-center mt-12" data-aos="fade-up">
+                <a href="pages/services.html" class="cyber-button text-lg py-3 px-8 inline-flex items-center">
+                    View All Features
+                    <i data-feather="arrow-right" class="w-5 h-5 ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Video Section -->
+    <section class="py-20 security-gradient">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div data-aos="fade-right">
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-security">Live Threat Intelligence</h3>
+                    <h2 class="text-4xl font-bold mb-6">
+                        <span class="text-white">See Our Platform</span>
+                        <span class="gradient-text block">In Action</span>
+                    </h2>
                     <p class="text-gray-300 mb-6">
-                        Our systems monitor global threat activity in real-time, providing up-to-date information on emerging cyber threats.
+                        Watch a quick demo to see how CyberShield Pro protects organizations 
+                        from sophisticated cyber threats with real-time monitoring and automated response.
                     </p>
-                    <div class="threat-feed" id="threat-feed">
-                        <!-- Threat items will be populated by JavaScript -->
-                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center"><i data-feather="play-circle" class="text-cyber w-5 h-5 mr-3"></i>Live threat detection demonstration</li>
+                        <li class="flex items-center"><i data-feather="play-circle" class="text-cyber w-5 h-5 mr-3"></i>Security dashboard walkthrough</li>
+                        <li class="flex items-center"><i data-feather="play-circle" class="text-cyber w-5 h-5 mr-3"></i>Automated incident response</li>
+                    </ul>
+                    <a href="pages/auth/signup.html" class="cyber-button text-lg py-3 px-8">
+                        <i data-feather="play" class="w-5 h-5 mr-2"></i>
+                        Watch Full Demo
+                    </a>
                 </div>
                 
                 <div data-aos="fade-left">
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-security">Global Threat Map</h3>
-                    <p class="text-gray-300 mb-6">
-                        Visual representation of cyber attacks happening around the world in real-time.
-                    </p>
-                    <div class="threat-map" id="threat-map">
-                        <!-- Threat dots will be populated by JavaScript -->
+                    <div class="video-container">
+                        <!-- Demo Video Placeholder -->
+                        <div class="absolute inset-0 bg-gradient-to-br from-cyan-900 to-purple-900 flex items-center justify-center">
+                            <div class="text-center">
+                                <i data-feather="play-circle" class="w-16 h-16 text-white mx-auto mb-4"></i>
+                                <p class="text-white font-semibold">Platform Demo Video</p>
+                                <p class="text-gray-300 text-sm">2:45 minutes</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            
-            <!-- Interactive Security Quiz -->
-            <div class="quiz-container mt-12 md:mt-16" data-aos="fade-up">
-                <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-cyber">Test Your Security Knowledge</h3>
-                <div id="quiz-content">
-                    <div class="quiz-question">
-                        <p class="text-lg text-gray-300">What is the most common method used in phishing attacks?</p>
-                    </div>
-                    <div class="quiz-options">
-                        <div class="quiz-option" data-correct="false">Phone calls</div>
-                        <div class="quiz-option" data-correct="true">Deceptive emails</div>
-                        <div class="quiz-option" data-correct="false">Social media posts</div>
-                        <div class="quiz-option" data-correct="false">Text messages</div>
-                    </div>
-                    <button id="quiz-submit" class="cyber-button">Submit Answer</button>
-                    <div id="quiz-result" class="quiz-result"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Threat Dashboard Section -->
-    <section id="threat-dashboard" class="py-16 md:py-20 security-gradient relative overflow-hidden">
-        <div class="container mx-auto px-4 md:px-6">
-            <h2 class="section-title security-title text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-security" data-aos="fade-up">Security Dashboard</h2>
-            
-            <div class="dashboard-grid mb-8 md:mb-12">
-                <div class="dashboard-item-1 security-card p-4 md:p-6 gsap-card" data-aos="fade-up">
-                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-security flex items-center">
-                        <span id="system-status-indicator" class="threat-indicator threat-low pulse"></span>
-                        System Security Status
-                    </h3>
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p id="security-score" class="text-2xl md:text-3xl font-bold text-security">98.7%</p>
-                            <p class="text-gray-400 text-sm md:text-base">Protected</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-xs md:text-sm text-gray-400">Last Scan: <span id="last-scan-time">5 min ago</span></p>
-                            <p id="threat-status" class="text-xs md:text-sm text-security">No Critical Threats</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="dashboard-item-2 cyber-card p-4 md:p-6 gsap-card" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-cyber">Active Threats</h3>
-                    <div id="active-threats-list" class="space-y-2 md:space-y-3">
-                        <!-- Active threats updated dynamically -->
-                    </div>
-                </div>
-                
-                <div class="dashboard-item-3 security-card p-4 md:p-6 gsap-card" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-security">Security Controls</h3>
-                    <div class="space-y-3 md:space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm">WAF Protection</span>
-                                <span class="text-sm text-security">100%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress bg-green-500" style="width: 100%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm">Encryption</span>
-                                <span class="text-sm text-security">100%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress bg-green-500" style="width: 100%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm">Access Control</span>
-                                <span class="text-sm text-security">95%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress bg-green-500" style="width: 95%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="dashboard-item-4 cyber-card p-4 md:p-6 gsap-card" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-cyber">Vulnerability Scan</h3>
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-sm">Critical Issues</span>
-                        <span id="critical-issues" class="text-security">0</span>
-                    </div>
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-sm">High Severity</span>
-                        <span id="high-severity" class="text-warning">2</span>
-                    </div>
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-sm">Medium Severity</span>
-                        <span id="medium-severity" class="text-warning">5</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm">Low Severity</span>
-                        <span id="low-severity" class="text-security">12</span>
-                    </div>
-                </div>
-                
-                <div class="dashboard-item-5 security-card p-4 md:p-6 gsap-card" data-aos="fade-up" data-aos-delay="400">
-                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-security">Incident Response</h3>
-                    <div class="text-center">
-                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-green-900 bg-opacity-30 flex items-center justify-center mx-auto mb-2 md:mb-3">
-                            <i data-feather="clock" class="text-security w-6 h-6 md:w-8 md:h-8"></i>
-                        </div>
-                        <p id="response-time" class="text-xl md:text-2xl font-bold text-security">24s</p>
-                        <p class="text-gray-400 text-xs md:text-sm">Avg. Response Time</p>
-                    </div>
-                </div>
+    <!-- Security Tools Preview -->
+    <section id="tools-preview" class="py-20 grid-pattern">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title text-4xl md:text-5xl font-bold mb-6">
+                    <span class="text-white">Free Security</span>
+                    <span class="gradient-text block">Tools</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Try our free security tools to assess your current security posture 
+                    and get actionable recommendations.
+                </p>
             </div>
             
-            <div class="text-center">
-                <button class="cyber-button text-base md:text-lg py-3 px-6 md:px-8">View Detailed Analytics</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tools & Solutions Section -->
-    <section id="tools" class="py-16 md:py-20 security-gradient relative overflow-hidden">
-        <div class="container mx-auto px-4 md:px-6">
-            <h2 class="section-title security-title text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-security" data-aos="fade-up">Security Solutions</h2>
-            
-            <div class="tools-grid">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Tool 1 -->
-                <div class="cyber-card p-4 md:p-6 gsap-card" data-aos="fade-up">
-                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-cyan-900 bg-opacity-30 flex items-center justify-center mb-3 md:mb-4">
-                        <i data-feather="shield" class="text-cyber w-6 h-6 md:w-8 md:h-8"></i>
+                <div class="cyber-card p-6 hover-card" data-aos="fade-up">
+                    <div class="w-12 h-12 rounded-full bg-cyan-900 bg-opacity-30 flex items-center justify-center mb-4">
+                        <i data-feather="lock" class="text-cyber w-6 h-6"></i>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-cyber">Threat Intelligence</h3>
-                    <p class="text-gray-300 mb-3 md:mb-4">Real-time threat detection and analysis with global threat intelligence feeds.</p>
-                    <ul class="text-gray-400 text-xs md:text-sm space-y-1 md:space-y-2">
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Behavioral Analysis</li>
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Malware Detection</li>
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Zero-Day Protection</li>
-                    </ul>
+                    <h3 class="text-xl font-bold mb-3 text-cyber">Password Analyzer</h3>
+                    <p class="text-gray-300 text-sm mb-4">Check password strength and get improvement suggestions</p>
+                    <a href="pages/security-tools.html#password-analyzer" class="text-cyber hover:text-cyan-300 text-sm font-medium">
+                        Try Tool →
+                    </a>
                 </div>
                 
                 <!-- Tool 2 -->
-                <div class="cyber-card p-4 md:p-6 gsap-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-purple-900 bg-opacity-30 flex items-center justify-center mb-3 md:mb-4">
-                        <i data-feather="cloud" class="text-cyber w-6 h-6 md:w-8 md:h-8"></i>
+                <div class="cyber-card p-6 hover-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 rounded-full bg-purple-900 bg-opacity-30 flex items-center justify-center mb-4">
+                        <i data-feather="hash" class="text-cyber w-6 h-6"></i>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-cyber">Cloud Security</h3>
-                    <p class="text-gray-300 mb-3 md:mb-4">Comprehensive protection for multi-cloud environments including AWS, Azure, and GCP.</p>
-                    <ul class="text-gray-400 text-xs md:text-sm space-y-1 md:space-y-2">
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> CSPM & CWPP</li>
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Cloud DLP</li>
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Container Security</li>
-                    </ul>
+                    <h3 class="text-xl font-bold mb-3 text-cyber">Hash Generator</h3>
+                    <p class="text-gray-300 text-sm mb-4">Generate cryptographic hashes using multiple algorithms</p>
+                    <a href="pages/security-tools.html#hash-generator" class="text-cyber hover:text-cyan-300 text-sm font-medium">
+                        Try Tool →
+                    </a>
                 </div>
                 
                 <!-- Tool 3 -->
-                <div class="cyber-card p-4 md:p-6 gsap-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-blue-900 bg-opacity-30 flex items-center justify-center mb-3 md:mb-4">
-                        <i data-feather="lock" class="text-cyber w-6 h-6 md:w-8 md:h-8"></i>
+                <div class="cyber-card p-6 hover-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 rounded-full bg-blue-900 bg-opacity-30 flex items-center justify-center mb-4">
+                        <i data-feather="link" class="text-cyber w-6 h-6"></i>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-cyber">Network Security</h3>
-                    <p class="text-gray-300 mb-3 md:mb-4">Advanced network monitoring, intrusion detection, and firewall management.</p>
-                    <ul class="text-gray-400 text-xs md:text-sm space-y-1 md:space-y-2">
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Next-Gen Firewall</li>
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> IDS/IPS Systems</li>
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Network Segmentation</li>
-                    </ul>
+                    <h3 class="text-xl font-bold mb-3 text-cyber">URL Checker</h3>
+                    <p class="text-gray-300 text-sm mb-4">Verify website URLs for safety and potential threats</p>
+                    <a href="pages/security-tools.html#url-checker" class="text-cyber hover:text-cyan-300 text-sm font-medium">
+                        Try Tool →
+                    </a>
                 </div>
                 
                 <!-- Tool 4 -->
-                <div class="cyber-card p-4 md:p-6 gsap-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-green-900 bg-opacity-30 flex items-center justify-center mb-3 md:mb-4">
-                        <i data-feather="search" class="text-cyber w-6 h-6 md:w-8 md:h-8"></i>
+                <div class="cyber-card p-6 hover-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-12 h-12 rounded-full bg-green-900 bg-opacity-30 flex items-center justify-center mb-4">
+                        <i data-feather="globe" class="text-cyber w-6 h-6"></i>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-cyber">Vulnerability Management</h3>
-                    <p class="text-gray-300 mb-3 md:mb-4">Comprehensive vulnerability scanning, assessment, and remediation platform.</p>
-                    <ul class="text-gray-400 text-xs md:text-sm space-y-1 md:space-y-2">
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Automated Scanning</li>
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Risk Prioritization</li>
-                        <li class="flex items-center"><i data-feather="check" class="text-security w-4 h-4 mr-2"></i> Patch Management</li>
-                    </ul>
+                    <h3 class="text-xl font-bold mb-3 text-cyber">Network Scanner</h3>
+                    <p class="text-gray-300 text-sm mb-4">Scan domains for security information and open ports</p>
+                    <a href="pages/security-tools.html#network-scanner" class="text-cyber hover:text-cyan-300 text-sm font-medium">
+                        Try Tool →
+                    </a>
                 </div>
             </div>
             
-            <div class="text-center mt-8 md:mt-12">
-                <button class="cyber-button text-base md:text-lg py-3 px-6 md:px-8">View All Solutions</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Security Tools Section -->
-    <section id="security-tools" class="py-16 md:py-20 grid-pattern relative">
-        <div class="container mx-auto px-4 md:px-6">
-            <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-cyber" data-aos="fade-up">Security Tools</h2>
-            
-            <div class="security-tools-grid">
-                <!-- Password Strength Analyzer -->
-                <div class="tool-card cyber-card p-6 md:p-8" data-aos="fade-up">
-                    <div class="w-16 h-16 rounded-full bg-cyan-900 bg-opacity-30 flex items-center justify-center mb-4">
-                        <i data-feather="lock" class="text-cyber w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-cyber">Password Strength Analyzer</h3>
-                    <p class="text-gray-300 mb-6">Check the strength of your passwords and get recommendations for improvement.</p>
-                    
-                    <form id="password-analyzer-form" class="tool-form">
-                        <input type="password" id="password-input" placeholder="Enter password to analyze" class="tool-input" required>
-                        <button type="submit" class="cyber-button">Analyze Password</button>
-                    </form>
-                    
-                    <div id="password-analyzer-result" class="tool-output">
-                        <h4 class="text-lg font-bold text-cyber mb-2">Password Analysis</h4>
-                        <div id="password-result-content" class="text-gray-300"></div>
-                    </div>
-                </div>
-                
-                <!-- Hash Generator -->
-                <div class="tool-card cyber-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-16 h-16 rounded-full bg-purple-900 bg-opacity-30 flex items-center justify-center mb-4">
-                        <i data-feather="hash" class="text-cyber w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-cyber">Hash Generator</h3>
-                    <p class="text-gray-300 mb-6">Generate cryptographic hashes for text using various algorithms.</p>
-                    
-                    <form id="hash-generator-form" class="tool-form">
-                        <textarea id="hash-text" placeholder="Enter text to hash" class="tool-textarea" required></textarea>
-                        <select id="hash-algorithm" class="tool-select">
-                            <option value="MD5">MD5</option>
-                            <option value="SHA1">SHA-1</option>
-                            <option value="SHA256" selected>SHA-256</option>
-                            <option value="SHA512">SHA-512</option>
-                        </select>
-                        <button type="submit" class="cyber-button">Generate Hash</button>
-                    </form>
-                    
-                    <div id="hash-generator-result" class="tool-output">
-                        <h4 class="text-lg font-bold text-cyber mb-2">Generated Hash</h4>
-                        <div id="hash-result-content" class="text-gray-300 font-mono break-all"></div>
-                    </div>
-                </div>
-                
-                <!-- URL Checker Tool -->
-                <div class="tool-card cyber-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-16 h-16 rounded-full bg-blue-900 bg-opacity-30 flex items-center justify-center mb-4">
-                        <i data-feather="link" class="text-cyber w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-cyber">URL Safety Checker</h3>
-                    <p class="text-gray-300 mb-6">Check if a website URL is safe to visit or potentially malicious.</p>
-                    
-                    <form id="url-checker-form" class="tool-form">
-                        <input type="url" id="url-input" placeholder="Enter URL to check (e.g., https://example.com)" class="tool-input" required>
-                        <button type="submit" class="cyber-button">Check URL Safety</button>
-                    </form>
-                    
-                    <div id="url-checker-result" class="tool-output">
-                        <h4 class="text-lg font-bold text-cyber mb-2">Analysis Result</h4>
-                        <div id="url-result-content" class="text-gray-300"></div>
-                    </div>
-                </div>
-                
-                <!-- Network Scanner -->
-                <div class="tool-card cyber-card p-6 md:p-8" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-16 h-16 rounded-full bg-green-900 bg-opacity-30 flex items-center justify-center mb-4">
-                        <i data-feather="globe" class="text-cyber w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-cyber">Network Security Scanner</h3>
-                    <p class="text-gray-300 mb-6">Scan domains for security information including SSL certificates and open ports.</p>
-                    
-                    <form id="network-scanner-form" class="tool-form">
-                        <input type="text" id="network-domain" placeholder="Enter domain (e.g., example.com)" class="tool-input" required>
-                        <button type="submit" class="cyber-button">Scan Domain</button>
-                    </form>
-                    
-                    <div id="network-scanner-result" class="tool-output">
-                        <h4 class="text-lg font-bold text-cyber mb-2">Scan Results</h4>
-                        <div id="network-result-content" class="text-gray-300"></div>
-                    </div>
-                </div>
+            <div class="text-center mt-12" data-aos="fade-up">
+                <a href="pages/security-tools.html" class="security-button text-lg py-3 px-8">
+                    <i data-feather="tool" class="w-5 h-5 mr-2"></i>
+                    Explore All Tools
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 md:py-20 security-gradient relative overflow-hidden">
-        <div class="container mx-auto px-4 md:px-6">
-            <h2 class="section-title security-title text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-security" data-aos="fade-up">Contact Our Security Team</h2>
+    <!-- Testimonials -->
+    <section class="py-20 security-gradient">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title text-4xl md:text-5xl font-bold mb-6">
+                    <span class="text-white">Trusted by</span>
+                    <span class="gradient-text block">Security Leaders</span>
+                </h2>
+            </div>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
-                <div data-aos="fade-right">
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-security">Get In Touch</h3>
-                    <p class="text-gray-300 mb-6 md:mb-8">
-                        Ready to enhance your cybersecurity posture? Our experts are available to discuss your specific security challenges.
-                    </p>
-                    
-                    <div class="space-y-4 md:space-y-6">
-                        <div class="flex items-start">
-                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-cyan-900 bg-opacity-30 flex items-center justify-center mr-3 md:mr-4">
-                                <i data-feather="mail" class="text-cyber w-5 h-5 md:w-6 md:h-6"></i>
+            <div class="testimonial-slider" data-aos="fade-up">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-slide active">
+                    <div class="cyber-card p-8 max-w-3xl mx-auto">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center mr-4">
+                                <span class="text-white font-bold text-xl">JD</span>
                             </div>
                             <div>
-                                <h4 class="text-base md:text-lg font-bold text-cyber">Email Us</h4>
-                                <p class="text-gray-300">security@cybershieldpro.com</p>
+                                <h4 class="text-xl font-bold text-white">John Davis</h4>
+                                <p class="text-gray-400">CTO, TechSecure Inc.</p>
                             </div>
                         </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-purple-900 bg-opacity-30 flex items-center justify-center mr-3 md:mr-4">
-                                <i data-feather="phone" class="text-cyber w-5 h-5 md:w-6 md:h-6"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-base md:text-lg font-bold text-cyber">Call Us</h4>
-                                <p class="text-gray-300">+1 (555) 123-4567</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-blue-900 bg-opacity-30 flex items-center justify-center mr-3 md:mr-4">
-                                <i data-feather="clock" class="text-cyber w-5 h-5 md:w-6 md:h-6"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-base md:text-lg font-bold text-cyber">24/7 Support</h4>
-                                <p class="text-gray-300">Our Security Operations Center is always monitoring</p>
-                            </div>
+                        <p class="text-gray-300 text-lg italic mb-6">
+                            "CyberShield Pro transformed our security operations. The real-time threat intelligence 
+                            and automated response have reduced our incident response time by 70%. Their platform 
+                            is now the backbone of our security infrastructure."
+                        </p>
+                        <div class="flex">
+                            <i data-feather="star" class="text-yellow-500 w-5 h-5 mr-1"></i>
+                            <i data-feather="star" class="text-yellow-500 w-5 h-5 mr-1"></i>
+                            <i data-feather="star" class="text-yellow-500 w-5 h-5 mr-1"></i>
+                            <i data-feather="star" class="text-yellow-500 w-5 h-5 mr-1"></i>
+                            <i data-feather="star" class="text-yellow-500 w-5 h-5 mr-1"></i>
                         </div>
                     </div>
                 </div>
                 
-                <div data-aos="fade-left">
-                    <form class="contact-form" id="contact-form">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-                            <input type="text" placeholder="First Name" required>
-                            <input type="text" placeholder="Last Name" required>
+                <!-- Testimonial 2 -->
+                <div class="testimonial-slide">
+                    <div class="cyber-card p-8 max-w-3xl mx-auto">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center mr-4">
+                                <span class="text-white font-bold text-xl">SC</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">Sarah Chen</h4>
+                                <p class="text-gray-400">Security Director, GlobalBank</p>
+                            </div>
                         </div>
-                        <input type="email" placeholder="Email Address" required>
-                        <input type="text" placeholder="Company">
-                        <select class="contact-form" required>
-                            <option value="" disabled selected>Select Service</option>
-                            <option value="consultation">Security Consultation</option>
-                            <option value="audit">Security Audit</option>
-                            <option value="compliance">Compliance Assistance</option>
-                            <option value="other">Other</option>
-                        </select>
-                        <textarea placeholder="Message" rows="5" required></textarea>
-                        <button type="submit" class="security-button w-full text-base md:text-lg py-3">Send Message</button>
-                    </form>
+                        <p class="text-gray-300 text-lg italic mb-6">
+                            "The compliance automation features alone saved us hundreds of hours in audit preparation. 
+                            CyberShield Pro's comprehensive approach to security has made us more resilient against 
+                            sophisticated attacks."
+                        </p>
+                        <div class="flex">
+                            <i data-feather="star" class="text-yellow-500 w-5 h-5 mr-1"></i>
+                            <i data-feather="star" class="text-yellow-500 w-5 h-5 mr-1"></i>
+                            <i data-feather="star" class="text-yellow-500 w-5 h-5 mr-1"></i>
+                            <i data-feather="star" class="text-yellow-500 w-5 h-5 mr-1"></i>
+                            <i data-feather="star" class="text-yellow-500 w-5 h-5 mr-1"></i>
+                        </div>
+                    </div>
                 </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-slide">
+                    <div class="cyber-card p-8 max-w-3xl mx-auto">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-r from-green-500 to-teal-500 flex items-center justify-center mr-4">
+                                <span class="text-white font-bold text-xl">MR</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">Michael Rodriguez</h4>
+                                <p class="text-gray-400">CISO, HealthCare Plus</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-lg italic mb-6">
+                            "As a healthcare provider, security is paramount. CyberShield Pro's HIPAA compliance 
+                            features and real-time monitoring have given us peace of mind. Their 24/7 support team 
+                            is exceptional."
+                        </p>
+                        <div class="flex">
+                            <i data-feather="star" class="text-yellow-500 w-5 h-5 mr-1"></i>
+                            <i data-feather="star" class="text-yellow-500 w-5 h-5 mr-1"></i>
+                            <i data-feather="star" class="text-yellow-500 w-5 h-5 mr-1"></i>
+                            <i data-feather="star" class="text-yellow-500 w-5 h-5 mr-1"></i>
+                            <i data-feather="star" class="text-yellow-500 w-5 h-5 mr-1"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex justify-center mt-8 space-x-2">
+                <button class="testimonial-nav w-3 h-3 rounded-full bg-gray-700 active:bg-cyan-500" data-slide="0"></button>
+                <button class="testimonial-nav w-3 h-3 rounded-full bg-gray-700" data-slide="1"></button>
+                <button class="testimonial-nav w-3 h-3 rounded-full bg-gray-700" data-slide="2"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners -->
+    <section class="py-16">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h3 class="text-2xl font-bold text-gray-300 mb-6">Trusted by Industry Leaders</h3>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center" data-aos="fade-up">
+                <div class="partner-logo text-center">
+                    <div class="w-32 h-12 mx-auto bg-gray-800 rounded-lg flex items-center justify-center">
+                        <span class="text-gray-400 font-bold">TECH CORP</span>
+                    </div>
+                </div>
+                <div class="partner-logo text-center">
+                    <div class="w-32 h-12 mx-auto bg-gray-800 rounded-lg flex items-center justify-center">
+                        <span class="text-gray-400 font-bold">SECURE BANK</span>
+                    </div>
+                </div>
+                <div class="partner-logo text-center">
+                    <div class="w-32 h-12 mx-auto bg-gray-800 rounded-lg flex items-center justify-center">
+                        <span class="text-gray-400 font-bold">HEALTH PLUS</span>
+                    </div>
+                </div>
+                <div class="partner-logo text-center">
+                    <div class="w-32 h-12 mx-auto bg-gray-800 rounded-lg flex items-center justify-center">
+                        <span class="text-gray-400 font-bold">GLOBAL TECH</span>
+                    </div>
+                </div>
+                <div class="partner-logo text-center">
+                    <div class="w-32 h-12 mx-auto bg-gray-800 rounded-lg flex items-center justify-center">
+                        <span class="text-gray-400 font-bold">DATA SAFE</span>
+                    </div>
+                </div>
+                <div class="partner-logo text-center">
+                    <div class="w-32 h-12 mx-auto bg-gray-800 rounded-lg flex items-center justify-center">
+                        <span class="text-gray-400 font-bold">CLOUD SEC</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-20 relative overflow-hidden">
+        <div class="container mx-auto px-4 md:px-8 relative z-10">
+            <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    <span class="text-white">Ready to Secure</span>
+                    <span class="gradient-text block">Your Organization?</span>
+                </h2>
+                <p class="text-xl text-gray-300 mb-8">
+                    Join thousands of organizations that trust CyberShield Pro for their cybersecurity needs. 
+                    Start your free trial today and experience enterprise-grade security.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="pages/auth/signup.html" class="cyber-button text-lg py-4 px-8">
+                        <i data-feather="shield" class="w-5 h-5 mr-2"></i>
+                        Start Free Trial
+                    </a>
+                    <a href="pages/contact.html" class="security-button text-lg py-4 px-8">
+                        <i data-feather="phone" class="w-5 h-5 mr-2"></i>
+                        Schedule a Demo
+                    </a>
+                </div>
+                
+                <p class="text-gray-400 mt-6">
+                    <i data-feather="clock" class="w-4 h-4 inline mr-2"></i>
+                    No credit card required • 14-day free trial • 24/7 support
+                </p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-8 md:py-12 cyber-gradient border-t border-cyan-900">
-        <div class="container mx-auto px-4 md:px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
-                <div>
-                    <div class="flex items-center mb-3 md:mb-4">
-                        <h3 class="text-lg md:text-xl font-bold text-cyber">CyberShield Pro</h3>
+    <footer class="py-12 cyber-gradient border-t border-cyan-900">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                <!-- Company Info -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <div class="logo text-2xl font-bold gradient-text">CyberShield Pro</div>
                     </div>
-                    <p class="text-gray-400 text-sm">
-                        Advanced cybersecurity solutions.
+                    <p class="text-gray-400 mb-6 max-w-md">
+                        Advanced cybersecurity solutions for modern organizations. 
+                        Enterprise-grade protection powered by AI and expert security intelligence.
                     </p>
-                </div>
-                
-                <div>
-                    <h4 class="text-base md:text-lg font-bold mb-2 md:mb-4 text-cyber">Services</h4>
-                    <ul class="space-y-1 md:space-y-2">
-                        <li><a href="#threat-dashboard" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Threat Detection</a></li>
-                        <li><a href="#tools" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Security Solutions</a></li>
-                        <li><a href="#security-tools" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Security Tools</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-base md:text-lg font-bold mb-2 md:mb-4 text-cyber">Resources</h4>
-                    <ul class="space-y-1 md:space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Case Studies</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Whitepapers</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-sm">Security Tools</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-base md:text-lg font-bold mb-2 md:mb-4 text-cyber">Connect</h4>
-                    <div class="flex space-x-3 md:space-x-4">
+                    <div class="flex space-x-4">
                         <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
                             <i data-feather="twitter"></i>
                         </a>
@@ -1881,782 +884,298 @@
                         <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
                             <i data-feather="github"></i>
                         </a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                            <i data-feather="youtube"></i>
+                        </a>
                     </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-cyber">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Home</a></li>
+                        <li><a href="pages/about.html" class="text-gray-400 hover:text-cyan-400 transition-colors">About Us</a></li>
+                        <li><a href="pages/services.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Services</a></li>
+                        <li><a href="pages/pricing.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Pricing</a></li>
+                        <li><a href="pages/contact.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resources -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-cyber">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="pages/blog.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Blog</a></li>
+                        <li><a href="pages/case-studies.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Case Studies</a></li>
+                        <li><a href="pages/resources.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Whitepapers</a></li>
+                        <li><a href="pages/security-tools.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Security Tools</a></li>
+                        <li><a href="pages/compliance.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Compliance</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-cyber">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="pages/privacy-policy.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Privacy Policy</a></li>
+                        <li><a href="pages/terms.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Terms of Service</a></li>
+                        <li><a href="pages/compliance.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Compliance</a></li>
+                        <li><a href="pages/careers.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Careers</a></li>
+                        <li><a href="pages/contact.html#support" class="text-gray-400 hover:text-cyan-400 transition-colors">Support</a></li>
+                    </ul>
                 </div>
             </div>
             
-            <div class="border-t border-cyan-900 mt-6 md:mt-8 pt-6 md:pt-8 text-center text-gray-500 text-sm">
-                <p>&copy; 2024 CyberShield Pro. All rights reserved.</p>
+            <div class="border-t border-cyan-900 mt-8 pt-8 text-center">
+                <p class="text-gray-500 text-sm">
+                    &copy; 2024 CyberShield Pro. All rights reserved. | 
+                    <a href="pages/privacy-policy.html" class="text-gray-400 hover:text-cyan-400">Privacy Policy</a> | 
+                    <a href="pages/terms.html" class="text-gray-400 hover:text-cyan-400">Terms of Service</a>
+                </p>
+                <p class="text-gray-500 text-sm mt-2">
+                    <i data-feather="shield" class="w-3 h-3 inline mr-1"></i>
+                    ISO 27001 Certified | GDPR Compliant | SOC 2 Type II
+                </p>
             </div>
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-cyan-900 rounded-full flex items-center justify-center shadow-lg hover:bg-cyan-800 transition-colors z-40">
+        <i data-feather="arrow-up" class="text-white w-5 h-5"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/auth.js"></script>
     <script>
-        // Initialize feather icons
-        feather.replace();
-
-        // Initialize GSAP ScrollTrigger
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Animate cards on scroll with GSAP
-        gsap.utils.toArray('.gsap-card').forEach(card => {
-            gsap.fromTo(card, {
-                opacity: 0,
-                y: 50
-            }, {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top 80%",
-                    end: "bottom 20%",
-                    toggleActions: "play none none reverse"
-                }
-            });
-        });
-
-        // Mobile menu functionality
-        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-        const mobileMenuClose = document.getElementById('mobile-menu-close');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-
-        mobileMenuToggle.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-            mobileMenuOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-
-        mobileMenuClose.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            mobileMenuOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-
-        mobileMenuOverlay.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            mobileMenuOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                mobileMenuOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    gsap.to(window, {
-                        duration: 1,
-                        scrollTo: { y: target, offsetY: 70 },
-                        ease: "power2.inOut"
-                    });
-                }
-            });
-        });
-
-        // Enhanced Auth Modal Functionality
-        const authModal = document.getElementById('auth-modal');
-        const authButton = document.getElementById('auth-button');
-        const modalClose = document.getElementById('modal-close');
-        const authTabs = document.querySelectorAll('.auth-tab');
-        const authForms = document.querySelectorAll('.auth-form');
-        const userDropdown = document.getElementById('user-dropdown');
-        const userName = document.getElementById('user-name');
-        const userButton = document.querySelector('.user-button');
-        const userMenu = document.querySelector('.user-menu');
-        const logoutButton = document.getElementById('logout-button');
-        const profileButton = document.getElementById('profile-button');
-        const settingsButton = document.getElementById('settings-button');
-        const switchToSignupLinks = document.querySelectorAll('.switch-to-signup');
-        const switchToLoginLinks = document.querySelectorAll('.switch-to-login');
-        const demoLoginButtons = document.querySelectorAll('.demo-login-btn');
-
-        // Check if user is logged in
-        let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-        let currentUser = localStorage.getItem('currentUser') || '';
-
-        if (isLoggedIn && currentUser) {
-            authButton.style.display = 'none';
-            userDropdown.classList.add('active');
-            userName.textContent = currentUser;
-        }
-
-        authButton.addEventListener('click', () => {
-            authModal.style.display = 'flex';
-        });
-
-        modalClose.addEventListener('click', () => {
-            authModal.style.display = 'none';
-        });
-
-        authTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const tabName = tab.getAttribute('data-tab');
-                
-                // Update active tab
-                authTabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                
-                // Show corresponding form
-                authForms.forEach(form => {
-                    form.classList.remove('active');
-                    if (form.id === `${tabName}-form`) {
-                        form.classList.add('active');
-                    }
-                });
-            });
-        });
-
-        // Switch between login and signup forms
-        switchToSignupLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                authTabs.forEach(t => t.classList.remove('active'));
-                document.querySelector('.auth-tab[data-tab="signup"]').classList.add('active');
-                
-                authForms.forEach(form => form.classList.remove('active'));
-                document.getElementById('signup-form').classList.add('active');
-            });
-        });
-
-        switchToLoginLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                authTabs.forEach(t => t.classList.remove('active'));
-                document.querySelector('.auth-tab[data-tab="login"]').classList.add('active');
-                
-                authForms.forEach(form => form.classList.remove('active'));
-                document.getElementById('login-form').classList.add('active');
-            });
-        });
-
-        // Demo account login functionality
-        demoLoginButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const demoAccount = button.closest('.demo-account');
-                const email = demoAccount.getAttribute('data-email');
-                const password = demoAccount.getAttribute('data-password');
-                const accountName = demoAccount.querySelector('.demo-account-name').textContent;
-                
-                // Fill in the login form
-                document.getElementById('login-email').value = email;
-                document.getElementById('login-password').value = password;
-                
-                // Auto-login after a short delay to show the filled form
-                setTimeout(() => {
-                    loginUser(email, accountName);
-                }, 500);
-            });
-        });
-
-        // Close modal when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === authModal) {
-                authModal.style.display = 'none';
-            }
-        });
-
-        // User dropdown toggle
-        userButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            userMenu.classList.toggle('active');
-        });
-
-        // Close user menu when clicking outside
-        document.addEventListener('click', () => {
-            userMenu.classList.remove('active');
-        });
-
-        // Form submission handlers
-        document.getElementById('login-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-            const rememberMe = document.getElementById('remember-me').checked;
-            
-            // Simulate login
-            loginUser(email, email.split('@')[0], rememberMe);
-        });
-
-        document.getElementById('signup-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('signup-name').value;
-            const email = document.getElementById('signup-email').value;
-            const password = document.getElementById('signup-password').value;
-            const confirmPassword = document.getElementById('signup-confirm').value;
-            
-            if (password !== confirmPassword) {
-                showNotification('Passwords do not match!', 'error');
-                return;
-            }
-            
-            if (password.length < 8) {
-                showNotification('Password must be at least 8 characters long!', 'error');
-                return;
-            }
-            
-            // Simulate signup
-            isLoggedIn = true;
-            currentUser = name;
-            
-            localStorage.setItem('isLoggedIn', 'true');
-            localStorage.setItem('currentUser', currentUser);
-            
-            authButton.style.display = 'none';
-            userDropdown.classList.add('active');
-            userName.textContent = currentUser;
-            
-            authModal.style.display = 'none';
-            
-            // Show success message
-            showNotification(`Welcome to CyberShield Pro, ${currentUser}!`, 'success');
-        });
-
-        // Login function
-        function loginUser(email, name, rememberMe = false) {
-            isLoggedIn = true;
-            currentUser = name;
-            
-            localStorage.setItem('isLoggedIn', 'true');
-            localStorage.setItem('currentUser', currentUser);
-            if (rememberMe) {
-                localStorage.setItem('rememberMe', 'true');
-            }
-            
-            authButton.style.display = 'none';
-            userDropdown.classList.add('active');
-            userName.textContent = currentUser;
-            
-            authModal.style.display = 'none';
-            
-            // Show success message
-            showNotification(`Welcome back, ${currentUser}!`, 'success');
-        }
-
-        // Logout functionality
-        logoutButton.addEventListener('click', () => {
-            isLoggedIn = false;
-            currentUser = '';
-            
-            localStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('currentUser');
-            
-            authButton.style.display = 'block';
-            userDropdown.classList.remove('active');
-            userMenu.classList.remove('active');
-            
-            // Show logout message
-            showNotification('You have been logged out.', 'info');
-        });
-
-        // Profile and Settings buttons
-        profileButton.addEventListener('click', () => {
-            showNotification('Profile page would open here.', 'info');
-            userMenu.classList.remove('active');
-        });
-
-        settingsButton.addEventListener('click', () => {
-            showNotification('Settings page would open here.', 'info');
-            userMenu.classList.remove('active');
-        });
-
-        // Social auth buttons
-        document.querySelectorAll('.social-button').forEach(button => {
-            button.addEventListener('click', () => {
-                showNotification('Social authentication would be implemented here.', 'info');
-            });
-        });
-
-        // Notification system
-        function showNotification(message, type) {
-            // Create notification element
-            const notification = document.createElement('div');
-            notification.className = `fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transform translate-x-full transition-transform duration-300 ${
-                type === 'success' ? 'bg-green-900 text-green-100' :
-                type === 'error' ? 'bg-red-900 text-red-100' :
-                'bg-blue-900 text-blue-100'
-            }`;
-            
-            notification.innerHTML = `
-                <div class="flex items-center">
-                    <i data-feather="${type === 'success' ? 'check-circle' : type === 'error' ? 'alert-circle' : 'info'}" class="w-5 h-5 mr-2"></i>
-                    <span>${message}</span>
-                </div>
-            `;
-            
-            document.body.appendChild(notification);
+        // Initialize on DOM Load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Feather Icons
             feather.replace();
             
-            // Animate in
-            setTimeout(() => {
-                notification.style.transform = 'translateX(0)';
-            }, 100);
-            
-            // Animate out and remove
-            setTimeout(() => {
-                notification.style.transform = 'translateX(100%)';
-                setTimeout(() => {
-                    document.body.removeChild(notification);
-                }, 300);
-            }, 3000);
-        }
-
-        // Security Tools Functionality
-
-        // Password Strength Analyzer
-        document.getElementById('password-analyzer-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const password = document.getElementById('password-input').value;
-            const resultContent = document.getElementById('password-result-content');
-            const resultDiv = document.getElementById('password-analyzer-result');
-            
-            // Calculate password strength
-            let score = 0;
-            let feedback = [];
-            
-            // Length check
-            if (password.length >= 8) score += 1;
-            else feedback.push("Password should be at least 8 characters long");
-            
-            // Lowercase check
-            if (/[a-z]/.test(password)) score += 1;
-            else feedback.push("Add lowercase letters");
-            
-            // Uppercase check
-            if (/[A-Z]/.test(password)) score += 1;
-            else feedback.push("Add uppercase letters");
-            
-            // Numbers check
-            if (/[0-9]/.test(password)) score += 1;
-            else feedback.push("Add numbers");
-            
-            // Special characters check
-            if (/[^A-Za-z0-9]/.test(password)) score += 1;
-            else feedback.push("Add special characters");
-            
-            // Determine strength level
-            let strength, color;
-            if (score <= 2) {
-                strength = "Weak";
-                color = "text-alert";
-            } else if (score <= 3) {
-                strength = "Moderate";
-                color = "text-warning";
-            } else if (score <= 4) {
-                strength = "Strong";
-                color = "text-security";
-            } else {
-                strength = "Very Strong";
-                color = "text-security";
-            }
-            
-            resultContent.innerHTML = `
-                <div class="space-y-2">
-                    <p><strong>Strength:</strong> <span class="${color}">${strength}</span> (${score}/5)</p>
-                    <div class="skill-bar mt-2">
-                        <div class="skill-progress ${score <= 2 ? 'bg-red-500' : score <= 3 ? 'bg-yellow-500' : 'bg-green-500'}" style="width: ${score * 20}%"></div>
-                    </div>
-                    ${feedback.length > 0 ? `<p class="text-warning mt-2"><strong>Recommendations:</strong></p><ul class="text-gray-300 text-sm list-disc pl-5">${feedback.map(item => `<li>${item}</li>`).join('')}</ul>` : '<p class="text-security mt-2">Your password meets all security requirements!</p>'}
-                </div>
-            `;
-            resultDiv.style.display = 'block';
-        });
-
-        // Hash Generator
-        document.getElementById('hash-generator-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const text = document.getElementById('hash-text').value;
-            const algorithm = document.getElementById('hash-algorithm').value;
-            const resultContent = document.getElementById('hash-result-content');
-            const resultDiv = document.getElementById('hash-generator-result');
-            
-            if (!text) {
-                resultContent.innerHTML = `<p class="text-alert">Please enter text to hash</p>`;
-                resultDiv.style.display = 'block';
-                return;
-            }
-            
-            let hash;
-            switch(algorithm) {
-                case 'MD5':
-                    hash = CryptoJS.MD5(text).toString();
-                    break;
-                case 'SHA1':
-                    hash = CryptoJS.SHA1(text).toString();
-                    break;
-                case 'SHA256':
-                    hash = CryptoJS.SHA256(text).toString();
-                    break;
-                case 'SHA512':
-                    hash = CryptoJS.SHA512(text).toString();
-                    break;
-                default:
-                    hash = CryptoJS.SHA256(text).toString();
-            }
-            
-            resultContent.innerHTML = `
-                <p class="text-security">${algorithm} Hash:</p>
-                <p class="text-gray-300 break-all">${hash}</p>
-            `;
-            resultDiv.style.display = 'block';
-        });
-
-        // URL Checker Tool
-        document.getElementById('url-checker-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const url = document.getElementById('url-input').value;
-            const resultDiv = document.getElementById('url-checker-result');
-            const resultContent = document.getElementById('url-result-content');
-
-            // Simulate checking
-            resultContent.innerHTML = `<p>Checking URL: <strong>${url}</strong></p>`;
-            resultDiv.style.display = 'block';
-
-            // Simulate API call
-            setTimeout(() => {
-                // Mock result
-                const isSafe = Math.random() > 0.3;
-                if (isSafe) {
-                    resultContent.innerHTML = `
-                        <p class="text-security">✓ The URL <strong>${url}</strong> appears to be safe.</p>
-                        <p class="text-gray-300 mt-2">No malicious content or phishing attempts detected.</p>
-                    `;
-                } else {
-                    resultContent.innerHTML = `
-                        <p class="text-alert">⚠ The URL <strong>${url}</strong> may be suspicious!</p>
-                        <p class="text-gray-300 mt-2">Our analysis detected potential security risks. Proceed with caution.</p>
-                    `;
-                }
-            }, 1500);
-        });
-
-        // Network Scanner
-        document.getElementById('network-scanner-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const domain = document.getElementById('network-domain').value;
-            const resultContent = document.getElementById('network-result-content');
-            const resultDiv = document.getElementById('network-scanner-result');
-            
-            if (!domain) {
-                resultContent.innerHTML = `<p class="text-alert">Please enter a domain to scan</p>`;
-                resultDiv.style.display = 'block';
-                return;
-            }
-            
-            resultContent.innerHTML = `<p>Scanning domain: <strong>${domain}</strong>...</p>`;
-            resultDiv.style.display = 'block';
-            
-            // Simulate scanning process
-            setTimeout(() => {
-                const hasSSL = Math.random() > 0.2;
-                const ports = [80, 443, 22, 21, 25];
-                const openPorts = ports.filter(() => Math.random() > 0.5);
-                
-                resultContent.innerHTML = `
-                    <div class="space-y-2">
-                        <p><strong>Domain:</strong> ${domain}</p>
-                        <p><strong>SSL Certificate:</strong> <span class="${hasSSL ? 'text-security' : 'text-alert'}">${hasSSL ? 'Valid' : 'Invalid or Missing'}</span></p>
-                        <p><strong>Open Ports:</strong> ${openPorts.length > 0 ? openPorts.join(', ') : 'None detected'}</p>
-                        <p><strong>Security Rating:</strong> <span class="${hasSSL && openPorts.length <= 2 ? 'text-security' : 'text-warning'}">${hasSSL && openPorts.length <= 2 ? 'Good' : 'Needs Improvement'}</span></p>
-                        ${!hasSSL ? '<p class="text-warning text-sm">Recommendation: Implement SSL/TLS certificate</p>' : ''}
-                    </div>
-                `;
-            }, 2000);
-        });
-
-        // Interactive Security Quiz
-        const quizOptions = document.querySelectorAll('.quiz-option');
-        const quizSubmit = document.getElementById('quiz-submit');
-        const quizResult = document.getElementById('quiz-result');
-        
-        let selectedOption = null;
-        
-        quizOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                // Remove selected class from all options
-                quizOptions.forEach(opt => opt.classList.remove('selected'));
-                
-                // Add selected class to clicked option
-                option.classList.add('selected');
-                selectedOption = option;
-            });
-        });
-        
-        quizSubmit.addEventListener('click', () => {
-            if (!selectedOption) {
-                showNotification('Please select an answer!', 'error');
-                return;
-            }
-            
-            const isCorrect = selectedOption.getAttribute('data-correct') === 'true';
-            
-            // Show correct/incorrect styling
-            quizOptions.forEach(option => {
-                if (option.getAttribute('data-correct') === 'true') {
-                    option.classList.add('correct');
-                } else if (option === selectedOption && !isCorrect) {
-                    option.classList.add('incorrect');
-                }
-            });
-            
-            // Show result
-            quizResult.style.display = 'block';
-            if (isCorrect) {
-                quizResult.className = 'quiz-result correct';
-                quizResult.innerHTML = `
-                    <i data-feather="check-circle" class="w-8 h-8 text-security mx-auto mb-2"></i>
-                    <p class="text-security font-bold">Correct!</p>
-                    <p class="text-gray-300 mt-1">Phishing attacks most commonly use deceptive emails to trick victims.</p>
-                `;
-            } else {
-                quizResult.className = 'quiz-result incorrect';
-                quizResult.innerHTML = `
-                    <i data-feather="x-circle" class="w-8 h-8 text-alert mx-auto mb-2"></i>
-                    <p class="text-alert font-bold">Incorrect</p>
-                    <p class="text-gray-300 mt-1">The correct answer is "Deceptive emails". Phishing attacks most commonly use email to trick victims.</p>
-                `;
-            }
-            
-            feather.replace();
-            
-            // Disable further selection
-            quizOptions.forEach(option => {
-                option.style.pointerEvents = 'none';
-            });
-            
-            quizSubmit.disabled = true;
-        });
-
-        // Real-time Threat Feed
-        const threatFeed = document.getElementById('threat-feed');
-        const threats = [
-            { time: '10:23 AM', details: 'Phishing campaign targeting financial institutions', severity: 'high' },
-            { time: '10:15 AM', details: 'New ransomware variant detected in the wild', severity: 'high' },
-            { time: '09:58 AM', details: 'DDoS attack on major e-commerce platform', severity: 'medium' },
-            { time: '09:42 AM', details: 'Vulnerability discovered in popular CMS plugin', severity: 'medium' },
-            { time: '09:30 AM', details: 'Credential stuffing attempts on multiple services', severity: 'low' },
-            { time: '09:15 AM', details: 'Fake software updates distributing malware', severity: 'medium' },
-            { time: '08:55 AM', details: 'Business email compromise attempts increasing', severity: 'high' }
-        ];
-
-        function updateThreatFeed() {
-            threatFeed.innerHTML = '';
-            
-            threats.forEach(threat => {
-                const threatItem = document.createElement('div');
-                threatItem.className = 'threat-item';
-                
-                threatItem.innerHTML = `
-                    <div class="threat-time">${threat.time}</div>
-                    <div class="threat-details">${threat.details}</div>
-                    <div class="threat-severity severity-${threat.severity}">${threat.severity.toUpperCase()}</div>
-                `;
-                
-                threatFeed.appendChild(threatItem);
-            });
-        }
-
-        // Live Threat Map
-        const threatMap = document.getElementById('threat-map');
-        
-        function updateThreatMap() {
-            threatMap.innerHTML = '';
-            
-            // Create random threat dots
-            for (let i = 0; i < 25; i++) {
-                const dot = document.createElement('div');
-                const severity = Math.random() > 0.7 ? 'high' : Math.random() > 0.5 ? 'medium' : 'low';
-                
-                dot.className = `threat-dot ${severity}`;
-                dot.style.left = `${Math.random() * 90 + 5}%`;
-                dot.style.top = `${Math.random() * 90 + 5}%`;
-                
-                threatMap.appendChild(dot);
-            }
-        }
-
-        // Mock API Integration for Threat Dashboard
-        const mockAPI = {
-            // Get current threats
-            getThreats: () => {
-                return new Promise((resolve) => {
-                    setTimeout(() => {
-                        const threats = [
-                            { name: "DDoS Attempt", level: "Medium", colorClass: "text-warning", severity: "Medium" },
-                            { name: "Port Scanning", level: "Low", colorClass: "text-security", severity: "Low" },
-                            { name: "Brute Force Login", level: "Low", colorClass: "text-security", severity: "Low" },
-                            { name: "Malware Detected", level: "High", colorClass: "text-alert", severity: "High" },
-                            { name: "Suspicious Login", level: "Medium", colorClass: "text-warning", severity: "Medium" },
-                            { name: "Phishing Attempt", level: "Medium", colorClass: "text-warning", severity: "Medium" },
-                            { name: "Ransomware Activity", level: "High", colorClass: "text-alert", severity: "High" }
-                        ];
-                        
-                        // Randomize threats to display (between 2 and 4)
-                        const count = Math.floor(Math.random() * 3) + 2;
-                        const shuffled = threats.sort(() => 0.5 - Math.random());
-                        resolve(shuffled.slice(0, count));
-                    }, 500);
-                });
-            },
-            
-            // Get system status
-            getStatus: () => {
-                return new Promise((resolve) => {
-                    setTimeout(() => {
-                        const status = {
-                            securityScore: (90 + Math.random() * 10).toFixed(1),
-                            threatStatus: Math.random() > 0.7 ? "Critical Threats Detected" : 
-                                         Math.random() > 0.5 ? "Potential Threats" : "No Critical Threats",
-                            lastScan: Math.floor(Math.random() * 10) + 1,
-                            responseTime: (15 + Math.floor(Math.random() * 15))
-                        };
-                        resolve(status);
-                    }, 300);
-                });
-            },
-            
-            // Get vulnerability counts
-            getVulnerabilities: () => {
-                return new Promise((resolve) => {
-                    setTimeout(() => {
-                        resolve({
-                            critical: Math.floor(Math.random() * 2),
-                            high: Math.floor(Math.random() * 5),
-                            medium: Math.floor(Math.random() * 10),
-                            low: Math.floor(Math.random() * 15) + 5
-                        });
-                    }, 400);
-                });
-            }
-        };
-
-        // Dynamic Threat Dashboard update with API integration
-        async function updateThreatDashboard() {
-            try {
-                // Update active threats list
-                const threats = await mockAPI.getThreats();
-                const activeThreatsList = document.getElementById('active-threats-list');
-                activeThreatsList.innerHTML = '';
-
-                threats.forEach(threat => {
-                    const div = document.createElement('div');
-                    div.className = `flex justify-between items-center threat-level-${threat.severity.toLowerCase()} p-2 rounded`;
-                    div.innerHTML = `<span class="text-sm">${threat.name}</span><span class="${threat.colorClass} text-sm">${threat.level}</span>`;
-                    activeThreatsList.appendChild(div);
-                    
-                    // Animate new threat entry
-                    gsap.fromTo(div, { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.5 });
-                });
-
-                // Update system status
-                const status = await mockAPI.getStatus();
-                const systemStatus = document.getElementById('system-status-indicator');
-                const securityScore = document.getElementById('security-score');
-                const threatStatus = document.getElementById('threat-status');
-                const lastScanTime = document.getElementById('last-scan-time');
-                const responseTime = document.getElementById('response-time');
-
-                // Update status based on threat level
-                if (threats.some(t => t.severity === "High")) {
-                    systemStatus.className = 'threat-indicator threat-high pulse';
-                    threatStatus.className = 'text-sm text-alert';
-                } else if (threats.some(t => t.severity === "Medium")) {
-                    systemStatus.className = 'threat-indicator threat-medium pulse';
-                    threatStatus.className = 'text-sm text-warning';
-                } else {
-                    systemStatus.className = 'threat-indicator threat-low pulse';
-                    threatStatus.className = 'text-sm text-security';
-                }
-
-                securityScore.textContent = status.securityScore + '%';
-                threatStatus.textContent = status.threatStatus;
-                lastScanTime.textContent = status.lastScan + " min ago";
-                responseTime.textContent = status.responseTime + "s";
-
-                // Animate score change
-                gsap.fromTo(securityScore, { scale: 1.2 }, { scale: 1, duration: 0.5 });
-
-                // Update vulnerability counts
-                const vulnerabilities = await mockAPI.getVulnerabilities();
-                document.getElementById('critical-issues').textContent = vulnerabilities.critical;
-                document.getElementById('high-severity').textContent = vulnerabilities.high;
-                document.getElementById('medium-severity').textContent = vulnerabilities.medium;
-                document.getElementById('low-severity').textContent = vulnerabilities.low;
-
-            } catch (error) {
-                console.error('Error updating dashboard:', error);
-            }
-        }
-
-        // Form submission handler
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Show loading state
-            const submitButton = this.querySelector('button[type="submit"]');
-            const originalText = submitButton.textContent;
-            submitButton.textContent = 'Sending...';
-            submitButton.disabled = true;
-            
-            // Simulate API call
-            setTimeout(() => {
-                showNotification('Thank you for your message! Our security team will contact you shortly.', 'success');
-                this.reset();
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-            }, 1500);
-        });
-
-        // Initial setup
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initial dashboard update
-            updateThreatDashboard();
-            updateThreatFeed();
-            updateThreatMap();
-            
-            // Update dashboard every 15 seconds
-            setInterval(updateThreatDashboard, 15000);
-            
-            // Update threat feed every 30 seconds
-            setInterval(updateThreatFeed, 30000);
-            
-            // Update threat map every 10 seconds
-            setInterval(updateThreatMap, 10000);
-            
-            // Initialize AOS animations
+            // Initialize AOS Animations
             AOS.init({
                 duration: 800,
                 once: true,
                 offset: 100
             });
             
-            // Initialize Vanta.net background
-            if (window.innerWidth > 768) { // Only on desktop for performance
+            // Initialize GSAP
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Initialize Vanta.js Background (only on desktop)
+            if (window.innerWidth > 768) {
                 VANTA.NET({
                     el: "#vanta-bg",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00,
                     color: 0x00f3ff,
                     backgroundColor: 0x0a0e17,
-                    points: 15.0,
-                    maxDistance: 20.0,
-                    spacing: 18.0
+                    points: 12.00,
+                    maxDistance: 22.00,
+                    spacing: 18.00
                 });
             }
+            
+            // Initialize Auth Manager
+            if (window.authManager) {
+                window.authManager.updateAuthUI();
+                
+                // Update user initials
+                const user = window.authManager.getCurrentUser();
+                if (user && user.name) {
+                    const initials = user.name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+                    document.getElementById('user-initials').textContent = initials;
+                }
+                
+                // Logout functionality
+                document.getElementById('logout-button')?.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.authManager.logout();
+                });
+            }
+            
+            // Mobile Menu Functionality
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            
+            mobileMenuToggle.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+                mobileMenuOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            mobileMenuClose.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            mobileMenuOverlay.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            // Smooth Scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        gsap.to(window, {
+                            duration: 1,
+                            scrollTo: { y: target, offsetY: 80 },
+                            ease: "power2.inOut"
+                        });
+                        
+                        // Close mobile menu if open
+                        mobileMenu.classList.remove('active');
+                        mobileMenuOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+            
+            // Back to Top Button
+            const backToTop = document.getElementById('back-to-top');
+            backToTop.addEventListener('click', () => {
+                gsap.to(window, {
+                    duration: 1,
+                    scrollTo: { y: 0 },
+                    ease: "power2.inOut"
+                });
+            });
+            
+            // Show/Hide Back to Top Button
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    backToTop.style.opacity = '1';
+                    backToTop.style.visibility = 'visible';
+                } else {
+                    backToTop.style.opacity = '0';
+                    backToTop.style.visibility = 'hidden';
+                }
+            });
+            
+            // Animated Counters
+            const counters = document.querySelectorAll('.stats-counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.textContent);
+                let current = 0;
+                const increment = target / 100;
+                
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = current === target ? 
+                            (target === 99.9 ? '99.9%' : 
+                             target === 24 ? '24s' : 
+                             target.toLocaleString()) : 
+                            Math.ceil(current).toLocaleString();
+                        setTimeout(updateCounter, 20);
+                    }
+                };
+                
+                // Start counter when in view
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            updateCounter();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+                
+                observer.observe(counter);
+            });
+            
+            // Testimonial Slider
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const navButtons = document.querySelectorAll('.testimonial-nav');
+            
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === index);
+                });
+                
+                navButtons.forEach((button, i) => {
+                    button.classList.toggle('active', i === index);
+                    button.style.background = i === index ? 'var(--neon-blue)' : 'var(--gray-700)';
+                });
+                
+                currentSlide = index;
+            }
+            
+            navButtons.forEach((button, index) => {
+                button.addEventListener('click', () => showSlide(index));
+                button.classList.add('cursor-pointer');
+            });
+            
+            // Auto-rotate testimonials
+            setInterval(() => {
+                let nextSlide = currentSlide + 1;
+                if (nextSlide >= slides.length) nextSlide = 0;
+                showSlide(nextSlide);
+            }, 5000);
+            
+            // Hover Effects for Cards
+            const cards = document.querySelectorAll('.hover-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.zIndex = '10';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.zIndex = '1';
+                });
+            });
+            
+            // Initialize GSAP Animations
+            gsap.utils.toArray('[data-aos]').forEach(element => {
+                gsap.from(element, {
+                    opacity: 0,
+                    y: 50,
+                    duration: 1,
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            });
+            
+            // Update copyright year
+            document.querySelectorAll('.current-year').forEach(el => {
+                el.textContent = new Date().getFullYear();
+            });
         });
-
-        // Handle window resize for responsive behavior
-        window.addEventListener('resize', function() {
-            // Refresh AOS on resize
-            AOS.refresh();
+        
+        // Window Load Events
+        window.addEventListener('load', function() {
+            // Remove preloader if exists
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                preloader.style.opacity = '0';
+                setTimeout(() => preloader.remove(), 500);
+            }
+            
+            // Update page load time
+            const loadTime = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart;
+            console.log(`Page loaded in ${loadTime}ms`);
         });
     </script>
 </body>
