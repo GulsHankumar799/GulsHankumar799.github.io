@@ -6,357 +6,13 @@
     <title>Admin Dashboard | CyberShield Pro</title>
     <meta name="robots" content="noindex, nofollow">
     
-    <!-- Self-contained admin system -->
+    <!-- External Libraries -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <style>
-        :root {
-            --admin-blue: #1a56db;
-            --admin-dark: #0f172a;
-            --admin-card: #1e293b;
-            --admin-success: #10b981;
-            --admin-warning: #f59e0b;
-            --admin-danger: #ef4444;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: system-ui, -apple-system, sans-serif;
-            background: var(--admin-dark);
-            color: white;
-            overflow-x: hidden;
-        }
-        
-        /* Sidebar */
-        .sidebar {
-            width: 260px;
-            background: #111827;
-            height: 100vh;
-            position: fixed;
-            left: 0;
-            top: 0;
-            border-right: 1px solid #374151;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-        
-        .sidebar-header {
-            padding: 20px;
-            border-bottom: 1px solid #374151;
-            text-align: center;
-        }
-        
-        .sidebar-header h2 {
-            font-size: 18px;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 5px;
-        }
-        
-        .sidebar-header p {
-            font-size: 12px;
-            color: #9ca3af;
-        }
-        
-        .nav-item {
-            display: flex;
-            align-items: center;
-            padding: 14px 20px;
-            color: #d1d5db;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border-left: 3px solid transparent;
-            font-size: 14px;
-        }
-        
-        .nav-item:hover, .nav-item.active {
-            background: rgba(59, 130, 246, 0.1);
-            color: white;
-            border-left-color: var(--admin-blue);
-        }
-        
-        .nav-item i {
-            width: 20px;
-            margin-right: 12px;
-            font-size: 16px;
-        }
-        
-        .nav-section {
-            padding: 20px 0;
-            border-bottom: 1px solid #374151;
-        }
-        
-        .nav-section-title {
-            padding: 0 20px 10px;
-            color: #9ca3af;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        /* Main Content */
-        .main-content {
-            margin-left: 260px;
-            padding: 20px;
-            min-height: 100vh;
-            transition: all 0.3s ease;
-        }
-        
-        /* Header */
-        .admin-header {
-            background: var(--admin-card);
-            border: 1px solid #374151;
-            border-radius: 10px;
-            padding: 15px 25px;
-            margin-bottom: 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .header-left h1 {
-            font-size: 24px;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 5px;
-        }
-        
-        .header-left p {
-            color: #9ca3af;
-            font-size: 14px;
-        }
-        
-        /* Cards */
-        .admin-card {
-            background: var(--admin-card);
-            border: 1px solid #374151;
-            border-radius: 10px;
-            padding: 25px;
-            transition: all 0.3s ease;
-        }
-        
-        .admin-card:hover {
-            border-color: #4b5563;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-        
-        .stat-card {
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 36px;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-        
-        .stat-label {
-            color: #9ca3af;
-            font-size: 14px;
-        }
-        
-        /* Tables */
-        .admin-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-        
-        .admin-table th {
-            background: rgba(59, 130, 246, 0.1);
-            padding: 12px 15px;
-            text-align: left;
-            font-weight: 600;
-            color: var(--admin-blue);
-            border-bottom: 2px solid #374151;
-            font-size: 13px;
-        }
-        
-        .admin-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #374151;
-            font-size: 14px;
-        }
-        
-        .admin-table tr:hover {
-            background: rgba(59, 130, 246, 0.05);
-        }
-        
-        /* Badges */
-        .badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-        
-        .badge-success {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--admin-success);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-        }
-        
-        .badge-warning {
-            background: rgba(245, 158, 11, 0.1);
-            color: var(--admin-warning);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-        }
-        
-        .badge-danger {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--admin-danger);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-        }
-        
-        /* Buttons */
-        .btn {
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            font-size: 14px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(90deg, var(--admin-blue), #3b82f6);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(26, 86, 219, 0.3);
-        }
-        
-        /* User Info */
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--admin-blue), #3b82f6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-        }
-        
-        /* Charts */
-        .chart-container {
-            position: relative;
-            height: 300px;
-            width: 100%;
-        }
-        
-        /* Activity Log */
-        .activity-log {
-            max-height: 400px;
-            overflow-y: auto;
-        }
-        
-        .activity-item {
-            padding: 15px;
-            border-bottom: 1px solid #374151;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .activity-item:last-child {
-            border-bottom: none;
-        }
-        
-        .activity-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-        }
-        
-        .activity-icon.success {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--admin-success);
-        }
-        
-        .activity-icon.warning {
-            background: rgba(245, 158, 11, 0.1);
-            color: var(--admin-warning);
-        }
-        
-        .activity-icon.danger {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--admin-danger);
-        }
-        
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal-content {
-            background: var(--admin-card);
-            border-radius: 12px;
-            padding: 30px;
-            max-width: 500px;
-            width: 90%;
-            border: 1px solid #374151;
-        }
-        
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
-            
-            .sidebar.active {
-                transform: translateX(0);
-            }
-            
-            .main-content {
-                margin-left: 0;
-            }
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.3s ease forwards;
-        }
-    </style>
+    <!-- Custom Admin Styles -->
+    <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
 <body>
     <!-- Sidebar -->
@@ -433,7 +89,7 @@
                     <p class="font-medium" id="admin-username">Administrator</p>
                     <p class="text-sm text-gray-500">Super Admin</p>
                 </div>
-                <button id="mobile-menu-toggle" class="btn btn-primary lg:hidden">
+                <button id="mobile-menu-toggle" class="btn btn-primary lg:hidden mobile-menu-toggle">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -444,9 +100,9 @@
             <!-- Overview Section -->
             <section id="overview-section" class="section-content">
                 <!-- Stats Row -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="stats-grid mb-8">
                     <div class="admin-card stat-card">
-                        <div class="stat-number text-blue-500">2,847</div>
+                        <div class="stat-number">2,847</div>
                         <p class="stat-label">Total Users</p>
                         <div class="mt-4">
                             <span class="badge badge-success">+245 this month</span>
@@ -454,7 +110,7 @@
                     </div>
                     
                     <div class="admin-card stat-card">
-                        <div class="stat-number text-green-500">98.7%</div>
+                        <div class="stat-number">98.7%</div>
                         <p class="stat-label">System Uptime</p>
                         <div class="mt-4">
                             <span class="badge badge-success">Optimal</span>
@@ -462,7 +118,7 @@
                     </div>
                     
                     <div class="admin-card stat-card">
-                        <div class="stat-number text-red-500">24</div>
+                        <div class="stat-number">24</div>
                         <p class="stat-label">Critical Threats</p>
                         <div class="mt-4">
                             <span class="badge badge-danger">Attention Required</span>
@@ -470,7 +126,7 @@
                     </div>
                     
                     <div class="admin-card stat-card">
-                        <div class="stat-number text-yellow-500">₹2.8L</div>
+                        <div class="stat-number">₹2.8L</div>
                         <p class="stat-label">Monthly Revenue</p>
                         <div class="mt-4">
                             <span class="badge badge-success">+8.3% growth</span>
@@ -481,14 +137,14 @@
                 <!-- Charts -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
                     <div class="admin-card">
-                        <h3 class="text-lg font-bold mb-4 text-white">User Growth</h3>
+                        <h3 class="card-title">User Growth</h3>
                         <div class="chart-container">
                             <canvas id="userGrowthChart"></canvas>
                         </div>
                     </div>
                     
                     <div class="admin-card">
-                        <h3 class="text-lg font-bold mb-4 text-white">Threat Activity</h3>
+                        <h3 class="card-title">Threat Activity</h3>
                         <div class="chart-container">
                             <canvas id="threatActivityChart"></canvas>
                         </div>
@@ -498,51 +154,20 @@
                 <!-- Recent Activity -->
                 <div class="admin-card">
                     <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-lg font-bold text-white">Recent Activity</h3>
-                        <button class="btn btn-primary">
+                        <h3 class="card-title">Recent Activity</h3>
+                        <button class="btn btn-primary" id="refresh-activity">
                             <i class="fas fa-sync-alt"></i>
                             Refresh
                         </button>
                     </div>
                     
-                    <div class="activity-log">
-                        <div class="activity-item">
-                            <div class="activity-icon success">
-                                <i class="fas fa-user-plus"></i>
-                            </div>
-                            <div class="flex-1">
-                                <p class="font-medium">New user registration</p>
-                                <p class="text-sm text-gray-500">john.doe@company.com - 5 minutes ago</p>
-                            </div>
-                            <span class="badge badge-success">Success</span>
-                        </div>
-                        
-                        <div class="activity-item">
-                            <div class="activity-icon danger">
-                                <i class="fas fa-exclamation-triangle"></i>
-                            </div>
-                            <div class="flex-1">
-                                <p class="font-medium">Critical threat detected</p>
-                                <p class="text-sm text-gray-500">Malware from external network - 15 minutes ago</p>
-                            </div>
-                            <span class="badge badge-danger">Critical</span>
-                        </div>
-                        
-                        <div class="activity-item">
-                            <div class="activity-icon warning">
-                                <i class="fas fa-server"></i>
-                            </div>
-                            <div class="flex-1">
-                                <p class="font-medium">System maintenance</p>
-                                <p class="text-sm text-gray-500">Database optimization completed - 1 hour ago</p>
-                            </div>
-                            <span class="badge badge-warning">Info</span>
-                        </div>
+                    <div class="activity-log" id="activity-log">
+                        <!-- Activity items will be loaded dynamically -->
                     </div>
                 </div>
             </section>
 
-            <!-- Other sections will be loaded here -->
+            <!-- Dynamic Content Section -->
             <div id="dynamic-content"></div>
         </div>
     </div>
@@ -550,292 +175,20 @@
     <!-- Logout Modal -->
     <div class="modal" id="logout-modal">
         <div class="modal-content">
-            <h3 class="text-xl font-bold mb-4 text-white">Confirm Logout</h3>
-            <p class="text-gray-400 mb-6">Are you sure you want to logout from the admin system?</p>
-            <div class="flex justify-end gap-3">
-                <button class="btn" id="cancel-logout">Cancel</button>
+            <div class="modal-header">
+                <h3>Confirm Logout</h3>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to logout from the admin system?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-logout">Cancel</button>
                 <button class="btn btn-primary" id="confirm-logout">Yes, Logout</button>
             </div>
         </div>
     </div>
 
-    <script>
-        // Check authentication on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const session = localStorage.getItem('admin_session');
-            
-            if (!session) {
-                window.location.href = 'index.html';
-                return;
-            }
-            
-            const sessionData = JSON.parse(session);
-            
-            // Check if session expired
-            if (sessionData.expires < Date.now()) {
-                localStorage.removeItem('admin_session');
-                window.location.href = 'index.html';
-                return;
-            }
-            
-            // Update UI with admin info
-            document.getElementById('admin-username').textContent = sessionData.username;
-            document.getElementById('user-avatar').textContent = sessionData.username.charAt(0).toUpperCase();
-            
-            // Initialize dashboard
-            initializeDashboard();
-            
-            // Update time
-            updateTime();
-            setInterval(updateTime, 60000);
-            
-            // Setup event listeners
-            setupEventListeners();
-            
-            // Initialize charts
-            initializeCharts();
-        });
-        
-        function initializeDashboard() {
-            console.log('Admin dashboard initialized');
-            
-            // Add fade-in animation to cards
-            const cards = document.querySelectorAll('.admin-card');
-            cards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
-                card.classList.add('fade-in');
-            });
-        }
-        
-        function updateTime() {
-            const now = new Date();
-            const timeString = now.toLocaleString('en-US', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            });
-            document.getElementById('current-time').textContent = timeString;
-        }
-        
-        function setupEventListeners() {
-            // Mobile menu toggle
-            document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
-                document.getElementById('sidebar').classList.toggle('active');
-            });
-            
-            // Navigation
-            const navItems = document.querySelectorAll('.nav-item[data-section]');
-            navItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Remove active class from all
-                    navItems.forEach(nav => nav.classList.remove('active'));
-                    
-                    // Add active to clicked
-                    this.classList.add('active');
-                    
-                    // Load section
-                    const section = this.getAttribute('data-section');
-                    loadSection(section);
-                    
-                    // Close mobile menu if open
-                    if (window.innerWidth < 1024) {
-                        document.getElementById('sidebar').classList.remove('active');
-                    }
-                });
-            });
-            
-            // Logout
-            document.getElementById('logout-btn').addEventListener('click', function() {
-                document.getElementById('logout-modal').style.display = 'flex';
-            });
-            
-            document.getElementById('cancel-logout').addEventListener('click', function() {
-                document.getElementById('logout-modal').style.display = 'none';
-            });
-            
-            document.getElementById('confirm-logout').addEventListener('click', function() {
-                // Clear session
-                localStorage.removeItem('admin_session');
-                
-                // Log logout
-                const logoutLog = {
-                    timestamp: new Date().toISOString(),
-                    username: document.getElementById('admin-username').textContent,
-                    action: 'logout'
-                };
-                localStorage.setItem('admin_logout_log', JSON.stringify(logoutLog));
-                
-                // Redirect to login
-                window.location.href = 'index.html';
-            });
-            
-            // Close modal on outside click
-            document.getElementById('logout-modal').addEventListener('click', function(e) {
-                if (e.target === this) {
-                    this.style.display = 'none';
-                }
-            });
-            
-            // Auto logout after inactivity
-            let inactivityTimer;
-            function resetInactivityTimer() {
-                clearTimeout(inactivityTimer);
-                inactivityTimer = setTimeout(logoutDueToInactivity, 1800000); // 30 minutes
-            }
-            
-            function logoutDueToInactivity() {
-                localStorage.removeItem('admin_session');
-                alert('Session expired due to inactivity');
-                window.location.href = 'index.html';
-            }
-            
-            // Reset timer on user activity
-            ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(event => {
-                document.addEventListener(event, resetInactivityTimer);
-            });
-            
-            resetInactivityTimer();
-        }
-        
-        function loadSection(section) {
-            const contentDiv = document.getElementById('dynamic-content');
-            
-            // Hide all sections
-            document.querySelectorAll('.section-content').forEach(sec => {
-                sec.style.display = 'none';
-            });
-            
-            // Show selected section
-            const sectionEl = document.getElementById(`${section}-section`);
-            if (sectionEl) {
-                sectionEl.style.display = 'block';
-            } else {
-                // Load dynamic content
-                contentDiv.innerHTML = `
-                    <div class="admin-card">
-                        <h2 class="text-2xl font-bold mb-4 text-white">${section.charAt(0).toUpperCase() + section.slice(1)}</h2>
-                        <p class="text-gray-400">This section is under development.</p>
-                    </div>
-                `;
-            }
-        }
-        
-        function initializeCharts() {
-            // User Growth Chart
-            const userCtx = document.getElementById('userGrowthChart').getContext('2d');
-            new Chart(userCtx, {
-                type: 'line',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                    datasets: [{
-                        label: 'Users',
-                        data: [1500, 1650, 1800, 1950, 2100, 2300, 2500, 2650, 2800, 2847, 2900, 3000],
-                        borderColor: '#3b82f6',
-                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                        tension: 0.4,
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            labels: {
-                                color: '#9ca3af'
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: false,
-                            grid: {
-                                color: '#374151'
-                            },
-                            ticks: {
-                                color: '#9ca3af'
-                            }
-                        },
-                        x: {
-                            grid: {
-                                color: '#374151'
-                            },
-                            ticks: {
-                                color: '#9ca3af'
-                            }
-                        }
-                    }
-                }
-            });
-            
-            // Threat Activity Chart
-            const threatCtx = document.getElementById('threatActivityChart').getContext('2d');
-            new Chart(threatCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Malware', 'Phishing', 'DDoS', 'Brute Force', 'SQL Injection', 'XSS'],
-                    datasets: [{
-                        label: 'Threat Count',
-                        data: [45, 28, 12, 36, 8, 24],
-                        backgroundColor: [
-                            '#ef4444',
-                            '#f59e0b',
-                            '#10b981',
-                            '#3b82f6',
-                            '#8b5cf6',
-                            '#ec4899'
-                        ]
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            labels: {
-                                color: '#9ca3af'
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: {
-                                color: '#374151'
-                            },
-                            ticks: {
-                                color: '#9ca3af'
-                            }
-                        },
-                        x: {
-                            grid: {
-                                color: '#374151'
-                            },
-                            ticks: {
-                                color: '#9ca3af'
-                            }
-                        }
-                    }
-                }
-            });
-        }
-        
-        // Prevent unauthorized access
-        window.addEventListener('beforeunload', function(e) {
-            // You can add cleanup logic here if needed
-        });
-        
-        // Disable browser back button for admin
-        history.pushState(null, null, location.href);
-        window.onpopstate = function() {
-            history.go(1);
-        };
-    </script>
+    <!-- External Admin JavaScript -->
+    <script src="../assets/js/admin.js"></script>
 </body>
 </html>
