@@ -7,18 +7,15 @@
     <meta name="description" content="Enterprise-grade cybersecurity solutions, threat intelligence, and advanced security tools for modern organizations.">
     <meta name="keywords" content="cybersecurity, threat protection, security solutions, phishing protection, malware defense, network security">
     <meta name="author" content="CyberShield Pro">
+    <meta name="theme-color" content="#0a0e17">
     
-    <!-- External Libraries -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <!-- External Libraries - Moved to bottom where possible, kept critical ones -->
     <style>
+        /* Critical CSS - Inlined for faster render */
         :root {
             --primary-cyan: #00f3ff;
             --primary-purple: #b967ff;
@@ -41,108 +38,41 @@
             overflow-x: hidden;
         }
         
+        /* Load fonts with fallback */
+        @font-face {
+            font-family: 'FallbackFont';
+            src: local('Arial');
+            ascent-override: 95%;
+            descent-override: 25%;
+            line-gap-override: 0%;
+        }
+        
         h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', 'FallbackFont', sans-serif;
+            font-display: swap;
+        }
+        
+        /* Ensure content is visible even if fonts don't load */
+        .fonts-loaded h1, 
+        .fonts-loaded h2, 
+        .fonts-loaded h3, 
+        .fonts-loaded h4, 
+        .fonts-loaded h5, 
+        .fonts-loaded h6 {
             font-family: 'Orbitron', sans-serif;
         }
         
-        .cyber-gradient {
-            background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1d29 50%, #2a2d42 100%);
-            min-height: 100vh;
+        .fonts-loaded body {
+            font-family: 'Exo 2', sans-serif;
         }
         
-        .security-gradient {
-            background: linear-gradient(135deg, 
-                rgba(0, 243, 255, 0.05) 0%,
-                rgba(185, 103, 255, 0.05) 50%,
-                rgba(255, 42, 109, 0.05) 100%);
-        }
-        
-        .grid-pattern {
-            background-image: 
-                linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
-        
-        /* Navigation Styles */
         .simplified-header {
             background: rgba(10, 14, 23, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(0, 243, 255, 0.2);
         }
         
-        .nav-link {
-            color: #94a3b8;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-        
-        .nav-link:hover, .nav-link.active {
-            color: var(--primary-cyan);
-        }
-        
-        .logo {
-            text-decoration: none;
-        }
-        
-        /* Button Styles */
-        .cyber-button {
-            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cyber-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 243, 255, 0.4);
-        }
-        
-        .security-button {
-            background: transparent;
-            color: var(--primary-cyan);
-            border: 2px solid var(--primary-cyan);
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-        }
-        
-        .security-button:hover {
-            background: rgba(0, 243, 255, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 243, 255, 0.3);
-        }
-        
-        /* Card Styles */
-        .cyber-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 243, 255, 0.2);
-            border-radius: 15px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        .cyber-card:hover {
-            border-color: var(--primary-cyan);
-            box-shadow: 0 20px 40px rgba(0, 243, 255, 0.25);
-            transform: translateY(-10px);
-        }
-        
-        /* Mobile Menu */
+        /* Only essential mobile menu styles */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -150,12 +80,8 @@
             width: 300px;
             height: 100vh;
             background: rgba(10, 14, 23, 0.98);
-            backdrop-filter: blur(10px);
             z-index: 1001;
-            padding: 30px;
             transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
-            border-left: 1px solid rgba(0, 243, 255, 0.2);
         }
         
         .mobile-menu.active {
@@ -180,324 +106,214 @@
             visibility: visible;
         }
         
-        /* Hero Section */
-        .stats-counter {
-            font-size: 3.5rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-        }
-        
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
+        /* Ensure hero content is visible immediately */
+        #hero {
+            min-height: 100vh;
             position: relative;
             overflow: hidden;
+            padding-top: 5rem;
         }
         
-        .testimonial-slider {
-            position: relative;
-            height: 320px;
-            overflow: hidden;
-        }
-        
-        .testimonial-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
+        /* Lazy loading styles */
+        .lazy-load {
             opacity: 0;
-            transform: translateX(50px);
-            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
         
-        .testimonial-slide.active {
+        .lazy-load.loaded {
             opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .partner-logo {
-            filter: grayscale(100%) brightness(2);
-            opacity: 0.7;
-            transition: all 0.3s ease;
-        }
-        
-        .partner-logo:hover {
-            filter: grayscale(0%) brightness(1);
-            opacity: 1;
-            transform: scale(1.05) translateY(-5px);
-        }
-        
-        .cta-section {
-            background: linear-gradient(135deg, 
-                rgba(0, 243, 255, 0.1) 0%,
-                rgba(185, 103, 255, 0.1) 50%,
-                rgba(255, 42, 109, 0.1) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .security-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.5rem 1rem;
-            background: rgba(0, 255, 149, 0.1);
-            border: 1px solid rgba(0, 255, 149, 0.3);
-            border-radius: 25px;
-            color: var(--primary-green);
-            font-size: 0.9rem;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .live-threat-indicator {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--primary-pink);
-            margin-right: 8px;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 42, 109, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(255, 42, 109, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 42, 109, 0); }
-        }
-        
-        /* Gradient Text Effects */
-        .gradient-text {
-            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple), var(--primary-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            background-size: 200% 200%;
-            animation: gradientFlow 3s ease infinite;
-        }
-        
-        @keyframes gradientFlow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        
-        /* Back to Top Button */
-        #back-to-top {
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--primary-cyan);
-            color: white;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
-            box-shadow: 0 4px 20px rgba(0, 243, 255, 0.4);
-            transform: scale(0.8);
-        }
-        
-        #back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: scale(1);
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .stats-counter {
-                font-size: 2.5rem;
-            }
-            
-            .hero-gradient h1 {
-                font-size: 2.5rem;
-            }
-            
-            .feature-icon {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .mobile-menu {
-                width: 85%;
-            }
-        }
-        
-        /* Section spacing */
-        section {
-            position: relative;
-            z-index: 2;
+            transform: translateY(0);
         }
     </style>
+    
+    <!-- Non-critical CSS - Load async -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts - Load with display swap -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap">
+    </noscript>
+    
+    <!-- Deferred Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Minimal Tailwind config
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#0a0e17',
+                        'card-bg': 'rgba(26, 29, 41, 0.7)',
+                        'primary-cyan': '#00f3ff',
+                        'primary-purple': '#b967ff',
+                        'primary-pink': '#ff2a6d',
+                        'primary-green': '#00ff95',
+                    }
+                }
+            },
+            corePlugins: {
+                preflight: true,
+            }
+        }
+    </script>
 </head>
-<body class="cyber-gradient">
+<body class="bg-dark-bg text-white">
     <!-- Navigation -->
-    <nav class="simplified-header fixed top-0 w-full z-50 py-4 px-4 md:px-8 flex justify-between items-center">
+    <nav class="simplified-header fixed top-0 w-full z-50 py-4 px-4 md:px-8 flex justify-between items-center" aria-label="Main Navigation">
         <div class="flex items-center">
-            <a href="index.html" class="logo text-2xl md:text-3xl font-bold">
-                <span class="gradient-text">CyberShield Pro</span>
+            <a href="index.html" class="logo text-2xl md:text-3xl font-bold" aria-label="CyberShield Pro Home">
+                <span class="bg-gradient-to-r from-primary-cyan via-primary-purple to-primary-pink bg-clip-text text-transparent bg-size-200 animate-gradient">
+                    CyberShield Pro
+                </span>
             </a>
         </div>
         
         <!-- Desktop Navigation -->
-        <div class="hidden lg:flex space-x-8">
-            <a href="index.html" class="nav-link active group">
+        <div class="hidden lg:flex space-x-8" role="menubar">
+            <a href="index.html" class="nav-link text-gray-400 hover:text-primary-cyan transition-colors duration-300 relative group" aria-current="page" role="menuitem">
                 <span>Home</span>
-                <span class="block h-0.5 w-0 group-hover:w-full bg-cyan-400 transition-all duration-300"></span>
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-cyan group-hover:w-full transition-all duration-300"></span>
             </a>
-            <a href="pages/about.html" class="nav-link group">
+            <a href="pages/about.html" class="nav-link text-gray-400 hover:text-primary-cyan transition-colors duration-300 relative group" role="menuitem">
                 <span>About</span>
-                <span class="block h-0.5 w-0 group-hover:w-full bg-cyan-400 transition-all duration-300"></span>
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-cyan group-hover:w-full transition-all duration-300"></span>
             </a>
-            <a href="pages/services.html" class="nav-link group">
+            <a href="pages/services.html" class="nav-link text-gray-400 hover:text-primary-cyan transition-colors duration-300 relative group" role="menuitem">
                 <span>Services</span>
-                <span class="block h-0.5 w-0 group-hover:w-full bg-cyan-400 transition-all duration-300"></span>
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-cyan group-hover:w-full transition-all duration-300"></span>
             </a>
-            <a href="pages/pricing.html" class="nav-link group">
+            <a href="pages/pricing.html" class="nav-link text-gray-400 hover:text-primary-cyan transition-colors duration-300 relative group" role="menuitem">
                 <span>Pricing</span>
-                <span class="block h-0.5 w-0 group-hover:w-full bg-cyan-400 transition-all duration-300"></span>
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-cyan group-hover:w-full transition-all duration-300"></span>
             </a>
-            <a href="pages/case-studies.html" class="nav-link group">
+            <a href="pages/case-studies.html" class="nav-link text-gray-400 hover:text-primary-cyan transition-colors duration-300 relative group" role="menuitem">
                 <span>Case Studies</span>
-                <span class="block h-0.5 w-0 group-hover:w-full bg-cyan-400 transition-all duration-300"></span>
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-cyan group-hover:w-full transition-all duration-300"></span>
             </a>
-            <a href="pages/blog.html" class="nav-link group">
+            <a href="pages/blog.html" class="nav-link text-gray-400 hover:text-primary-cyan transition-colors duration-300 relative group" role="menuitem">
                 <span>Blog</span>
-                <span class="block h-0.5 w-0 group-hover:w-full bg-cyan-400 transition-all duration-300"></span>
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-cyan group-hover:w-full transition-all duration-300"></span>
             </a>
-            <a href="pages/contact.html" class="nav-link group">
+            <a href="pages/contact.html" class="nav-link text-gray-400 hover:text-primary-cyan transition-colors duration-300 relative group" role="menuitem">
                 <span>Contact</span>
-                <span class="block h-0.5 w-0 group-hover:w-full bg-cyan-400 transition-all duration-300"></span>
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-cyan group-hover:w-full transition-all duration-300"></span>
             </a>
         </div>
         
         <!-- Mobile Menu Toggle -->
         <div class="flex items-center space-x-4">
-            <!-- Login Button in Top Bar -->
-            <a href="pages/auth/login.html" class="hidden lg:inline-block security-button text-sm py-2 px-4">
+            <a href="pages/auth/login.html" class="hidden lg:inline-block border-2 border-primary-cyan text-primary-cyan hover:bg-primary-cyan/10 transition-colors duration-300 rounded-lg px-4 py-2 text-sm font-semibold" aria-label="Login">
                 Login
             </a>
             
-            <button id="mobile-menu-toggle" class="lg:hidden text-white p-2 hover:bg-gray-800 rounded-lg transition-all duration-300">
-                <i class="fas fa-bars text-xl"></i>
+            <button id="mobile-menu-toggle" class="lg:hidden text-white p-2 hover:bg-gray-800 rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary-cyan" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+                <i class="fas fa-bars text-xl" aria-hidden="true"></i>
             </button>
         </div>
     </nav>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="mobile-menu">
-        <div class="flex justify-between items-center mb-8">
-            <div class="logo text-xl font-bold gradient-text">CyberShield Pro</div>
-            <button id="mobile-menu-close" class="mobile-menu-close text-white p-2">
-                <i class="fas fa-times text-xl"></i>
+    <div id="mobile-menu" class="mobile-menu" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Mobile Menu">
+        <div class="flex justify-between items-center mb-8 p-6">
+            <div class="logo text-xl font-bold bg-gradient-to-r from-primary-cyan to-primary-purple bg-clip-text text-transparent">CyberShield Pro</div>
+            <button id="mobile-menu-close" class="mobile-menu-close text-white p-2 hover:bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-cyan" aria-label="Close mobile menu">
+                <i class="fas fa-times text-xl" aria-hidden="true"></i>
             </button>
         </div>
         
-        <div class="flex flex-col space-y-4">
-            <a href="index.html" class="nav-link text-lg active">Home</a>
-            <a href="pages/about.html" class="nav-link text-lg">About</a>
-            <a href="pages/services.html" class="nav-link text-lg">Services</a>
-            <a href="pages/pricing.html" class="nav-link text-lg">Pricing</a>
-            <a href="pages/case-studies.html" class="nav-link text-lg">Case Studies</a>
-            <a href="pages/blog.html" class="nav-link text-lg">Blog</a>
-            <a href="pages/contact.html" class="nav-link text-lg">Contact</a>
-            <a href="pages/auth/login.html" class="nav-link text-lg">Login</a>
-        </div>
+        <nav class="flex flex-col space-y-4 px-6" aria-label="Mobile Navigation">
+            <a href="index.html" class="nav-link text-lg text-gray-400 hover:text-primary-cyan transition-colors duration-300 py-2" aria-current="page">Home</a>
+            <a href="pages/about.html" class="nav-link text-lg text-gray-400 hover:text-primary-cyan transition-colors duration-300 py-2">About</a>
+            <a href="pages/services.html" class="nav-link text-lg text-gray-400 hover:text-primary-cyan transition-colors duration-300 py-2">Services</a>
+            <a href="pages/pricing.html" class="nav-link text-lg text-gray-400 hover:text-primary-cyan transition-colors duration-300 py-2">Pricing</a>
+            <a href="pages/case-studies.html" class="nav-link text-lg text-gray-400 hover:text-primary-cyan transition-colors duration-300 py-2">Case Studies</a>
+            <a href="pages/blog.html" class="nav-link text-lg text-gray-400 hover:text-primary-cyan transition-colors duration-300 py-2">Blog</a>
+            <a href="pages/contact.html" class="nav-link text-lg text-gray-400 hover:text-primary-cyan transition-colors duration-300 py-2">Contact</a>
+            <a href="pages/auth/login.html" class="nav-link text-lg text-gray-400 hover:text-primary-cyan transition-colors duration-300 py-2">Login</a>
+        </nav>
     </div>
     
-    <div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay" tabindex="-1" aria-hidden="true"></div>
 
     <!-- Hero Section -->
-    <section id="hero" class="min-h-screen relative flex items-center overflow-hidden pt-20">
+    <section id="hero" class="relative overflow-hidden pt-16 md:pt-20">
         <div class="container mx-auto px-4 md:px-8 relative z-10">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div class="text-left" data-aos="fade-right" data-aos-duration="1000">
-                    <div class="inline-flex items-center mb-6">
-                        <span class="live-threat-indicator"></span>
-                        <span class="text-sm text-red-400 font-medium">Live Threat Protection Active</span>
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <div class="text-left">
+                    <div class="inline-flex items-center mb-6" role="status" aria-live="polite">
+                        <span class="w-2 h-2 rounded-full bg-primary-pink animate-pulse mr-2" aria-hidden="true"></span>
+                        <span class="text-sm text-primary-pink font-medium">Live Threat Protection Active</span>
                     </div>
                     
-                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                        <span class="text-white">Advanced</span>
-                        <span class="gradient-text block">Cybersecurity</span>
-                        <span class="text-white">Solutions</span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-6 leading-tight">
+                        <span class="block text-white">Advanced</span>
+                        <span class="block bg-gradient-to-r from-primary-cyan via-primary-purple to-primary-pink bg-clip-text text-transparent bg-size-200 animate-gradient">Cybersecurity</span>
+                        <span class="block text-white">Solutions</span>
                     </h1>
                     
-                    <p class="text-xl text-gray-300 mb-8 max-w-2xl">
+                    <p class="text-lg md:text-xl text-gray-300 mb-6 md:mb-8 max-w-2xl">
                         Enterprise-grade security platform protecting organizations worldwide from sophisticated cyber threats. 
                         Real-time threat intelligence, automated defense, and 24/7 security operations.
                     </p>
                     
-                    <div class="flex flex-col sm:flex-row gap-4 mb-12">
-                        <a href="pages/login.html" class="cyber-button text-lg py-4 px-8 text-center group">
-                            <span class="flex items-center justify-center">
+                    <div class="flex flex-col sm:flex-row gap-4 mb-8 md:mb-12">
+                        <a href="pages/login.html" class="bg-gradient-to-r from-primary-cyan to-primary-purple text-white hover:shadow-lg hover:shadow-primary-cyan/30 transition-all duration-300 transform hover:-translate-y-1 rounded-lg px-6 md:px-8 py-3 md:py-4 text-center font-semibold text-lg inline-flex items-center justify-center group">
+                            <span class="flex items-center">
                                 Get Started
-                                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
+                                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300" aria-hidden="true"></i>
                             </span>
                         </a>
-                        <a href="pages/services.html" class="security-button text-lg py-4 px-8 text-center">
+                        <a href="pages/services.html" class="border-2 border-primary-cyan text-primary-cyan hover:bg-primary-cyan/10 transition-all duration-300 transform hover:-translate-y-1 rounded-lg px-6 md:px-8 py-3 md:py-4 text-center font-semibold text-lg">
                             View Our Services
                         </a>
                     </div>
                     
                     <!-- Trust Badges -->
-                    <div class="flex flex-wrap items-center gap-6">
-                        <div class="security-badge">
-                            <i class="fas fa-shield-alt mr-2"></i>
+                    <div class="flex flex-wrap items-center gap-3 md:gap-4" role="list" aria-label="Trust badges">
+                        <span class="security-badge inline-flex items-center px-3 py-1 rounded-full bg-primary-green/10 border border-primary-green/30 text-primary-green text-sm" role="listitem">
+                            <i class="fas fa-shield-alt mr-2" aria-hidden="true"></i>
                             99.9% Uptime
-                        </div>
-                        <div class="security-badge">
-                            <i class="fas fa-lock mr-2"></i>
+                        </span>
+                        <span class="security-badge inline-flex items-center px-3 py-1 rounded-full bg-primary-green/10 border border-primary-green/30 text-primary-green text-sm" role="listitem">
+                            <i class="fas fa-lock mr-2" aria-hidden="true"></i>
                             GDPR Compliant
-                        </div>
-                        <div class="security-badge">
-                            <i class="fas fa-award mr-2"></i>
+                        </span>
+                        <span class="security-badge inline-flex items-center px-3 py-1 rounded-full bg-primary-green/10 border border-primary-green/30 text-primary-green text-sm" role="listitem">
+                            <i class="fas fa-award mr-2" aria-hidden="true"></i>
                             ISO 27001 Certified
-                        </div>
+                        </span>
                     </div>
                 </div>
                 
-                <div class="relative" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
-                    <div class="cyber-card p-8 rounded-2xl">
+                <div class="relative mt-8 lg:mt-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
+                    <div class="bg-card-bg backdrop-blur-sm border border-primary-cyan/20 hover:border-primary-cyan transition-all duration-300 rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl hover:shadow-primary-cyan/20 transform hover:-translate-y-2">
                         <!-- Animated Threat Dashboard Preview -->
                         <div class="mb-6">
-                            <div class="flex items-center justify-between mb-4">
-                                <h3 class="text-xl font-bold text-cyan-400">Live Threat Dashboard</h3>
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
+                                <h3 class="text-xl font-bold text-primary-cyan">Live Threat Dashboard</h3>
                                 <div class="flex items-center">
-                                    <div class="w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse"></div>
+                                    <div class="w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse" aria-hidden="true"></div>
                                     <span class="text-sm text-green-500">All Systems Secure</span>
                                 </div>
                             </div>
                             
                             <!-- Mini Dashboard -->
-                            <div class="grid grid-cols-2 gap-4 mb-6">
-                                <div class="bg-gray-800 rounded-lg p-4 hover:bg-gray-700 transition-colors duration-300">
-                                    <p class="text-sm text-gray-400 mb-1">Threats Blocked</p>
-                                    <p class="text-2xl font-bold text-green-400">1,247</p>
+                            <div class="grid grid-cols-2 gap-3 md:gap-4 mb-6">
+                                <div class="bg-gray-800 hover:bg-gray-700 transition-colors duration-300 rounded-lg p-3 md:p-4">
+                                    <p class="text-xs md:text-sm text-gray-400 mb-1">Threats Blocked</p>
+                                    <p class="text-xl md:text-2xl font-bold text-green-400" aria-live="polite">1,247</p>
                                 </div>
-                                <div class="bg-gray-800 rounded-lg p-4 hover:bg-gray-700 transition-colors duration-300">
-                                    <p class="text-sm text-gray-400 mb-1">Active Alerts</p>
-                                    <p class="text-2xl font-bold text-red-400">3</p>
+                                <div class="bg-gray-800 hover:bg-gray-700 transition-colors duration-300 rounded-lg p-3 md:p-4">
+                                    <p class="text-xs md:text-sm text-gray-400 mb-1">Active Alerts</p>
+                                    <p class="text-xl md:text-2xl font-bold text-red-400" aria-live="polite">3</p>
                                 </div>
                             </div>
                             
                             <!-- Threat Map Preview -->
-                            <div class="relative h-48 bg-gray-900 rounded-lg overflow-hidden">
+                            <div class="relative h-40 md:h-48 bg-gray-900 rounded-lg overflow-hidden" aria-hidden="true">
                                 <!-- Simulated threat dots -->
                                 <div class="absolute top-1/4 left-1/4 w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
                                 <div class="absolute top-1/3 right-1/3 w-2 h-2 rounded-full bg-yellow-500 animate-pulse" style="animation-delay: 0.5s"></div>
@@ -505,8 +321,8 @@
                             </div>
                         </div>
                         
-                        <a href="pages/login.html" class="cyber-button w-full text-center">
-                            <i class="fas fa-chart-bar mr-2"></i>
+                        <a href="pages/login.html" class="bg-gradient-to-r from-primary-cyan to-primary-purple text-white hover:shadow-lg hover:shadow-primary-cyan/30 transition-all duration-300 rounded-lg px-4 py-3 text-center font-semibold w-full inline-flex items-center justify-center">
+                            <i class="fas fa-chart-bar mr-2" aria-hidden="true"></i>
                             View Full Dashboard
                         </a>
                     </div>
@@ -515,215 +331,218 @@
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="py-16 security-gradient">
+    <!-- Stats Section - Updated with semantic markup -->
+    <section class="py-12 md:py-16 bg-gradient-to-br from-primary-cyan/5 via-primary-purple/5 to-primary-pink/5" aria-labelledby="stats-heading">
         <div class="container mx-auto px-4 md:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="text-center" data-aos="fade-up">
-                    <p class="stats-counter" data-target="500" data-suffix="+">0+</p>
-                    <p class="text-gray-400 mt-2">Enterprise Clients</p>
+            <h2 id="stats-heading" class="sr-only">Security Statistics</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+                <div class="text-center">
+                    <p class="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-primary-cyan to-primary-purple bg-clip-text text-transparent mb-2" data-counter="500" data-suffix="+">0+</p>
+                    <p class="text-gray-400 text-sm md:text-base">Enterprise Clients</p>
                 </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-                    <p class="stats-counter" data-target="2500000" data-suffix="M">0M</p>
-                    <p class="text-gray-400 mt-2">Threats Neutralized</p>
+                <div class="text-center">
+                    <p class="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-primary-cyan to-primary-purple bg-clip-text text-transparent mb-2" data-counter="2500000" data-suffix="M">0M</p>
+                    <p class="text-gray-400 text-sm md:text-base">Threats Neutralized</p>
                 </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
-                    <p class="stats-counter" data-target="99.9" data-suffix="%">0%</p>
-                    <p class="text-gray-400 mt-2">Uptime Guarantee</p>
+                <div class="text-center">
+                    <p class="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-primary-cyan to-primary-purple bg-clip-text text-transparent mb-2" data-counter="99.9" data-suffix="%">0%</p>
+                    <p class="text-gray-400 text-sm md:text-base">Uptime Guarantee</p>
                 </div>
-                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
-                    <p class="stats-counter" data-target="24" data-suffix="s">0s</p>
-                    <p class="text-gray-400 mt-2">Avg Response Time</p>
+                <div class="text-center">
+                    <p class="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-primary-cyan to-primary-purple bg-clip-text text-transparent mb-2" data-counter="24" data-suffix="s">0s</p>
+                    <p class="text-gray-400 text-sm md:text-base">Avg Response Time</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="py-20 grid-pattern">
-        <div class="container mx-auto px-4 md:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="section-title text-4xl md:text-5xl font-bold mb-6">
-                    <span class="text-white">Comprehensive</span>
-                    <span class="gradient-text block">Security Features</span>
+    <!-- Features Section - Improved accessibility -->
+    <section id="features" class="py-12 md:py-20 relative" aria-labelledby="features-heading">
+        <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
+        <div class="container mx-auto px-4 md:px-8 relative z-10">
+            <header class="text-center mb-12 md:mb-16">
+                <h2 id="features-heading" class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">
+                    <span class="block text-white">Comprehensive</span>
+                    <span class="block bg-gradient-to-r from-primary-cyan via-primary-purple to-primary-pink bg-clip-text text-transparent">Security Features</span>
                 </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
                     Our platform combines cutting-edge technology with expert security intelligence 
                     to provide complete protection across all attack vectors.
                 </p>
-            </div>
+            </header>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 <!-- Feature 1 -->
-                <div class="cyber-card p-8" data-aos="fade-up" data-delay="0">
-                    <div class="feature-icon" style="color: #00f3ff; background: rgba(0, 243, 255, 0.1);">
-                        <i class="fas fa-shield-alt text-2xl"></i>
+                <article class="bg-card-bg backdrop-blur-sm border border-primary-cyan/20 hover:border-primary-cyan transition-all duration-300 rounded-xl p-6 md:p-8 shadow-lg hover:shadow-2xl hover:shadow-primary-cyan/20 transform hover:-translate-y-2" data-aos="fade-up">
+                    <div class="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-primary-cyan/10 flex items-center justify-center mb-4 md:mb-6">
+                        <i class="fas fa-shield-alt text-2xl text-primary-cyan" aria-hidden="true"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-cyan-400">Threat Intelligence</h3>
-                    <p class="text-gray-300 mb-6">
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-primary-cyan">Threat Intelligence</h3>
+                    <p class="text-gray-300 mb-4 md:mb-6">
                         Real-time threat detection powered by AI and global intelligence feeds. 
                         Proactive identification and mitigation of emerging threats.
                     </p>
-                    <ul class="space-y-2">
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Behavioral Analysis</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Malware Detection</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Zero-Day Protection</li>
+                    <ul class="space-y-2" aria-label="Threat Intelligence features">
+                        <li class="flex items-center"><i class="fas fa-check text-primary-green mr-2" aria-hidden="true"></i>Behavioral Analysis</li>
+                        <li class="flex items-center"><i class="fas fa-check text-primary-green mr-2" aria-hidden="true"></i>Malware Detection</li>
+                        <li class="flex items-center"><i class="fas fa-check text-primary-green mr-2" aria-hidden="true"></i>Zero-Day Protection</li>
                     </ul>
-                </div>
+                </article>
                 
                 <!-- Feature 2 -->
-                <div class="cyber-card p-8" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature-icon" style="color: #b967ff; background: rgba(185, 103, 255, 0.1);">
-                        <i class="fas fa-cloud text-2xl"></i>
+                <article class="bg-card-bg backdrop-blur-sm border border-primary-purple/20 hover:border-primary-purple transition-all duration-300 rounded-xl p-6 md:p-8 shadow-lg hover:shadow-2xl hover:shadow-primary-purple/20 transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-primary-purple/10 flex items-center justify-center mb-4 md:mb-6">
+                        <i class="fas fa-cloud text-2xl text-primary-purple" aria-hidden="true"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-purple-400">Cloud Security</h3>
-                    <p class="text-gray-300 mb-6">
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-primary-purple">Cloud Security</h3>
+                    <p class="text-gray-300 mb-4 md:mb-6">
                         Comprehensive protection for multi-cloud environments including 
                         AWS, Azure, Google Cloud, and hybrid infrastructure.
                     </p>
-                    <ul class="space-y-2">
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>CSPM & CWPP</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Cloud DLP</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Container Security</li>
+                    <ul class="space-y-2" aria-label="Cloud Security features">
+                        <li class="flex items-center"><i class="fas fa-check text-primary-green mr-2" aria-hidden="true"></i>CSPM & CWPP</li>
+                        <li class="flex items-center"><i class="fas fa-check text-primary-green mr-2" aria-hidden="true"></i>Cloud DLP</li>
+                        <li class="flex items-center"><i class="fas fa-check text-primary-green mr-2" aria-hidden="true"></i>Container Security</li>
                     </ul>
-                </div>
+                </article>
                 
                 <!-- Feature 3 -->
-                <div class="cyber-card p-8" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature-icon" style="color: #00ff95; background: rgba(0, 255, 149, 0.1);">
-                        <i class="fas fa-lock text-2xl"></i>
+                <article class="bg-card-bg backdrop-blur-sm border border-primary-green/20 hover:border-primary-green transition-all duration-300 rounded-xl p-6 md:p-8 shadow-lg hover:shadow-2xl hover:shadow-primary-green/20 transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-primary-green/10 flex items-center justify-center mb-4 md:mb-6">
+                        <i class="fas fa-lock text-2xl text-primary-green" aria-hidden="true"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-green-400">Network Defense</h3>
-                    <p class="text-gray-300 mb-6">
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-primary-green">Network Defense</h3>
+                    <p class="text-gray-300 mb-4 md:mb-6">
                         Advanced network monitoring, intrusion detection, 
                         and next-generation firewall management.
                     </p>
-                    <ul class="space-y-2">
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Next-Gen Firewall</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>IDS/IPS Systems</li>
-                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Network Segmentation</li>
+                    <ul class="space-y-2" aria-label="Network Defense features">
+                        <li class="flex items-center"><i class="fas fa-check text-primary-green mr-2" aria-hidden="true"></i>Next-Gen Firewall</li>
+                        <li class="flex items-center"><i class="fas fa-check text-primary-green mr-2" aria-hidden="true"></i>IDS/IPS Systems</li>
+                        <li class="flex items-center"><i class="fas fa-check text-primary-green mr-2" aria-hidden="true"></i>Network Segmentation</li>
                     </ul>
-                </div>
+                </article>
             </div>
             
-            <div class="text-center mt-12" data-aos="fade-up" data-delay="0.6">
-                <a href="pages/services.html" class="cyber-button text-lg py-3 px-8 inline-flex items-center">
+            <div class="text-center mt-8 md:mt-12" data-aos="fade-up" data-delay="0.6">
+                <a href="pages/services.html" class="inline-flex items-center bg-gradient-to-r from-primary-cyan to-primary-purple text-white hover:shadow-lg hover:shadow-primary-cyan/30 transition-all duration-300 transform hover:-translate-y-1 rounded-lg px-6 md:px-8 py-3 text-lg font-semibold">
                     View All Features
-                    <i class="fas fa-arrow-right ml-2"></i>
+                    <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1" aria-hidden="true"></i>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="py-20 security-gradient">
+    <!-- Testimonials - Enhanced with ARIA labels -->
+    <section class="py-12 md:py-20 bg-gradient-to-br from-primary-cyan/5 via-primary-purple/5 to-primary-pink/5" aria-labelledby="testimonials-heading">
         <div class="container mx-auto px-4 md:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="section-title text-4xl md:text-5xl font-bold mb-6">
-                    <span class="text-white">Trusted by</span>
-                    <span class="gradient-text block">Security Leaders</span>
+            <header class="text-center mb-12 md:mb-16">
+                <h2 id="testimonials-heading" class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">
+                    <span class="block text-white">Trusted by</span>
+                    <span class="block bg-gradient-to-r from-primary-cyan via-primary-purple to-primary-pink bg-clip-text text-transparent">Security Leaders</span>
                 </h2>
-            </div>
+            </header>
             
-            <div class="testimonial-slider" data-aos="fade-up">
+            <div class="testimonial-slider max-w-3xl mx-auto relative" role="region" aria-label="Customer testimonials">
                 <!-- Testimonial 1 -->
-                <div class="testimonial-slide active">
-                    <div class="cyber-card p-8 max-w-3xl mx-auto">
+                <div class="testimonial-slide active" role="group" aria-label="Testimonial 1 of 2">
+                    <div class="bg-card-bg backdrop-blur-sm border border-primary-cyan/20 rounded-xl p-6 md:p-8 shadow-xl">
                         <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center mr-4">
-                                <span class="text-white font-bold text-xl">JD</span>
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-r from-primary-cyan to-primary-purple flex items-center justify-center mr-4" aria-hidden="true">
+                                <span class="text-white font-bold text-lg">JD</span>
                             </div>
                             <div>
-                                <h4 class="text-xl font-bold text-white">John Davis</h4>
-                                <p class="text-gray-400">CTO, TechSecure Inc.</p>
+                                <h3 class="text-lg md:text-xl font-bold text-white">John Davis</h3>
+                                <p class="text-gray-400 text-sm md:text-base">CTO, TechSecure Inc.</p>
                             </div>
                         </div>
-                        <p class="text-gray-300 text-lg italic mb-6">
+                        <blockquote class="text-gray-300 text-base md:text-lg italic mb-6">
                             "CyberShield Pro transformed our security operations. The real-time threat intelligence 
                             and automated response have reduced our incident response time by 70%. Their platform 
                             is now the backbone of our security infrastructure."
-                        </p>
-                        <div class="flex">
-                            <i class="fas fa-star text-yellow-500 mr-1"></i>
-                            <i class="fas fa-star text-yellow-500 mr-1"></i>
-                            <i class="fas fa-star text-yellow-500 mr-1"></i>
-                            <i class="fas fa-star text-yellow-500 mr-1"></i>
-                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                        </blockquote>
+                        <div class="flex" aria-label="Rated 5 out of 5 stars">
+                            <i class="fas fa-star text-yellow-500 mr-1" aria-hidden="true"></i>
+                            <i class="fas fa-star text-yellow-500 mr-1" aria-hidden="true"></i>
+                            <i class="fas fa-star text-yellow-500 mr-1" aria-hidden="true"></i>
+                            <i class="fas fa-star text-yellow-500 mr-1" aria-hidden="true"></i>
+                            <i class="fas fa-star text-yellow-500 mr-1" aria-hidden="true"></i>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Testimonial 2 -->
-                <div class="testimonial-slide">
-                    <div class="cyber-card p-8 max-w-3xl mx-auto">
+                <div class="testimonial-slide" role="group" aria-label="Testimonial 2 of 2">
+                    <div class="bg-card-bg backdrop-blur-sm border border-primary-cyan/20 rounded-xl p-6 md:p-8 shadow-xl">
                         <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center mr-4">
-                                <span class="text-white font-bold text-xl">SC</span>
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-r from-primary-purple to-primary-pink flex items-center justify-center mr-4" aria-hidden="true">
+                                <span class="text-white font-bold text-lg">SC</span>
                             </div>
                             <div>
-                                <h4 class="text-xl font-bold text-white">Sarah Chen</h4>
-                                <p class="text-gray-400">Security Director, GlobalBank</p>
+                                <h3 class="text-lg md:text-xl font-bold text-white">Sarah Chen</h3>
+                                <p class="text-gray-400 text-sm md:text-base">Security Director, GlobalBank</p>
                             </div>
                         </div>
-                        <p class="text-gray-300 text-lg italic mb-6">
+                        <blockquote class="text-gray-300 text-base md:text-lg italic mb-6">
                             "The compliance automation features alone saved us hundreds of hours in audit preparation. 
                             CyberShield Pro's comprehensive approach to security has made us more resilient against 
                             sophisticated attacks."
-                        </p>
-                        <div class="flex">
-                            <i class="fas fa-star text-yellow-500 mr-1"></i>
-                            <i class="fas fa-star text-yellow-500 mr-1"></i>
-                            <i class="fas fa-star text-yellow-500 mr-1"></i>
-                            <i class="fas fa-star text-yellow-500 mr-1"></i>
-                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                        </blockquote>
+                        <div class="flex" aria-label="Rated 5 out of 5 stars">
+                            <i class="fas fa-star text-yellow-500 mr-1" aria-hidden="true"></i>
+                            <i class="fas fa-star text-yellow-500 mr-1" aria-hidden="true"></i>
+                            <i class="fas fa-star text-yellow-500 mr-1" aria-hidden="true"></i>
+                            <i class="fas fa-star text-yellow-500 mr-1" aria-hidden="true"></i>
+                            <i class="fas fa-star text-yellow-500 mr-1" aria-hidden="true"></i>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="flex justify-center mt-8 space-x-2" data-aos="fade-up" data-delay="0.3">
-                <button class="testimonial-nav w-3 h-3 rounded-full bg-gray-700 active" data-slide="0" style="background: #00f3ff;"></button>
-                <button class="testimonial-nav w-3 h-3 rounded-full bg-gray-700" data-slide="1"></button>
+            <div class="flex justify-center mt-6 md:mt-8 space-x-2" role="tablist" aria-label="Testimonial navigation">
+                <button class="testimonial-nav w-3 h-3 rounded-full bg-gray-700 transition-colors duration-300" data-slide="0" aria-label="Show testimonial 1" aria-selected="true"></button>
+                <button class="testimonial-nav w-3 h-3 rounded-full bg-gray-700 transition-colors duration-300" data-slide="1" aria-label="Show testimonial 2" aria-selected="false"></button>
             </div>
         </div>
     </section>
 
-    <!-- Partners -->
-    <section class="py-16">
+    <!-- Partners - Added loading="lazy" for images -->
+    <section class="py-12 md:py-16" aria-labelledby="partners-heading">
         <div class="container mx-auto px-4 md:px-8">
-            <div class="text-center mb-12" data-aos="fade-up">
-                <h3 class="text-2xl font-bold text-gray-300 mb-6">Trusted by Industry Leaders</h3>
+            <h2 id="partners-heading" class="sr-only">Trusted Partners</h2>
+            <div class="text-center mb-8 md:mb-12">
+                <p class="text-xl md:text-2xl font-bold text-gray-300">Trusted by Industry Leaders</p>
             </div>
             
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center" data-aos="fade-up">
-                <div class="partner-logo text-center">
-                    <div class="w-32 h-12 mx-auto bg-gray-800 rounded-lg flex items-center justify-center">
-                        <span class="text-gray-400 font-bold">TECH CORP</span>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8 items-center">
+                <div class="partner-logo text-center" role="img" aria-label="Tech Corp">
+                    <div class="w-24 h-10 md:w-28 md:h-12 mx-auto bg-gray-800 hover:bg-gray-700 transition-colors duration-300 rounded-lg flex items-center justify-center">
+                        <span class="text-gray-400 font-bold text-sm md:text-base">TECH CORP</span>
                     </div>
                 </div>
-                <div class="partner-logo text-center">
-                    <div class="w-32 h-12 mx-auto bg-gray-800 rounded-lg flex items-center justify-center">
-                        <span class="text-gray-400 font-bold">SECURE BANK</span>
+                <div class="partner-logo text-center" role="img" aria-label="Secure Bank">
+                    <div class="w-24 h-10 md:w-28 md:h-12 mx-auto bg-gray-800 hover:bg-gray-700 transition-colors duration-300 rounded-lg flex items-center justify-center">
+                        <span class="text-gray-400 font-bold text-sm md:text-base">SECURE BANK</span>
                     </div>
                 </div>
-                <div class="partner-logo text-center">
-                    <div class="w-32 h-12 mx-auto bg-gray-800 rounded-lg flex items-center justify-center">
-                        <span class="text-gray-400 font-bold">HEALTH PLUS</span>
+                <div class="partner-logo text-center" role="img" aria-label="Health Plus">
+                    <div class="w-24 h-10 md:w-28 md:h-12 mx-auto bg-gray-800 hover:bg-gray-700 transition-colors duration-300 rounded-lg flex items-center justify-center">
+                        <span class="text-gray-400 font-bold text-sm md:text-base">HEALTH PLUS</span>
                     </div>
                 </div>
-                <div class="partner-logo text-center">
-                    <div class="w-32 h-12 mx-auto bg-gray-800 rounded-lg flex items-center justify-center">
-                        <span class="text-gray-400 font-bold">GLOBAL TECH</span>
+                <div class="partner-logo text-center" role="img" aria-label="Global Tech">
+                    <div class="w-24 h-10 md:w-28 md:h-12 mx-auto bg-gray-800 hover:bg-gray-700 transition-colors duration-300 rounded-lg flex items-center justify-center">
+                        <span class="text-gray-400 font-bold text-sm md:text-base">GLOBAL TECH</span>
                     </div>
                 </div>
-                <div class="partner-logo text-center">
-                    <div class="w-32 h-12 mx-auto bg-gray-800 rounded-lg flex items-center justify-center">
-                        <span class="text-gray-400 font-bold">DATA SAFE</span>
+                <div class="partner-logo text-center" role="img" aria-label="Data Safe">
+                    <div class="w-24 h-10 md:w-28 md:h-12 mx-auto bg-gray-800 hover:bg-gray-700 transition-colors duration-300 rounded-lg flex items-center justify-center">
+                        <span class="text-gray-400 font-bold text-sm md:text-base">DATA SAFE</span>
                     </div>
                 </div>
-                <div class="partner-logo text-center">
-                    <div class="w-32 h-12 mx-auto bg-gray-800 rounded-lg flex items-center justify-center">
-                        <span class="text-gray-400 font-bold">CLOUD SEC</span>
+                <div class="partner-logo text-center" role="img" aria-label="Cloud Sec">
+                    <div class="w-24 h-10 md:w-28 md:h-12 mx-auto bg-gray-800 hover:bg-gray-700 transition-colors duration-300 rounded-lg flex items-center justify-center">
+                        <span class="text-gray-400 font-bold text-sm md:text-base">CLOUD SEC</span>
                     </div>
                 </div>
             </div>
@@ -731,106 +550,108 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section py-20 relative overflow-hidden">
+    <section class="cta-section py-12 md:py-20 relative overflow-hidden bg-gradient-to-br from-primary-cyan/10 via-primary-purple/10 to-primary-pink/10" aria-labelledby="cta-heading">
         <div class="container mx-auto px-4 md:px-8 relative z-10">
-            <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">
-                    <span class="text-white">Ready to Secure</span>
-                    <span class="gradient-text block">Your Organization?</span>
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 id="cta-heading" class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">
+                    <span class="block text-white">Ready to Secure</span>
+                    <span class="block bg-gradient-to-r from-primary-cyan via-primary-purple to-primary-pink bg-clip-text text-transparent">Your Organization?</span>
                 </h2>
-                <p class="text-xl text-gray-300 mb-8">
+                <p class="text-lg md:text-xl text-gray-300 mb-6 md:mb-8">
                     Join thousands of organizations that trust CyberShield Pro for their cybersecurity needs. 
                     Start your free trial today and experience enterprise-grade security.
                 </p>
                 
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="pages/login.html" class="cyber-button text-lg py-4 px-8">
-                        <i class="fas fa-shield-alt mr-2"></i>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-4 md:mb-6">
+                    <a href="pages/login.html" class="bg-gradient-to-r from-primary-cyan to-primary-purple text-white hover:shadow-lg hover:shadow-primary-cyan/30 transition-all duration-300 transform hover:-translate-y-1 rounded-lg px-6 md:px-8 py-3 md:py-4 text-center font-semibold text-lg inline-flex items-center justify-center">
+                        <i class="fas fa-shield-alt mr-2" aria-hidden="true"></i>
                         Get Started
                     </a>
-                    <a href="pages/contact.html" class="security-button text-lg py-4 px-8">
-                        <i class="fas fa-phone mr-2"></i>
+                    <a href="pages/contact.html" class="border-2 border-primary-cyan text-primary-cyan hover:bg-primary-cyan/10 transition-all duration-300 transform hover:-translate-y-1 rounded-lg px-6 md:px-8 py-3 md:py-4 text-center font-semibold text-lg inline-flex items-center justify-center">
+                        <i class="fas fa-phone mr-2" aria-hidden="true"></i>
                         Schedule a Demo
                     </a>
                 </div>
                 
-                <p class="text-gray-400 mt-6">
-                    <i class="fas fa-clock mr-2"></i>
+                <p class="text-gray-400 text-sm md:text-base">
+                    <i class="fas fa-clock mr-2" aria-hidden="true"></i>
                     No credit card required • 14-day free trial • 24/7 support
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-12 cyber-gradient border-t border-cyan-900">
+    <!-- Footer - Improved semantic structure -->
+    <footer class="py-8 md:py-12 bg-dark-bg border-t border-primary-cyan/20" aria-label="Site Footer">
         <div class="container mx-auto px-4 md:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12">
                 <!-- Company Info -->
-                <div class="lg:col-span-2" data-aos="fade-right">
+                <div class="lg:col-span-2">
                     <div class="flex items-center mb-4">
-                        <div class="logo text-2xl font-bold gradient-text">CyberShield Pro</div>
+                        <a href="index.html" class="logo text-xl md:text-2xl font-bold bg-gradient-to-r from-primary-cyan to-primary-purple bg-clip-text text-transparent">
+                            CyberShield Pro
+                        </a>
                     </div>
-                    <p class="text-gray-400 mb-6 max-w-md">
+                    <p class="text-gray-400 mb-6 max-w-md text-sm md:text-base">
                         Advanced cybersecurity solutions for modern organizations. 
                         Enterprise-grade protection powered by AI and expert security intelligence.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl">
-                            <i class="fab fa-twitter"></i>
+                        <a href="#" class="text-gray-400 hover:text-primary-cyan transition-colors duration-300 text-lg md:text-xl" aria-label="Twitter">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl">
-                            <i class="fab fa-linkedin"></i>
+                        <a href="#" class="text-gray-400 hover:text-primary-cyan transition-colors duration-300 text-lg md:text-xl" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin" aria-hidden="true"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl">
-                            <i class="fab fa-github"></i>
+                        <a href="#" class="text-gray-400 hover:text-primary-cyan transition-colors duration-300 text-lg md:text-xl" aria-label="GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
                 
                 <!-- Quick Links -->
-                <div class="" data-aos="fade-up" data-delay="0.1">
-                    <h4 class="text-lg font-bold mb-4 text-cyan-400">Quick Links</h4>
+                <div>
+                    <h3 class="text-lg font-bold mb-4 text-primary-cyan">Quick Links</h3>
                     <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Home</a></li>
-                        <li><a href="pages/about.html" class="text-gray-400 hover:text-cyan-400 transition-colors">About Us</a></li>
-                        <li><a href="pages/services.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Services</a></li>
-                        <li><a href="pages/pricing.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Pricing</a></li>
-                        <li><a href="pages/contact.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Contact</a></li>
+                        <li><a href="index.html" class="text-gray-400 hover:text-primary-cyan transition-colors duration-300 text-sm md:text-base">Home</a></li>
+                        <li><a href="pages/about.html" class="text-gray-400 hover:text-primary-cyan transition-colors duration-300 text-sm md:text-base">About Us</a></li>
+                        <li><a href="pages/services.html" class="text-gray-400 hover:text-primary-cyan transition-colors duration-300 text-sm md:text-base">Services</a></li>
+                        <li><a href="pages/pricing.html" class="text-gray-400 hover:text-primary-cyan transition-colors duration-300 text-sm md:text-base">Pricing</a></li>
+                        <li><a href="pages/contact.html" class="text-gray-400 hover:text-primary-cyan transition-colors duration-300 text-sm md:text-base">Contact</a></li>
                     </ul>
                 </div>
                 
                 <!-- Resources -->
-                <div class="" data-aos="fade-up" data-delay="0.2">
-                    <h4 class="text-lg font-bold mb-4 text-cyan-400">Resources</h4>
+                <div>
+                    <h3 class="text-lg font-bold mb-4 text-primary-cyan">Resources</h3>
                     <ul class="space-y-2">
-                        <li><a href="pages/blog.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Blog</a></li>
-                        <li><a href="pages/case-studies.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Case Studies</a></li>
-                        <li><a href="pages/resources.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Whitepapers</a></li>
-                        <li><a href="pages/team.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Our Team</a></li>
+                        <li><a href="pages/blog.html" class="text-gray-400 hover:text-primary-cyan transition-colors duration-300 text-sm md:text-base">Blog</a></li>
+                        <li><a href="pages/case-studies.html" class="text-gray-400 hover:text-primary-cyan transition-colors duration-300 text-sm md:text-base">Case Studies</a></li>
+                        <li><a href="pages/resources.html" class="text-gray-400 hover:text-primary-cyan transition-colors duration-300 text-sm md:text-base">Whitepapers</a></li>
+                        <li><a href="pages/team.html" class="text-gray-400 hover:text-primary-cyan transition-colors duration-300 text-sm md:text-base">Our Team</a></li>
                     </ul>
                 </div>
                 
                 <!-- Legal -->
-                <div class="" data-aos="fade-up" data-delay="0.3">
-                    <h4 class="text-lg font-bold mb-4 text-cyan-400">Legal</h4>
+                <div>
+                    <h3 class="text-lg font-bold mb-4 text-primary-cyan">Legal</h3>
                     <ul class="space-y-2">
-                        <li><a href="pages/privacy-policy.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Privacy Policy</a></li>
-                        <li><a href="pages/terms.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Terms of Service</a></li>
-                        <li><a href="pages/compliance.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Compliance</a></li>
-                        <li><a href="pages/careers.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Careers</a></li>
+                        <li><a href="pages/privacy-policy.html" class="text-gray-400 hover:text-primary-cyan transition-colors duration-300 text-sm md:text-base">Privacy Policy</a></li>
+                        <li><a href="pages/terms.html" class="text-gray-400 hover:text-primary-cyan transition-colors duration-300 text-sm md:text-base">Terms of Service</a></li>
+                        <li><a href="pages/compliance.html" class="text-gray-400 hover:text-primary-cyan transition-colors duration-300 text-sm md:text-base">Compliance</a></li>
+                        <li><a href="pages/careers.html" class="text-gray-400 hover:text-primary-cyan transition-colors duration-300 text-sm md:text-base">Careers</a></li>
                     </ul>
                 </div>
             </div>
             
-            <div class="border-t border-cyan-900 mt-8 pt-8 text-center" data-aos="fade-up">
-                <p class="text-gray-500 text-sm">
+            <div class="border-t border-primary-cyan/20 mt-8 pt-6 md:pt-8 text-center">
+                <p class="text-gray-500 text-xs md:text-sm mb-2">
                     &copy; <span id="current-year">2024</span> CyberShield Pro. All rights reserved. | 
-                    <a href="pages/privacy-policy.html" class="text-gray-400 hover:text-cyan-400">Privacy Policy</a> | 
-                    <a href="pages/terms.html" class="text-gray-400 hover:text-cyan-400">Terms of Service</a>
+                    <a href="pages/privacy-policy.html" class="text-gray-400 hover:text-primary-cyan transition-colors duration-300">Privacy Policy</a> | 
+                    <a href="pages/terms.html" class="text-gray-400 hover:text-primary-cyan transition-colors duration-300">Terms of Service</a>
                 </p>
-                <p class="text-gray-500 text-sm mt-2">
-                    <i class="fas fa-shield-alt mr-1"></i>
+                <p class="text-gray-500 text-xs md:text-sm">
+                    <i class="fas fa-shield-alt mr-1" aria-hidden="true"></i>
                     ISO 27001 Certified | GDPR Compliant | SOC 2 Type II
                 </p>
             </div>
@@ -838,44 +659,68 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-cyan-900 rounded-full flex items-center justify-center shadow-lg hover:bg-cyan-800 transition-colors z-40">
-        <i class="fas fa-arrow-up text-white"></i>
+    <button id="back-to-top" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 w-12 h-12 bg-primary-cyan hover:bg-primary-cyan/90 transition-all duration-300 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl hover:shadow-primary-cyan/30 z-40 focus:outline-none focus:ring-2 focus:ring-primary-cyan focus:ring-offset-2 focus:ring-offset-dark-bg" aria-label="Back to top">
+        <i class="fas fa-arrow-up text-white text-lg" aria-hidden="true"></i>
     </button>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Deferred Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" async></script>
     <script>
-        // Initialize AOS Animations
-        document.addEventListener('DOMContentLoaded', function() {
-            AOS.init({
-                duration: 800,
-                once: true,
-                offset: 100
+        // Load fonts and mark as loaded
+        document.documentElement.classList.add('fonts-loaded');
+        
+        // Intersection Observer for lazy loading
+        const lazyLoadObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('loaded');
+                    lazyLoadObserver.unobserve(entry.target);
+                }
             });
-            
+        }, {
+            threshold: 0.1,
+            rootMargin: '50px'
+        });
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mark elements for lazy loading
+            document.querySelectorAll('.lazy-load').forEach(el => {
+                lazyLoadObserver.observe(el);
+            });
+
             // Mobile Menu Functionality
             const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
             const mobileMenuClose = document.getElementById('mobile-menu-close');
             const mobileMenu = document.getElementById('mobile-menu');
             const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
             
+            function openMobileMenu() {
+                mobileMenu.classList.add('active');
+                mobileMenuOverlay.classList.add('active');
+                mobileMenuToggle.setAttribute('aria-expanded', 'true');
+                mobileMenu.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                mobileMenu.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+            
             if (mobileMenuToggle && mobileMenu) {
-                mobileMenuToggle.addEventListener('click', () => {
-                    mobileMenu.classList.add('active');
-                    mobileMenuOverlay.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
+                mobileMenuToggle.addEventListener('click', openMobileMenu);
+                mobileMenuClose.addEventListener('click', closeMobileMenu);
+                mobileMenuOverlay.addEventListener('click', closeMobileMenu);
                 
-                mobileMenuClose.addEventListener('click', () => {
-                    mobileMenu.classList.remove('active');
-                    mobileMenuOverlay.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-                
-                mobileMenuOverlay.addEventListener('click', () => {
-                    mobileMenu.classList.remove('active');
-                    mobileMenuOverlay.classList.remove('active');
-                    document.body.style.overflow = '';
+                // Close menu on Escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                        closeMobileMenu();
+                    }
                 });
             }
             
@@ -887,74 +732,75 @@
                         top: 0,
                         behavior: 'smooth'
                     });
+                    backToTop.blur();
                 });
                 
                 window.addEventListener('scroll', () => {
-                    if (window.scrollY > 500) {
-                        backToTop.classList.add('visible');
-                    } else {
-                        backToTop.classList.remove('visible');
-                    }
+                    backToTop.classList.toggle('visible', window.scrollY > 500);
                 });
+                
+                // Initial check
+                backToTop.classList.toggle('visible', window.scrollY > 500);
             }
             
             // Animated Counters
-            const counters = document.querySelectorAll('.stats-counter');
+            const counters = document.querySelectorAll('[data-counter]');
             if (counters.length > 0) {
-                counters.forEach(counter => {
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                const target = parseFloat(counter.getAttribute('data-target'));
-                                const suffix = counter.getAttribute('data-suffix') || '';
-                                let current = 0;
-                                const duration = 1500;
-                                const increment = target / (duration / 16);
-                                
-                                const updateCounter = () => {
-                                    if (current < target) {
-                                        current += increment;
-                                        if (current > target) current = target;
-                                        
-                                        let displayValue;
-                                        if (suffix === '%') {
-                                            displayValue = current.toFixed(1) + suffix;
-                                        } else if (suffix === 'M') {
-                                            displayValue = (current / 1000000).toFixed(1) + suffix;
-                                        } else if (suffix === 's') {
-                                            displayValue = Math.floor(current) + suffix;
-                                        } else if (suffix === '+') {
-                                            displayValue = Math.floor(current) + suffix;
-                                        } else {
-                                            displayValue = Math.floor(current).toLocaleString();
-                                        }
-                                        
-                                        counter.textContent = displayValue;
-                                        requestAnimationFrame(updateCounter);
+                const counterObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const counter = entry.target;
+                            const target = parseFloat(counter.getAttribute('data-counter'));
+                            const suffix = counter.getAttribute('data-suffix') || '';
+                            let current = 0;
+                            const duration = 1500;
+                            const increment = target / (duration / 16);
+                            
+                            const updateCounter = () => {
+                                if (current < target) {
+                                    current += increment;
+                                    if (current > target) current = target;
+                                    
+                                    let displayValue;
+                                    if (suffix === '%') {
+                                        displayValue = current.toFixed(1) + suffix;
+                                    } else if (suffix === 'M') {
+                                        displayValue = (current / 1000000).toFixed(1) + suffix;
+                                    } else if (suffix === 's') {
+                                        displayValue = Math.floor(current) + suffix;
+                                    } else if (suffix === '+') {
+                                        displayValue = Math.floor(current) + suffix;
                                     } else {
-                                        let finalValue;
-                                        if (suffix === '%') {
-                                            finalValue = target.toFixed(1) + suffix;
-                                        } else if (suffix === 'M') {
-                                            finalValue = (target / 1000000).toFixed(1) + suffix;
-                                        } else if (suffix === 's') {
-                                            finalValue = Math.floor(target) + suffix;
-                                        } else if (suffix === '+') {
-                                            finalValue = Math.floor(target) + suffix;
-                                        } else {
-                                            finalValue = target.toLocaleString();
-                                        }
-                                        counter.textContent = finalValue;
+                                        displayValue = Math.floor(current).toLocaleString();
                                     }
-                                };
-                                
-                                updateCounter();
-                                observer.unobserve(counter);
-                            }
-                        });
-                    }, { threshold: 0.5 });
-                    
-                    observer.observe(counter);
+                                    
+                                    counter.textContent = displayValue;
+                                    requestAnimationFrame(updateCounter);
+                                } else {
+                                    let finalValue;
+                                    if (suffix === '%') {
+                                        finalValue = target.toFixed(1) + suffix;
+                                    } else if (suffix === 'M') {
+                                        finalValue = (target / 1000000).toFixed(1) + suffix;
+                                    } else if (suffix === 's') {
+                                        finalValue = Math.floor(target) + suffix;
+                                    } else if (suffix === '+') {
+                                        finalValue = Math.floor(target) + suffix;
+                                    } else {
+                                        finalValue = target.toLocaleString();
+                                    }
+                                    counter.textContent = finalValue;
+                                }
+                            };
+                            
+                            updateCounter();
+                            counterObserver.unobserve(counter);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                counters.forEach(counter => {
+                    counterObserver.observe(counter);
                 });
             }
             
@@ -969,14 +815,17 @@
                 function showSlide(index) {
                     testimonialSlides.forEach(slide => {
                         slide.classList.remove('active');
+                        slide.setAttribute('aria-hidden', 'true');
                     });
                     
-                    testimonialNavs.forEach(nav => {
+                    testimonialNavs.forEach((nav, i) => {
                         nav.classList.remove('active');
-                        nav.style.background = '#374151';
+                        nav.style.background = '';
+                        nav.setAttribute('aria-selected', i === index ? 'true' : 'false');
                     });
                     
                     testimonialSlides[index].classList.add('active');
+                    testimonialSlides[index].setAttribute('aria-hidden', 'false');
                     
                     if (testimonialNavs[index]) {
                         testimonialNavs[index].classList.add('active');
@@ -1002,13 +851,114 @@
                     }, 6000);
                 }
                 
+                // Initialize
                 showSlide(0);
                 startAutoSlide();
+                
+                // Pause on hover
+                const sliderContainer = document.querySelector('.testimonial-slider');
+                if (sliderContainer) {
+                    sliderContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
+                    sliderContainer.addEventListener('mouseleave', startAutoSlide);
+                }
             }
             
             // Update copyright year
             document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Initialize AOS after a delay to ensure content is loaded
+            setTimeout(() => {
+                if (typeof AOS !== 'undefined') {
+                    AOS.init({
+                        duration: 800,
+                        once: true,
+                        offset: 100,
+                        delay: 100
+                    });
+                }
+            }, 300);
         });
+        
+        // Add CSS for animations
+        const style = document.createElement('style');
+        style.textContent = `
+            .bg-grid-pattern {
+                background-image: 
+                    linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+                background-size: 50px 50px;
+            }
+            
+            .bg-size-200 {
+                background-size: 200% 200%;
+            }
+            
+            .animate-gradient {
+                animation: gradientFlow 3s ease infinite;
+            }
+            
+            @keyframes gradientFlow {
+                0%, 100% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+            }
+            
+            .animate-pulse {
+                animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            }
+            
+            @keyframes pulse {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.5; }
+            }
+            
+            .testimonial-slider {
+                position: relative;
+                height: auto;
+                min-height: 300px;
+            }
+            
+            .testimonial-slide {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.8s ease, transform 0.8s ease;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+            }
+            
+            .testimonial-slide.active {
+                opacity: 1;
+                transform: translateY(0);
+                position: relative;
+            }
+            
+            .partner-logo {
+                filter: grayscale(100%);
+                opacity: 0.7;
+                transition: all 0.3s ease;
+            }
+            
+            .partner-logo:hover {
+                filter: grayscale(0%);
+                opacity: 1;
+                transform: translateY(-2px);
+            }
+            
+            #back-to-top {
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(10px);
+                transition: all 0.3s ease;
+            }
+            
+            #back-to-top.visible {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
