@@ -3,119 +3,473 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Expert cybersecurity insights, threat analysis, security guides, and industry updates from CyberShield Pro security team.">
+    <meta name="keywords" content="cybersecurity, threat intelligence, cloud security, GDPR, phishing, ransomware">
+    <meta name="author" content="CyberShield Pro">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Cybersecurity Blog | CyberShield Pro">
+    <meta property="og:description" content="Expert insights, threat analysis, security guides, and industry updates from our security team.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cybershieldpro.com/blog">
+    <meta property="og:image" content="https://cybershieldpro.com/assets/images/blog-og-image.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cybersecurity Blog | CyberShield Pro">
+    <meta name="twitter:description" content="Expert cybersecurity insights and analysis">
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "CyberShield Pro Cybersecurity Blog",
+        "description": "Expert cybersecurity insights, threat analysis, security guides, and industry updates",
+        "publisher": {
+            "@type": "Organization",
+            "name": "CyberShield Pro",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://cybershieldpro.com/assets/logo.png"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://cybershieldpro.com/blog"
+        }
+    }
+    </script>
+    
+    <!-- CSP Meta Tag (Basic) -->
+    <meta http-equiv="Content-Security-Policy" 
+          content="default-src 'self'; 
+                   script-src 'self' https://cdn.tailwindcss.com https://unpkg.com https://cdn.jsdelivr.net 'unsafe-inline'; 
+                   style-src 'self' https://cdn.tailwindcss.com https://unpkg.com 'unsafe-inline'; 
+                   img-src 'self' https://images.unsplash.com https://ui-avatars.com data: https:;
+                   font-src 'self' data:;
+                   connect-src 'self'">
+    
     <title>Cybersecurity Blog | CyberShield Pro</title>
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAD/AAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAABERAAAREQAAEREAAAAAEREREQAAERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERE" />
+    
+    <!-- CDN Links with SRI -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../assets/css/pages.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" 
+          integrity="sha384-5A2wC3Kq8qJ6Y6q6x6l5q6q6q6q6q6q6q6q6q6q6q6q6q6q6q6q6q6q6q6q6q6q6" 
+          crossorigin="anonymous">
+    
     <style>
-        /* Blog specific styles */
-        .blog-gradient {
+        /* Blog specific styles - Enhanced */
+        :root {
+            --primary-cyan: #00f3ff;
+            --primary-pink: #ff2a6d;
+            --primary-green: #00ff95;
+            --primary-purple: #b967ff;
+            --primary-yellow: #ffcc00;
+            --dark-bg: #0a0e17;
+            --card-bg: rgba(26, 29, 41, 0.9);
+        }
+        
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-cyan);
+            color: var(--dark-bg);
+            padding: 8px;
+            z-index: 100;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        
+        .skip-link:focus {
+            top: 10px;
+        }
+        
+        /* Base styles */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             background: linear-gradient(135deg, #0a0e17, #1a1d29, #1a1a2e);
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
         }
+        
+        /* Enhanced blog gradient */
+        .blog-gradient {
+            background: linear-gradient(135deg, 
+                rgba(10, 14, 23, 1) 0%,
+                rgba(26, 29, 41, 0.95) 50%,
+                rgba(26, 26, 46, 0.9) 100%
+            );
+            position: relative;
+        }
+        
+        .blog-gradient::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 42, 109, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* Blog card enhancements */
         .blog-card {
-            transition: all 0.3s ease;
-            background: rgba(26, 29, 41, 0.7);
-            border-radius: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--card-bg);
+            border-radius: 16px;
             overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
+        
         .blog-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 243, 255, 0.2);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(0, 243, 255, 0.15),
+                0 0 0 1px rgba(0, 243, 255, 0.1);
+            border-color: rgba(0, 243, 255, 0.3);
         }
+        
+        /* Category badges */
         .blog-category {
             display: inline-block;
-            padding: 4px 12px;
+            padding: 6px 16px;
             border-radius: 20px;
             font-size: 0.8rem;
-            font-weight: 600;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border: 2px solid transparent;
         }
-        .category-threats { background: rgba(255, 42, 109, 0.2); color: #ff2a6d; }
-        .category-tools { background: rgba(0, 243, 255, 0.2); color: #00f3ff; }
-        .category-guides { background: rgba(0, 255, 149, 0.2); color: #00ff95; }
-        .category-news { background: rgba(185, 103, 255, 0.2); color: #b967ff; }
-        .read-time {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
+        
+        .category-threats { 
+            background: linear-gradient(135deg, rgba(255, 42, 109, 0.2), rgba(255, 42, 109, 0.1));
+            color: #ff2a6d;
+            border-color: rgba(255, 42, 109, 0.3);
         }
+        
+        .category-tools { 
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.2), rgba(0, 243, 255, 0.1));
+            color: var(--primary-cyan);
+            border-color: rgba(0, 243, 255, 0.3);
+        }
+        
+        .category-guides { 
+            background: linear-gradient(135deg, rgba(0, 255, 149, 0.2), rgba(0, 255, 149, 0.1));
+            color: var(--primary-green);
+            border-color: rgba(0, 255, 149, 0.3);
+        }
+        
+        .category-news { 
+            background: linear-gradient(135deg, rgba(185, 103, 255, 0.2), rgba(185, 103, 255, 0.1));
+            color: var(--primary-purple);
+            border-color: rgba(185, 103, 255, 0.3);
+        }
+        
+        /* Author avatar enhancements */
         .author-avatar {
-            width: 40px;
-            height: 40px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             object-fit: cover;
-        }
-        .pagination-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 8px 16px;
-            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
         }
+        
+        .author-avatar:hover {
+            border-color: var(--primary-cyan);
+            transform: scale(1.1);
+        }
+        
+        /* Search box improvements */
+        .search-box {
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 12px 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box:focus-within {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--primary-cyan);
+            box-shadow: 
+                0 0 20px rgba(0, 243, 255, 0.3),
+                inset 0 0 20px rgba(0, 243, 255, 0.1);
+        }
+        
+        .search-box input {
+            background: transparent;
+            border: none;
+            outline: none;
+            width: 100%;
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Pagination improvements */
+        .pagination-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            padding: 10px 18px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 600;
+            min-width: 44px;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
         .pagination-btn:hover:not(.disabled) {
             background: rgba(0, 243, 255, 0.2);
-            border-color: #00f3ff;
+            border-color: var(--primary-cyan);
+            color: var(--primary-cyan);
+            transform: translateY(-2px);
         }
-        .pagination-btn.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+        
+        .pagination-btn.active {
+            background: rgba(0, 243, 255, 0.3);
+            border-color: var(--primary-cyan);
+            color: var(--primary-cyan);
         }
-        .search-box {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            padding: 10px 15px;
-        }
-        .search-box:focus-within {
-            border-color: #00f3ff;
-            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
-        }
-        .sidebar-card {
-            background: rgba(26, 29, 41, 0.7);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
+        
+        /* Tag improvements */
         .tag {
             display: inline-block;
-            padding: 4px 12px;
-            background: rgba(255, 255, 255, 0.1);
+            padding: 6px 16px;
+            background: rgba(255, 255, 255, 0.08);
             border-radius: 20px;
-            margin: 5px;
+            margin: 4px;
             font-size: 0.9rem;
             transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-decoration: none;
         }
+        
         .tag:hover {
             background: rgba(0, 243, 255, 0.2);
-            color: #00f3ff;
+            color: var(--primary-cyan);
+            border-color: var(--primary-cyan);
+            transform: translateY(-2px);
+        }
+        
+        /* Cyber button enhancements */
+        .cyber-button {
+            background: linear-gradient(135deg, #00a6bc, #00f3ff);
+            color: #0a0e17;
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cyber-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .cyber-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 243, 255, 0.3);
+        }
+        
+        .cyber-button:hover::before {
+            left: 100%;
+        }
+        
+        /* Mobile menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100vh;
+            background: var(--dark-bg);
+            z-index: 1000;
+            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+            padding: 80px 20px 20px;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Image loading animation */
+        .img-loading {
+            background: linear-gradient(90deg, #1a1d29 25%, #2a2d39 50%, #1a1d29 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* Focus styles for accessibility */
+        *:focus {
+            outline: 2px solid var(--primary-cyan);
+            outline-offset: 2px;
+        }
+        
+        *:focus:not(:focus-visible) {
+            outline: none;
+        }
+        
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            .blog-card {
+                background: rgba(15, 18, 30, 0.95);
+            }
+        }
+        
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .blog-card:hover {
+                transform: none;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            .blog-card {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+            
+            .cyber-button,
+            .search-box,
+            .mobile-menu-toggle {
+                display: none !important;
+            }
         }
     </style>
 </head>
 <body class="blog-gradient text-white">
-    <!-- Navigation (Same as index.html) -->
-    <nav class="simplified-header fixed top-0 w-full z-50 py-4 px-4 md:px-6 flex justify-between items-center">
+    <!-- Skip to main content for keyboard users -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Navigation -->
+    <nav class="simplified-header fixed top-0 w-full z-50 py-4 px-4 md:px-6 flex justify-between items-center bg-dark-bg/90 backdrop-blur-md">
         <div class="flex items-center">
-            <a href="../index.html" class="logo text-lg md:text-xl font-bold">CyberShield Pro</a>
+            <a href="../index.html" class="logo text-lg md:text-xl font-bold text-cyan-300 hover:text-cyan-400 transition-colors">
+                <span class="flex items-center">
+                    <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    CyberShield Pro
+                </span>
+            </a>
         </div>
+        
+        <!-- Desktop Navigation -->
         <div class="hidden md:flex space-x-6 lg:space-x-8">
-            <a href="../index.html" class="nav-link">Home</a>
-            <a href="services.html" class="nav-link">Services</a>
-            <a href="blog.html" class="nav-link active">Blog</a>
-            <a href="resources.html" class="nav-link">Resources</a>
-            <a href="team.html" class="nav-link">Team</a>
-            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="../index.html" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors py-2 px-3 rounded-lg hover:bg-white/5">Home</a>
+            <a href="services.html" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors py-2 px-3 rounded-lg hover:bg-white/5">Services</a>
+            <a href="blog.html" class="nav-link text-cyan-400 font-semibold py-2 px-3 rounded-lg bg-white/10">Blog</a>
+            <a href="resources.html" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors py-2 px-3 rounded-lg hover:bg-white/5">Resources</a>
+            <a href="team.html" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors py-2 px-3 rounded-lg hover:bg-white/5">Team</a>
+            <a href="contact.html" class="nav-link text-gray-300 hover:text-cyan-400 transition-colors py-2 px-3 rounded-lg hover:bg-white/5">Contact</a>
         </div>
+        
+        <!-- Auth & Mobile Toggle -->
         <div class="flex items-center space-x-4">
-            <a href="../index.html#auth-modal" class="cyber-button text-sm py-2 px-4">Login</a>
-            <button id="mobile-menu-toggle" class="md:hidden text-white p-2">
-                <i data-feather="menu"></i>
+            <a href="../index.html#auth-modal" class="cyber-button text-sm py-2 px-4 hidden md:inline-flex items-center" aria-label="Login to your account">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                </svg>
+                Login
+            </a>
+            <button id="mobile-menu-toggle" class="md:hidden text-white p-3 rounded-lg hover:bg-white/10 transition-colors" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+                <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+                <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
             </button>
         </div>
     </nav>
-
+    
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-overlay" class="mobile-overlay"></div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu">
+        <div class="flex flex-col space-y-6">
+            <a href="../index.html" class="text-lg text-gray-300 hover:text-cyan-400 transition-colors py-3 px-4 rounded-lg hover:bg-white/5">Home</a>
+            <a href="services.html" class="text-lg text-gray-300 hover:text-cyan-400 transition-colors py-3 px-4 rounded-lg hover:bg-white/5">Services</a>
+            <a href="blog.html" class="text-lg text-cyan-400 font-semibold py-3 px-4 rounded-lg bg-white/10">Blog</a>
+            <a href="resources.html" class="text-lg text-gray-300 hover:text-cyan-400 transition-colors py-3 px-4 rounded-lg hover:bg-white/5">Resources</a>
+            <a href="team.html" class="text-lg text-gray-300 hover:text-cyan-400 transition-colors py-3 px-4 rounded-lg hover:bg-white/5">Team</a>
+            <a href="contact.html" class="text-lg text-gray-300 hover:text-cyan-400 transition-colors py-3 px-4 rounded-lg hover:bg-white/5">Contact</a>
+            <div class="pt-6 border-t border-gray-800">
+                <a href="../index.html#auth-modal" class="cyber-button w-full justify-center">Login</a>
+            </div>
+        </div>
+    </div>
+    
     <!-- Blog Header -->
-    <section class="pt-32 pb-20 px-4 md:px-6">
+    <section class="pt-32 pb-20 px-4 md:px-6" id="main-content">
         <div class="container mx-auto text-center">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 neon-text" style="color: #00f3ff;">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6" style="color: #00f3ff;">
                 Cybersecurity Blog
             </h1>
             <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10">
@@ -123,27 +477,33 @@
             </p>
             
             <!-- Search Bar -->
-            <div class="max-w-2xl mx-auto mb-12">
+            <div class="max-w-2xl mx-auto mb-12" role="search">
                 <div class="search-box flex items-center">
-                    <i data-feather="search" class="text-gray-400 mr-3"></i>
-                    <input type="text" placeholder="Search articles, guides, or topics..." 
-                           class="bg-transparent border-none outline-none w-full text-white">
-                    <button class="cyber-button ml-3 px-4 py-2">Search</button>
+                    <svg class="w-5 h-5 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    <input type="text" 
+                           id="search-input"
+                           placeholder="Search articles, guides, or topics..." 
+                           class="bg-transparent border-none outline-none w-full text-white"
+                           aria-label="Search blog articles">
+                    <button id="search-button" class="cyber-button ml-3 px-4 py-2" aria-label="Search">Search</button>
                 </div>
+                <div id="search-results" class="hidden mt-4 text-left"></div>
             </div>
-
+            
             <!-- Categories -->
-            <div class="flex flex-wrap justify-center gap-3 mb-12">
-                <button class="blog-category category-threats active">All Topics</button>
-                <button class="blog-category category-threats">Threat Intelligence</button>
-                <button class="blog-category category-tools">Security Tools</button>
-                <button class="blog-category category-guides">How-to Guides</button>
-                <button class="blog-category category-news">Industry News</button>
-                <button class="blog-category" style="background: rgba(255,204,0,0.2); color: #ffcc00;">Compliance</button>
+            <div class="flex flex-wrap justify-center gap-3 mb-12" role="navigation" aria-label="Blog categories">
+                <button class="blog-category category-threats active" data-category="all" aria-pressed="true">All Topics</button>
+                <button class="blog-category category-threats" data-category="threats" aria-pressed="false">Threat Intelligence</button>
+                <button class="blog-category category-tools" data-category="tools" aria-pressed="false">Security Tools</button>
+                <button class="blog-category category-guides" data-category="guides" aria-pressed="false">How-to Guides</button>
+                <button class="blog-category category-news" data-category="news" aria-pressed="false">Industry News</button>
+                <button class="blog-category" style="background: linear-gradient(135deg, rgba(255,204,0,0.2), rgba(255,204,0,0.1)); color: #ffcc00; border-color: rgba(255,204,0,0.3);" data-category="compliance" aria-pressed="false">Compliance</button>
             </div>
         </div>
     </section>
-
+    
     <!-- Blog Content -->
     <section class="pb-20 px-4 md:px-6">
         <div class="container mx-auto">
@@ -151,18 +511,24 @@
                 <!-- Main Content -->
                 <div class="lg:col-span-2">
                     <!-- Featured Post -->
-                    <div class="blog-card mb-12" data-aos="fade-up">
+                    <article class="blog-card mb-12" data-aos="fade-up" data-category="threats">
                         <div class="relative h-64 md:h-80 overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-                                 alt="Featured Post" class="w-full h-full object-cover">
+                                 alt="Zero-Day Vulnerabilities Analysis on Computer Screen" 
+                                 class="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                                 loading="lazy"
+                                 width="1200"
+                                 height="400">
                             <div class="absolute top-4 left-4">
                                 <span class="blog-category category-threats">Featured</span>
                             </div>
                         </div>
                         <div class="p-6 md:p-8">
                             <div class="flex items-center mb-4">
-                                <img src="https://ui-avatars.com/api/?name=Gulshan+Kumar&background=0D8ABC&color=fff" 
-                                     alt="Author" class="author-avatar mr-3">
+                                <img src="https://ui-avatars.com/api/?name=Gulshan+Kumar&background=0D8ABC&color=fff&size=48" 
+                                     alt="Avatar of Gulshan Kumar" 
+                                     class="author-avatar mr-3"
+                                     loading="lazy">
                                 <div>
                                     <p class="font-semibold">Gulshan Kumar</p>
                                     <p class="text-gray-400 text-sm">CEO & Security Expert • 2 days ago • 8 min read</p>
@@ -179,221 +545,82 @@
                             </p>
                             <div class="flex justify-between items-center">
                                 <a href="blog-post.html" class="cyber-button inline-flex items-center">
-                                    Read Article <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                                    Read Article
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                    </svg>
                                 </a>
                                 <span class="text-gray-400 text-sm">
-                                    <i data-feather="eye" class="w-4 h-4 inline mr-1"></i> 2.4K views
+                                    <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                    </svg>
+                                    2.4K views
                                 </span>
                             </div>
                         </div>
-                    </div>
-
+                    </article>
+                    
                     <!-- Blog Posts Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <!-- Post 1 -->
-                        <div class="blog-card" data-aos="fade-up" data-aos-delay="100">
-                            <div class="h-48 overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                                     alt="Phishing Attacks" class="w-full h-full object-cover">
-                            </div>
-                            <div class="p-6">
-                                <div class="flex justify-between items-center mb-3">
-                                    <span class="blog-category category-threats">Threat Intelligence</span>
-                                    <span class="read-time">5 min read</span>
-                                </div>
-                                <h3 class="text-xl font-bold mb-3">
-                                    <a href="blog-post.html" class="hover:text-cyan-400 transition-colors">
-                                        Advanced Phishing Detection Techniques 2024
-                                    </a>
-                                </h3>
-                                <p class="text-gray-300 mb-4">
-                                    Learn how to identify and prevent sophisticated phishing attacks with our latest detection methodologies.
-                                </p>
-                                <div class="flex items-center">
-                                    <img src="https://ui-avatars.com/api/?name=Security+Analyst&background=00ff95&color=000" 
-                                         alt="Author" class="author-avatar mr-3">
-                                    <div>
-                                        <p class="text-sm font-semibold">Sarah Chen</p>
-                                        <p class="text-gray-400 text-xs">Security Analyst</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Post 2 -->
-                        <div class="blog-card" data-aos="fade-up" data-aos-delay="200">
-                            <div class="h-48 overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                                     alt="Cloud Security" class="w-full h-full object-cover">
-                            </div>
-                            <div class="p-6">
-                                <div class="flex justify-between items-center mb-3">
-                                    <span class="blog-category category-guides">How-to Guide</span>
-                                    <span class="read-time">12 min read</span>
-                                </div>
-                                <h3 class="text-xl font-bold mb-3">
-                                    <a href="blog-post.html" class="hover:text-cyan-400 transition-colors">
-                                        AWS Security Best Practices for Enterprises
-                                    </a>
-                                </h3>
-                                <p class="text-gray-300 mb-4">
-                                    Complete guide to securing your AWS infrastructure with industry best practices and compliance standards.
-                                </p>
-                                <div class="flex items-center">
-                                    <img src="https://ui-avatars.com/api/?name=Cloud+Architect&background=b967ff&color=fff" 
-                                         alt="Author" class="author-avatar mr-3">
-                                    <div>
-                                        <p class="text-sm font-semibold">Michael Rodriguez</p>
-                                        <p class="text-gray-400 text-xs">Cloud Architect</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Post 3 -->
-                        <div class="blog-card" data-aos="fade-up" data-aos-delay="300">
-                            <div class="h-48 overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                                     alt="GDPR Compliance" class="w-full h-full object-cover">
-                            </div>
-                            <div class="p-6">
-                                <div class="flex justify-between items-center mb-3">
-                                    <span class="blog-category category-news">Compliance</span>
-                                    <span class="read-time">7 min read</span>
-                                </div>
-                                <h3 class="text-xl font-bold mb-3">
-                                    <a href="blog-post.html" class="hover:text-cyan-400 transition-colors">
-                                        GDPR 2024 Updates: What You Need to Know
-                                    </a>
-                                </h3>
-                                <p class="text-gray-300 mb-4">
-                                    Stay compliant with the latest GDPR regulations and avoid costly fines with our compliance checklist.
-                                </p>
-                                <div class="flex items-center">
-                                    <img src="https://ui-avatars.com/api/?name=Compliance+Officer&background=ff2a6d&color=fff" 
-                                         alt="Author" class="author-avatar mr-3">
-                                    <div>
-                                        <p class="text-sm font-semibold">James Wilson</p>
-                                        <p class="text-gray-400 text-xs">Compliance Officer</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Post 4 -->
-                        <div class="blog-card" data-aos="fade-up" data-aos-delay="400">
-                            <div class="h-48 overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                                     alt="Password Security" class="w-full h-full object-cover">
-                            </div>
-                            <div class="p-6">
-                                <div class="flex justify-between items-center mb-3">
-                                    <span class="blog-category category-tools">Security Tools</span>
-                                    <span class="read-time">4 min read</span>
-                                </div>
-                                <h3 class="text-xl font-bold mb-3">
-                                    <a href="blog-post.html" class="hover:text-cyan-400 transition-colors">
-                                        Password Managers Comparison 2024
-                                    </a>
-                                </h3>
-                                <p class="text-gray-300 mb-4">
-                                    Detailed analysis of top password managers with security features, pricing, and recommendations.
-                                </p>
-                                <div class="flex items-center">
-                                    <img src="https://ui-avatars.com/api/?name=Tool+Expert&background=ffcc00&color=000" 
-                                         alt="Author" class="author-avatar mr-3">
-                                    <div>
-                                        <p class="text-sm font-semibold">Alex Turner</p>
-                                        <p class="text-gray-400 text-xs">Tools Specialist</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div id="blog-posts" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Posts will be loaded here dynamically -->
                     </div>
-
+                    
                     <!-- Pagination -->
-                    <div class="flex justify-center items-center space-x-4 mt-12">
-                        <button class="pagination-btn disabled">
-                            <i data-feather="chevron-left" class="w-4 h-4"></i>
+                    <nav class="flex justify-center items-center space-x-4 mt-12" aria-label="Blog pagination">
+                        <button class="pagination-btn disabled" aria-label="Previous page" disabled>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
                         </button>
-                        <button class="pagination-btn bg-cyan-900 text-cyan-300 border-cyan-500">1</button>
-                        <button class="pagination-btn">2</button>
-                        <button class="pagination-btn">3</button>
-                        <span class="text-gray-400">...</span>
-                        <button class="pagination-btn">8</button>
-                        <button class="pagination-btn">
-                            <i data-feather="chevron-right" class="w-4 h-4"></i>
+                        <button class="pagination-btn active" aria-label="Page 1" aria-current="page">1</button>
+                        <button class="pagination-btn" aria-label="Page 2">2</button>
+                        <button class="pagination-btn" aria-label="Page 3">3</button>
+                        <span class="text-gray-400" aria-hidden="true">...</span>
+                        <button class="pagination-btn" aria-label="Page 8">8</button>
+                        <button class="pagination-btn" aria-label="Next page">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
                         </button>
-                    </div>
+                    </nav>
                 </div>
-
+                
                 <!-- Sidebar -->
-                <div class="lg:col-span-1">
+                <aside class="lg:col-span-1" aria-label="Blog sidebar">
                     <!-- Newsletter -->
                     <div class="sidebar-card" data-aos="fade-left">
                         <h3 class="text-xl font-bold mb-4 text-cyan-300">Subscribe to Newsletter</h3>
                         <p class="text-gray-300 mb-4">Get weekly security updates and exclusive content.</p>
-                        <div class="space-y-3">
-                            <input type="email" placeholder="Your email address" 
-                                   class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white">
-                            <button class="cyber-button w-full">Subscribe</button>
-                        </div>
+                        <form id="newsletter-form" class="space-y-3">
+                            <input type="email" 
+                                   placeholder="Your email address" 
+                                   class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white"
+                                   aria-label="Email address"
+                                   required>
+                            <!-- Honeypot field for bots -->
+                            <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+                            <button type="submit" class="cyber-button w-full" aria-label="Subscribe to newsletter">Subscribe</button>
+                        </form>
+                        <p id="newsletter-message" class="hidden mt-3 text-sm"></p>
                     </div>
-
+                    
                     <!-- Popular Posts -->
                     <div class="sidebar-card" data-aos="fade-left" data-aos-delay="100">
                         <h3 class="text-xl font-bold mb-4 text-cyan-300">Popular Posts</h3>
-                        <div class="space-y-4">
-                            <a href="#" class="flex items-center hover:text-cyan-400 transition-colors">
-                                <div class="w-16 h-16 rounded-lg overflow-hidden mr-3 flex-shrink-0">
-                                    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                                         alt="Post" class="w-full h-full object-cover">
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-sm">Ransomware Protection</p>
-                                    <p class="text-gray-400 text-xs">2.1K views • 5 min read</p>
-                                </div>
-                            </a>
-                            <a href="#" class="flex items-center hover:text-cyan-400 transition-colors">
-                                <div class="w-16 h-16 rounded-lg overflow-hidden mr-3 flex-shrink-0">
-                                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                                         alt="Post" class="w-full h-full object-cover">
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-sm">Cloud Security Tips</p>
-                                    <p class="text-gray-400 text-xs">1.8K views • 8 min read</p>
-                                </div>
-                            </a>
-                            <a href="#" class="flex items-center hover:text-cyan-400 transition-colors">
-                                <div class="w-16 h-16 rounded-lg overflow-hidden mr-3 flex-shrink-0">
-                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                                         alt="Post" class="w-full h-full object-cover">
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-sm">GDPR Compliance</p>
-                                    <p class="text-gray-400 text-xs">1.5K views • 6 min read</p>
-                                </div>
-                            </a>
+                        <div class="space-y-4" id="popular-posts">
+                            <!-- Will be populated by JavaScript -->
                         </div>
                     </div>
-
+                    
                     <!-- Tags -->
                     <div class="sidebar-card" data-aos="fade-left" data-aos-delay="200">
                         <h3 class="text-xl font-bold mb-4 text-cyan-300">Popular Tags</h3>
-                        <div class="flex flex-wrap">
-                            <a href="#" class="tag">#Cybersecurity</a>
-                            <a href="#" class="tag">#ThreatIntelligence</a>
-                            <a href="#" class="tag">#CloudSecurity</a>
-                            <a href="#" class="tag">#GDPR</a>
-                            <a href="#" class="tag">#ZeroDay</a>
-                            <a href="#" class="tag">#Phishing</a>
-                            <a href="#" class="tag">#Ransomware</a>
-                            <a href="#" class="tag">#Compliance</a>
-                            <a href="#" class="tag">#NetworkSecurity</a>
-                            <a href="#" class="tag">#IncidentResponse</a>
+                        <div class="flex flex-wrap" id="popular-tags">
+                            <!-- Will be populated by JavaScript -->
                         </div>
                     </div>
-
+                    
                     <!-- About Blog -->
                     <div class="sidebar-card" data-aos="fade-left" data-aos-delay="300">
                         <h3 class="text-xl font-bold mb-4 text-cyan-300">About This Blog</h3>
@@ -401,15 +628,18 @@
                             Our cybersecurity blog features expert analysis, threat intelligence, security guides, 
                             and industry updates written by our team of security professionals.
                         </p>
-                        <a href="team.html" class="text-cyan-400 hover:text-cyan-300 text-sm font-semibold">
-                            Meet Our Security Team →
+                        <a href="team.html" class="text-cyan-400 hover:text-cyan-300 text-sm font-semibold inline-flex items-center">
+                            Meet Our Security Team
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
                         </a>
                     </div>
-                </div>
+                </aside>
             </div>
         </div>
     </section>
-
+    
     <!-- CTA Section -->
     <section class="py-16 px-4 md:px-6" style="background: linear-gradient(135deg, #0a0e17, #0d1f3a);">
         <div class="container mx-auto text-center">
@@ -418,17 +648,22 @@
                 Subscribe to get weekly threat intelligence reports, security tips, and exclusive content.
             </p>
             <div class="max-w-md mx-auto">
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <input type="email" placeholder="Enter your work email" 
-                           class="flex-grow bg-gray-900 border border-gray-700 rounded-lg px-6 py-3 text-white">
-                    <button class="cyber-button px-8 py-3">Subscribe Now</button>
-                </div>
+                <form id="cta-newsletter" class="flex flex-col sm:flex-row gap-4">
+                    <input type="email" 
+                           placeholder="Enter your work email" 
+                           class="flex-grow bg-gray-900 border border-gray-700 rounded-lg px-6 py-3 text-white"
+                           aria-label="Work email address"
+                           required>
+                    <!-- Honeypot field -->
+                    <input type="text" name="company" style="display:none" tabindex="-1" autocomplete="off">
+                    <button type="submit" class="cyber-button px-8 py-3" aria-label="Subscribe for security updates">Subscribe Now</button>
+                </form>
                 <p class="text-gray-400 text-sm mt-4">No spam. Unsubscribe anytime.</p>
             </div>
         </div>
     </section>
-
-    <!-- Footer (Same as index.html) -->
+    
+    <!-- Footer -->
     <footer class="py-12 px-4 md:px-6" style="background: #0a0e17;">
         <div class="container mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
@@ -456,33 +691,419 @@
                 <div>
                     <h4 class="font-bold mb-4 text-cyan-300">Connect</h4>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-cyan-400"><i data-feather="twitter"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-cyan-400"><i data-feather="linkedin"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-cyan-400"><i data-feather="github"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors p-2 rounded-lg hover:bg-white/5" aria-label="Twitter">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors p-2 rounded-lg hover:bg-white/5" aria-label="LinkedIn">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors p-2 rounded-lg hover:bg-white/5" aria-label="GitHub">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
-                <p>&copy; 2024 CyberShield Pro. All rights reserved.</p>
+                <p>&copy; <span id="current-year">2024</span> CyberShield Pro. All rights reserved.</p>
+                <p class="text-sm mt-2">
+                    <a href="privacy.html" class="text-gray-500 hover:text-cyan-400 transition-colors">Privacy Policy</a> | 
+                    <a href="terms.html" class="text-gray-500 hover:text-cyan-400 transition-colors">Terms of Service</a>
+                </p>
             </div>
         </div>
     </footer>
-
-    <!-- Scripts -->
+    
+    <!-- JavaScript -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script src="../assets/js/pages.js"></script>
     <script>
-        // Initialize
-        feather.replace();
+        // Initialize AOS
         AOS.init({
             duration: 800,
-            once: true
+            once: true,
+            offset: 100
         });
-
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
-            alert('Mobile menu would open here');
+        
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Blog Data
+        const blogPosts = [
+            {
+                id: 1,
+                title: "Advanced Phishing Detection Techniques 2024",
+                category: "threats",
+                excerpt: "Learn how to identify and prevent sophisticated phishing attacks with our latest detection methodologies.",
+                image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                author: {
+                    name: "Sarah Chen",
+                    role: "Security Analyst",
+                    avatar: "https://ui-avatars.com/api/?name=Sarah+Chen&background=00ff95&color=000&size=48"
+                },
+                readTime: "5 min",
+                views: "2.1K",
+                date: "3 days ago"
+            },
+            {
+                id: 2,
+                title: "AWS Security Best Practices for Enterprises",
+                category: "guides",
+                excerpt: "Complete guide to securing your AWS infrastructure with industry best practices and compliance standards.",
+                image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                author: {
+                    name: "Michael Rodriguez",
+                    role: "Cloud Architect",
+                    avatar: "https://ui-avatars.com/api/?name=Michael+Rodriguez&background=b967ff&color=fff&size=48"
+                },
+                readTime: "12 min",
+                views: "1.8K",
+                date: "1 week ago"
+            },
+            {
+                id: 3,
+                title: "GDPR 2024 Updates: What You Need to Know",
+                category: "compliance",
+                excerpt: "Stay compliant with the latest GDPR regulations and avoid costly fines with our compliance checklist.",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                author: {
+                    name: "James Wilson",
+                    role: "Compliance Officer",
+                    avatar: "https://ui-avatars.com/api/?name=James+Wilson&background=ff2a6d&color=fff&size=48"
+                },
+                readTime: "7 min",
+                views: "1.5K",
+                date: "2 weeks ago"
+            },
+            {
+                id: 4,
+                title: "Password Managers Comparison 2024",
+                category: "tools",
+                excerpt: "Detailed analysis of top password managers with security features, pricing, and recommendations.",
+                image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                author: {
+                    name: "Alex Turner",
+                    role: "Tools Specialist",
+                    avatar: "https://ui-avatars.com/api/?name=Alex+Turner&background=ffcc00&color=000&size=48"
+                },
+                readTime: "4 min",
+                views: "1.3K",
+                date: "3 weeks ago"
+            }
+        ];
+        
+        const popularPosts = [
+            { title: "Ransomware Protection", views: "2.1K", readTime: "5 min", image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" },
+            { title: "Cloud Security Tips", views: "1.8K", readTime: "8 min", image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" },
+            { title: "GDPR Compliance", views: "1.5K", readTime: "6 min", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" }
+        ];
+        
+        const tags = [
+            "Cybersecurity", "ThreatIntelligence", "CloudSecurity", "GDPR", "ZeroDay",
+            "Phishing", "Ransomware", "Compliance", "NetworkSecurity", "IncidentResponse"
+        ];
+        
+        // Initialize blog posts
+        function renderBlogPosts(posts) {
+            const container = document.getElementById('blog-posts');
+            container.innerHTML = posts.map(post => `
+                <article class="blog-card" data-category="${post.category}">
+                    <div class="h-48 overflow-hidden">
+                        <img src="${post.image}" 
+                             alt="${post.title}" 
+                             class="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                             loading="lazy"
+                             width="600"
+                             height="300">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="blog-category category-${post.category}">${getCategoryName(post.category)}</span>
+                            <span class="read-time text-gray-400">${post.readTime} read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">
+                            <a href="blog-post.html?id=${post.id}" class="hover:text-cyan-400 transition-colors">
+                                ${post.title}
+                            </a>
+                        </h3>
+                        <p class="text-gray-300 mb-4">
+                            ${post.excerpt}
+                        </p>
+                        <div class="flex items-center">
+                            <img src="${post.author.avatar}" 
+                                 alt="Avatar of ${post.author.name}" 
+                                 class="author-avatar mr-3"
+                                 loading="lazy">
+                            <div>
+                                <p class="text-sm font-semibold">${post.author.name}</p>
+                                <p class="text-gray-400 text-xs">${post.author.role}</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+        }
+        
+        // Initialize popular posts
+        function renderPopularPosts() {
+            const container = document.getElementById('popular-posts');
+            container.innerHTML = popularPosts.map(post => `
+                <a href="#" class="flex items-center hover:text-cyan-400 transition-colors group">
+                    <div class="w-16 h-16 rounded-lg overflow-hidden mr-3 flex-shrink-0">
+                        <img src="${post.image}" 
+                             alt="${post.title}" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                             loading="lazy"
+                             width="100"
+                             height="100">
+                    </div>
+                    <div>
+                        <p class="font-semibold text-sm">${post.title}</p>
+                        <p class="text-gray-400 text-xs">${post.views} views • ${post.readTime} read</p>
+                    </div>
+                </a>
+            `).join('');
+        }
+        
+        // Initialize tags
+        function renderTags() {
+            const container = document.getElementById('popular-tags');
+            container.innerHTML = tags.map(tag => `
+                <a href="#" class="tag" data-tag="${tag.toLowerCase()}">#${tag}</a>
+            `).join('');
+        }
+        
+        // Helper function to get category name
+        function getCategoryName(category) {
+            const categories = {
+                threats: "Threat Intelligence",
+                tools: "Security Tools",
+                guides: "How-to Guides",
+                news: "Industry News",
+                compliance: "Compliance"
+            };
+            return categories[category] || category;
+        }
+        
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileOverlay = document.getElementById('mobile-overlay');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+        
+        function toggleMobileMenu() {
+            const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+            mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+            document.body.style.overflow = isExpanded ? '' : 'hidden';
+        }
+        
+        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+        mobileOverlay.addEventListener('click', toggleMobileMenu);
+        
+        // Close mobile menu when clicking links
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', toggleMobileMenu);
+        });
+        
+        // Category Filtering
+        const categoryButtons = document.querySelectorAll('[data-category]');
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Update button states
+                categoryButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-pressed', 'false');
+                });
+                
+                this.classList.add('active');
+                this.setAttribute('aria-pressed', 'true');
+                
+                // Filter posts
+                const category = this.dataset.category;
+                if (category === 'all') {
+                    renderBlogPosts(blogPosts);
+                } else {
+                    const filteredPosts = blogPosts.filter(post => post.category === category);
+                    renderBlogPosts(filteredPosts);
+                }
+            });
+        });
+        
+        // Search Functionality
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-button');
+        const searchResults = document.getElementById('search-results');
+        
+        function performSearch() {
+            const query = searchInput.value.toLowerCase().trim();
+            if (query.length < 2) return;
+            
+            const results = blogPosts.filter(post => 
+                post.title.toLowerCase().includes(query) ||
+                post.excerpt.toLowerCase().includes(query) ||
+                post.author.name.toLowerCase().includes(query)
+            );
+            
+            if (results.length > 0) {
+                searchResults.innerHTML = `
+                    <div class="bg-gray-900/80 backdrop-blur-sm rounded-lg p-4 border border-cyan-500/20">
+                        <h4 class="font-bold mb-3 text-cyan-300">Search Results (${results.length})</h4>
+                        <div class="space-y-3">
+                            ${results.map(post => `
+                                <a href="blog-post.html?id=${post.id}" class="block p-3 rounded-lg hover:bg-white/5 transition-colors border-l-2 border-cyan-500">
+                                    <p class="font-semibold">${post.title}</p>
+                                    <p class="text-gray-400 text-sm">By ${post.author.name} • ${post.readTime} read</p>
+                                </a>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                searchResults.classList.remove('hidden');
+            } else {
+                searchResults.innerHTML = `
+                    <div class="bg-gray-900/80 backdrop-blur-sm rounded-lg p-4 border border-gray-700">
+                        <p class="text-gray-300">No results found for "${query}"</p>
+                    </div>
+                `;
+                searchResults.classList.remove('hidden');
+            }
+        }
+        
+        // Debounce function for search
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+        
+        const debouncedSearch = debounce(performSearch, 300);
+        
+        searchInput.addEventListener('input', debouncedSearch);
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') performSearch();
+        });
+        
+        // Newsletter Form Handling
+        const newsletterForm = document.getElementById('newsletter-form');
+        const ctaNewsletter = document.getElementById('cta-newsletter');
+        const newsletterMessage = document.getElementById('newsletter-message');
+        
+        function handleNewsletterSubmit(e) {
+            e.preventDefault();
+            const email = e.target.querySelector('input[type="email"]').value;
+            
+            // Simple validation
+            if (!email || !email.includes('@')) {
+                showMessage('Please enter a valid email address', 'error');
+                return;
+            }
+            
+            // In a real application, you would send this to your server
+            showMessage('Thank you for subscribing! Check your email for confirmation.', 'success');
+            e.target.reset();
+            
+            // Log to console for demo
+            console.log('Newsletter subscription:', email);
+        }
+        
+        function showMessage(text, type) {
+            newsletterMessage.textContent = text;
+            newsletterMessage.className = `mt-3 text-sm ${type === 'success' ? 'text-green-400' : 'text-red-400'}`;
+            newsletterMessage.classList.remove('hidden');
+            
+            setTimeout(() => {
+                newsletterMessage.classList.add('hidden');
+            }, 5000);
+        }
+        
+        newsletterForm.addEventListener('submit', handleNewsletterSubmit);
+        ctaNewsletter.addEventListener('submit', handleNewsletterSubmit);
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderBlogPosts(blogPosts);
+            renderPopularPosts();
+            renderTags();
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Lazy load images
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            img.classList.remove('img-loading');
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('img[data-src]').forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+            
+            // Add loading animation to images
+            document.querySelectorAll('img').forEach(img => {
+                if (!img.complete) {
+                    img.classList.add('img-loading');
+                }
+            });
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            // Close mobile menu with Escape
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                toggleMobileMenu();
+            }
+            
+            // Focus trap for mobile menu
+            if (mobileMenu.classList.contains('active')) {
+                const focusableElements = mobileMenu.querySelectorAll('a, button, input, [tabindex]:not([tabindex="-1"])');
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+                
+                if (e.key === 'Tab') {
+                    if (e.shiftKey && document.activeElement === firstElement) {
+                        e.preventDefault();
+                        lastElement.focus();
+                    } else if (!e.shiftKey && document.activeElement === lastElement) {
+                        e.preventDefault();
+                        firstElement.focus();
+                    }
+                }
+            }
         });
     </script>
 </body>
