@@ -100,25 +100,27 @@
         }
         
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #7c3aed;
-            --accent-color: #0ea5e9;
-            --success-color: #10b981;
-            --warning-color: #f59e0b;
-            --danger-color: #ef4444;
-            --dark-color: #0f172a;
-            --light-color: #f8fafc;
-            --gray-color: #64748b;
-            --light-gray: #e2e8f0;
+            --primary-cyan: #00f3ff;
+            --primary-pink: #ff2a6d;
+            --primary-green: #00ff95;
+            --primary-purple: #b967ff;
+            --primary-yellow: #ffcc00;
+            --dark-bg: #0a0e17;
+            --card-bg: rgba(26, 29, 41, 0.9);
+            --light-text: #ffffff;
+            --gray-text: rgba(255, 255, 255, 0.7);
             --border-radius: 12px;
-            --transition: all 0.3s ease;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
         }
         
         body {
             font-family: 'Poppins', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: var(--light-color);
+            color: var(--light-text);
+            background: var(--dark-bg);
+            min-height: 100vh;
+            overflow-x: hidden;
         }
         
         .container {
@@ -127,25 +129,74 @@
             padding: 0 20px;
         }
         
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--dark-color);
-            margin-bottom: 1rem;
-            text-align: center;
+        /* Header with Logo and Menu Bar - Same as Blog */
+        .simplified-header {
+            background: rgba(10, 14, 23, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
         }
         
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: var(--gray-color);
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 3rem;
+        .simplified-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-cyan);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo::before {
+            content: "🛡️";
+            font-size: 1.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+        
+        .nav-link {
+            color: var(--gray-text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-cyan);
+            background: rgba(0, 243, 255, 0.1);
+        }
+        
+        .nav-link.active {
+            color: var(--primary-cyan);
+            background: rgba(0, 243, 255, 0.15);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
         }
         
         .btn {
-            display: inline-block;
-            padding: 12px 24px;
+            padding: 10px 24px;
             border-radius: 8px;
             font-weight: 600;
             text-decoration: none;
@@ -153,116 +204,47 @@
             border: none;
             transition: var(--transition);
             font-family: 'Poppins', sans-serif;
-        }
-        
-        .btn-primary {
-            background: var(--primary-color);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background: #1d4ed8;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+            font-size: 0.9rem;
         }
         
         .btn-outline {
             background: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
+            color: var(--primary-cyan);
+            border: 2px solid var(--primary-cyan);
         }
         
         .btn-outline:hover {
-            background: var(--primary-color);
-            color: white;
+            background: rgba(0, 243, 255, 0.1);
         }
         
-        .btn-large {
-            padding: 16px 32px;
-            font-size: 1.1rem;
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-cyan), #00a8cc);
+            color: var(--dark-bg);
+            font-weight: 700;
+            border: none;
         }
         
-        /* Modern Menu Bar */
-        .menu-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            padding: 0 20px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .menu-container {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-        }
-        
-        .menu {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .menu-item {
-            position: relative;
-        }
-        
-        .menu-link {
-            color: var(--dark-color);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
-            padding: 10px 0;
-            transition: var(--transition);
-            position: relative;
-        }
-        
-        .menu-link:hover {
-            color: var(--primary-color);
-        }
-        
-        .menu-link.active {
-            color: var(--primary-color);
-        }
-        
-        .menu-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--primary-color);
-            border-radius: 2px;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 243, 255, 0.3);
         }
         
         .menu-toggle {
             display: none;
             background: none;
             border: none;
-            color: var(--dark-color);
+            color: var(--primary-cyan);
             font-size: 1.5rem;
             cursor: pointer;
-            padding: 10px;
         }
         
-        /* Page Header */
+        /* Page Header - Blog Style */
         .page-header {
-            padding: 150px 0 80px;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 180px 0 100px;
+            background: linear-gradient(135deg, #0a0e17, #1a1d29, #1a1a2e);
             text-align: center;
             position: relative;
             overflow: hidden;
-            margin-top: 70px;
         }
         
         .page-header::before {
@@ -273,25 +255,54 @@
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 42, 109, 0.1) 0%, transparent 50%);
             pointer-events: none;
         }
         
         .page-header h1 {
-            font-size: 3.5rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 20px;
-            font-weight: 800;
+            line-height: 1.2;
         }
         
         .page-header p {
-            color: var(--light-gray);
             font-size: 1.3rem;
+            color: var(--gray-text);
             max-width: 700px;
-            margin: 0 auto;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+        
+        .header-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Section Styles */
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray-text);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            line-height: 1.8;
         }
         
         /* Benefits Section */
@@ -307,42 +318,44 @@
         }
         
         .benefit-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: var(--border-radius);
             padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: var(--transition);
-            border: 1px solid var(--light-gray);
+            backdrop-filter: blur(10px);
         }
         
         .benefit-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 12px 40px rgba(37, 99, 235, 0.15);
-            border-color: var(--primary-color);
+            border-color: var(--primary-cyan);
+            box-shadow: 0 20px 40px rgba(0, 243, 255, 0.15);
         }
         
         .benefit-card i {
-            font-size: 2.8rem;
-            color: var(--primary-color);
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 25px;
         }
         
         .benefit-card h3 {
             font-size: 1.5rem;
-            color: var(--dark-color);
+            color: var(--light-text);
             margin-bottom: 15px;
         }
         
         .benefit-card p {
-            color: var(--gray-color);
+            color: var(--gray-text);
             line-height: 1.8;
         }
         
-        /* Job Openings */
+        /* Job Openings - Blog Card Style */
         .job-openings {
             padding: 100px 0;
-            background: #f8fafc;
+            background: rgba(10, 14, 23, 0.5);
         }
         
         .job-filters {
@@ -355,9 +368,10 @@
         
         .job-filter {
             padding: 12px 24px;
-            background: white;
-            border: 2px solid var(--light-gray);
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
             border-radius: 50px;
+            color: var(--gray-text);
             cursor: pointer;
             transition: var(--transition);
             font-weight: 500;
@@ -365,14 +379,15 @@
         }
         
         .job-filter.active {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
+            background: var(--primary-cyan);
+            color: var(--dark-bg);
+            border-color: var(--primary-cyan);
+            font-weight: 600;
         }
         
         .job-filter:hover:not(.active) {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
+            border-color: var(--primary-cyan);
+            color: var(--primary-cyan);
         }
         
         .job-listings {
@@ -380,39 +395,40 @@
         }
         
         .job-listing {
-            background: white;
+            background: var(--card-bg);
             border-radius: var(--border-radius);
             padding: 35px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: var(--transition);
-            border: 1px solid var(--light-gray);
+            backdrop-filter: blur(10px);
         }
         
         .job-listing:hover {
-            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.1);
-            border-color: var(--primary-color);
+            border-color: var(--primary-cyan);
+            box-shadow: 0 15px 35px rgba(0, 243, 255, 0.1);
+            transform: translateY(-5px);
         }
         
         .job-info h3 {
-            font-size: 1.4rem;
-            color: var(--dark-color);
+            font-size: 1.5rem;
+            color: var(--light-text);
             margin-bottom: 15px;
         }
         
         .job-meta {
             display: flex;
             gap: 25px;
-            color: var(--gray-color);
+            color: var(--gray-text);
             font-size: 0.95rem;
         }
         
         .job-meta i {
             margin-right: 8px;
-            color: var(--primary-color);
+            color: var(--primary-cyan);
         }
         
         .job-action {
@@ -433,23 +449,25 @@
         }
         
         .value-card {
-            text-align: center;
-            padding: 35px 25px;
-            background: white;
+            background: var(--card-bg);
             border-radius: var(--border-radius);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: var(--transition);
+            backdrop-filter: blur(10px);
         }
         
         .value-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(37, 99, 235, 0.1);
+            border-color: var(--primary-cyan);
+            box-shadow: 0 15px 35px rgba(0, 243, 255, 0.1);
         }
         
         .value-icon {
             width: 70px;
             height: 70px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -459,21 +477,21 @@
         
         .value-icon i {
             font-size: 1.8rem;
-            color: white;
+            color: var(--dark-bg);
         }
         
         .value-card h3 {
-            font-size: 1.3rem;
-            color: var(--dark-color);
+            font-size: 1.4rem;
+            color: var(--light-text);
             margin-bottom: 15px;
         }
         
         .value-card p {
-            color: var(--gray-color);
+            color: var(--gray-text);
             line-height: 1.8;
         }
         
-        /* Process Steps */
+        /* Process Steps - Modern Timeline */
         .process-steps {
             margin-top: 50px;
             position: relative;
@@ -486,7 +504,7 @@
             top: 0;
             bottom: 0;
             width: 3px;
-            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(to bottom, var(--primary-cyan), var(--primary-purple));
         }
         
         .process-step {
@@ -498,18 +516,18 @@
         .step-number {
             width: 70px;
             height: 70px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--dark-bg);
             font-size: 1.8rem;
             font-weight: bold;
             margin-right: 35px;
             flex-shrink: 0;
             z-index: 1;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+            border: 3px solid var(--dark-bg);
         }
         
         .step-content {
@@ -517,42 +535,44 @@
         }
         
         .step-content h3 {
-            font-size: 1.4rem;
-            color: var(--dark-color);
+            font-size: 1.5rem;
+            color: var(--light-text);
             margin-bottom: 10px;
         }
         
         .step-content p {
-            color: var(--gray-color);
+            color: var(--gray-text);
             line-height: 1.8;
         }
         
-        /* Student Programs */
+        /* Student Programs - Blog Style Card */
         .student-programs {
             margin: 100px 0;
         }
         
         .student-program-card {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.1), rgba(185, 103, 255, 0.1));
             border-radius: var(--border-radius);
             padding: 50px;
-            color: white;
+            border: 1px solid rgba(0, 243, 255, 0.2);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.3);
+            backdrop-filter: blur(10px);
         }
         
         .student-program-content h3 {
             font-size: 2rem;
+            color: var(--primary-cyan);
             margin-bottom: 20px;
         }
         
         .student-program-content p {
+            color: var(--gray-text);
             font-size: 1.1rem;
             line-height: 1.8;
-            opacity: 0.9;
             margin-bottom: 25px;
+            max-width: 600px;
         }
         
         .program-details {
@@ -564,29 +584,45 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            color: var(--gray-text);
             font-weight: 500;
         }
         
         .program-details i {
-            font-size: 1.2rem;
+            color: var(--primary-cyan);
         }
         
-        /* CTA Section */
+        /* CTA Section - Blog Style */
         .cta-section {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background: linear-gradient(135deg, #0a0e17, #0d1f3a);
             padding: 100px 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 243, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 42, 109, 0.15) 0%, transparent 50%);
+            pointer-events: none;
         }
         
         .cta-content h2 {
-            font-size: 2.8rem;
-            color: white;
+            font-size: 3rem;
+            color: var(--primary-cyan);
             margin-bottom: 20px;
             font-weight: 700;
         }
         
         .cta-content p {
-            color: #cbd5e1;
+            color: var(--gray-text);
             font-size: 1.3rem;
             margin-bottom: 40px;
             max-width: 700px;
@@ -601,11 +637,16 @@
             flex-wrap: wrap;
         }
         
-        /* Footer */
+        .btn-large {
+            padding: 16px 32px;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer - Blog Style */
         .footer {
-            background: var(--dark-color);
-            color: white;
+            background: #0a0e17;
             padding: 80px 0 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .footer-grid {
@@ -617,8 +658,8 @@
         
         .footer-col h3 {
             font-size: 1.3rem;
+            color: var(--primary-cyan);
             margin-bottom: 25px;
-            color: white;
         }
         
         .footer-col ul {
@@ -630,13 +671,13 @@
         }
         
         .footer-col a {
-            color: #cbd5e1;
+            color: var(--gray-text);
             text-decoration: none;
             transition: var(--transition);
         }
         
         .footer-col a:hover {
-            color: white;
+            color: var(--primary-cyan);
         }
         
         .social-links {
@@ -654,12 +695,13 @@
             align-items: center;
             justify-content: center;
             transition: var(--transition);
-            color: white;
+            color: var(--gray-text);
             text-decoration: none;
         }
         
         .social-links a:hover {
-            background: var(--primary-color);
+            background: var(--primary-cyan);
+            color: var(--dark-bg);
             transform: translateY(-3px);
         }
         
@@ -667,18 +709,18 @@
             text-align: center;
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #94a3b8;
+            color: var(--gray-text);
             font-size: 0.9rem;
         }
         
         .footer-bottom a {
-            color: #94a3b8;
+            color: var(--primary-cyan);
             text-decoration: none;
             transition: var(--transition);
         }
         
         .footer-bottom a:hover {
-            color: white;
+            opacity: 0.8;
         }
         
         /* Modal */
@@ -689,15 +731,16 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             z-index: 2000;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            backdrop-filter: blur(5px);
         }
         
         .modal-content {
-            background: white;
+            background: var(--card-bg);
             border-radius: var(--border-radius);
             padding: 40px;
             max-width: 600px;
@@ -705,6 +748,7 @@
             max-height: 90vh;
             overflow-y: auto;
             position: relative;
+            border: 1px solid rgba(0, 243, 255, 0.2);
         }
         
         .modal-close {
@@ -715,18 +759,19 @@
             border: none;
             font-size: 1.8rem;
             cursor: pointer;
-            color: var(--gray-color);
+            color: var(--primary-cyan);
             transition: var(--transition);
         }
         
         .modal-close:hover {
-            color: var(--danger-color);
+            transform: rotate(90deg);
         }
         
         .modal h2 {
-            color: var(--dark-color);
+            color: var(--primary-cyan);
             margin-bottom: 30px;
             text-align: center;
+            font-size: 2rem;
         }
         
         .form-group {
@@ -736,26 +781,35 @@
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            color: var(--dark-color);
+            color: var(--light-text);
             font-weight: 500;
         }
         
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
-            padding: 12px 16px;
-            border: 1px solid var(--light-gray);
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
             font-family: 'Poppins', sans-serif;
             font-size: 1rem;
+            color: var(--light-text);
             transition: var(--transition);
         }
         
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 0 3px rgba(0, 243, 255, 0.1);
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--gray-text);
         }
         
         .form-actions {
@@ -767,14 +821,15 @@
         .job-description {
             margin-top: 20px;
             padding-top: 20px;
-            border-top: 1px solid var(--light-gray);
-            color: var(--gray-color);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray-text);
             line-height: 1.8;
         }
         
         .job-description h4 {
-            color: var(--dark-color);
+            color: var(--primary-cyan);
             margin: 15px 0 10px;
+            font-size: 1.1rem;
         }
         
         .job-description ul {
@@ -782,53 +837,50 @@
             margin-bottom: 15px;
         }
         
+        .job-description li {
+            margin-bottom: 5px;
+        }
+        
         /* Responsive Design */
-        @media (max-width: 992px) {
-            .section-title {
-                font-size: 2.2rem;
+        @media (max-width: 1024px) {
+            .page-header h1 {
+                font-size: 3.2rem;
             }
             
-            .page-header h1 {
-                font-size: 3rem;
+            .section-title {
+                font-size: 2.4rem;
             }
         }
         
         @media (max-width: 768px) {
             .menu-toggle {
                 display: block;
-                position: absolute;
-                right: 20px;
-                top: 50%;
-                transform: translateY(-50%);
             }
             
-            .menu {
+            .nav-links {
                 position: fixed;
-                top: 70px;
+                top: 80px;
                 left: 0;
                 right: 0;
-                background: white;
+                background: var(--card-bg);
                 flex-direction: column;
                 padding: 20px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                gap: 10px;
                 display: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
             }
             
-            .menu.show {
+            .nav-links.show {
                 display: flex;
             }
             
-            .menu-item {
-                text-align: center;
-            }
-            
-            .menu-link {
-                display: block;
-                padding: 15px;
+            .nav-buttons {
+                display: none;
             }
             
             .page-header {
-                padding: 120px 0 60px;
+                padding: 150px 0 80px;
             }
             
             .page-header h1 {
@@ -875,6 +927,7 @@
                 flex-direction: column;
                 text-align: center;
                 gap: 30px;
+                padding: 40px 30px;
             }
             
             .program-details {
@@ -888,13 +941,18 @@
             }
             
             .cta-content h2 {
-                font-size: 2.2rem;
+                font-size: 2.4rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
         }
         
         @media (max-width: 480px) {
             .section-title {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .page-header h1 {
@@ -907,55 +965,87 @@
             }
             
             .modal-content {
-                padding: 25px;
+                padding: 30px 20px;
             }
+            
+            .job-filter {
+                padding: 10px 20px;
+                font-size: 0.85rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-cyan);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00d4e0;
         }
     </style>
 </head>
 <body>
-    <!-- Modern Menu Bar -->
-    <nav class="menu-bar">
+    <!-- Header with Logo and Menu Bar (Same as Blog) -->
+    <header class="simplified-header">
         <div class="container">
-            <div class="menu-container">
-                <button class="menu-toggle" aria-label="Toggle menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-                
-                <ul class="menu" id="main-menu">
-                    <li class="menu-item">
-                        <a href="../index.html" class="menu-link">Home</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="services.html" class="menu-link">Services</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="pricing.html" class="menu-link">Pricing</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="blog.html" class="menu-link">Blog</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="case-studies.html" class="menu-link">Case Studies</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="resources.html" class="menu-link">Resources</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="careers.html" class="menu-link active">Careers</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="contact.html" class="menu-link">Contact</a>
-                    </li>
-                </ul>
+            <a href="../index.html" class="logo">CyberShield Pro</a>
+            
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-links" id="main-menu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+                <li><a href="blog.html" class="nav-link">Blog</a></li>
+                <li><a href="case-studies.html" class="nav-link">Case Studies</a></li>
+                <li><a href="resources.html" class="nav-link">Resources</a></li>
+                <li><a href="careers.html" class="nav-link active">Careers</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="nav-buttons">
+                <a href="login.html" class="btn btn-outline">Login</a>
+                <a href="signup.html" class="btn btn-primary">Get Started</a>
             </div>
         </div>
-    </nav>
+    </header>
 
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
-            <h1>Join Our Mission</h1>
-            <p>Work with cutting-edge technology and a team of experts dedicated to making the internet safer for everyone.</p>
+            <h1 class="animate-fade-in-up">Build Your Career in Cybersecurity</h1>
+            <p class="animate-fade-in-up">Join our team of experts working at the forefront of digital security. Make a real impact protecting organizations worldwide.</p>
+            <div class="header-buttons animate-fade-in-up">
+                <a href="#openings" class="btn btn-primary btn-large">View Open Positions</a>
+                <a href="#culture" class="btn btn-outline btn-large">Our Culture</a>
+            </div>
         </div>
     </section>
 
@@ -969,44 +1059,44 @@
                 <div class="benefit-card">
                     <i class="fas fa-briefcase"></i>
                     <h3>Remote-First Culture</h3>
-                    <p>Work from anywhere with flexible hours and remote work allowances.</p>
+                    <p>Work from anywhere with flexible hours and remote work allowances. We trust you to do your best work.</p>
                 </div>
 
                 <div class="benefit-card">
                     <i class="fas fa-graduation-cap"></i>
                     <h3>Learning & Development</h3>
-                    <p>$5,000 annual training budget and access to industry certifications.</p>
+                    <p>$5,000 annual training budget and access to industry certifications. Continuous growth is our priority.</p>
                 </div>
 
                 <div class="benefit-card">
                     <i class="fas fa-heart"></i>
                     <h3>Health & Wellness</h3>
-                    <p>Comprehensive medical, dental, vision, and mental health benefits.</p>
+                    <p>Comprehensive medical, dental, vision, and mental health benefits for you and your family.</p>
                 </div>
 
                 <div class="benefit-card">
                     <i class="fas fa-coins"></i>
                     <h3>Competitive Compensation</h3>
-                    <p>Above-market salaries, equity options, and annual performance bonuses.</p>
+                    <p>Above-market salaries, equity options, and annual performance bonuses that reward excellence.</p>
                 </div>
 
                 <div class="benefit-card">
                     <i class="fas fa-umbrella-beach"></i>
                     <h3>Generous Time Off</h3>
-                    <p>Unlimited PTO, parental leave, and company-wide recharge days.</p>
+                    <p>Unlimited PTO, parental leave, and company-wide recharge days. We believe in work-life balance.</p>
                 </div>
 
                 <div class="benefit-card">
                     <i class="fas fa-laptop-code"></i>
                     <h3>Tech & Equipment</h3>
-                    <p>Latest technology equipment and $1,000 home office setup budget.</p>
+                    <p>Latest technology equipment and $1,000 home office setup budget. We invest in your success.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Current Openings -->
-    <section class="job-openings">
+    <section class="job-openings" id="openings">
         <div class="container">
             <h2 class="section-title">Current Open Positions</h2>
             <p class="section-subtitle">Find the perfect role that matches your skills and ambitions.</p>
@@ -1026,7 +1116,7 @@
     </section>
 
     <!-- Our Culture -->
-    <section class="page-section">
+    <section class="page-section" id="culture">
         <div class="container">
             <h2 class="section-title">Our Culture & Values</h2>
             <p class="section-subtitle">The principles that guide everything we do.</p>
@@ -1037,7 +1127,7 @@
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <h3>Security First</h3>
-                    <p>We prioritize security in everything we do, both for our customers and internally.</p>
+                    <p>We prioritize security in everything we do, both for our customers and internally. Safety is non-negotiable.</p>
                 </div>
 
                 <div class="value-card">
@@ -1045,7 +1135,7 @@
                         <i class="fas fa-users"></i>
                     </div>
                     <h3>Collaboration</h3>
-                    <p>We believe in the power of teamwork and open communication across all levels.</p>
+                    <p>We believe in the power of teamwork and open communication across all levels. Together we achieve more.</p>
                 </div>
 
                 <div class="value-card">
@@ -1053,7 +1143,7 @@
                         <i class="fas fa-lightbulb"></i>
                     </div>
                     <h3>Innovation</h3>
-                    <p>We encourage creative thinking and continuous improvement in our products and processes.</p>
+                    <p>We encourage creative thinking and continuous improvement. New ideas drive our success.</p>
                 </div>
 
                 <div class="value-card">
@@ -1061,7 +1151,7 @@
                         <i class="fas fa-handshake"></i>
                     </div>
                     <h3>Integrity</h3>
-                    <p>We operate with transparency, honesty, and ethical practices in all our dealings.</p>
+                    <p>We operate with transparency, honesty, and ethical practices. Trust is our foundation.</p>
                 </div>
 
                 <div class="value-card">
@@ -1069,7 +1159,7 @@
                         <i class="fas fa-rocket"></i>
                     </div>
                     <h3>Growth Mindset</h3>
-                    <p>We embrace challenges as opportunities to learn and grow personally and professionally.</p>
+                    <p>We embrace challenges as opportunities to learn and grow. Progress over perfection.</p>
                 </div>
 
                 <div class="value-card">
@@ -1077,7 +1167,7 @@
                         <i class="fas fa-heart"></i>
                     </div>
                     <h3>Customer Success</h3>
-                    <p>Our success is measured by the success and satisfaction of our customers.</p>
+                    <p>Our success is measured by the success and satisfaction of our customers. We serve first.</p>
                 </div>
             </div>
         </div>
@@ -1147,15 +1237,16 @@
             <div class="student-program-card">
                 <div class="student-program-content">
                     <h3>Internship Program</h3>
-                    <p>Join our 12-week summer internship program for students passionate about cybersecurity. Gain hands-on experience working on real projects with mentorship from industry experts.</p>
+                    <p>Join our 12-week summer internship program for students passionate about cybersecurity. Gain hands-on experience working on real projects with mentorship from industry experts. Previous interns have gone on to receive full-time offers.</p>
                     <div class="program-details">
                         <span><i class="fas fa-calendar"></i> Summer 2024</span>
                         <span><i class="fas fa-clock"></i> 12 weeks</span>
                         <span><i class="fas fa-graduation-cap"></i> All majors welcome</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Remote or SF Office</span>
                     </div>
                 </div>
                 <div class="student-program-action">
-                    <a href="#internship" class="btn btn-outline">Learn More</a>
+                    <a href="#internship" class="btn btn-primary btn-large">Apply for Internship</a>
                 </div>
             </div>
         </div>
@@ -1166,9 +1257,9 @@
         <div class="container">
             <div class="cta-content">
                 <h2>Ready to Make an Impact?</h2>
-                <p>Submit your application today and join our team of cybersecurity innovators.</p>
+                <p>Join our team of cybersecurity innovators and help us build a safer digital world for everyone.</p>
                 <div class="cta-buttons">
-                    <a href="#all-jobs" class="btn btn-primary btn-large">View All Positions</a>
+                    <a href="#openings" class="btn btn-primary btn-large">View All Positions</a>
                     <a href="mailto:careers@cybershieldpro.com" class="btn btn-outline btn-large">Email Your Resume</a>
                 </div>
             </div>
@@ -1262,7 +1353,7 @@
                 }
             });
             
-            // Job Data
+            // Job Data with detailed information
             const jobListings = [
                 {
                     id: 1,
@@ -1271,8 +1362,10 @@
                     location: "Remote",
                     type: "Full-time",
                     posted: "2 days ago",
-                    description: "Design and implement cutting-edge security solutions for enterprise clients. You'll be responsible for developing security architectures, implementing security controls, and mentoring junior engineers.",
-                    requirements: ["5+ years security experience", "Expertise in cloud security (AWS/Azure/GCP)", "Python/Go experience", "Knowledge of security frameworks", "Excellent problem-solving skills"]
+                    salary: "$140,000 - $180,000",
+                    description: "Design and implement cutting-edge security solutions for enterprise clients. You'll be responsible for developing security architectures, implementing security controls, conducting security assessments, and mentoring junior engineers. Work with modern security technologies and frameworks.",
+                    requirements: ["5+ years security experience", "Expertise in cloud security (AWS/Azure/GCP)", "Python/Go experience", "Knowledge of security frameworks (NIST, ISO 27001)", "Experience with SIEM/SOAR solutions", "Excellent problem-solving and communication skills"],
+                    benefits: ["Stock options", "Unlimited PTO", "Full health coverage", "Learning budget", "Remote work setup"]
                 },
                 {
                     id: 2,
@@ -1281,8 +1374,10 @@
                     location: "San Francisco / Remote",
                     type: "Full-time",
                     posted: "1 week ago",
-                    description: "Build scalable security applications and platforms. Work with modern technologies to create intuitive interfaces and robust backend systems.",
-                    requirements: ["3+ years full-stack development", "React/Node.js expertise", "AWS experience", "TypeScript knowledge", "API design experience"]
+                    salary: "$120,000 - $160,000",
+                    description: "Build scalable security applications and platforms. Work with modern technologies to create intuitive interfaces and robust backend systems. Collaborate with security experts to translate security requirements into functional applications.",
+                    requirements: ["3+ years full-stack development", "React/Node.js expertise", "AWS experience", "TypeScript knowledge", "API design experience", "Understanding of security principles"],
+                    benefits: ["Stock options", "Flexible hours", "Health insurance", "Conference budget", "Home office stipend"]
                 },
                 {
                     id: 3,
@@ -1291,8 +1386,10 @@
                     location: "North America",
                     type: "Full-time",
                     posted: "3 days ago",
-                    description: "Drive enterprise sales and build strategic partnerships. Lead complex sales cycles and build relationships with C-level executives.",
-                    requirements: ["7+ years B2B sales", "Cybersecurity industry experience", "Proven track record", "Strong negotiation skills", "CRM experience"]
+                    salary: "$150,000 + Commission",
+                    description: "Drive enterprise sales and build strategic partnerships. Lead complex sales cycles and build relationships with C-level executives. Develop sales strategies and work closely with product and marketing teams.",
+                    requirements: ["7+ years B2B sales", "Cybersecurity industry experience", "Proven track record of exceeding targets", "Strong negotiation skills", "CRM experience (Salesforce)", "Experience selling to enterprise clients"],
+                    benefits: ["Uncapped commission", "Stock options", "Quarterly bonuses", "Travel budget", "Executive benefits"]
                 },
                 {
                     id: 4,
@@ -1301,8 +1398,10 @@
                     location: "Remote",
                     type: "Full-time",
                     posted: "5 days ago",
-                    description: "Analyze threats and provide actionable intelligence. Monitor emerging threats and provide recommendations for defense strategies.",
-                    requirements: ["3+ years threat analysis", "SIEM/SOAR experience", "OSINT expertise", "Malware analysis skills", "Threat hunting experience"]
+                    salary: "$110,000 - $150,000",
+                    description: "Analyze threats and provide actionable intelligence. Monitor emerging threats and provide recommendations for defense strategies. Work with our SOC team to improve detection and response capabilities.",
+                    requirements: ["3+ years threat analysis", "SIEM/SOAR experience", "OSINT expertise", "Malware analysis skills", "Threat hunting experience", "Knowledge of threat intelligence platforms"],
+                    benefits: ["Stock options", "Remote work", "Training budget", "Health benefits", "Flexible schedule"]
                 },
                 {
                     id: 5,
@@ -1311,8 +1410,10 @@
                     location: "Remote",
                     type: "Full-time",
                     posted: "2 weeks ago",
-                    description: "Ensure customer satisfaction and adoption of our security solutions. Build strong relationships with customers and help them achieve their security goals.",
-                    requirements: ["4+ years customer success", "Cybersecurity knowledge", "Strong communication skills", "Project management experience", "Data analysis skills"]
+                    salary: "$90,000 - $130,000",
+                    description: "Ensure customer satisfaction and adoption of our security solutions. Build strong relationships with customers and help them achieve their security goals. Work as a trusted advisor to enterprise clients.",
+                    requirements: ["4+ years customer success", "Cybersecurity knowledge", "Strong communication skills", "Project management experience", "Data analysis skills", "Experience with enterprise clients"],
+                    benefits: ["Performance bonuses", "Remote work", "Health benefits", "Learning budget", "Quarterly team events"]
                 },
                 {
                     id: 6,
@@ -1321,12 +1422,14 @@
                     location: "Remote",
                     type: "Full-time",
                     posted: "1 week ago",
-                    description: "Build and maintain secure infrastructure and CI/CD pipelines. Implement automation and monitoring solutions for our security platforms.",
-                    requirements: ["4+ years DevOps experience", "Kubernetes expertise", "Infrastructure as Code", "CI/CD pipeline experience", "Monitoring and logging"]
+                    salary: "$130,000 - $170,000",
+                    description: "Build and maintain secure infrastructure and CI/CD pipelines. Implement automation and monitoring solutions for our security platforms. Ensure high availability and security of our production systems.",
+                    requirements: ["4+ years DevOps experience", "Kubernetes expertise", "Infrastructure as Code (Terraform)", "CI/CD pipeline experience", "Monitoring and logging expertise", "Security-focused mindset"],
+                    benefits: ["Stock options", "Remote first", "Latest equipment", "Conference budget", "Health and wellness"]
                 }
             ];
             
-            // Render job listings
+            // Render job listings with detailed information
             function renderJobListings(jobs) {
                 const container = document.getElementById('job-listings-container');
                 container.innerHTML = jobs.map(job => `
@@ -1337,12 +1440,17 @@
                                 <span><i class="fas fa-map-marker-alt"></i> ${job.location}</span>
                                 <span><i class="fas fa-briefcase"></i> ${job.type}</span>
                                 <span><i class="fas fa-clock"></i> ${job.posted}</span>
+                                <span><i class="fas fa-money-bill-wave"></i> ${job.salary}</span>
                             </div>
                             <div class="job-description" style="display: none;">
                                 <p>${job.description}</p>
                                 <h4>Requirements:</h4>
                                 <ul>
                                     ${job.requirements.map(req => `<li>${req}</li>`).join('')}
+                                </ul>
+                                <h4>Benefits:</h4>
+                                <ul>
+                                    ${job.benefits.map(ben => `<li>${ben}</li>`).join('')}
                                 </ul>
                             </div>
                         </div>
@@ -1353,7 +1461,7 @@
                     </div>
                 `).join('');
                 
-                // Add event listeners
+                // Add event listeners to apply buttons
                 document.querySelectorAll('.apply-btn').forEach(btn => {
                     btn.addEventListener('click', function() {
                         const jobId = this.dataset.jobId;
@@ -1361,6 +1469,7 @@
                     });
                 });
                 
+                // Add event listeners to details buttons
                 document.querySelectorAll('.details-btn').forEach(btn => {
                     btn.addEventListener('click', function() {
                         const jobId = this.dataset.jobId;
@@ -1370,9 +1479,11 @@
                         if (description.style.display === 'none') {
                             description.style.display = 'block';
                             this.textContent = 'Hide Details';
+                            this.classList.add('active');
                         } else {
                             description.style.display = 'none';
                             this.textContent = 'View Details';
+                            this.classList.remove('active');
                         }
                     });
                 });
@@ -1381,15 +1492,15 @@
             // Initialize job listings
             renderJobListings(jobListings);
             
-            // Job filtering
+            // Job filtering functionality
             const jobFilters = document.querySelectorAll('.job-filter');
             jobFilters.forEach(filter => {
                 filter.addEventListener('click', function() {
-                    // Update active state
+                    // Update active state of filters
                     jobFilters.forEach(f => f.classList.remove('active'));
                     this.classList.add('active');
                     
-                    // Filter jobs
+                    // Filter jobs based on selected category
                     const filterValue = this.dataset.filter;
                     let filteredJobs;
                     
@@ -1400,10 +1511,16 @@
                     }
                     
                     renderJobListings(filteredJobs);
+                    
+                    // Scroll to job listings section
+                    document.querySelector('.job-listings').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 });
             });
             
-            // Application Modal
+            // Application Modal functionality
             const modal = document.getElementById('application-modal');
             const modalClose = document.querySelector('.modal-close');
             
@@ -1411,28 +1528,36 @@
                 const job = jobListings.find(j => j.id == jobId);
                 if (!job) return;
                 
+                // Create form with job-specific fields
                 const form = document.getElementById('job-application-form');
                 form.innerHTML = `
                     <input type="hidden" name="job_title" value="${job.title}">
+                    <input type="hidden" name="job_id" value="${job.id}">
                     
                     <div class="form-group">
                         <label for="applicant-name">Full Name *</label>
-                        <input type="text" id="applicant-name" name="name" required>
+                        <input type="text" id="applicant-name" name="name" required placeholder="John Doe">
                     </div>
                     
                     <div class="form-group">
                         <label for="applicant-email">Email Address *</label>
-                        <input type="email" id="applicant-email" name="email" required>
+                        <input type="email" id="applicant-email" name="email" required placeholder="john@example.com">
                     </div>
                     
                     <div class="form-group">
                         <label for="applicant-phone">Phone Number</label>
-                        <input type="tel" id="applicant-phone" name="phone">
+                        <input type="tel" id="applicant-phone" name="phone" placeholder="+1 (555) 123-4567">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="applicant-location">Current Location</label>
+                        <input type="text" id="applicant-location" name="location" placeholder="City, Country">
                     </div>
                     
                     <div class="form-group">
                         <label for="applicant-resume">Resume/CV *</label>
                         <input type="file" id="applicant-resume" name="resume" accept=".pdf,.doc,.docx" required>
+                        <small style="color: var(--gray-text);">Accepted formats: PDF, DOC, DOCX (Max 5MB)</small>
                     </div>
                     
                     <div class="form-group">
@@ -1441,17 +1566,45 @@
                     </div>
                     
                     <div class="form-group">
+                        <label for="applicant-github">GitHub Profile (for engineering roles)</label>
+                        <input type="url" id="applicant-github" name="github" placeholder="https://github.com/username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="applicant-portfolio">Portfolio Website</label>
+                        <input type="url" id="applicant-portfolio" name="portfolio" placeholder="https://yourportfolio.com">
+                    </div>
+                    
+                    <div class="form-group">
                         <label for="applicant-cover">Cover Letter</label>
-                        <textarea id="applicant-cover" name="cover_letter" rows="4" placeholder="Tell us why you're interested in this position..."></textarea>
+                        <textarea id="applicant-cover" name="cover_letter" rows="6" placeholder="Tell us why you're interested in this position and why you'd be a great fit..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="applicant-source">How did you hear about us?</label>
+                        <select id="applicant-source" name="source">
+                            <option value="">Select an option</option>
+                            <option value="linkedin">LinkedIn</option>
+                            <option value="indeed">Indeed</option>
+                            <option value="github">GitHub</option>
+                            <option value="referral">Employee Referral</option>
+                            <option value="event">Career Event</option>
+                            <option value="social">Social Media</option>
+                            <option value="other">Other</option>
+                        </select>
                     </div>
                     
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary">Submit Application</button>
+                        <button type="submit" class="btn btn-primary btn-large">Submit Application</button>
                     </div>
                 `;
                 
+                // Show modal
                 modal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
+                
+                // Add animation
+                modal.querySelector('.modal-content').classList.add('animate-fade-in-up');
             }
             
             function closeModal() {
@@ -1459,46 +1612,108 @@
                 document.body.style.overflow = '';
             }
             
+            // Close modal on button click
             modalClose.addEventListener('click', closeModal);
             
+            // Close modal on outside click
             modal.addEventListener('click', function(event) {
                 if (event.target === modal) {
                     closeModal();
                 }
             });
             
+            // Close modal on Escape key
             document.addEventListener('keydown', function(event) {
                 if (event.key === 'Escape' && modal.style.display === 'flex') {
                     closeModal();
                 }
             });
             
-            // Form submission
+            // Form submission handling
             document.getElementById('job-application-form').addEventListener('submit', function(event) {
                 event.preventDefault();
                 
+                // Basic form validation
                 const formData = new FormData(this);
                 const email = formData.get('email');
                 
                 if (!validateEmail(email)) {
-                    alert('Please enter a valid email address.');
+                    showNotification('Please enter a valid email address.', 'error');
                     return;
                 }
                 
-                // In real app, send to server
-                console.log('Application submitted:', Object.fromEntries(formData));
+                // Check file size if file is uploaded
+                const resumeInput = document.getElementById('applicant-resume');
+                if (resumeInput.files.length > 0) {
+                    const fileSize = resumeInput.files[0].size / 1024 / 1024; // Size in MB
+                    if (fileSize > 5) {
+                        showNotification('Resume file size must be less than 5MB.', 'error');
+                        return;
+                    }
+                }
                 
-                alert('Thank you for your application! We will review it and get back to you soon.');
+                // In a real application, you would send this data to your server
+                console.log('Job application submitted:', Object.fromEntries(formData));
+                
+                // Show success message
+                showNotification('Thank you for your application! We will review it and get back to you soon.', 'success');
+                
+                // Close modal and reset form
                 closeModal();
                 this.reset();
             });
             
+            // Helper function to show notifications
+            function showNotification(message, type) {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    padding: 15px 25px;
+                    background: ${type === 'success' ? 'var(--primary-green)' : 'var(--primary-pink)'};
+                    color: var(--dark-bg);
+                    border-radius: 8px;
+                    font-weight: 600;
+                    z-index: 3000;
+                    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+                    animation: slideIn 0.3s ease-out;
+                `;
+                
+                notification.textContent = message;
+                document.body.appendChild(notification);
+                
+                // Remove notification after 5 seconds
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease-out';
+                    setTimeout(() => notification.remove(), 300);
+                }, 5000);
+                
+                // Add CSS for animations
+                if (!document.querySelector('#notification-styles')) {
+                    const style = document.createElement('style');
+                    style.id = 'notification-styles';
+                    style.textContent = `
+                        @keyframes slideIn {
+                            from { transform: translateX(100%); opacity: 0; }
+                            to { transform: translateX(0); opacity: 1; }
+                        }
+                        @keyframes slideOut {
+                            from { transform: translateX(0); opacity: 1; }
+                            to { transform: translateX(100%); opacity: 0; }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+            }
+            
+            // Email validation helper
             function validateEmail(email) {
                 const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 return re.test(email);
             }
             
-            // Smooth scrolling
+            // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1508,6 +1723,11 @@
                     
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
+                        // Close mobile menu if open
+                        mainMenu.classList.remove('show');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                        
+                        // Scroll to target
                         targetElement.scrollIntoView({
                             behavior: 'smooth',
                             block: 'start'
@@ -1516,12 +1736,23 @@
                 });
             });
             
-            // View All Positions button
-            document.querySelector('a[href="#all-jobs"]').addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector('.job-openings').scrollIntoView({
-                    behavior: 'smooth'
+            // Add scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in-up');
+                    }
                 });
+            }, observerOptions);
+            
+            // Observe elements for animation
+            document.querySelectorAll('.benefit-card, .value-card, .process-step, .job-listing').forEach(el => {
+                observer.observe(el);
             });
         });
     </script>
