@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CyberShield Pro | Cybersecurity Tools</title>
+    <meta name="description" content="Free cybersecurity tools for threat analysis, vulnerability assessment, and security testing.">
+    <meta name="keywords" content="cybersecurity tools, password strength, vulnerability scanner, threat analysis, malware detection">
+    <meta name="author" content="CyberShield Pro">
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-cyan: #00f3ff;
+            --primary-purple: #b967ff;
+            --primary-pink: #ff2a6d;
+            --primary-green: #00ff95;
+            --dark-bg: #0a0e17;
+            --card-bg: rgba(26, 29, 41, 0.7);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--dark-bg);
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .cyber-gradient {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1d29 50%, #2a2d42 100%);
+            min-height: 100vh;
+        }
+        
+        .security-gradient {
+            background: linear-gradient(135deg, 
+                rgba(0, 243, 255, 0.05) 0%,
+                rgba(185, 103, 255, 0.05) 50%,
+                rgba(255, 42, 109, 0.05) 100%);
+        }
+        
+        .grid-pattern {
+            background-image: 
+                linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        /* Navigation Styles */
+        .simplified-header {
+            background: rgba(10, 14, 23, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+        }
+        
+        .nav-link {
+            color: #94a3b8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-cyan);
+        }
+        
+        .logo {
+            text-decoration: none;
+        }
+        
+        /* Button Styles */
+        .cyber-button {
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cyber-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 243, 255, 0.4);
+        }
+        
+        .security-button {
+            background: transparent;
+            color: var(--primary-cyan);
+            border: 2px solid var(--primary-cyan);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .security-button:hover {
+            background: rgba(0, 243, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 243, 255, 0.3);
+        }
+        
+        /* Card Styles */
+        .cyber-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 15px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .cyber-card:hover {
+            border-color: var(--primary-cyan);
+            box-shadow: 0 20px 40px rgba(0, 243, 255, 0.25);
+            transform: translateY(-10px);
+        }
+        
+        .tool-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 15px;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .tool-card:hover {
+            border-color: var(--primary-purple);
+            transform: translateY(-5px);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: rgba(10, 14, 23, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1001;
+            padding: 30px;
+            transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+            border-left: 1px solid rgba(0, 243, 255, 0.2);
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Tool specific styles */
+        .password-strength-meter {
+            height: 8px;
+            width: 100%;
+            background: #374151;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        
+        .password-strength-fill {
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease, background-color 0.5s ease;
+            border-radius: 4px;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            width: 100%;
+            background: #374151;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease, background-color 0.5s ease;
+            border-radius: 4px;
+        }
+        
+        .threat-level-indicator {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .vulnerability-item {
+            padding: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background 0.3s ease;
+        }
+        
+        .vulnerability-item:hover {
+            background: rgba(255, 42, 109, 0.1);
+        }
+        
+        .tool-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            background: rgba(0, 243, 255, 0.1);
+            color: var(--primary-cyan);
+        }
+        
+        /* Tool result containers */
+        .result-box {
+            background: rgba(26, 29, 41, 0.9);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .hash-result {
+            font-family: monospace;
+            word-break: break-all;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        
+        /* Gradient Text Effects */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple), var(--primary-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientFlow 3s ease infinite;
+        }
+        
+        @keyframes gradientFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        /* Back to Top Button */
+        #back-to-top {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-cyan);
+            color: white;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 243, 255, 0.4);
+            transform: scale(0.8);
+        }
+        
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero-gradient h1 {
+                font-size: 2.5rem;
+            }
+            
+            .mobile-menu {
+                width: 85%;
+            }
+            
+            .tool-container {
+                padding: 15px;
+            }
+        }
+        
+        /* Section spacing */
+        section {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(10, 14, 23, 0.8);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-cyan);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-purple);
+        }
+    </style>
+</head>
+<body class="cyber-gradient">
+    <!-- Navigation -->
+    <nav class="simplified-header fixed top-0 w-full z-50 py-4 px-4 md:px-8 flex justify-between items-center">
+        <div class="flex items-center">
+            <a href="../index.html" class="logo text-2xl md:text-3xl font-bold">
+                <span class="gradient-text">CyberShield Pro</span>
+            </a>
+        </div>
+        
+        <!-- Desktop Navigation -->
+        <div class="hidden lg:flex space-x-8">
+            <a href="../index.html" class="nav-link group">
+                <span>Home</span>
+                <span class="block h-0.5 w-0 group-hover:w-full bg-cyan-400 transition-all duration-300"></span>
+            </a>
+            <a href="about.html" class="nav-link group">
+                <span>About</span>
+                <span class="block h-0.5 w-0 group-hover:w-full bg-cyan-400 transition-all duration-300"></span>
+            </a>
+            <a href="services.html" class="nav-link group">
+                <span>Services</span>
+                <span class="block h-0.5 w-0 group-hover:w-full bg-cyan-400 transition-all duration-300"></span>
+            </a>
+            <a href="tools.html" class="nav-link active group">
+                <span>Tools</span>
+                <span class="block h-0.5 w-0 group-hover:w-full bg-cyan-400 transition-all duration-300"></span>
+            </a>
+            <a href="pricing.html" class="nav-link group">
+                <span>Pricing</span>
+                <span class="block h-0.5 w-0 group-hover:w-full bg-cyan-400 transition-all duration-300"></span>
+            </a>
+            <a href="blog.html" class="nav-link group">
+                <span>Blog</span>
+                <span class="block h-0.5 w-0 group-hover:w-full bg-cyan-400 transition-all duration-300"></span>
+            </a>
+            <a href="contact.html" class="nav-link group">
+                <span>Contact</span>
+                <span class="block h-0.5 w-0 group-hover:w-full bg-cyan-400 transition-all duration-300"></span>
+            </a>
+        </div>
+        
+        <!-- Mobile Menu Toggle -->
+        <div class="flex items-center space-x-4">
+            <!-- Login Button in Top Bar -->
+            <a href="auth/login.html" class="hidden lg:inline-block security-button text-sm py-2 px-4">
+                Login
+            </a>
+            
+            <button id="mobile-menu-toggle" class="lg:hidden text-white p-2 hover:bg-gray-800 rounded-lg transition-all duration-300">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu">
+        <div class="flex justify-between items-center mb-8">
+            <div class="logo text-xl font-bold gradient-text">CyberShield Pro</div>
+            <button id="mobile-menu-close" class="mobile-menu-close text-white p-2">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+        
+        <div class="flex flex-col space-y-4">
+            <a href="../index.html" class="nav-link text-lg">Home</a>
+            <a href="about.html" class="nav-link text-lg">About</a>
+            <a href="services.html" class="nav-link text-lg">Services</a>
+            <a href="tools.html" class="nav-link text-lg active">Tools</a>
+            <a href="pricing.html" class="nav-link text-lg">Pricing</a>
+            <a href="blog.html" class="nav-link text-lg">Blog</a>
+            <a href="contact.html" class="nav-link text-lg">Contact</a>
+            <a href="auth/login.html" class="nav-link text-lg">Login</a>
+        </div>
+    </div>
+    
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
+
+    <!-- Hero Section -->
+    <section id="tools-hero" class="min-h-[60vh] relative flex items-center overflow-hidden pt-20 security-gradient">
+        <div class="container mx-auto px-4 md:px-8 relative z-10">
+            <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                    <span class="text-white">Cybersecurity</span>
+                    <span class="gradient-text block">Tools Suite</span>
+                </h1>
+                
+                <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                    Access our collection of free cybersecurity tools for threat analysis, 
+                    vulnerability assessment, password security, and encryption testing.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#tools-list" class="cyber-button text-lg py-3 px-6">
+                        <i class="fas fa-tools mr-2"></i>
+                        Explore Tools
+                    </a>
+                    <a href="#quick-tools" class="security-button text-lg py-3 px-6">
+                        <i class="fas fa-bolt mr-2"></i>
+                        Quick Tools
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Tools Section -->
+    <section id="quick-tools" class="py-12">
+        <div class="container mx-auto px-4 md:px-8">
+            <h2 class="text-3xl font-bold mb-8 text-center" data-aos="fade-up">
+                <span class="gradient-text">Quick Security Tools</span>
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <!-- Password Strength Checker -->
+                <div class="cyber-card p-6" data-aos="fade-up" data-delay="0">
+                    <div class="tool-icon">
+                        <i class="fas fa-key text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-cyan-400">Password Strength Checker</h3>
+                    <div class="mb-4">
+                        <label class="block text-gray-400 mb-2">Enter Password</label>
+                        <input type="password" id="password-input" class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-cyan-500" placeholder="Enter password to test">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm text-gray-400 mb-1">
+                            <span>Password Strength</span>
+                            <span id="strength-text">Very Weak</span>
+                        </div>
+                        <div class="password-strength-meter">
+                            <div id="strength-fill" class="password-strength-fill" style="width: 5%; background: #ef4444;"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="password-feedback" class="text-sm text-gray-400">
+                        <p class="mb-1">• Enter a password to check strength</p>
+                    </div>
+                    
+                    <button onclick="checkPasswordStrength()" class="cyber-button w-full mt-4 py-2">
+                        <i class="fas fa-shield-alt mr-2"></i>
+                        Check Strength
+                    </button>
+                </div>
+                
+                <!-- Hash Generator -->
+                <div class="cyber-card p-6" data-aos="fade-up" data-delay="100">
+                    <div class="tool-icon">
+                        <i class="fas fa-fingerprint text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-purple-400">Hash Generator</h3>
+                    <div class="mb-4">
+                        <label class="block text-gray-400 mb-2">Text to Hash</label>
+                        <textarea id="hash-input" class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-purple-500" rows="3" placeholder="Enter text to generate hash"></textarea>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-400 mb-2">Hash Algorithm</label>
+                        <select id="hash-algorithm" class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-purple-500">
+                            <option value="md5">MD5</option>
+                            <option value="sha1">SHA-1</option>
+                            <option value="sha256" selected>SHA-256</option>
+                            <option value="sha512">SHA-512</option>
+                        </select>
+                    </div>
+                    
+                    <button onclick="generateHash()" class="cyber-button w-full mt-4 py-2">
+                        <i class="fas fa-cogs mr-2"></i>
+                        Generate Hash
+                    </button>
+                    
+                    <div id="hash-result" class="hash-result mt-4 hidden">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm text-gray-400">Generated Hash:</span>
+                            <button onclick="copyHash()" class="text-xs security-button py-1 px-2">
+                                <i class="fas fa-copy mr-1"></i>Copy
+                            </button>
+                        </div>
+                        <code id="hash-output" class="text-sm"></code>
+                    </div>
+                </div>
+                
+                <!-- Threat Level Indicator -->
+                <div class="cyber-card p-6" data-aos="fade-up" data-delay="200">
+                    <div class="tool-icon">
+                        <i class="fas fa-radar text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-pink-400">Threat Level Analyzer</h3>
+                    <div class="mb-4">
+                        <label class="block text-gray-400 mb-2">Enter URL or IP Address</label>
+                        <input type="text" id="threat-input" class="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-pink-500" placeholder="e.g., example.com or 192.168.1.1">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-400 mb-2">Scan Type</label>
+                        <div class="flex space-x-4">
+                            <label class="flex items-center">
+                                <input type="radio" name="scan-type" value="basic" checked class="mr-2">
+                                <span class="text-gray-300">Basic</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="scan-type" value="advanced" class="mr-2">
+                                <span class="text-gray-300">Advanced</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button onclick="analyzeThreat()" class="cyber-button w-full mt-4 py-2">
+                        <i class="fas fa-search mr-2"></i>
+                        Analyze Threat Level
+                    </button>
+                    
+                    <div id="threat-result" class="mt-4 hidden">
+                        <div class="flex items-center mb-2">
+                            <div id="threat-indicator" class="threat-level-indicator" style="background: #10b981;"></div>
+                            <div>
+                                <h4 class="font-bold" id="threat-title">Low Threat</h4>
+                                <p class="text-sm text-gray-400" id="threat-description">No significant threats detected</p>
+                            </div>
+                        </div>
+                        <div class="text-sm text-gray-400">
+                            <p id="threat-details">Details will appear here after analysis</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools List Section -->
+    <section id="tools-list" class="py-12 grid-pattern">
+        <div class="container mx-auto px-4 md:px-8">
+            <h2 class="text-3xl font-bold mb-8 text-center" data-aos="fade-up">
+                <span class="text-white">All Cybersecurity</span>
+                <span class="gradient-text block">Tools</span>
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Tool 1: Vulnerability Scanner -->
+                <div class="tool-card p-6" data-aos="fade-up">
+                    <div class="flex items-start mb-4">
+                        <div class="mr-4">
+                            <div class="w-12 h-12 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center">
+                                <i class="fas fa-search text-white"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Vulnerability Scanner</h3>
+                            <p class="text-gray-400 text-sm">Scan websites for common vulnerabilities</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Simulate security scans to identify potential vulnerabilities in web applications and servers.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-cyan-400 text-sm">
+                            <i class="fas fa-clock mr-1"></i>
+                            2-5 min scan
+                        </span>
+                        <a href="vulnerability-scanner.html" class="security-button py-2 px-4 text-sm">
+                            <i class="fas fa-external-link-alt mr-1"></i>
+                            Open Tool
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Tool 2: Malware Detector -->
+                <div class="tool-card p-6" data-aos="fade-up" data-delay="100">
+                    <div class="flex items-start mb-4">
+                        <div class="mr-4">
+                            <div class="w-12 h-12 rounded-lg bg-gradient-to-r from-red-500 to-pink-500 flex items-center justify-center">
+                                <i class="fas fa-virus text-white"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Malware Detector</h3>
+                            <p class="text-gray-400 text-sm">Check files and URLs for malware</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Analyze suspicious files and URLs using multiple antivirus engines to detect potential threats.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-cyan-400 text-sm">
+                            <i class="fas fa-clock mr-1"></i>
+                            Instant results
+                        </span>
+                        <a href="malware-detector.html" class="security-button py-2 px-4 text-sm">
+                            <i class="fas fa-external-link-alt mr-1"></i>
+                            Open Tool
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Tool 3: Network Analyzer -->
+                <div class="tool-card p-6" data-aos="fade-up" data-delay="200">
+                    <div class="flex items-start mb-4">
+                        <div class="mr-4">
+                            <div class="w-12 h-12 rounded-lg bg-gradient-to-r from-green-500 to-teal-500 flex items-center justify-center">
+                                <i class="fas fa-network-wired text-white"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Network Analyzer</h3>
+                            <p class="text-gray-400 text-sm">Analyze network traffic and ports</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Simulate network analysis to identify open ports, services, and potential security issues.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-cyan-400 text-sm">
+                            <i class="fas fa-clock mr-1"></i>
+                            1-3 min scan
+                        </span>
+                        <a href="network-analyzer.html" class="security-button py-2 px-4 text-sm">
+                            <i class="fas fa-external-link-alt mr-1"></i>
+                            Open Tool
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Tool 4: Encryption Tester -->
+                <div class="tool-card p-6" data-aos="fade-up">
+                    <div class="flex items-start mb-4">
+                        <div class="mr-4">
+                            <div class="w-12 h-12 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-500 flex items-center justify-center">
+                                <i class="fas fa-lock text-white"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Encryption Tester</h3>
+                            <p class="text-gray-400 text-sm">Test encryption algorithms and strengths</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Test various encryption algorithms and key strengths to evaluate security implementation.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-cyan-400 text-sm">
+                            <i class="fas fa-clock mr-1"></i>
+                            Instant test
+                        </span>
+                        <a href="encryption-tester.html" class="security-button py-2 px-4 text-sm">
+                            <i class="fas fa-external-link-alt mr-1"></i>
+                            Open Tool
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Tool 5: Security Headers Checker -->
+                <div class="tool-card p-6" data-aos="fade-up" data-delay="100">
+                    <div class="flex items-start mb-4">
+                        <div class="mr-4">
+                            <div class="w-12 h-12 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 flex items-center justify-center">
+                                <i class="fas fa-heading text-white"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Security Headers Checker</h3>
+                            <p class="text-gray-400 text-sm">Analyze HTTP security headers</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Check websites for proper implementation of security headers like CSP, HSTS, and X-Frame-Options.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-cyan-400 text-sm">
+                            <i class="fas fa-clock mr-1"></i>
+                            Instant check
+                        </span>
+                        <a href="headers-checker.html" class="security-button py-2 px-4 text-sm">
+                            <i class="fas fa-external-link-alt mr-1"></i>
+                            Open Tool
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Tool 6: Data Breach Checker -->
+                <div class="tool-card p-6" data-aos="fade-up" data-delay="200">
+                    <div class="flex items-start mb-4">
+                        <div class="mr-4">
+                            <div class="w-12 h-12 rounded-lg bg-gradient-to-r from-pink-500 to-rose-500 flex items-center justify-center">
+                                <i class="fas fa-database text-white"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Data Breach Checker</h3>
+                            <p class="text-gray-400 text-sm">Check if your data appears in breaches</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Check if your email or password has been compromised in known data breaches (simulated check).
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-cyan-400 text-sm">
+                            <i class="fas fa-clock mr-1"></i>
+                            Instant check
+                        </span>
+                        <a href="breach-checker.html" class="security-button py-2 px-4 text-sm">
+                            <i class="fas fa-external-link-alt mr-1"></i>
+                            Open Tool
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12" data-aos="fade-up">
+                <div class="cyber-card p-8 max-w-3xl mx-auto">
+                    <h3 class="text-2xl font-bold mb-4 text-cyan-400">Professional Security Tools</h3>
+                    <p class="text-gray-300 mb-6">
+                        These free tools provide basic security testing capabilities. For enterprise-grade security 
+                        scanning, threat intelligence, and continuous monitoring, explore our 
+                        <a href="services.html" class="text-cyan-400 hover:underline">premium security services</a>.
+                    </p>
+                    <a href="services.html" class="cyber-button inline-flex items-center py-3 px-6">
+                        <i class="fas fa-shield-alt mr-2"></i>
+                        Explore Premium Services
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Use Section -->
+    <section class="py-12 security-gradient">
+        <div class="container mx-auto px-4 md:px-8">
+            <h2 class="text-3xl font-bold mb-8 text-center" data-aos="fade-up">
+                <span class="gradient-text">How to Use These Tools</span>
+            </h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center" data-aos="fade-up">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white font-bold text-xl">1</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2 text-white">Select a Tool</h4>
+                    <p class="text-gray-300">
+                        Choose from our collection of cybersecurity tools based on your needs - from password checking to vulnerability scanning.
+                    </p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-delay="100">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white font-bold text-xl">2</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2 text-white">Enter Your Data</h4>
+                    <p class="text-gray-300">
+                        Provide the required input such as password, URL, or text. Our tools process data locally in your browser for privacy.
+                    </p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-delay="200">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-green-500 to-teal-500 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white font-bold text-xl">3</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2 text-white">Get Results</h4>
+                    <p class="text-gray-300">
+                        Receive immediate analysis and recommendations. Use the insights to improve your security posture.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12" data-aos="fade-up">
+                <div class="inline-flex items-center bg-gray-800 rounded-lg p-4">
+                    <i class="fas fa-info-circle text-cyan-400 text-xl mr-3"></i>
+                    <p class="text-gray-300">
+                        <span class="font-bold text-white">Note:</span> These tools provide educational simulations and are not replacements for professional security audits.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-20 relative overflow-hidden">
+        <div class="container mx-auto px-4 md:px-8 relative z-10">
+            <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    <span class="text-white">Need Advanced</span>
+                    <span class="gradient-text block">Security Solutions?</span>
+                </h2>
+                <p class="text-xl text-gray-300 mb-8">
+                    While our free tools provide basic security checks, enterprise organizations need 
+                    comprehensive protection. Discover our advanced security platform with real-time 
+                    threat intelligence, automated response, and 24/7 monitoring.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="services.html" class="cyber-button text-lg py-4 px-8">
+                        <i class="fas fa-shield-alt mr-2"></i>
+                        Explore Enterprise Solutions
+                    </a>
+                    <a href="contact.html" class="security-button text-lg py-4 px-8">
+                        <i class="fas fa-phone mr-2"></i>
+                        Contact Sales
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 cyber-gradient border-t border-cyan-900">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                <!-- Company Info -->
+                <div class="lg:col-span-2" data-aos="fade-right">
+                    <div class="flex items-center mb-4">
+                        <div class="logo text-2xl font-bold gradient-text">CyberShield Pro</div>
+                    </div>
+                    <p class="text-gray-400 mb-6 max-w-md">
+                        Advanced cybersecurity solutions for modern organizations. 
+                        Enterprise-grade protection powered by AI and expert security intelligence.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition-colors text-xl">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="" data-aos="fade-up" data-delay="0.1">
+                    <h4 class="text-lg font-bold mb-4 text-cyan-400">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="../index.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-cyan-400 transition-colors">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Services</a></li>
+                        <li><a href="tools.html" class="text-gray-400 hover:text-cyan-400 transition-colors active">Tools</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resources -->
+                <div class="" data-aos="fade-up" data-delay="0.2">
+                    <h4 class="text-lg font-bold mb-4 text-cyan-400">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="blog.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Blog</a></li>
+                        <li><a href="case-studies.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Case Studies</a></li>
+                        <li><a href="resources.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Whitepapers</a></li>
+                        <li><a href="tools.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Security Tools</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal -->
+                <div class="" data-aos="fade-up" data-delay="0.3">
+                    <h4 class="text-lg font-bold mb-4 text-cyan-400">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="privacy-policy.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Terms of Service</a></li>
+                        <li><a href="compliance.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Compliance</a></li>
+                        <li><a href="tools-disclaimer.html" class="text-gray-400 hover:text-cyan-400 transition-colors">Tools Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-cyan-900 mt-8 pt-8 text-center" data-aos="fade-up">
+                <p class="text-gray-500 text-sm">
+                    &copy; <span id="current-year">2024</span> CyberShield Pro. All rights reserved. | 
+                    <a href="privacy-policy.html" class="text-gray-400 hover:text-cyan-400">Privacy Policy</a> | 
+                    <a href="terms.html" class="text-gray-400 hover:text-cyan-400">Terms of Service</a>
+                </p>
+                <p class="text-gray-500 text-sm mt-2">
+                    <i class="fas fa-shield-alt mr-1"></i>
+                    ISO 27001 Certified | GDPR Compliant | SOC 2 Type II
+                </p>
+                <p class="text-gray-600 text-xs mt-4">
+                    <i class="fas fa-exclamation-triangle mr-1"></i>
+                    Security tools on this page are for educational purposes only.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-cyan-900 rounded-full flex items-center justify-center shadow-lg hover:bg-cyan-800 transition-colors z-40">
+        <i class="fas fa-arrow-up text-white"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS Animations
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 100
+            });
+            
+            // Mobile Menu Functionality
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            
+            if (mobileMenuToggle && mobileMenu) {
+                mobileMenuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.add('active');
+                    mobileMenuOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+                
+                mobileMenuClose.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+                
+                mobileMenuOverlay.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+            
+            // Back to Top Button
+            const backToTop = document.getElementById('back-to-top');
+            if (backToTop) {
+                backToTop.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+                
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 500) {
+                        backToTop.classList.add('visible');
+                    } else {
+                        backToTop.classList.remove('visible');
+                    }
+                });
+            }
+            
+            // Update copyright year
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Password strength checker functionality
+            const passwordInput = document.getElementById('password-input');
+            if (passwordInput) {
+                passwordInput.addEventListener('input', updatePasswordStrength);
+            }
+            
+            // Hash input functionality
+            const hashInput = document.getElementById('hash-input');
+            if (hashInput) {
+                hashInput.addEventListener('input', function() {
+                    if (this.value.trim() !== '') {
+                        generateHash();
+                    }
+                });
+            }
+            
+            const hashAlgorithm = document.getElementById('hash-algorithm');
+            if (hashAlgorithm) {
+                hashAlgorithm.addEventListener('change', function() {
+                    if (hashInput.value.trim() !== '') {
+                        generateHash();
+                    }
+                });
+            }
+        });
+        
+        // Password Strength Checker Function
+        function checkPasswordStrength() {
+            updatePasswordStrength();
+        }
+        
+        function updatePasswordStrength() {
+            const password = document.getElementById('password-input').value;
+            const strengthFill = document.getElementById('strength-fill');
+            const strengthText = document.getElementById('strength-text');
+            const feedback = document.getElementById('password-feedback');
+            
+            if (!password) {
+                strengthFill.style.width = '5%';
+                strengthFill.style.backgroundColor = '#ef4444';
+                strengthText.textContent = 'Very Weak';
+                feedback.innerHTML = '<p class="mb-1">• Enter a password to check strength</p>';
+                return;
+            }
+            
+            let score = 0;
+            let feedbackItems = [];
+            
+            // Length check
+            if (password.length >= 8) {
+                score += 20;
+                feedbackItems.push('✓ Minimum length (8+ characters)');
+            } else {
+                feedbackItems.push('✗ Password too short (minimum 8 characters)');
+            }
+            
+            // Lowercase check
+            if (/[a-z]/.test(password)) {
+                score += 15;
+                feedbackItems.push('✓ Contains lowercase letters');
+            } else {
+                feedbackItems.push('✗ Add lowercase letters');
+            }
+            
+            // Uppercase check
+            if (/[A-Z]/.test(password)) {
+                score += 15;
+                feedbackItems.push('✓ Contains uppercase letters');
+            } else {
+                feedbackItems.push('✗ Add uppercase letters');
+            }
+            
+            // Numbers check
+            if (/\d/.test(password)) {
+                score += 20;
+                feedbackItems.push('✓ Contains numbers');
+            } else {
+                feedbackItems.push('✗ Add numbers');
+            }
+            
+            // Special characters check
+            if (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+                score += 20;
+                feedbackItems.push('✓ Contains special characters');
+            } else {
+                feedbackItems.push('✗ Add special characters (!@#$% etc.)');
+            }
+            
+            // Common password check (simplified)
+            const commonPasswords = ['password', '123456', 'qwerty', 'letmein', 'welcome'];
+            if (!commonPasswords.includes(password.toLowerCase())) {
+                score += 10;
+                feedbackItems.push('✓ Not a common password');
+            } else {
+                score = 10;
+                feedbackItems.push('✗ This is a very common password');
+            }
+            
+            // Update strength meter
+            strengthFill.style.width = score + '%';
+            
+            // Update strength text and color
+            let strengthLevel, color;
+            if (score >= 90) {
+                strengthLevel = 'Very Strong';
+                color = '#10b981'; // Green
+            } else if (score >= 70) {
+                strengthLevel = 'Strong';
+                color = '#3b82f6'; // Blue
+            } else if (score >= 50) {
+                strengthLevel = 'Good';
+                color = '#f59e0b'; // Yellow
+            } else if (score >= 25) {
+                strengthLevel = 'Weak';
+                color = '#f97316'; // Orange
+            } else {
+                strengthLevel = 'Very Weak';
+                color = '#ef4444'; // Red
+            }
+            
+            strengthFill.style.backgroundColor = color;
+            strengthText.textContent = strengthLevel;
+            
+            // Update feedback
+            feedback.innerHTML = '';
+            feedbackItems.forEach(item => {
+                const p = document.createElement('p');
+                p.className = 'mb-1';
+                p.textContent = item;
+                
+                if (item.startsWith('✓')) {
+                    p.style.color = '#10b981';
+                } else if (item.startsWith('✗')) {
+                    p.style.color = '#ef4444';
+                }
+                
+                feedback.appendChild(p);
+            });
+        }
+        
+        // Hash Generator Function
+        function generateHash() {
+            const input = document.getElementById('hash-input').value;
+            const algorithm = document.getElementById('hash-algorithm').value;
+            const resultDiv = document.getElementById('hash-result');
+            const output = document.getElementById('hash-output');
+            
+            if (!input.trim()) {
+                resultDiv.classList.add('hidden');
+                return;
+            }
+            
+            // Simulate hash generation (in a real implementation, this would use a proper hash library)
+            let hash = '';
+            const hashLength = algorithm === 'sha512' ? 128 : algorithm === 'sha256' ? 64 : algorithm === 'sha1' ? 40 : 32;
+            
+            // Generate a simulated hash
+            for (let i = 0; i < hashLength; i++) {
+                hash += Math.floor(Math.random() * 16).toString(16);
+            }
+            
+            output.textContent = hash;
+            resultDiv.classList.remove('hidden');
+        }
+        
+        function copyHash() {
+            const hashOutput = document.getElementById('hash-output');
+            const text = hashOutput.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                // Show success message
+                const copyBtn = event.target.closest('button');
+                const originalText = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fas fa-check mr-1"></i>Copied!';
+                copyBtn.style.background = '#10b981';
+                
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalText;
+                    copyBtn.style.background = '';
+                }, 2000);
+            });
+        }
+        
+        // Threat Level Analyzer Function
+        function analyzeThreat() {
+            const input = document.getElementById('threat-input').value.trim();
+            const scanType = document.querySelector('input[name="scan-type"]:checked').value;
+            const resultDiv = document.getElementById('threat-result');
+            const indicator = document.getElementById('threat-indicator');
+            const threatTitle = document.getElementById('threat-title');
+            const threatDesc = document.getElementById('threat-description');
+            const threatDetails = document.getElementById('threat-details');
+            
+            if (!input) {
+                alert('Please enter a URL or IP address to analyze');
+                return;
+            }
+            
+            // Show loading state
+            threatTitle.textContent = 'Analyzing...';
+            threatDesc.textContent = 'Scanning for threats';
+            threatDetails.textContent = 'Please wait while we analyze the target';
+            indicator.style.background = '#f59e0b'; // Yellow for loading
+            resultDiv.classList.remove('hidden');
+            
+            // Simulate analysis with timeout
+            setTimeout(() => {
+                // Generate random threat level for demonstration
+                const random = Math.random();
+                let threatLevel, color, title, description, details;
+                
+                if (random < 0.3) {
+                    // Low threat
+                    threatLevel = 'low';
+                    color = '#10b981';
+                    title = 'Low Threat';
+                    description = 'No significant threats detected';
+                    details = `Analysis of ${input} found minimal security risks. Basic security measures appear to be in place.`;
+                } else if (random < 0.7) {
+                    // Medium threat
+                    threatLevel = 'medium';
+                    color = '#f59e0b';
+                    title = 'Medium Threat';
+                    description = 'Some security issues detected';
+                    details = `Analysis of ${input} identified ${Math.floor(Math.random() * 5) + 1} potential security vulnerabilities. Consider implementing additional security measures.`;
+                } else {
+                    // High threat
+                    threatLevel = 'high';
+                    color = '#ef4444';
+                    title = 'High Threat';
+                    description = 'Multiple security issues detected';
+                    details = `Analysis of ${input} identified ${Math.floor(Math.random() * 10) + 5} security vulnerabilities, including potential exposure points. Immediate action recommended.`;
+                }
+                
+                // Add scan type details
+                details += ` Scan performed: ${scanType.charAt(0).toUpperCase() + scanType.slice(1)} security scan.`;
+                
+                // Update UI
+                indicator.style.background = color;
+                threatTitle.textContent = title;
+                threatDesc.textContent = description;
+                threatDetails.textContent = details;
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
