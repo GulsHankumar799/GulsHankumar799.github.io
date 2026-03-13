@@ -7,7 +7,311 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/pages.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Enhanced Privacy Policy Styles */
+        .legal-hero {
+            background: linear-gradient(135deg, #0a1a2f 0%, #0d2b45 100%);
+            padding: 80px 0 60px;
+            text-align: center;
+            color: white;
+        }
+        
+        .legal-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, #a8c0ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .legal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 1.5rem;
+        }
+        
+        .legal-badge i {
+            color: #4CAF50;
+        }
+        
+        .legal-container {
+            max-width: 900px;
+            margin: -40px auto 60px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .legal-content {
+            padding: 3rem;
+        }
+        
+        .legal-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #f0f4f8;
+            margin-bottom: 2.5rem;
+        }
+        
+        .last-updated {
+            background: #e8f0fe;
+            color: #1a5f9c;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .download-pdf {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .download-pdf:hover {
+            background: #f8fafc;
+            border-color: #2563eb;
+        }
+        
+        .legal-section {
+            margin-bottom: 2.5rem;
+        }
+        
+        .legal-section h2 {
+            font-size: 1.8rem;
+            color: #0a1a2f;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #2563eb;
+            display: inline-block;
+        }
+        
+        .legal-section h3 {
+            font-size: 1.3rem;
+            color: #1e293b;
+            margin: 1.5rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .legal-section h3 i {
+            color: #2563eb;
+            font-size: 1.2rem;
+        }
+        
+        .legal-section p {
+            color: #334155;
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+        }
+        
+        .legal-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .legal-list li {
+            padding: 0.75rem 0 0.75rem 2rem;
+            position: relative;
+            color: #334155;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .legal-list li:before {
+            content: "▹";
+            color: #2563eb;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .rights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .rights-card {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .rights-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-color: #2563eb;
+        }
+        
+        .rights-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #0a1a2f;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .rights-card h4 i {
+            color: #2563eb;
+        }
+        
+        .rights-card p {
+            font-size: 0.95rem;
+            margin: 0;
+            color: #475569;
+        }
+        
+        .policy-note {
+            background: linear-gradient(135deg, #0a1a2f 0%, #0d2b45 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2.5rem 0;
+            text-align: center;
+        }
+        
+        .policy-note p {
+            color: white;
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        
+        .policy-note strong {
+            color: #4CAF50;
+            font-weight: 600;
+        }
+        
+        .contact-block {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .contact-method {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .contact-method:hover {
+            transform: scale(1.05);
+        }
+        
+        .contact-method i {
+            font-size: 2rem;
+            color: #2563eb;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-method span {
+            font-weight: 600;
+            color: #0a1a2f;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-method a {
+            color: #475569;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contact-method a:hover {
+            color: #2563eb;
+        }
+        
+        .table-of-contents {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        
+        .table-of-contents h4 {
+            color: #0a1a2f;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.75rem;
+        }
+        
+        .toc-item {
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+        
+        .toc-item:hover {
+            background: white;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .legal-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .legal-container {
+                margin: -20px 20px 40px;
+            }
+            
+            .legal-content {
+                padding: 2rem;
+            }
+            
+            .legal-meta {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -41,33 +345,65 @@
         </div>
     </header>
 
-    <!-- Page Header -->
-    <section class="page-header">
+    <!-- Legal Hero Section -->
+    <section class="legal-hero">
         <div class="container">
             <h1>Privacy Policy</h1>
-            <div class="breadcrumb">
-                <a href="../index.html">Home</a>
-                <span class="separator">/</span>
-                <span>Privacy Policy</span>
+            <p>Your data protection and privacy are our top priorities</p>
+            <div class="legal-badge">
+                <i class="fas fa-check-circle"></i>
+                <span>GDPR & CCPA Compliant</span>
+                <i class="fas fa-shield-alt" style="margin-left: 0.5rem;"></i>
             </div>
         </div>
     </section>
 
     <!-- Privacy Policy Content -->
-    <section class="page-content">
-        <div class="container">
-            <div class="legal-content">
-                <p class="last-updated"><strong>Last Updated:</strong> March 15, 2024</p>
-                
+    <div class="legal-container">
+        <div class="legal-content">
+            <div class="legal-meta">
+                <span class="last-updated"><i class="far fa-calendar-alt"></i> Last Updated: March 15, 2024</span>
+                <a href="#" class="download-pdf">
+                    <i class="fas fa-file-pdf"></i>
+                    Download PDF Version
+                </a>
+            </div>
+
+            <!-- Table of Contents -->
+            <div class="table-of-contents">
+                <h4><i class="fas fa-list-ul"></i> Table of Contents</h4>
+                <div class="toc-grid">
+                    <a href="#introduction" class="toc-item">1. Introduction</a>
+                    <a href="#information-collect" class="toc-item">2. Information We Collect</a>
+                    <a href="#information-use" class="toc-item">3. How We Use Your Information</a>
+                    <a href="#sharing-disclosure" class="toc-item">4. Information Sharing</a>
+                    <a href="#data-security" class="toc-item">5. Data Security</a>
+                    <a href="#data-retention" class="toc-item">6. Data Retention</a>
+                    <a href="#data-rights" class="toc-item">7. Your Data Rights</a>
+                    <a href="#international-transfers" class="toc-item">8. International Transfers</a>
+                    <a href="#children-privacy" class="toc-item">9. Children's Privacy</a>
+                    <a href="#third-party-links" class="toc-item">10. Third-Party Links</a>
+                    <a href="#policy-changes" class="toc-item">11. Policy Changes</a>
+                    <a href="#contact-us" class="toc-item">12. Contact Us</a>
+                </div>
+            </div>
+
+            <!-- Introduction -->
+            <section id="introduction" class="legal-section">
                 <h2>1. Introduction</h2>
                 <p>CyberShield Pro ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website <a href="../index.html">cybershieldpro.com</a> and use our services.</p>
-                <p>Please read this Privacy Policy carefully. By accessing or using our Service, you acknowledge that you have read, understood, and agree to be bound by all the terms of this Privacy Policy.</p>
-                
+                <div class="policy-note">
+                    <p><strong>🔒 Our Commitment:</strong> By accessing or using our Service, you acknowledge that you have read, understood, and agree to be bound by all the terms of this Privacy Policy.</p>
+                </div>
+            </section>
+
+            <!-- Information We Collect -->
+            <section id="information-collect" class="legal-section">
                 <h2>2. Information We Collect</h2>
                 
-                <h3>2.1 Personal Information</h3>
+                <h3><i class="fas fa-user-circle"></i> 2.1 Personal Information</h3>
                 <p>We may collect personal information that you voluntarily provide to us when you:</p>
-                <ul>
+                <ul class="legal-list">
                     <li>Register for an account</li>
                     <li>Request information about our services</li>
                     <li>Subscribe to our newsletter</li>
@@ -75,126 +411,181 @@
                     <li>Participate in surveys or promotions</li>
                 </ul>
                 <p>This information may include:</p>
-                <ul>
+                <ul class="legal-list">
                     <li>Name and contact information (email address, phone number, address)</li>
                     <li>Company information (name, size, industry)</li>
                     <li>Payment information (processed through secure third-party providers)</li>
                     <li>Communication preferences</li>
                 </ul>
                 
-                <h3>2.2 Automatically Collected Information</h3>
-                <p>When you visit our website, we automatically collect certain information about your device, including:</p>
-                <ul>
-                    <li>IP address</li>
+                <h3><i class="fas fa-desktop"></i> 2.2 Automatically Collected Information</h3>
+                <p>When you visit our website, we automatically collect certain information about your device:</p>
+                <ul class="legal-list">
+                    <li>IP address and geolocation data</li>
                     <li>Browser type and version</li>
                     <li>Operating system</li>
-                    <li>Referring URLs</li>
-                    <li>Pages viewed and time spent on pages</li>
-                    <li>Clickstream data</li>
+                    <li>Referring URLs and pages viewed</li>
+                    <li>Time spent on pages and clickstream data</li>
                 </ul>
                 
-                <h3>2.3 Cookies and Tracking Technologies</h3>
-                <p>We use cookies and similar tracking technologies to track activity on our Service and hold certain information. Cookies are files with small amount of data which may include an anonymous unique identifier.</p>
-                <p>You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service.</p>
-                
+                <h3><i class="fas fa-cookie-bite"></i> 2.3 Cookies and Tracking Technologies</h3>
+                <p>We use cookies and similar tracking technologies to enhance your experience. You can control cookies through your browser settings, but disabling them may limit some functionality.</p>
+            </section>
+
+            <!-- How We Use Your Information -->
+            <section id="information-use" class="legal-section">
                 <h2>3. How We Use Your Information</h2>
-                <p>We use the information we collect for various purposes:</p>
-                <ul>
-                    <li>To provide and maintain our Service</li>
-                    <li>To process your transactions</li>
-                    <li>To communicate with you about updates, security alerts, and support messages</li>
-                    <li>To improve our website and services</li>
-                    <li>To detect, prevent, and address technical issues</li>
-                    <li>To comply with legal obligations</li>
+                <ul class="legal-list">
+                    <li><strong>Service Delivery:</strong> To provide and maintain our cybersecurity services</li>
+                    <li><strong>Transaction Processing:</strong> To process payments and manage subscriptions</li>
+                    <li><strong>Communication:</strong> To send security alerts, updates, and support messages</li>
+                    <li><strong>Improvement:</strong> To enhance our website and services based on usage patterns</li>
+                    <li><strong>Security:</strong> To detect, prevent, and address technical issues and threats</li>
+                    <li><strong>Compliance:</strong> To fulfill legal obligations and regulatory requirements</li>
                 </ul>
-                
+            </section>
+
+            <!-- Information Sharing and Disclosure -->
+            <section id="sharing-disclosure" class="legal-section">
                 <h2>4. Information Sharing and Disclosure</h2>
                 
-                <h3>4.1 Service Providers</h3>
-                <p>We may share your information with third-party service providers who perform services on our behalf, including:</p>
-                <ul>
-                    <li>Payment processing</li>
-                    <li>Data analysis</li>
-                    <li>Email delivery</li>
-                    <li>Hosting services</li>
-                    <li>Customer service</li>
+                <h3><i class="fas fa-handshake"></i> 4.1 Service Providers</h3>
+                <p>We share information with trusted third parties who perform services on our behalf:</p>
+                <ul class="legal-list">
+                    <li>Payment processing (Stripe, PayPal)</li>
+                    <li>Data analysis and analytics</li>
+                    <li>Email delivery services</li>
+                    <li>Cloud hosting and infrastructure</li>
+                    <li>Customer support platforms</li>
                 </ul>
-                <p>These third parties have access to your Personal Information only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.</p>
                 
-                <h3>4.2 Legal Requirements</h3>
-                <p>We may disclose your Personal Information if required to do so by law or in response to valid requests by public authorities (e.g., a court or a government agency).</p>
+                <h3><i class="fas fa-gavel"></i> 4.2 Legal Requirements</h3>
+                <p>We may disclose information if required by law or valid requests by public authorities.</p>
                 
-                <h3>4.3 Business Transfers</h3>
-                <p>If we are involved in a merger, acquisition, or asset sale, your Personal Information may be transferred. We will provide notice before your Personal Information is transferred and becomes subject to a different Privacy Policy.</p>
-                
+                <h3><i class="fas fa-building"></i> 4.3 Business Transfers</h3>
+                <p>In case of merger, acquisition, or asset sale, your information may be transferred with notice provided.</p>
+            </section>
+
+            <!-- Data Security -->
+            <section id="data-security" class="legal-section">
                 <h2>5. Data Security</h2>
-                <p>We implement appropriate technical and organizational security measures designed to protect the security of any personal information we process. However, please also remember that we cannot guarantee that the internet itself is 100% secure.</p>
-                <p>Our security measures include:</p>
-                <ul>
-                    <li>Encryption of data in transit and at rest</li>
-                    <li>Regular security assessments and penetration testing</li>
-                    <li>Access controls and authentication</li>
-                    <li>Security incident response procedures</li>
+                <p>We implement enterprise-grade security measures to protect your information:</p>
+                <ul class="legal-list">
+                    <li><strong>Encryption:</strong> AES-256 encryption for data at rest and TLS 1.3 for data in transit</li>
+                    <li><strong>Access Control:</strong> Multi-factor authentication and role-based access</li>
+                    <li><strong>Monitoring:</strong> 24/7 security monitoring and threat detection</li>
+                    <li><strong>Audits:</strong> Regular security assessments and penetration testing</li>
+                    <li><strong>Incident Response:</strong> Documented procedures for security incidents</li>
                 </ul>
+            </section>
+
+            <!-- Your Data Protection Rights -->
+            <section id="data-rights" class="legal-section">
+                <h2>6. Your Data Protection Rights</h2>
                 
-                <h2>6. Data Retention</h2>
-                <p>We will retain your Personal Information only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your information to the extent necessary to comply with our legal obligations, resolve disputes, and enforce our policies.</p>
-                
-                <h2>7. Your Data Protection Rights</h2>
-                <p>Depending on your location, you may have the following data protection rights:</p>
-                
-                <h3>7.1 GDPR Rights (European Union)</h3>
-                <p>If you are a resident of the European Economic Area (EEA), you have certain data protection rights under the General Data Protection Regulation (GDPR):</p>
-                <ul>
-                    <li>The right to access, update, or delete your information</li>
-                    <li>The right of rectification</li>
-                    <li>The right to object to processing</li>
-                    <li>The right of restriction</li>
-                    <li>The right to data portability</li>
-                    <li>The right to withdraw consent</li>
-                </ul>
-                
-                <h3>7.2 CCPA/CPRA Rights (California)</h3>
-                <p>If you are a California resident, you have specific rights under the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA):</p>
-                <ul>
-                    <li>The right to know what personal information is collected</li>
-                    <li>The right to delete personal information</li>
-                    <li>The right to opt-out of sale of personal information</li>
-                    <li>The right to non-discrimination</li>
-                    <li>The right to correct inaccurate personal information</li>
-                </ul>
-                
-                <h3>7.3 Exercising Your Rights</h3>
-                <p>To exercise any of these rights, please contact us at <a href="mailto:privacy@cybershieldpro.com">privacy@cybershieldpro.com</a>. We will respond to your request within 30 days.</p>
-                
-                <h2>8. International Data Transfers</h2>
-                <p>Your information, including Personal Information, may be transferred to — and maintained on — computers located outside of your state, province, country, or other governmental jurisdiction where the data protection laws may differ from those of your jurisdiction.</p>
-                <p>We will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy and no transfer of your Personal Information will take place to an organization or a country unless there are adequate controls in place.</p>
-                
-                <h2>9. Children's Privacy</h2>
-                <p>Our Service is not intended for individuals under the age of 18 ("Children"). We do not knowingly collect personally identifiable information from anyone under the age of 18. If you are a parent or guardian and you are aware that your Child has provided us with Personal Information, please contact us.</p>
-                
-                <h2>10. Third-Party Links</h2>
-                <p>Our Service may contain links to other websites that are not operated by us. If you click on a third-party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit.</p>
-                
-                <h2>11. Changes to This Privacy Policy</h2>
-                <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
-                <p>You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
-                
-                <h2>12. Contact Us</h2>
-                <p>If you have any questions about this Privacy Policy, please contact us:</p>
-                <ul>
-                    <li>By email: <a href="mailto:privacy@cybershieldpro.com">privacy@cybershieldpro.com</a></li>
-                    <li>By mail: CyberShield Pro, 123 Security Blvd, San Francisco, CA 94107</li>
-                    <li>By phone: +1 (555) 123-4567</li>
-                </ul>
-                
-                <div class="policy-consent">
-                    <p><strong>By using our website and services, you consent to our Privacy Policy.</strong></p>
+                <div class="rights-grid">
+                    <div class="rights-card">
+                        <h4><i class="fas fa-eye"></i> Right to Access</h4>
+                        <p>Request copies of your personal data</p>
+                    </div>
+                    <div class="rights-card">
+                        <h4><i class="fas fa-edit"></i> Right to Rectification</h4>
+                        <p>Correct inaccurate or incomplete data</p>
+                    </div>
+                    <div class="rights-card">
+                        <h4><i class="fas fa-trash-alt"></i> Right to Deletion</h4>
+                        <p>Request deletion of your personal data</p>
+                    </div>
+                    <div class="rights-card">
+                        <h4><i class="fas fa-ban"></i> Right to Restriction</h4>
+                        <p>Limit processing of your data</p>
+                    </div>
+                    <div class="rights-card">
+                        <h4><i class="fas fa-exchange-alt"></i> Right to Portability</h4>
+                        <p>Transfer your data to another service</p>
+                    </div>
+                    <div class="rights-card">
+                        <h4><i class="fas fa-times-circle"></i> Right to Object</h4>
+                        <p>Object to data processing</p>
+                    </div>
                 </div>
-            </div>
+
+                <h3>GDPR Rights (European Union)</h3>
+                <p>If you are in the EEA, you have comprehensive rights under GDPR.</p>
+                
+                <h3>CCPA/CPRA Rights (California)</h3>
+                <p>California residents have specific privacy rights, including the right to opt-out of data sales.</p>
+                
+                <div class="policy-note">
+                    <p>To exercise your rights: <a href="mailto:privacy@cybershieldpro.com" style="color: #4CAF50; text-decoration: underline;">privacy@cybershieldpro.com</a> - We respond within 30 days.</p>
+                </div>
+            </section>
+
+            <!-- International Data Transfers -->
+            <section id="international-transfers" class="legal-section">
+                <h2>7. International Data Transfers</h2>
+                <p>Your information may be processed in countries with different data protection laws. We ensure adequate safeguards through:</p>
+                <ul class="legal-list">
+                    <li>Standard Contractual Clauses (SCCs)</li>
+                    <li>Privacy Shield compliance (where applicable)</li>
+                    <li>Binding Corporate Rules</li>
+                </ul>
+            </section>
+
+            <!-- Children's Privacy -->
+            <section id="children-privacy" class="legal-section">
+                <h2>8. Children's Privacy</h2>
+                <p>Our services are not intended for individuals under 18. We do not knowingly collect data from children. If you believe a child has provided us with data, please contact us immediately.</p>
+            </section>
+
+            <!-- Third-Party Links -->
+            <section id="third-party-links" class="legal-section">
+                <h2>9. Third-Party Links</h2>
+                <p>Our website may contain links to external sites. We are not responsible for their privacy practices and encourage you to review their policies.</p>
+            </section>
+
+            <!-- Changes to Policy -->
+            <section id="policy-changes" class="legal-section">
+                <h2>10. Changes to This Privacy Policy</h2>
+                <p>We update this policy periodically. Material changes will be notified via email or website notice. Continued use after changes constitutes acceptance.</p>
+            </section>
+
+            <!-- Contact Us -->
+            <section id="contact-us" class="legal-section">
+                <h2>11. Contact Us</h2>
+                <p>For privacy-related inquiries:</p>
+                
+                <div class="contact-block">
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email</span>
+                            <a href="mailto:privacy@cybershieldpro.com">privacy@cybershieldpro.com</a>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Mail</span>
+                            <span>123 Security Blvd<br>San Francisco, CA 94107</span>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>Phone</span>
+                            <a href="tel:+15551234567">+1 (555) 123-4567</a>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-user-tie"></i>
+                            <span>DPO</span>
+                            <span>privacy@cybershieldpro.com</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="policy-note" style="margin-top: 2rem;">
+                    <p><strong>By using our website and services, you consent to this Privacy Policy.</strong></p>
+                </div>
+            </section>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
