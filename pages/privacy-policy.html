@@ -3,601 +3,967 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy | CyberShield Pro</title>
+    <title>Privacy Policy - Privacy & Terms - CyberShield Pro</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/pages.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* Enhanced Privacy Policy Styles */
-        .legal-hero {
-            background: linear-gradient(135deg, #0a1a2f 0%, #0d2b45 100%);
-            padding: 80px 0 60px;
-            text-align: center;
-            color: white;
+        /* Google-inspired Design System */
+        :root {
+            --google-blue: #1a73e8;
+            --google-gray-50: #f8f9fa;
+            --google-gray-100: #f1f3f4;
+            --google-gray-200: #e8eaed;
+            --google-gray-600: #5f6368;
+            --google-gray-700: #3c4043;
+            --google-gray-800: #202124;
+            --google-red: #d93025;
+            --google-green: #188038;
+            --google-yellow: #f9ab00;
         }
-        
-        .legal-hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #fff 0%, #a8c0ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        
-        .legal-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 1.5rem;
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            color: var(--google-gray-800);
+            line-height: 1.6;
+            background-color: white;
         }
-        
-        .legal-badge i {
-            color: #4CAF50;
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
+            font-weight: 400;
+            letter-spacing: -0.01em;
         }
-        
-        .legal-container {
-            max-width: 900px;
-            margin: -40px auto 60px;
+
+        /* Google-style Header */
+        .google-header {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-bottom: 1px solid var(--google-gray-200);
+            padding: 8px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .google-header .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .google-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .google-logo i {
+            color: var(--google-blue);
+            font-size: 28px;
+        }
+
+        .google-logo span {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 22px;
+            font-weight: 500;
+            color: var(--google-gray-800);
+        }
+
+        .google-logo .logo-highlight {
+            color: var(--google-blue);
+        }
+
+        .google-nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .google-nav a {
+            color: var(--google-gray-600);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.25px;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .google-nav a:hover {
+            color: var(--google-gray-800);
+            border-bottom-color: var(--google-gray-600);
+        }
+
+        .google-nav a.active {
+            color: var(--google-blue);
+            border-bottom-color: var(--google-blue);
+        }
+
+        .google-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .google-button-outline {
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Google Sans', sans-serif;
+            color: var(--google-blue);
+            border: 1px solid var(--google-gray-200);
+            background: white;
+            text-decoration: none;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .google-button-outline:hover {
+            background: var(--google-gray-50);
+            border-color: var(--google-gray-600);
+        }
+
+        .google-button-primary {
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Google Sans', sans-serif;
+            color: white;
+            background: var(--google-blue);
+            border: 1px solid transparent;
+            text-decoration: none;
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+
+        .google-button-primary:hover {
+            background: #1b66c9;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .google-icon-button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--google-gray-600);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            display: none;
+        }
+
+        .google-icon-button:hover {
+            background: var(--google-gray-50);
+        }
+
+        /* Google-style Subheader */
+        .google-subheader {
+            background: white;
+            border-bottom: 1px solid var(--google-gray-200);
+            padding: 16px 0;
+        }
+
+        .google-subheader .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .google-subheader h1 {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--google-gray-800);
+            font-family: 'Google Sans', sans-serif;
+        }
+
+        .google-subheader-nav {
+            display: flex;
+            gap: 24px;
+        }
+
+        .google-subheader-nav a {
+            color: var(--google-gray-600);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 4px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .google-subheader-nav a:hover {
+            color: var(--google-gray-800);
+            border-bottom-color: var(--google-gray-400);
+        }
+
+        .google-subheader-nav a.active {
+            color: var(--google-blue);
+            border-bottom-color: var(--google-blue);
+        }
+
+        /* Google-style Main Content */
+        .google-main {
+            max-width: 984px;
+            margin: 40px auto;
+            padding: 0 24px;
+        }
+
+        /* Google-style Last Updated */
+        .google-last-updated {
+            background: var(--google-gray-50);
+            border-radius: 8px;
+            padding: 16px 24px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            border: 1px solid var(--google-gray-200);
+        }
+
+        .google-last-updated-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .google-last-updated-left i {
+            color: var(--google-blue);
+            font-size: 20px;
+        }
+
+        .google-last-updated-left span {
+            color: var(--google-gray-600);
+            font-size: 14px;
+        }
+
+        .google-last-updated-left strong {
+            color: var(--google-gray-800);
+            font-weight: 500;
+        }
+
+        .google-download-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--google-blue);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 4px;
+            background: white;
+            border: 1px solid var(--google-gray-200);
+        }
+
+        .google-download-link:hover {
+            background: var(--google-gray-50);
+            border-color: var(--google-blue);
+        }
+
+        /* Google-style Table of Contents */
+        .google-toc {
+            background: white;
+            border: 1px solid var(--google-gray-200);
+            border-radius: 8px;
+            margin-bottom: 48px;
+            overflow: hidden;
+        }
+
+        .google-toc-header {
+            padding: 16px 24px;
+            background: var(--google-gray-50);
+            border-bottom: 1px solid var(--google-gray-200);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .google-toc-header i {
+            color: var(--google-blue);
+            font-size: 18px;
+        }
+
+        .google-toc-header h2 {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--google-gray-800);
+            margin: 0;
+        }
+
+        .google-toc-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            padding: 20px 24px;
+        }
+
+        .google-toc-item {
+            color: var(--google-blue);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 6px 0;
+            display: inline-block;
+        }
+
+        .google-toc-item:hover {
+            text-decoration: underline;
+            color: #1b66c9;
+        }
+
+        /* Google-style Content Sections */
+        .google-section {
+            margin-bottom: 56px;
+            scroll-margin-top: 100px;
+        }
+
+        .google-section h2 {
+            font-size: 28px;
+            font-weight: 400;
+            color: var(--google-gray-800);
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--google-gray-200);
+        }
+
+        .google-section h3 {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--google-gray-800);
+            margin: 32px 0 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .google-section h3 i {
+            color: var(--google-blue);
+            font-size: 18px;
+        }
+
+        .google-section p {
+            font-size: 16px;
+            color: var(--google-gray-700);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .google-section a {
+            color: var(--google-blue);
+            text-decoration: none;
+        }
+
+        .google-section a:hover {
+            text-decoration: underline;
+        }
+
+        .google-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .google-list li {
+            font-size: 16px;
+            color: var(--google-gray-700);
+            padding: 8px 0 8px 28px;
             position: relative;
-            z-index: 10;
+            border-bottom: 1px solid var(--google-gray-100);
         }
-        
-        .legal-content {
-            padding: 3rem;
+
+        .google-list li:last-child {
+            border-bottom: none;
         }
-        
-        .legal-meta {
+
+        .google-list li:before {
+            content: "•";
+            color: var(--google-blue);
+            font-weight: bold;
+            position: absolute;
+            left: 8px;
+        }
+
+        /* Google-style Cards */
+        .google-rights-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin: 32px 0;
+        }
+
+        .google-right-card {
+            background: white;
+            border: 1px solid var(--google-gray-200);
+            border-radius: 8px;
+            padding: 24px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .google-right-card:hover {
+            border-color: var(--google-blue);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .google-right-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--google-gray-800);
+            margin-bottom: 12px;
+        }
+
+        .google-right-card h4 i {
+            color: var(--google-blue);
+            font-size: 20px;
+        }
+
+        .google-right-card p {
+            font-size: 14px;
+            color: var(--google-gray-600);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Google-style Note Box */
+        .google-note {
+            background: var(--google-gray-50);
+            border-left: 4px solid var(--google-blue);
+            padding: 20px 24px;
+            border-radius: 4px;
+            margin: 32px 0;
+        }
+
+        .google-note p {
+            margin: 0;
+            color: var(--google-gray-800);
+            font-size: 15px;
+        }
+
+        .google-note strong {
+            color: var(--google-blue);
+            font-weight: 500;
+        }
+
+        /* Google-style Contact Grid */
+        .google-contact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin: 32px 0;
+        }
+
+        .google-contact-card {
+            background: white;
+            border: 1px solid var(--google-gray-200);
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .google-contact-card i {
+            font-size: 24px;
+            color: var(--google-blue);
+            margin-bottom: 16px;
+        }
+
+        .google-contact-card span {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--google-gray-800);
+            margin-bottom: 8px;
+        }
+
+        .google-contact-card a, .google-contact-card p {
+            font-size: 14px;
+            color: var(--google-gray-600);
+            text-decoration: none;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .google-contact-card a:hover {
+            color: var(--google-blue);
+        }
+
+        /* Google-style Footer */
+        .google-footer {
+            background: white;
+            border-top: 1px solid var(--google-gray-200);
+            padding: 40px 0 24px;
+            margin-top: 60px;
+        }
+
+        .google-footer .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .google-footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 48px;
+            margin-bottom: 40px;
+        }
+
+        .google-footer-col p {
+            font-size: 14px;
+            color: var(--google-gray-600);
+            margin: 16px 0;
+            line-height: 1.6;
+        }
+
+        .google-footer-col h3 {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--google-gray-800);
+            margin-bottom: 20px;
+        }
+
+        .google-footer-col ul {
+            list-style: none;
+        }
+
+        .google-footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .google-footer-col ul li a {
+            color: var(--google-gray-600);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .google-footer-col ul li a:hover {
+            color: var(--google-blue);
+        }
+
+        .google-social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .google-social-links a {
+            color: var(--google-gray-600);
+            font-size: 18px;
+        }
+
+        .google-social-links a:hover {
+            color: var(--google-blue);
+        }
+
+        .google-contact-info li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--google-gray-600);
+            font-size: 14px;
+        }
+
+        .google-footer-bottom {
+            border-top: 1px solid var(--google-gray-200);
+            padding-top: 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 2rem;
-            border-bottom: 2px solid #f0f4f8;
-            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            gap: 16px;
         }
-        
-        .last-updated {
-            background: #e8f0fe;
-            color: #1a5f9c;
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 500;
+
+        .google-footer-bottom p {
+            font-size: 12px;
+            color: var(--google-gray-600);
         }
-        
-        .download-pdf {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #2563eb;
+
+        .google-footer-bottom a {
+            color: var(--google-gray-600);
             text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            transition: all 0.3s;
+            margin-left: 24px;
+            font-size: 12px;
         }
-        
-        .download-pdf:hover {
-            background: #f8fafc;
-            border-color: #2563eb;
+
+        .google-footer-bottom a:hover {
+            color: var(--google-blue);
         }
-        
-        .legal-section {
-            margin-bottom: 2.5rem;
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .google-rights-grid,
+            .google-contact-grid,
+            .google-toc-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .google-footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+            }
         }
-        
-        .legal-section h2 {
-            font-size: 1.8rem;
-            color: #0a1a2f;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 3px solid #2563eb;
-            display: inline-block;
-        }
-        
-        .legal-section h3 {
-            font-size: 1.3rem;
-            color: #1e293b;
-            margin: 1.5rem 0 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-        
-        .legal-section h3 i {
-            color: #2563eb;
-            font-size: 1.2rem;
-        }
-        
-        .legal-section p {
-            color: #334155;
-            line-height: 1.7;
-            margin-bottom: 1.2rem;
-        }
-        
-        .legal-list {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .legal-list li {
-            padding: 0.75rem 0 0.75rem 2rem;
-            position: relative;
-            color: #334155;
-            border-bottom: 1px solid #f1f5f9;
-        }
-        
-        .legal-list li:before {
-            content: "▹";
-            color: #2563eb;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-        
-        .rights-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-        
-        .rights-card {
-            background: #f8fafc;
-            border-radius: 12px;
-            padding: 1.5rem;
-            border: 1px solid #e2e8f0;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .rights-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border-color: #2563eb;
-        }
-        
-        .rights-card h4 {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #0a1a2f;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-        
-        .rights-card h4 i {
-            color: #2563eb;
-        }
-        
-        .rights-card p {
-            font-size: 0.95rem;
-            margin: 0;
-            color: #475569;
-        }
-        
-        .policy-note {
-            background: linear-gradient(135deg, #0a1a2f 0%, #0d2b45 100%);
-            color: white;
-            padding: 2rem;
-            border-radius: 12px;
-            margin: 2.5rem 0;
-            text-align: center;
-        }
-        
-        .policy-note p {
-            color: white;
-            margin: 0;
-            font-size: 1.1rem;
-        }
-        
-        .policy-note strong {
-            color: #4CAF50;
-            font-weight: 600;
-        }
-        
-        .contact-block {
-            background: #f8fafc;
-            border-radius: 12px;
-            padding: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .contact-methods {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        
-        .contact-method {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 1.5rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-        
-        .contact-method:hover {
-            transform: scale(1.05);
-        }
-        
-        .contact-method i {
-            font-size: 2rem;
-            color: #2563eb;
-            margin-bottom: 1rem;
-        }
-        
-        .contact-method span {
-            font-weight: 600;
-            color: #0a1a2f;
-            margin-bottom: 0.5rem;
-        }
-        
-        .contact-method a {
-            color: #475569;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .contact-method a:hover {
-            color: #2563eb;
-        }
-        
-        .table-of-contents {
-            background: #f8fafc;
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-        }
-        
-        .table-of-contents h4 {
-            color: #0a1a2f;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .toc-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 0.75rem;
-        }
-        
-        .toc-item {
-            color: #2563eb;
-            text-decoration: none;
-            font-size: 0.95rem;
-            padding: 0.5rem;
-            border-radius: 6px;
-            transition: background 0.3s;
-        }
-        
-        .toc-item:hover {
-            background: white;
-            text-decoration: underline;
-        }
-        
+
         @media (max-width: 768px) {
-            .legal-hero h1 {
-                font-size: 2.2rem;
+            .google-nav {
+                display: none;
             }
-            
-            .legal-container {
-                margin: -20px 20px 40px;
+
+            .google-actions {
+                display: none;
             }
-            
-            .legal-content {
-                padding: 2rem;
+
+            .google-icon-button {
+                display: block;
             }
-            
-            .legal-meta {
+
+            .google-subheader {
+                overflow-x: auto;
+            }
+
+            .google-subheader-nav {
+                min-width: max-content;
+            }
+
+            .google-rights-grid,
+            .google-contact-grid,
+            .google-toc-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .google-footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .google-last-updated {
                 flex-direction: column;
-                gap: 1rem;
                 align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .google-main {
+                padding: 0 16px;
+            }
+
+            .google-section h2 {
+                font-size: 24px;
+            }
+
+            .google-section h3 {
+                font-size: 18px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
+    <!-- Google-style Header -->
+    <header class="google-header">
         <div class="container">
-            <nav class="navbar">
-                <a href="../index.html" class="logo">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>CyberShield<span class="logo-highlight">Pro</span></span>
-                </a>
-                
-                <ul class="nav-menu">
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="case-studies.html">Case Studies</a></li>
-                    <li><a href="resources.html">Resources</a></li>
-                    <li><a href="../index.html#contact">Contact</a></li>
-                </ul>
-                
-                <div class="nav-buttons">
-                    <a href="login.html" class="btn btn-outline">Login</a>
-                    <a href="signup.html" class="btn btn-primary">Get Started</a>
-                </div>
-                
-                <button class="nav-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </nav>
+            <a href="../index.html" class="google-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>CyberShield<span class="logo-highlight">Pro</span></span>
+            </a>
+            
+            <div class="google-nav">
+                <a href="../index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="blog.html">Blog</a>
+                <a href="case-studies.html">Case Studies</a>
+                <a href="resources.html">Resources</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+            
+            <div class="google-actions">
+                <a href="login.html" class="google-button-outline">Sign in</a>
+                <a href="signup.html" class="google-button-primary">Get started</a>
+            </div>
+            
+            <button class="google-icon-button">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
 
-    <!-- Legal Hero Section -->
-    <section class="legal-hero">
+    <!-- Google-style Subheader (Privacy & Terms navigation) -->
+    <div class="google-subheader">
         <div class="container">
-            <h1>Privacy Policy</h1>
-            <p>Your data protection and privacy are our top priorities</p>
-            <div class="legal-badge">
-                <i class="fas fa-check-circle"></i>
-                <span>GDPR & CCPA Compliant</span>
-                <i class="fas fa-shield-alt" style="margin-left: 0.5rem;"></i>
+            <h1>Privacy & Terms</h1>
+            <div class="google-subheader-nav">
+                <a href="#" class="active">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="#">Technologies</a>
+                <a href="#">FAQ</a>
             </div>
-        </div>
-    </section>
-
-    <!-- Privacy Policy Content -->
-    <div class="legal-container">
-        <div class="legal-content">
-            <div class="legal-meta">
-                <span class="last-updated"><i class="far fa-calendar-alt"></i> Last Updated: March 15, 2024</span>
-                <a href="#" class="download-pdf">
-                    <i class="fas fa-file-pdf"></i>
-                    Download PDF Version
-                </a>
-            </div>
-
-            <!-- Table of Contents -->
-            <div class="table-of-contents">
-                <h4><i class="fas fa-list-ul"></i> Table of Contents</h4>
-                <div class="toc-grid">
-                    <a href="#introduction" class="toc-item">1. Introduction</a>
-                    <a href="#information-collect" class="toc-item">2. Information We Collect</a>
-                    <a href="#information-use" class="toc-item">3. How We Use Your Information</a>
-                    <a href="#sharing-disclosure" class="toc-item">4. Information Sharing</a>
-                    <a href="#data-security" class="toc-item">5. Data Security</a>
-                    <a href="#data-retention" class="toc-item">6. Data Retention</a>
-                    <a href="#data-rights" class="toc-item">7. Your Data Rights</a>
-                    <a href="#international-transfers" class="toc-item">8. International Transfers</a>
-                    <a href="#children-privacy" class="toc-item">9. Children's Privacy</a>
-                    <a href="#third-party-links" class="toc-item">10. Third-Party Links</a>
-                    <a href="#policy-changes" class="toc-item">11. Policy Changes</a>
-                    <a href="#contact-us" class="toc-item">12. Contact Us</a>
-                </div>
-            </div>
-
-            <!-- Introduction -->
-            <section id="introduction" class="legal-section">
-                <h2>1. Introduction</h2>
-                <p>CyberShield Pro ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website <a href="../index.html">cybershieldpro.com</a> and use our services.</p>
-                <div class="policy-note">
-                    <p><strong>🔒 Our Commitment:</strong> By accessing or using our Service, you acknowledge that you have read, understood, and agree to be bound by all the terms of this Privacy Policy.</p>
-                </div>
-            </section>
-
-            <!-- Information We Collect -->
-            <section id="information-collect" class="legal-section">
-                <h2>2. Information We Collect</h2>
-                
-                <h3><i class="fas fa-user-circle"></i> 2.1 Personal Information</h3>
-                <p>We may collect personal information that you voluntarily provide to us when you:</p>
-                <ul class="legal-list">
-                    <li>Register for an account</li>
-                    <li>Request information about our services</li>
-                    <li>Subscribe to our newsletter</li>
-                    <li>Contact our support team</li>
-                    <li>Participate in surveys or promotions</li>
-                </ul>
-                <p>This information may include:</p>
-                <ul class="legal-list">
-                    <li>Name and contact information (email address, phone number, address)</li>
-                    <li>Company information (name, size, industry)</li>
-                    <li>Payment information (processed through secure third-party providers)</li>
-                    <li>Communication preferences</li>
-                </ul>
-                
-                <h3><i class="fas fa-desktop"></i> 2.2 Automatically Collected Information</h3>
-                <p>When you visit our website, we automatically collect certain information about your device:</p>
-                <ul class="legal-list">
-                    <li>IP address and geolocation data</li>
-                    <li>Browser type and version</li>
-                    <li>Operating system</li>
-                    <li>Referring URLs and pages viewed</li>
-                    <li>Time spent on pages and clickstream data</li>
-                </ul>
-                
-                <h3><i class="fas fa-cookie-bite"></i> 2.3 Cookies and Tracking Technologies</h3>
-                <p>We use cookies and similar tracking technologies to enhance your experience. You can control cookies through your browser settings, but disabling them may limit some functionality.</p>
-            </section>
-
-            <!-- How We Use Your Information -->
-            <section id="information-use" class="legal-section">
-                <h2>3. How We Use Your Information</h2>
-                <ul class="legal-list">
-                    <li><strong>Service Delivery:</strong> To provide and maintain our cybersecurity services</li>
-                    <li><strong>Transaction Processing:</strong> To process payments and manage subscriptions</li>
-                    <li><strong>Communication:</strong> To send security alerts, updates, and support messages</li>
-                    <li><strong>Improvement:</strong> To enhance our website and services based on usage patterns</li>
-                    <li><strong>Security:</strong> To detect, prevent, and address technical issues and threats</li>
-                    <li><strong>Compliance:</strong> To fulfill legal obligations and regulatory requirements</li>
-                </ul>
-            </section>
-
-            <!-- Information Sharing and Disclosure -->
-            <section id="sharing-disclosure" class="legal-section">
-                <h2>4. Information Sharing and Disclosure</h2>
-                
-                <h3><i class="fas fa-handshake"></i> 4.1 Service Providers</h3>
-                <p>We share information with trusted third parties who perform services on our behalf:</p>
-                <ul class="legal-list">
-                    <li>Payment processing (Stripe, PayPal)</li>
-                    <li>Data analysis and analytics</li>
-                    <li>Email delivery services</li>
-                    <li>Cloud hosting and infrastructure</li>
-                    <li>Customer support platforms</li>
-                </ul>
-                
-                <h3><i class="fas fa-gavel"></i> 4.2 Legal Requirements</h3>
-                <p>We may disclose information if required by law or valid requests by public authorities.</p>
-                
-                <h3><i class="fas fa-building"></i> 4.3 Business Transfers</h3>
-                <p>In case of merger, acquisition, or asset sale, your information may be transferred with notice provided.</p>
-            </section>
-
-            <!-- Data Security -->
-            <section id="data-security" class="legal-section">
-                <h2>5. Data Security</h2>
-                <p>We implement enterprise-grade security measures to protect your information:</p>
-                <ul class="legal-list">
-                    <li><strong>Encryption:</strong> AES-256 encryption for data at rest and TLS 1.3 for data in transit</li>
-                    <li><strong>Access Control:</strong> Multi-factor authentication and role-based access</li>
-                    <li><strong>Monitoring:</strong> 24/7 security monitoring and threat detection</li>
-                    <li><strong>Audits:</strong> Regular security assessments and penetration testing</li>
-                    <li><strong>Incident Response:</strong> Documented procedures for security incidents</li>
-                </ul>
-            </section>
-
-            <!-- Your Data Protection Rights -->
-            <section id="data-rights" class="legal-section">
-                <h2>6. Your Data Protection Rights</h2>
-                
-                <div class="rights-grid">
-                    <div class="rights-card">
-                        <h4><i class="fas fa-eye"></i> Right to Access</h4>
-                        <p>Request copies of your personal data</p>
-                    </div>
-                    <div class="rights-card">
-                        <h4><i class="fas fa-edit"></i> Right to Rectification</h4>
-                        <p>Correct inaccurate or incomplete data</p>
-                    </div>
-                    <div class="rights-card">
-                        <h4><i class="fas fa-trash-alt"></i> Right to Deletion</h4>
-                        <p>Request deletion of your personal data</p>
-                    </div>
-                    <div class="rights-card">
-                        <h4><i class="fas fa-ban"></i> Right to Restriction</h4>
-                        <p>Limit processing of your data</p>
-                    </div>
-                    <div class="rights-card">
-                        <h4><i class="fas fa-exchange-alt"></i> Right to Portability</h4>
-                        <p>Transfer your data to another service</p>
-                    </div>
-                    <div class="rights-card">
-                        <h4><i class="fas fa-times-circle"></i> Right to Object</h4>
-                        <p>Object to data processing</p>
-                    </div>
-                </div>
-
-                <h3>GDPR Rights (European Union)</h3>
-                <p>If you are in the EEA, you have comprehensive rights under GDPR.</p>
-                
-                <h3>CCPA/CPRA Rights (California)</h3>
-                <p>California residents have specific privacy rights, including the right to opt-out of data sales.</p>
-                
-                <div class="policy-note">
-                    <p>To exercise your rights: <a href="mailto:privacy@cybershieldpro.com" style="color: #4CAF50; text-decoration: underline;">privacy@cybershieldpro.com</a> - We respond within 30 days.</p>
-                </div>
-            </section>
-
-            <!-- International Data Transfers -->
-            <section id="international-transfers" class="legal-section">
-                <h2>7. International Data Transfers</h2>
-                <p>Your information may be processed in countries with different data protection laws. We ensure adequate safeguards through:</p>
-                <ul class="legal-list">
-                    <li>Standard Contractual Clauses (SCCs)</li>
-                    <li>Privacy Shield compliance (where applicable)</li>
-                    <li>Binding Corporate Rules</li>
-                </ul>
-            </section>
-
-            <!-- Children's Privacy -->
-            <section id="children-privacy" class="legal-section">
-                <h2>8. Children's Privacy</h2>
-                <p>Our services are not intended for individuals under 18. We do not knowingly collect data from children. If you believe a child has provided us with data, please contact us immediately.</p>
-            </section>
-
-            <!-- Third-Party Links -->
-            <section id="third-party-links" class="legal-section">
-                <h2>9. Third-Party Links</h2>
-                <p>Our website may contain links to external sites. We are not responsible for their privacy practices and encourage you to review their policies.</p>
-            </section>
-
-            <!-- Changes to Policy -->
-            <section id="policy-changes" class="legal-section">
-                <h2>10. Changes to This Privacy Policy</h2>
-                <p>We update this policy periodically. Material changes will be notified via email or website notice. Continued use after changes constitutes acceptance.</p>
-            </section>
-
-            <!-- Contact Us -->
-            <section id="contact-us" class="legal-section">
-                <h2>11. Contact Us</h2>
-                <p>For privacy-related inquiries:</p>
-                
-                <div class="contact-block">
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <i class="fas fa-envelope"></i>
-                            <span>Email</span>
-                            <a href="mailto:privacy@cybershieldpro.com">privacy@cybershieldpro.com</a>
-                        </div>
-                        <div class="contact-method">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Mail</span>
-                            <span>123 Security Blvd<br>San Francisco, CA 94107</span>
-                        </div>
-                        <div class="contact-method">
-                            <i class="fas fa-phone-alt"></i>
-                            <span>Phone</span>
-                            <a href="tel:+15551234567">+1 (555) 123-4567</a>
-                        </div>
-                        <div class="contact-method">
-                            <i class="fas fa-user-tie"></i>
-                            <span>DPO</span>
-                            <span>privacy@cybershieldpro.com</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="policy-note" style="margin-top: 2rem;">
-                    <p><strong>By using our website and services, you consent to this Privacy Policy.</strong></p>
-                </div>
-            </section>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <!-- Main Content - Google style -->
+    <main class="google-main">
+        <!-- Last Updated Banner -->
+        <div class="google-last-updated">
+            <div class="google-last-updated-left">
+                <i class="far fa-calendar-alt"></i>
+                <span>Last updated: <strong>March 15, 2024</strong></span>
+                <span style="color: var(--google-gray-400);">|</span>
+                <span>Version 2.3.1</span>
+            </div>
+            <a href="#" class="google-download-link">
+                <i class="fas fa-download"></i>
+                Download PDF
+            </a>
+        </div>
+
+        <!-- Table of Contents - Google style -->
+        <div class="google-toc">
+            <div class="google-toc-header">
+                <i class="fas fa-list-ul"></i>
+                <h2>In this policy</h2>
+            </div>
+            <div class="google-toc-grid">
+                <a href="#introduction" class="google-toc-item">1. Introduction</a>
+                <a href="#information-collect" class="google-toc-item">2. Information we collect</a>
+                <a href="#information-use" class="google-toc-item">3. How we use information</a>
+                <a href="#sharing-disclosure" class="google-toc-item">4. Information sharing</a>
+                <a href="#data-security" class="google-toc-item">5. Data security</a>
+                <a href="#data-retention" class="google-toc-item">6. Data retention</a>
+                <a href="#your-rights" class="google-toc-item">7. Your rights</a>
+                <a href="#international" class="google-toc-item">8. International transfers</a>
+                <a href="#children" class="google-toc-item">9. Children</a>
+                <a href="#third-party" class="google-toc-item">10. Third-party links</a>
+                <a href="#changes" class="google-toc-item">11. Changes</a>
+                <a href="#contact" class="google-toc-item">12. Contact us</a>
+            </div>
+        </div>
+
+        <!-- 1. Introduction -->
+        <section id="introduction" class="google-section">
+            <h2>1. Introduction</h2>
+            <p>At CyberShield Pro, we take your privacy seriously. This Privacy Policy explains how we collect, use, and protect your personal information when you use our website and services. By using CyberShield Pro, you agree to the collection and use of information in accordance with this policy.</p>
+            <div class="google-note">
+                <p><strong>Our commitment:</strong> We're committed to being transparent about how we handle your data. If you have any questions, you can always contact us at <a href="mailto:privacy@cybershieldpro.com">privacy@cybershieldpro.com</a>.</p>
+            </div>
+        </section>
+
+        <!-- 2. Information We Collect -->
+        <section id="information-collect" class="google-section">
+            <h2>2. Information we collect</h2>
+            
+            <h3><i class="fas fa-user-circle"></i> 2.1 Information you give us</h3>
+            <p>You may provide us with information when you:</p>
+            <ul class="google-list">
+                <li>Create an account or use our services</li>
+                <li>Request customer support or contact us</li>
+                <li>Subscribe to our newsletters or marketing</li>
+                <li>Participate in surveys, research, or promotions</li>
+                <li>Register for events or webinars</li>
+            </ul>
+            <p>This information may include your name, email address, phone number, company name, payment information, and any other details you choose to provide.</p>
+
+            <h3><i class="fas fa-desktop"></i> 2.2 Information we get from your use</h3>
+            <p>When you use our services, we automatically collect:</p>
+            <ul class="google-list">
+                <li><strong>Device information:</strong> IP address, browser type, operating system, device identifiers</li>
+                <li><strong>Usage data:</strong> Pages visited, features used, time spent, clicks, and navigation patterns</li>
+                <li><strong>Log data:</strong> Error reports, performance data, and system activity</li>
+                <li><strong>Location information:</strong> Approximate location based on IP address</li>
+            </ul>
+
+            <h3><i class="fas fa-cookie"></i> 2.3 Cookies and similar technologies</h3>
+            <p>We use cookies and similar technologies to improve your experience, analyze traffic, and personalize content. You can manage cookies through your browser settings. Learn more in our <a href="#">Cookies Policy</a>.</p>
+        </section>
+
+        <!-- 3. How We Use Information -->
+        <section id="information-use" class="google-section">
+            <h2>3. How we use information</h2>
+            <p>We use the information we collect for the following purposes:</p>
+            <ul class="google-list">
+                <li><strong>Provide and maintain our services:</strong> To deliver our cybersecurity solutions and process transactions</li>
+                <li><strong>Improve and develop:</strong> To understand usage patterns and enhance our features</li>
+                <li><strong>Communicate with you:</strong> To send security alerts, updates, and support messages</li>
+                <li><strong>Security and fraud prevention:</strong> To detect and prevent threats, abuse, and illegal activity</li>
+                <li><strong>Legal compliance:</strong> To meet our legal and regulatory obligations</li>
+                <li><strong>Personalization:</strong> To customize your experience and show relevant content</li>
+            </ul>
+        </section>
+
+        <!-- 4. Information Sharing -->
+        <section id="sharing-disclosure" class="google-section">
+            <h2>4. Information sharing</h2>
+            
+            <h3><i class="fas fa-handshake"></i> 4.1 With your consent</h3>
+            <p>We share your information when you ask us to or give us permission.</p>
+
+            <h3><i class="fas fa-users"></i> 4.2 With service providers</h3>
+            <p>We work with trusted third parties who process data on our behalf:</p>
+            <ul class="google-list">
+                <li>Payment processors (Stripe, PayPal)</li>
+                <li>Cloud infrastructure (Google Cloud, AWS)</li>
+                <li>Analytics providers</li>
+                <li>Customer support tools</li>
+                <li>Email communication services</li>
+            </ul>
+
+            <h3><i class="fas fa-gavel"></i> 4.3 For legal reasons</h3>
+            <p>We may share information if required by law, legal process, or to protect rights and safety.</p>
+
+            <h3><i class="fas fa-building"></i> 4.4 Business transfers</h3>
+            <p>If CyberShield Pro is involved in a merger, acquisition, or sale, your information may be transferred with notice.</p>
+        </section>
+
+        <!-- 5. Data Security -->
+        <section id="data-security" class="google-section">
+            <h2>5. Data security</h2>
+            <p>We implement strong security measures to protect your information:</p>
+            <ul class="google-list">
+                <li><strong>Encryption:</strong> Data encrypted in transit (TLS 1.3) and at rest (AES-256)</li>
+                <li><strong>Access controls:</strong> Strict authentication and authorization protocols</li>
+                <li><strong>Monitoring:</strong> 24/7 security monitoring and threat detection</li>
+                <li><strong>Audits:</strong> Regular security assessments and penetration testing</li>
+                <li><strong>Compliance:</strong> SOC 2 Type II, ISO 27001 certified</li>
+            </ul>
+            <div class="google-note">
+                <p><strong>Note:</strong> While we strive for perfect security, no method of transmission is 100% secure. We continuously update our practices to stay ahead of threats.</p>
+            </div>
+        </section>
+
+        <!-- 6. Data Retention -->
+        <section id="data-retention" class="google-section">
+            <h2>6. Data retention</h2>
+            <p>We retain your information for as long as your account is active or as needed to provide services. We may retain data longer to comply with legal obligations, resolve disputes, or enforce agreements. When we no longer need data, we securely delete or anonymize it.</p>
+        </section>
+
+        <!-- 7. Your Rights -->
+        <section id="your-rights" class="google-section">
+            <h2>7. Your rights</h2>
+            <p>Depending on your location, you have rights regarding your personal information:</p>
+
+            <div class="google-rights-grid">
+                <div class="google-right-card">
+                    <h4><i class="fas fa-eye"></i> Access</h4>
+                    <p>Request a copy of your personal data</p>
+                </div>
+                <div class="google-right-card">
+                    <h4><i class="fas fa-edit"></i> Rectification</h4>
+                    <p>Correct inaccurate or incomplete data</p>
+                </div>
+                <div class="google-right-card">
+                    <h4><i class="fas fa-trash-alt"></i> Deletion</h4>
+                    <p>Request deletion of your data</p>
+                </div>
+                <div class="google-right-card">
+                    <h4><i class="fas fa-ban"></i> Restriction</h4>
+                    <p>Limit how we use your data</p>
+                </div>
+                <div class="google-right-card">
+                    <h4><i class="fas fa-exchange-alt"></i> Portability</h4>
+                    <p>Receive your data in portable format</p>
+                </div>
+                <div class="google-right-card">
+                    <h4><i class="fas fa-times-circle"></i> Object</h4>
+                    <p>Object to data processing</p>
+                </div>
+            </div>
+
+            <h3>GDPR (European Economic Area)</h3>
+            <p>If you're in the EEA, you have additional rights under the General Data Protection Regulation. Our legal basis for processing is typically your consent, contract performance, or legitimate interests.</p>
+
+            <h3>CCPA/CPRA (California)</h3>
+            <p>California residents have specific rights including the right to know, delete, and opt-out of sales. We do not sell your personal information.</p>
+
+            <div class="google-note">
+                <p><strong>To exercise your rights:</strong> Email <a href="mailto:privacy@cybershieldpro.com">privacy@cybershieldpro.com</a> or call +1 (555) 123-4567. We'll respond within 30 days.</p>
+            </div>
+        </section>
+
+        <!-- 8. International Transfers -->
+        <section id="international" class="google-section">
+            <h2>8. International data transfers</h2>
+            <p>We operate globally, so your information may be processed in countries with different data protection laws. When we transfer data internationally, we use safeguards including:</p>
+            <ul class="google-list">
+                <li>European Commission-approved Standard Contractual Clauses</li>
+                <li>Privacy Shield certifications (where applicable)</li>
+                <li>Binding Corporate Rules</li>
+            </ul>
+        </section>
+
+        <!-- 9. Children -->
+        <section id="children" class="google-section">
+            <h2>9. Children's privacy</h2>
+            <p>Our services are not intended for children under 18. We do not knowingly collect information from children. If you believe a child has provided us with data, please contact us and we'll delete it.</p>
+        </section>
+
+        <!-- 10. Third-party Links -->
+        <section id="third-party" class="google-section">
+            <h2>10. Third-party links</h2>
+            <p>Our website may contain links to external sites. We're not responsible for their privacy practices. We encourage you to read their privacy policies.</p>
+        </section>
+
+        <!-- 11. Changes -->
+        <section id="changes" class="google-section">
+            <h2>11. Changes to this policy</h2>
+            <p>We may update this policy periodically. We'll notify you of material changes by email or website notice. The "Last updated" date at the top reflects the latest version. Your continued use after changes means you accept the updated policy.</p>
+        </section>
+
+        <!-- 12. Contact Us -->
+        <section id="contact" class="google-section">
+            <h2>12. Contact us</h2>
+            <p>If you have questions about this policy or your data, reach out:</p>
+
+            <div class="google-contact-grid">
+                <div class="google-contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                    <a href="mailto:privacy@cybershieldpro.com">privacy@cybershieldpro.com</a>
+                </div>
+                <div class="google-contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Mail</span>
+                    <p>123 Security Blvd<br>San Francisco, CA 94107</p>
+                </div>
+                <div class="google-contact-card">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Phone</span>
+                    <a href="tel:+15551234567">+1 (555) 123-4567</a>
+                </div>
+                <div class="google-contact-card">
+                    <i class="fas fa-user-tie"></i>
+                    <span>Data Protection Officer</span>
+                    <p>dpo@cybershieldpro.com</p>
+                </div>
+            </div>
+
+            <div class="google-note">
+                <p><strong>Data Controller:</strong> CyberShield Pro, Inc., 123 Security Blvd, San Francisco, CA 94107.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Google-style Footer -->
+    <footer class="google-footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <a href="../index.html" class="logo">
+            <div class="google-footer-grid">
+                <div class="google-footer-col">
+                    <a href="../index.html" class="google-logo">
                         <i class="fas fa-shield-alt"></i>
                         <span>CyberShield<span class="logo-highlight">Pro</span></span>
                     </a>
-                    <p>Enterprise-grade cybersecurity solutions to protect your digital assets and ensure business continuity.</p>
-                    <div class="social-links">
+                    <p>Enterprise-grade cybersecurity solutions protecting businesses worldwide.</p>
+                    <div class="google-social-links">
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -605,40 +971,44 @@
                     </div>
                 </div>
                 
-                <div class="footer-col">
+                <div class="google-footer-col">
                     <h3>Services</h3>
                     <ul>
                         <li><a href="services.html">Threat Detection</a></li>
                         <li><a href="services.html">Vulnerability Assessment</a></li>
                         <li><a href="services.html">Incident Response</a></li>
                         <li><a href="services.html">Security Consulting</a></li>
-                        <li><a href="services.html">Compliance Auditing</a></li>
                     </ul>
                 </div>
                 
-                <div class="footer-col">
+                <div class="google-footer-col">
                     <h3>Company</h3>
                     <ul>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="team.html">Our Team</a></li>
                         <li><a href="careers.html">Careers</a></li>
                         <li><a href="blog.html">Blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 
-                <div class="footer-col">
-                    <h3>Contact Info</h3>
-                    <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Security Blvd, San Francisco, CA</li>
+                <div class="google-footer-col">
+                    <h3>Contact</h3>
+                    <ul class="google-contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> San Francisco, CA</li>
                         <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
                         <li><i class="fas fa-envelope"></i> info@cybershieldpro.com</li>
                     </ul>
                 </div>
             </div>
             
-            <div class="footer-bottom">
-                <p>&copy; 2024 CyberShield Pro. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+            <div class="google-footer-bottom">
+                <p>&copy; 2024 CyberShield Pro, Inc. All rights reserved.</p>
+                <div>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="#">Cookies</a>
+                    <a href="#">Your Privacy Choices</a>
+                </div>
             </div>
         </div>
     </footer>
