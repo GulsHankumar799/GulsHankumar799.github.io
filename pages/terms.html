@@ -3,182 +3,1032 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Service | CyberShield Pro</title>
+    <title>Terms of Service - Privacy & Terms - CyberShield Pro</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/pages.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Google-inspired Design System - Matching Privacy Policy exactly */
+        :root {
+            --google-blue: #1a73e8;
+            --google-gray-50: #f8f9fa;
+            --google-gray-100: #f1f3f4;
+            --google-gray-200: #e8eaed;
+            --google-gray-400: #dadce0;
+            --google-gray-600: #5f6368;
+            --google-gray-700: #3c4043;
+            --google-gray-800: #202124;
+            --google-red: #d93025;
+            --google-green: #188038;
+            --google-yellow: #f9ab00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            color: var(--google-gray-800);
+            line-height: 1.6;
+            background-color: white;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        /* Google-style Header */
+        .google-header {
+            background: white;
+            border-bottom: 1px solid var(--google-gray-200);
+            padding: 8px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .google-header .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .google-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .google-logo i {
+            color: var(--google-blue);
+            font-size: 28px;
+        }
+
+        .google-logo span {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 22px;
+            font-weight: 500;
+            color: var(--google-gray-800);
+        }
+
+        .google-logo .logo-highlight {
+            color: var(--google-blue);
+        }
+
+        .google-nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .google-nav a {
+            color: var(--google-gray-600);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.25px;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .google-nav a:hover {
+            color: var(--google-gray-800);
+            border-bottom-color: var(--google-gray-600);
+        }
+
+        .google-nav a.active {
+            color: var(--google-blue);
+            border-bottom-color: var(--google-blue);
+        }
+
+        .google-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .google-button-outline {
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Google Sans', sans-serif;
+            color: var(--google-blue);
+            border: 1px solid var(--google-gray-200);
+            background: white;
+            text-decoration: none;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .google-button-outline:hover {
+            background: var(--google-gray-50);
+            border-color: var(--google-gray-600);
+        }
+
+        .google-button-primary {
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Google Sans', sans-serif;
+            color: white;
+            background: var(--google-blue);
+            border: 1px solid transparent;
+            text-decoration: none;
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+
+        .google-button-primary:hover {
+            background: #1b66c9;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .google-icon-button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--google-gray-600);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            display: none;
+        }
+
+        .google-icon-button:hover {
+            background: var(--google-gray-50);
+        }
+
+        /* Google-style Subheader */
+        .google-subheader {
+            background: white;
+            border-bottom: 1px solid var(--google-gray-200);
+            padding: 16px 0;
+        }
+
+        .google-subheader .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .google-subheader h1 {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--google-gray-800);
+            font-family: 'Google Sans', sans-serif;
+        }
+
+        .google-subheader-nav {
+            display: flex;
+            gap: 24px;
+        }
+
+        .google-subheader-nav a {
+            color: var(--google-gray-600);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 4px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .google-subheader-nav a:hover {
+            color: var(--google-gray-800);
+            border-bottom-color: var(--google-gray-400);
+        }
+
+        .google-subheader-nav a.active {
+            color: var(--google-blue);
+            border-bottom-color: var(--google-blue);
+        }
+
+        /* Google-style Main Content */
+        .google-main {
+            max-width: 984px;
+            margin: 40px auto;
+            padding: 0 24px;
+        }
+
+        /* Google-style Last Updated Banner */
+        .google-last-updated {
+            background: var(--google-gray-50);
+            border-radius: 8px;
+            padding: 16px 24px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            border: 1px solid var(--google-gray-200);
+        }
+
+        .google-last-updated-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .google-last-updated-left i {
+            color: var(--google-blue);
+            font-size: 20px;
+        }
+
+        .google-last-updated-left span {
+            color: var(--google-gray-600);
+            font-size: 14px;
+        }
+
+        .google-last-updated-left strong {
+            color: var(--google-gray-800);
+            font-weight: 500;
+        }
+
+        .google-download-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--google-blue);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 4px;
+            background: white;
+            border: 1px solid var(--google-gray-200);
+        }
+
+        .google-download-link:hover {
+            background: var(--google-gray-50);
+            border-color: var(--google-blue);
+        }
+
+        /* Google-style Table of Contents */
+        .google-toc {
+            background: white;
+            border: 1px solid var(--google-gray-200);
+            border-radius: 8px;
+            margin-bottom: 48px;
+            overflow: hidden;
+        }
+
+        .google-toc-header {
+            padding: 16px 24px;
+            background: var(--google-gray-50);
+            border-bottom: 1px solid var(--google-gray-200);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .google-toc-header i {
+            color: var(--google-blue);
+            font-size: 18px;
+        }
+
+        .google-toc-header h2 {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--google-gray-800);
+            margin: 0;
+        }
+
+        .google-toc-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            padding: 20px 24px;
+        }
+
+        .google-toc-item {
+            color: var(--google-blue);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 6px 0;
+            display: inline-block;
+        }
+
+        .google-toc-item:hover {
+            text-decoration: underline;
+            color: #1b66c9;
+        }
+
+        /* Google-style Content Sections */
+        .google-section {
+            margin-bottom: 56px;
+            scroll-margin-top: 100px;
+        }
+
+        .google-section h2 {
+            font-size: 28px;
+            font-weight: 400;
+            color: var(--google-gray-800);
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--google-gray-200);
+        }
+
+        .google-section h3 {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--google-gray-800);
+            margin: 32px 0 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .google-section h3 i {
+            color: var(--google-blue);
+            font-size: 18px;
+        }
+
+        .google-section p {
+            font-size: 16px;
+            color: var(--google-gray-700);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .google-section a {
+            color: var(--google-blue);
+            text-decoration: none;
+        }
+
+        .google-section a:hover {
+            text-decoration: underline;
+        }
+
+        .google-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .google-list li {
+            font-size: 16px;
+            color: var(--google-gray-700);
+            padding: 8px 0 8px 28px;
+            position: relative;
+            border-bottom: 1px solid var(--google-gray-100);
+        }
+
+        .google-list li:last-child {
+            border-bottom: none;
+        }
+
+        .google-list li:before {
+            content: "•";
+            color: var(--google-blue);
+            font-weight: bold;
+            position: absolute;
+            left: 8px;
+        }
+
+        /* Google-style Cards for key terms */
+        .google-terms-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin: 32px 0;
+        }
+
+        .google-term-card {
+            background: white;
+            border: 1px solid var(--google-gray-200);
+            border-radius: 8px;
+            padding: 24px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .google-term-card:hover {
+            border-color: var(--google-blue);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .google-term-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--google-gray-800);
+            margin-bottom: 12px;
+        }
+
+        .google-term-card h4 i {
+            color: var(--google-blue);
+            font-size: 20px;
+        }
+
+        .google-term-card p {
+            font-size: 14px;
+            color: var(--google-gray-600);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Google-style Note Box */
+        .google-note {
+            background: var(--google-gray-50);
+            border-left: 4px solid var(--google-blue);
+            padding: 20px 24px;
+            border-radius: 4px;
+            margin: 32px 0;
+        }
+
+        .google-note p {
+            margin: 0;
+            color: var(--google-gray-800);
+            font-size: 15px;
+        }
+
+        .google-note strong {
+            color: var(--google-blue);
+            font-weight: 500;
+        }
+
+        /* Google-style Warning Box for important legal terms */
+        .google-warning {
+            background: #fef7e0;
+            border-left: 4px solid var(--google-yellow);
+            padding: 20px 24px;
+            border-radius: 4px;
+            margin: 32px 0;
+        }
+
+        .google-warning p {
+            margin: 0;
+            color: var(--google-gray-800);
+            font-size: 15px;
+        }
+
+        .google-warning i {
+            color: var(--google-yellow);
+            margin-right: 8px;
+        }
+
+        /* Google-style Contact Grid */
+        .google-contact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin: 32px 0;
+        }
+
+        .google-contact-card {
+            background: white;
+            border: 1px solid var(--google-gray-200);
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+            transition: border-color 0.2s;
+        }
+
+        .google-contact-card:hover {
+            border-color: var(--google-blue);
+        }
+
+        .google-contact-card i {
+            font-size: 24px;
+            color: var(--google-blue);
+            margin-bottom: 16px;
+        }
+
+        .google-contact-card span {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--google-gray-800);
+            margin-bottom: 8px;
+        }
+
+        .google-contact-card a, .google-contact-card p {
+            font-size: 14px;
+            color: var(--google-gray-600);
+            text-decoration: none;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .google-contact-card a:hover {
+            color: var(--google-blue);
+        }
+
+        /* Google-style Footer */
+        .google-footer {
+            background: white;
+            border-top: 1px solid var(--google-gray-200);
+            padding: 40px 0 24px;
+            margin-top: 60px;
+        }
+
+        .google-footer .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .google-footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 48px;
+            margin-bottom: 40px;
+        }
+
+        .google-footer-col p {
+            font-size: 14px;
+            color: var(--google-gray-600);
+            margin: 16px 0;
+            line-height: 1.6;
+        }
+
+        .google-footer-col h3 {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--google-gray-800);
+            margin-bottom: 20px;
+        }
+
+        .google-footer-col ul {
+            list-style: none;
+        }
+
+        .google-footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .google-footer-col ul li a {
+            color: var(--google-gray-600);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .google-footer-col ul li a:hover {
+            color: var(--google-blue);
+        }
+
+        .google-social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .google-social-links a {
+            color: var(--google-gray-600);
+            font-size: 18px;
+        }
+
+        .google-social-links a:hover {
+            color: var(--google-blue);
+        }
+
+        .google-contact-info li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--google-gray-600);
+            font-size: 14px;
+        }
+
+        .google-footer-bottom {
+            border-top: 1px solid var(--google-gray-200);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .google-footer-bottom p {
+            font-size: 12px;
+            color: var(--google-gray-600);
+        }
+
+        .google-footer-bottom a {
+            color: var(--google-gray-600);
+            text-decoration: none;
+            margin-left: 24px;
+            font-size: 12px;
+        }
+
+        .google-footer-bottom a:hover {
+            color: var(--google-blue);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .google-terms-grid,
+            .google-contact-grid,
+            .google-toc-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .google-footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .google-nav {
+                display: none;
+            }
+
+            .google-actions {
+                display: none;
+            }
+
+            .google-icon-button {
+                display: block;
+            }
+
+            .google-subheader {
+                overflow-x: auto;
+            }
+
+            .google-subheader-nav {
+                min-width: max-content;
+            }
+
+            .google-terms-grid,
+            .google-contact-grid,
+            .google-toc-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .google-footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .google-last-updated {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .google-main {
+                padding: 0 16px;
+            }
+
+            .google-section h2 {
+                font-size: 24px;
+            }
+
+            .google-section h3 {
+                font-size: 18px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
+    <!-- Google-style Header -->
+    <header class="google-header">
         <div class="container">
-            <nav class="navbar">
-                <a href="../index.html" class="logo">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>CyberShield<span class="logo-highlight">Pro</span></span>
-                </a>
-                
-                <ul class="nav-menu">
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="case-studies.html">Case Studies</a></li>
-                    <li><a href="resources.html">Resources</a></li>
-                    <li><a href="../index.html#contact">Contact</a></li>
-                </ul>
-                
-                <div class="nav-buttons">
-                    <a href="login.html" class="btn btn-outline">Login</a>
-                    <a href="signup.html" class="btn btn-primary">Get Started</a>
-                </div>
-                
-                <button class="nav-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </nav>
+            <a href="../index.html" class="google-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>CyberShield<span class="logo-highlight">Pro</span></span>
+            </a>
+            
+            <div class="google-nav">
+                <a href="../index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="blog.html">Blog</a>
+                <a href="case-studies.html">Case Studies</a>
+                <a href="resources.html">Resources</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+            
+            <div class="google-actions">
+                <a href="login.html" class="google-button-outline">Sign in</a>
+                <a href="signup.html" class="google-button-primary">Get started</a>
+            </div>
+            
+            <button class="google-icon-button">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
 
-    <!-- Page Header -->
-    <section class="page-header">
+    <!-- Google-style Subheader (Privacy & Terms navigation) -->
+    <div class="google-subheader">
         <div class="container">
-            <h1>Terms of Service</h1>
-            <div class="breadcrumb">
-                <a href="../index.html">Home</a>
-                <span class="separator">/</span>
-                <span>Terms of Service</span>
+            <h1>Privacy & Terms</h1>
+            <div class="google-subheader-nav">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="#" class="active">Terms of Service</a>
+                <a href="#">Technologies</a>
+                <a href="#">FAQ</a>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Terms Content -->
-    <section class="page-content">
-        <div class="container">
-            <div class="legal-content">
-                <p class="last-updated"><strong>Last Updated:</strong> March 15, 2024</p>
-                
-                <h2>1. Agreement to Terms</h2>
-                <p>By accessing or using CyberShield Pro's services, website, or applications (collectively, the "Services"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of the Terms, you may not access the Services.</p>
-                
-                <h2>2. Description of Service</h2>
-                <p>CyberShield Pro provides cybersecurity services including but not limited to:</p>
-                <ul>
-                    <li>Threat detection and monitoring</li>
-                    <li>Vulnerability assessment</li>
-                    <li>Incident response</li>
-                    <li>Security consulting</li>
-                    <li>Compliance services</li>
-                    <li>Related cybersecurity solutions</li>
-                </ul>
-                <p>We reserve the right to modify, suspend, or discontinue any aspect of the Services at any time.</p>
-                
-                <h2>3. Account Registration</h2>
-                <p>To access certain features of the Services, you must register for an account. You agree to:</p>
-                <ul>
-                    <li>Provide accurate, current, and complete information</li>
-                    <li>Maintain and promptly update your account information</li>
-                    <li>Maintain the security of your password and accept all risks of unauthorized access</li>
-                    <li>Notify us immediately of any unauthorized use of your account</li>
-                    <li>Be responsible for all activities that occur under your account</li>
-                </ul>
-                
-                <h2>4. Subscription Terms</h2>
-                
-                <h3>4.1 Billing and Payment</h3>
-                <p>Fees for Services are billed in advance on a monthly or annual basis, as selected during registration. All payments are non-refundable except as required by law.</p>
-                
-                <h3>4.2 Automatic Renewal</h3>
-                <p>Unless you cancel your subscription before the end of the applicable subscription period, your subscription will automatically renew. You authorize us to collect the then-applicable subscription fee using any payment method we have on record for you.</p>
-                
-                <h3>4.3 Price Changes</h3>
-                <p>We may change subscription fees at any time. Price changes will become effective at the start of the next subscription period. We will provide you with reasonable notice of any price changes.</p>
-                
-                <h2>5. Acceptable Use</h2>
-                <p>You agree not to use the Services to:</p>
-                <ul>
-                    <li>Violate any applicable laws or regulations</li>
-                    <li>Infringe upon the intellectual property rights of others</li>
-                    <li>Transmit any viruses, malware, or other malicious code</li>
-                    <li>Attempt to gain unauthorized access to our systems or networks</li>
-                    <li>Interfere with or disrupt the integrity or performance of the Services</li>
-                    <li>Use the Services for any illegal or unauthorized purpose</li>
-                </ul>
-                
-                <h2>6. Intellectual Property Rights</h2>
-                <p>The Services and their original content, features, and functionality are owned by CyberShield Pro and are protected by international copyright, trademark, patent, trade secret, and other intellectual property laws.</p>
-                <p>Our trademarks and trade dress may not be used in connection with any product or service without our prior written consent.</p>
-                
-                <h2>7. User Content</h2>
-                <p>You retain all rights to any content you submit, post, or display on or through the Services ("User Content"). By submitting User Content, you grant us a worldwide, non-exclusive, royalty-free license to use, reproduce, modify, and display such content solely for the purpose of providing the Services.</p>
-                <p>You are solely responsible for your User Content and the consequences of posting or publishing it.</p>
-                
-                <h2>8. Service Level Agreement (SLA)</h2>
-                <p>We strive to maintain 99.9% uptime for our Services. If we fail to meet this commitment, you may be eligible for service credits as outlined in our SLA, available upon request.</p>
-                
-                <h2>9. Limitation of Liability</h2>
-                <p>To the maximum extent permitted by law, CyberShield Pro shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:</p>
-                <ul>
-                    <li>Your access to or use of or inability to access or use the Services</li>
-                    <li>Any conduct or content of any third party on the Services</li>
-                    <li>Any content obtained from the Services</li>
-                    <li>Unauthorized access, use, or alteration of your transmissions or content</li>
-                </ul>
-                
-                <h2>10. Disclaimer of Warranties</h2>
-                <p>THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. WE DISCLAIM ALL WARRANTIES, INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
-                <p>We do not warrant that the Services will be uninterrupted, secure, or error-free, or that any defects will be corrected.</p>
-                
-                <h2>11. Indemnification</h2>
-                <p>You agree to defend, indemnify, and hold harmless CyberShield Pro and its licensees and licensors, and their employees, contractors, agents, officers, and directors, from and against any and all claims, damages, obligations, losses, liabilities, costs or debt, and expenses, resulting from or arising out of:</p>
-                <ul>
-                    <li>Your use of and access to the Services</li>
-                    <li>Your violation of these Terms</li>
-                    <li>Your violation of any third-party right, including without limitation any copyright, property, or privacy right</li>
-                </ul>
-                
-                <h2>12. Termination</h2>
-                <p>We may terminate or suspend your account and bar access to the Services immediately, without prior notice or liability, under our sole discretion, for any reason whatsoever, including without limitation if you breach the Terms.</p>
-                <p>Upon termination, your right to use the Services will immediately cease. If you wish to terminate your account, you may simply discontinue using the Services.</p>
-                
-                <h2>13. Governing Law</h2>
-                <p>These Terms shall be governed and construed in accordance with the laws of the State of California, United States, without regard to its conflict of law provisions.</p>
-                <p>Any disputes arising from these Terms or your use of the Services shall be resolved in the state or federal courts located in San Francisco County, California.</p>
-                
-                <h2>14. Changes to Terms</h2>
-                <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect.</p>
-                <p>By continuing to access or use our Services after those revisions become effective, you agree to be bound by the revised terms.</p>
-                
-                <h2>15. Contact Information</h2>
-                <p>If you have any questions about these Terms, please contact us:</p>
-                <ul>
-                    <li>By email: <a href="mailto:legal@cybershieldpro.com">legal@cybershieldpro.com</a></li>
-                    <li>By mail: CyberShield Pro, 123 Security Blvd, San Francisco, CA 94107</li>
-                    <li>By phone: +1 (555) 123-4567</li>
-                </ul>
-                
-                <h2>16. Severability</h2>
-                <p>If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining provisions of these Terms will remain in effect.</p>
-                
-                <div class="policy-consent">
-                    <p><strong>By using our Services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.</strong></p>
+    <!-- Main Content - Google style -->
+    <main class="google-main">
+        <!-- Last Updated Banner -->
+        <div class="google-last-updated">
+            <div class="google-last-updated-left">
+                <i class="far fa-calendar-alt"></i>
+                <span>Last updated: <strong>March 15, 2024</strong></span>
+                <span style="color: var(--google-gray-400);">|</span>
+                <span>Version 2.3.1</span>
+                <span style="color: var(--google-gray-400);">|</span>
+                <span><i class="fas fa-gavel"></i> Legally binding</span>
+            </div>
+            <a href="#" class="google-download-link">
+                <i class="fas fa-download"></i>
+                Download PDF
+            </a>
+        </div>
+
+        <!-- Table of Contents - Google style -->
+        <div class="google-toc">
+            <div class="google-toc-header">
+                <i class="fas fa-list-ul"></i>
+                <h2>In these terms</h2>
+            </div>
+            <div class="google-toc-grid">
+                <a href="#agreement" class="google-toc-item">1. Agreement to Terms</a>
+                <a href="#description" class="google-toc-item">2. Description of Service</a>
+                <a href="#account" class="google-toc-item">3. Account Registration</a>
+                <a href="#subscription" class="google-toc-item">4. Subscription Terms</a>
+                <a href="#acceptable-use" class="google-toc-item">5. Acceptable Use</a>
+                <a href="#intellectual-property" class="google-toc-item">6. Intellectual Property</a>
+                <a href="#user-content" class="google-toc-item">7. User Content</a>
+                <a href="#sla" class="google-toc-item">8. Service Level Agreement</a>
+                <a href="#liability" class="google-toc-item">9. Limitation of Liability</a>
+                <a href="#warranties" class="google-toc-item">10. Disclaimer of Warranties</a>
+                <a href="#indemnification" class="google-toc-item">11. Indemnification</a>
+                <a href="#termination" class="google-toc-item">12. Termination</a>
+                <a href="#governing-law" class="google-toc-item">13. Governing Law</a>
+                <a href="#changes" class="google-toc-item">14. Changes to Terms</a>
+                <a href="#contact" class="google-toc-item">15. Contact Information</a>
+                <a href="#severability" class="google-toc-item">16. Severability</a>
+            </div>
+        </div>
+
+        <!-- Key Terms Summary Cards -->
+        <div class="google-terms-grid">
+            <div class="google-term-card">
+                <h4><i class="fas fa-credit-card"></i> Billing</h4>
+                <p>Monthly or annual subscriptions billed in advance. Automatic renewal unless canceled.</p>
+            </div>
+            <div class="google-term-card">
+                <h4><i class="fas fa-clock"></i> 99.9% Uptime</h4>
+                <p>Service Level Agreement with credits for downtime. Enterprise-grade reliability.</p>
+            </div>
+            <div class="google-term-card">
+                <h4><i class="fas fa-shield-alt"></i> Data Security</h4>
+                <p>SOC 2 Type II compliant. Your data is encrypted and protected.</p>
+            </div>
+        </div>
+
+        <!-- 1. Agreement to Terms -->
+        <section id="agreement" class="google-section">
+            <h2>1. Agreement to Terms</h2>
+            <p>By accessing or using CyberShield Pro's services, website, or applications (collectively, the "Services"), you agree to be bound by these Terms of Service ("Terms"). If you are using the Services on behalf of an organization, you represent and warrant that you have authority to bind that organization to these Terms.</p>
+            <div class="google-note">
+                <p><strong>Please read carefully:</strong> If you disagree with any part of these Terms, you may not access the Services. These Terms constitute a binding legal agreement between you and CyberShield Pro.</p>
+            </div>
+        </section>
+
+        <!-- 2. Description of Service -->
+        <section id="description" class="google-section">
+            <h2>2. Description of Service</h2>
+            <p>CyberShield Pro provides comprehensive cybersecurity solutions designed to protect your digital assets:</p>
+            <ul class="google-list">
+                <li><strong>Threat detection and monitoring:</strong> 24/7 surveillance of your systems for security threats</li>
+                <li><strong>Vulnerability assessment:</strong> Regular scanning and identification of security weaknesses</li>
+                <li><strong>Incident response:</strong> Rapid response and remediation of security incidents</li>
+                <li><strong>Security consulting:</strong> Expert guidance on security best practices and implementation</li>
+                <li><strong>Compliance services:</strong> Assistance with regulatory compliance (GDPR, HIPAA, SOC2, etc.)</li>
+            </ul>
+            <p>We continuously evolve our Services to address emerging threats. We reserve the right to modify, suspend, or discontinue any aspect of the Services with reasonable notice.</p>
+        </section>
+
+        <!-- 3. Account Registration -->
+        <section id="account" class="google-section">
+            <h2>3. Account Registration</h2>
+            <p>To access certain features, you must register for an account. You agree to:</p>
+            <ul class="google-list">
+                <li>Provide accurate, current, and complete information during registration</li>
+                <li>Maintain and promptly update your account information to keep it accurate</li>
+                <li>Maintain the security and confidentiality of your password and API keys</li>
+                <li>Accept all risks of unauthorized access to your account</li>
+                <li>Notify us immediately at <a href="mailto:security@cybershieldpro.com">security@cybershieldpro.com</a> of any unauthorized use</li>
+                <li>Take responsibility for all activities that occur under your account</li>
+            </ul>
+            <div class="google-warning">
+                <p><i class="fas fa-exclamation-triangle"></i> <strong>Security Notice:</strong> You are responsible for maintaining the security of your account credentials. We recommend using strong passwords and enabling two-factor authentication.</p>
+            </div>
+        </section>
+
+        <!-- 4. Subscription Terms -->
+        <section id="subscription" class="google-section">
+            <h2>4. Subscription Terms</h2>
+            
+            <h3><i class="fas fa-credit-card"></i> 4.1 Billing and Payment</h3>
+            <p>Fees for Services are billed in advance on a monthly or annual basis, as selected during registration. All fees are exclusive of taxes, which you are responsible for paying. Payments are non-refundable except as required by law or as expressly stated in these Terms.</p>
+
+            <h3><i class="fas fa-sync-alt"></i> 4.2 Automatic Renewal</h3>
+            <p>Unless you cancel your subscription before the end of the applicable subscription period, your subscription will automatically renew for the same duration. You authorize us to charge the then-applicable subscription fee using any payment method we have on record. You can cancel at any time in your account settings.</p>
+
+            <h3><i class="fas fa-chart-line"></i> 4.3 Price Changes</h3>
+            <p>We may change subscription fees at any time. Price changes will become effective at the start of the next subscription period. We will provide at least 30 days' notice of any price changes via email or through the Services.</p>
+        </section>
+
+        <!-- 5. Acceptable Use -->
+        <section id="acceptable-use" class="google-section">
+            <h2>5. Acceptable Use</h2>
+            <p>You agree not to use the Services to:</p>
+            <ul class="google-list">
+                <li>Violate any applicable laws, regulations, or third-party rights</li>
+                <li>Infringe upon the intellectual property rights of others</li>
+                <li>Transmit any viruses, worms, malware, or other malicious code</li>
+                <li>Attempt to gain unauthorized access to our systems, networks, or other users' accounts</li>
+                <li>Interfere with or disrupt the integrity or performance of the Services</li>
+                <li>Use the Services for any illegal, harmful, or fraudulent purpose</li>
+                <li>Reverse engineer, decompile, or disassemble any portion of the Services</li>
+                <li>Use the Services to violate the security or integrity of any other system</li>
+            </ul>
+        </section>
+
+        <!-- 6. Intellectual Property Rights -->
+        <section id="intellectual-property" class="google-section">
+            <h2>6. Intellectual Property Rights</h2>
+            <p>The Services, including their original content, features, functionality, algorithms, and underlying technology, are owned by CyberShield Pro and are protected by international copyright, trademark, patent, trade secret, and other intellectual property laws.</p>
+            <p>Our trademarks, service marks, and trade dress (including the CyberShield Pro name and logo) may not be used in connection with any product or service without our prior written consent.</p>
+            <p>You retain all rights to any data, information, or material you submit to the Services, subject to the license granted in Section 7.</p>
+        </section>
+
+        <!-- 7. User Content -->
+        <section id="user-content" class="google-section">
+            <h2>7. User Content</h2>
+            <p>You retain all rights to any content, data, or materials you submit, post, or display on or through the Services ("User Content"). By submitting User Content, you grant us a worldwide, non-exclusive, royalty-free license to use, reproduce, modify, adapt, store, and display such content solely for the purpose of providing, maintaining, and improving the Services.</p>
+            <p>You represent and warrant that:</p>
+            <ul class="google-list">
+                <li>You own all rights to your User Content or have permission from the rights holder</li>
+                <li>Your User Content does not violate any third-party rights or these Terms</li>
+                <li>Your User Content complies with all applicable laws and regulations</li>
+            </ul>
+        </section>
+
+        <!-- 8. Service Level Agreement -->
+        <section id="sla" class="google-section">
+            <h2>8. Service Level Agreement (SLA)</h2>
+            <p>We are committed to providing reliable services:</p>
+            <ul class="google-list">
+                <li><strong>Uptime commitment:</strong> 99.9% availability for core services</li>
+                <li><strong>Monitoring:</strong> 24/7 infrastructure monitoring</li>
+                <li><strong>Support response:</strong> Critical issues responded to within 1 hour</li>
+                <li><strong>SLA credits:</strong> If we fail to meet our uptime commitment, you may be eligible for service credits as outlined in our detailed SLA</li>
+            </ul>
+            <p>Full SLA details are available upon request or in your account dashboard.</p>
+        </section>
+
+        <!-- 9. Limitation of Liability -->
+        <section id="liability" class="google-section">
+            <h2>9. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by law, CyberShield Pro and its affiliates, officers, employees, agents, partners, and licensors shall not be liable for any:</p>
+            <ul class="google-list">
+                <li>Indirect, incidental, special, consequential, or punitive damages</li>
+                <li>Loss of profits, revenue, data, use, goodwill, or other intangible losses</li>
+                <li>Damages resulting from your access to or use of or inability to access or use the Services</li>
+                <li>Unauthorized access, use, or alteration of your transmissions or content</li>
+            </ul>
+            <p>Our total liability for any claims arising from these Terms or your use of the Services shall not exceed the amount you paid us during the twelve months preceding the claim.</p>
+            <div class="google-note">
+                <p><strong>Note:</strong> Some jurisdictions do not allow the exclusion of certain warranties or limitation of liability, so some of the above limitations may not apply to you.</p>
+            </div>
+        </section>
+
+        <!-- 10. Disclaimer of Warranties -->
+        <section id="warranties" class="google-section">
+            <h2>10. Disclaimer of Warranties</h2>
+            <p>THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. TO THE FULLEST EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.</p>
+            <p>We do not warrant that:</p>
+            <ul class="google-list">
+                <li>The Services will meet your specific requirements</li>
+                <li>The Services will be uninterrupted, timely, secure, or error-free</li>
+                <li>The results obtained from using the Services will be accurate or reliable</li>
+                <li>Any defects in the Services will be corrected</li>
+            </ul>
+        </section>
+
+        <!-- 11. Indemnification -->
+        <section id="indemnification" class="google-section">
+            <h2>11. Indemnification</h2>
+            <p>You agree to defend, indemnify, and hold harmless CyberShield Pro, its affiliates, and their respective officers, directors, employees, and agents from and against any claims, liabilities, damages, losses, and expenses (including reasonable attorneys' fees) arising out of or in any way connected with:</p>
+            <ul class="google-list">
+                <li>Your access to or use of the Services</li>
+                <li>Your violation of these Terms</li>
+                <li>Your violation of any third-party rights, including intellectual property or privacy rights</li>
+                <li>Any User Content you submit</li>
+            </ul>
+        </section>
+
+        <!-- 12. Termination -->
+        <section id="termination" class="google-section">
+            <h2>12. Termination</h2>
+            <p>We may terminate or suspend your account and access to the Services immediately, without prior notice or liability, for any reason, including if you breach these Terms. Upon termination:</p>
+            <ul class="google-list">
+                <li>Your right to use the Services will immediately cease</li>
+                <li>We may delete your account and any associated data</li>
+                <li>You remain responsible for any fees incurred before termination</li>
+            </ul>
+            <p>If you wish to terminate your account, you may simply discontinue using the Services or contact us at <a href="mailto:support@cybershieldpro.com">support@cybershieldpro.com</a>.</p>
+        </section>
+
+        <!-- 13. Governing Law -->
+        <section id="governing-law" class="google-section">
+            <h2>13. Governing Law</h2>
+            <p>These Terms shall be governed and construed in accordance with the laws of the State of California, United States, without regard to its conflict of law provisions. The United Nations Convention on Contracts for the International Sale of Goods does not apply.</p>
+            <p>Any disputes arising from these Terms or your use of the Services shall be resolved exclusively in the state or federal courts located in San Francisco County, California. You consent to the personal jurisdiction of these courts.</p>
+        </section>
+
+        <!-- 14. Changes to Terms -->
+        <section id="changes" class="google-section">
+            <h2>14. Changes to Terms</h2>
+            <p>We may modify these Terms at any time. If changes are material, we will provide at least 30 days' notice prior to the new terms taking effect. Notice may be provided via:</p>
+            <ul class="google-list">
+                <li>Email to the address associated with your account</li>
+                <li>A banner or notification within the Services</li>
+                <li>Posting on our website</li>
+            </ul>
+            <p>By continuing to access or use the Services after revisions become effective, you agree to be bound by the revised terms.</p>
+        </section>
+
+        <!-- 15. Contact Information -->
+        <section id="contact" class="google-section">
+            <h2>15. Contact Information</h2>
+            <p>If you have questions about these Terms, please contact our Legal Department:</p>
+
+            <div class="google-contact-grid">
+                <div class="google-contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                    <a href="mailto:legal@cybershieldpro.com">legal@cybershieldpro.com</a>
+                </div>
+                <div class="google-contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Mail</span>
+                    <p>123 Security Blvd<br>San Francisco, CA 94107</p>
+                </div>
+                <div class="google-contact-card">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Phone</span>
+                    <a href="tel:+15551234567">+1 (555) 123-4567</a>
+                </div>
+                <div class="google-contact-card">
+                    <i class="fas fa-balance-scale"></i>
+                    <span>Legal Department</span>
+                    <p>legal@cybershieldpro.com</p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
+            <div class="google-note">
+                <p><strong>For legal notices only:</strong> Service of process may be sent to the mailing address above, Attention: Legal Department.</p>
+            </div>
+        </section>
+
+        <!-- 16. Severability -->
+        <section id="severability" class="google-section">
+            <h2>16. Severability</h2>
+            <p>If any provision of these Terms is held to be invalid or unenforceable by a court of competent jurisdiction, the remaining provisions will remain in full force and effect. The invalid provision shall be modified to the minimum extent necessary to make it valid and enforceable.</p>
+        </section>
+
+        <!-- Acceptance Section -->
+        <div class="google-warning" style="margin-top: 48px;">
+            <p><i class="fas fa-gavel"></i> <strong>By using our Services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.</strong></p>
+        </div>
+    </main>
+
+    <!-- Google-style Footer -->
+    <footer class="google-footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <a href="../index.html" class="logo">
+            <div class="google-footer-grid">
+                <div class="google-footer-col">
+                    <a href="../index.html" class="google-logo">
                         <i class="fas fa-shield-alt"></i>
                         <span>CyberShield<span class="logo-highlight">Pro</span></span>
                     </a>
-                    <p>Enterprise-grade cybersecurity solutions to protect your digital assets and ensure business continuity.</p>
-                    <div class="social-links">
+                    <p>Enterprise-grade cybersecurity solutions protecting businesses worldwide.</p>
+                    <div class="google-social-links">
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -186,40 +1036,44 @@
                     </div>
                 </div>
                 
-                <div class="footer-col">
+                <div class="google-footer-col">
                     <h3>Services</h3>
                     <ul>
                         <li><a href="services.html">Threat Detection</a></li>
                         <li><a href="services.html">Vulnerability Assessment</a></li>
                         <li><a href="services.html">Incident Response</a></li>
                         <li><a href="services.html">Security Consulting</a></li>
-                        <li><a href="services.html">Compliance Auditing</a></li>
                     </ul>
                 </div>
                 
-                <div class="footer-col">
+                <div class="google-footer-col">
                     <h3>Company</h3>
                     <ul>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="team.html">Our Team</a></li>
                         <li><a href="careers.html">Careers</a></li>
                         <li><a href="blog.html">Blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 
-                <div class="footer-col">
-                    <h3>Contact Info</h3>
-                    <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Security Blvd, San Francisco, CA</li>
+                <div class="google-footer-col">
+                    <h3>Contact</h3>
+                    <ul class="google-contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> San Francisco, CA</li>
                         <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
                         <li><i class="fas fa-envelope"></i> info@cybershieldpro.com</li>
                     </ul>
                 </div>
             </div>
             
-            <div class="footer-bottom">
-                <p>&copy; 2024 CyberShield Pro. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+            <div class="google-footer-bottom">
+                <p>&copy; 2024 CyberShield Pro, Inc. All rights reserved.</p>
+                <div>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookies</a>
+                    <a href="#">Your Privacy Choices</a>
+                </div>
             </div>
         </div>
     </footer>
