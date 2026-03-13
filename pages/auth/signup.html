@@ -353,15 +353,15 @@
     </style>
 </head>
 <body>
-    <!-- Simple header with only logo -->
+    <!-- Header with correct path to home -->
     <div style="padding: 16px 24px;">
-        <a href="../index.html" style="display: flex; align-items: center; gap: 8px; text-decoration: none; width: fit-content;">
+        <a href="../../index.html" style="display: flex; align-items: center; gap: 8px; text-decoration: none; width: fit-content;">
             <i class="fas fa-shield-alt" style="color: #1a73e8; font-size: 24px;"></i>
             <span style="font-family: 'Google Sans', sans-serif; font-size: 20px; font-weight: 500; color: #202124;">CyberShield<span style="color: #1a73e8;">Pro</span></span>
         </a>
     </div>
 
-    <!-- Main login container - centered -->
+    <!-- Main login container -->
     <div class="google-login-wrapper">
         <div class="google-login-card">
             <!-- Logo inside card -->
@@ -376,12 +376,11 @@
                 <p>Use your CyberShield Pro account</p>
             </div>
 
-            <!-- Message container for errors/success -->
+            <!-- Message container -->
             <div id="messageContainer"></div>
 
             <!-- Login Form -->
             <form id="loginForm" method="POST" action="/api/login.php">
-                <!-- CSRF Token (will be set by PHP) -->
                 <input type="hidden" name="csrf_token" id="csrfToken" value="">
 
                 <!-- Email field -->
@@ -409,7 +408,7 @@
                                placeholder="Password" 
                                autocomplete="current-password"
                                required>
-                        <button type="button" class="google-password-toggle" id="togglePassword" aria-label="Show password">
+                        <button type="button" class="google-password-toggle" id="togglePassword">
                             <i class="far fa-eye"></i>
                         </button>
                     </div>
@@ -421,7 +420,7 @@
                         <input type="checkbox" name="remember_me" id="rememberMe">
                         <span>Stay signed in</span>
                     </label>
-                    <a href="forgot-password.html" class="google-forgot-link">Forgot password?</a>
+                    <a href="../forgot-password.html" class="google-forgot-link">Forgot password?</a>
                 </div>
 
                 <!-- Submit button -->
@@ -450,22 +449,22 @@
                 <!-- Create account link -->
                 <div class="google-create-account">
                     <p>Don't have an account?</p>
-                    <a href="signup.html">Create account</a>
+                    <a href="../signup.html">Create account</a>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Footer with proper links -->
+    <!-- Footer with CORRECT paths for your structure -->
     <footer class="google-footer">
         <div class="google-footer-links">
-            <a href="../index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="privacy-policy.html">Privacy</a>
-            <a href="terms.html">Terms</a>
-            <a href="contact.html">Contact</a>
-            <a href="help.html">Help</a>
-            <a href="security.html">Security</a>
+            <a href="../../index.html">Home</a>                    <!-- 2 levels up -->
+            <a href="../about.html">About</a>                      <!-- 1 level up -->
+            <a href="../privacy-policy.html">Privacy</a>           <!-- 1 level up -->
+            <a href="../terms.html">Terms</a>                      <!-- 1 level up -->
+            <a href="../contact.html">Contact</a>                  <!-- 1 level up -->
+            <a href="../help.html">Help</a>                        <!-- 1 level up -->
+            <a href="../security.html">Security</a>                <!-- 1 level up -->
         </div>
         <p>&copy; 2024 CyberShield Pro, Inc. All rights reserved.</p>
     </footer>
@@ -502,7 +501,7 @@
                 try {
                     // Simulate API call
                     setTimeout(() => {
-                        window.location.href = '/dashboard.php';
+                        window.location.href = '../../dashboard.php';
                     }, 1000);
 
                 } catch (error) {
@@ -528,7 +527,7 @@
                     </div>
                 `;
                 setTimeout(() => {
-                    window.location.href = '/sso/login.php';
+                    window.location.href = '../sso.php';
                 }, 1500);
             });
 
@@ -541,7 +540,7 @@
                     </div>
                 `;
                 setTimeout(() => {
-                    window.location.href = '/oauth/microsoft.php';
+                    window.location.href = '../microsoft-oauth.php';
                 }, 1500);
             });
         });
